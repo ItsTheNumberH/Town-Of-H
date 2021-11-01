@@ -1,14 +1,9 @@
- ## *Note. This repository is depricated in favour of Polus.gg, and is now read-only as it will not be recieving updates. Please visit our [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and our [discord](https://discord.gg/polus) for all updates**
-
-
-[![Discord](./Images/Polus.png)](https://discord.gg/polus)
+ ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixers and many more options. Source code is added to each release**
 
 ![LOGO](./Images/TOU-logo.png)
 ![Roles](./Images/Roles3.png)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
-
-
 
 
 **Crewmate Roles**
@@ -24,6 +19,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Spy](#spy)
 - [Snitch](#snitch)
 - [Altruist](#altruist)
+- [Chameleon](#chameleon)
+- [Vigilante](#altruist)
 
 **Neutral Roles**
 - [Jester](#jester)
@@ -42,10 +39,12 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Assassin](#assassin)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
+- [Poisoner](#poisoner)
 
 **Modifiers**
 - [Torch](#torch)
 - [Diseased](#diseased)
+- [Child](#child)
 - [Flash](#flash)
 - [Tiebreaker](#tiebreaker)
 - [Drunk](#drunk)
@@ -532,6 +531,36 @@ After a set period of time, the player will be resurrected, if the revival isn't
 | Altruist | The percentage probability of the Altruist appearing | Percentage | 0% |
 | Altruist Revive Duration | The time it takes for the Altruist to revive a dead body | Time | 10s |
 | Target's body disappears on beginning of revive | Whether the dead body of the player the Altruist is reviving disappears upon revival | Toggle | False |
+-----------------------
+
+## Chameleon
+### **Team: Crewmates**
+
+The Chameleon is a Crewmate that can temporarily turn translucent.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Chameleon | The percentage probability of the Chameleon appearing | Percentage | 0% |
+| Chameleon Cooldown | The cooldown of the Chameleon's Hide button | Time | 25s |
+| Chameleon Duration | How long the Chameleon's hide lasts for | Time | 10s |
+-----------------------
+
+## Vigilante
+### **Team: Crewmates**
+
+The Vigilante is a Crewmate that can kill during meetings by guessing the role of Impostors.\
+If they guessed wrong, they die instead.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Vigilante | The percentage probability of the Vigilante appearing | Percentage | 0% |
+| Vigilante Kill | The number of kills the Vigilante can do with his ability | Number | 1 |
+| Vigilante Guess Impostor | Whether the Vigilante can Guess "Impostor" | Toggle | False |
+| Vigilante Guess Neutral  | Whether the Vigilante can Guess Neutral roles | Toggle | False |
+| Vigilante Multiple Kill  | Whether the Vigilante can kill more than once per meeting | Toggle | True |
+| Vigilante Guess Chameleon | Whether the Vigilante can Guess "Chameleon" | Toggle | False |
 
 -----------------------
 # Neutral Roles
@@ -680,6 +709,20 @@ These vents only connect to each other, forming a new passway.
 | Mine Cooldown | The cooldown of the Miner's Mine button | Time | 25s |
 
 -----------------------
+## Poisoner
+### **Team: Impostors**
+
+The Poisoner is an Impostor that can poison crewmates instead of outright killing them.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Poisoner | The percentage probability of the Poisoner appearing | Percentage | 0% |
+| Poisoner Cooldown | The cooldown of the Poisoner's Poison button | Time | 25s |
+| Poison Duration | The duration of the Poisoner's Poison before it kills the target | Time | 10s |
+| Poison Alert | Who gets alerted to someone being poisoned | No one/Target/Everyone | Target |
+
+-----------------------
 ## Swooper
 ### **Team: Impostors**
 
@@ -791,6 +834,15 @@ The Giant is a gigantic Crewmate, that has a decreased walk speed.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Giant | The percentage probability of the Giant appearing | Percentage | 0% |
+
+-----------------------
+## Child
+### **Applied to: All**
+The Child is a tiny Crewmate.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Child | The percentage probability of the Child appearing | Percentage | 0% |
 
 -----------------------
 ## Button Barry
