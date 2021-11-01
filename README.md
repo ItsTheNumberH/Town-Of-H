@@ -20,7 +20,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Snitch](#snitch)
 - [Altruist](#altruist)
 - [Chameleon](#chameleon)
-- [Vigilante](#altruist)
+- [Vigilante](#vigilante)
 
 **Neutral Roles**
 - [Jester](#jester)
