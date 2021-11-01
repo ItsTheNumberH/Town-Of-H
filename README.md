@@ -1,4 +1,4 @@
- ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixers and many more options. Source code is added to each release**
+ ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixes and many more options. Source code is added to each release**
 
 ![LOGO](./Images/TOU-logo.png)
 ![Roles](./Images/Roles3.png)
