@@ -88,8 +88,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
    <ul> <li> Arsonist new ignite sprite from The Other Roles </li> </ul>
    <ul> <li> Maybe fixed Sheriff autoban from Town Of Us R</li> </ul>
    <ul> <li> Timelord cooldown fix </li> </ul>
-   <ul> <li> Poisoner is in a playable state </li> </ul>
-   <ul> <li> Chameleon is now comlpletely invisible (So no red outline for impostors to see!) But this includes being invisible to yourself </li> </ul>
+   <ul> <li> Poisoner is now in a playable state </li> </ul>
+   <ul> <li> Chameleon is now completely invisible (So no red outline for impostors to see!) but this includes being invisible to yourself </li> </ul>
  </li> </ul>
   </details>
   <details>
@@ -98,7 +98,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
   </details>
   <details>
   <summary> v4.0.3 </summary>
-   <ul> <li>Fixed potential tracker issue </li> </ul>
+   <ul> <li> Fixed potential tracker issue </li> </ul>
    <ul> <li> Added Poisoner (BETA). It works, but the kill button is non-functional so should really be hidden. </li> </ul>
    <ul> <li> Added background to main menu </li> </ul>
   </details>
@@ -111,20 +111,19 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
    <ul> <li> Tracker added </li > </ul>
    <ul> <li> Vigilante added </li > </ul>
    <ul> <li> Chameleon added </li > </ul>
-   <ul> <li> Chameleon added </li > </ul>
    <ul> <li> In game updater added </li > </ul>
    <ul> <li> Seer accuracy option </li > </ul>
    <ul> <li> Seer reveals 'roles' option (reveals player as one of 3-ish roles) </li > </ul>
    <ul> <li> Seer reveals per round/game option </li > </ul>
    <ul> <li> Fix for standard impostor role instantly ending game </ul>
-   <ul> <li> Fix for Phantom spaning in polus admin vent </li > </ul>
-   <ul> <li> Option for Phantom to span ON vent rather than IN vent </li > </ul>
+   <ul> <li> Fix for Phantom spawning in polus admin vent </li > </ul>
+   <ul> <li> Option for Phantom to spawn ON vent rather than IN vent </li > </ul>
    <ul> <li> Option to not show kill animations for normal kills </li > </ul>
    <ul> <li> Option to not show kill animations for assassin kills </li > </ul>
    <ul> <li> Option to not show kill animations for vigilante kills </li > </ul>
    <ul> <li> Option for Shifter to shift with glitch </li > </ul>
    <ul> <li> Option for sheriff to kill each neutral role</li > </ul>
-   <ul> <li> Assassin can kill after voting </li > </ul>
+   <ul> <li> Assassin can kill after voting before meeting ends </li > </ul>
    <ul> <li> Option for Underdog to get faster cooldown the fewer non-impostors are alive </li > </ul>
    <ul> <li> Fix for Undertaker not dropping body on hosts screen </li > </ul>
    <ul> <li> More changes that I may have missed! </li > </ul>
