@@ -57,6 +57,10 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.5 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.5/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.4/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.3/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.2/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/
 | 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
@@ -78,6 +82,54 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <details>
   <summary> Changelog </summary>
+  <details>
+  <summary> v4.0.5 </summary>
+   <ul> <li> Tracker new button sprite </li> </ul>
+   <ul> <li> Arsonist new ignite sprite from The Other Roles </li> </ul>
+   <ul> <li> Maybe fixed Sheriff autoban from Town Of Us R</li> </ul>
+   <ul> <li> Timelord cooldown fix </li> </ul>
+   <ul> <li> Poisoner is in a playable state </li> </ul>
+   <ul> <li> Chameleon is now comlpletely invisible (So no red outline for impostors to see!) But this includes being invisible to yourself </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.4 </summary>
+   <ul> <li>Poisoner given notification (Purple flash) and option for who gets it (Poisoned crewmate/Everyone/No one) </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.3 </summary>
+   <ul> <li>Fixed potential tracker issue </li> </ul>
+   <ul> <li> Added Poisoner (BETA). It works, but the kill button is non-functional so should really be hidden. </li> </ul>
+   <ul> <li> Added background to main menu </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.2 </summary>
+   <ul> <li> A big update to Town of Us (Hence the number jump). </li> </ul>
+   <ul> <li> Investigator lag potentially fixed </li > </ul>
+   <ul> <li> Tons of new hats </li > </ul>
+   <ul> <li> Role intro texts changed to be more descriptive/helpful </li > </ul>
+   <ul> <li> Tracker added </li > </ul>
+   <ul> <li> Vigilante added </li > </ul>
+   <ul> <li> Chameleon added </li > </ul>
+   <ul> <li> Chameleon added </li > </ul>
+   <ul> <li> In game updater added </li > </ul>
+   <ul> <li> Seer accuracy option </li > </ul>
+   <ul> <li> Seer reveals 'roles' option (reveals player as one of 3-ish roles) </li > </ul>
+   <ul> <li> Seer reveals per round/game option </li > </ul>
+   <ul> <li> Fix for standard impostor role instantly ending game </ul>
+   <ul> <li> Fix for Phantom spaning in polus admin vent </li > </ul>
+   <ul> <li> Option for Phantom to span ON vent rather than IN vent </li > </ul>
+   <ul> <li> Option to not show kill animations for normal kills </li > </ul>
+   <ul> <li> Option to not show kill animations for assassin kills </li > </ul>
+   <ul> <li> Option to not show kill animations for vigilante kills </li > </ul>
+   <ul> <li> Option for Shifter to shift with glitch </li > </ul>
+   <ul> <li> Option for sheriff to kill each neutral role</li > </ul>
+   <ul> <li> Assassin can kill after voting </li > </ul>
+   <ul> <li> Option for Underdog to get faster cooldown the fewer non-impostors are alive </li > </ul>
+   <ul> <li> Fix for Undertaker not dropping body on hosts screen </li > </ul>
+   <ul> <li> More changes that I may have missed! </li > </ul>
+   <ul> <li> Polus nonsense removed.</li></ul>
+  </details>
   <details>
   <summary> v2.2.1 </summary>
   <ul> <li>Fix for the credits removed in v2.0.3 </li> </ul>
