@@ -37,6 +37,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 shiftButton.SetCoolDown(role.ShifterShiftTimer(), CustomGameOptions.ShifterCd);
 
                 Utils.SetTarget(ref role.ClosestPlayer, shiftButton);
+                if (role.ClosestPlayer != null) {
+                    role.ClosestPlayer.myRend.material.SetColor("_OutlineColor", role.Color);
+                }
             }
         }
     }

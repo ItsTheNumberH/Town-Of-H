@@ -15,7 +15,11 @@ namespace TownOfUs.NeutralRoles.GlitchMod
             {
                 var glitch = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Glitch);
                 if (glitch != null)
-                    ((Glitch) glitch).LastKill = DateTime.UtcNow;
+                {
+                    ((Glitch)glitch).LastKill = DateTime.UtcNow;
+                    ((Glitch)glitch).LastMimic = DateTime.UtcNow;
+                    ((Glitch)glitch).LastHack = DateTime.UtcNow;
+                }
             }
         }
     }

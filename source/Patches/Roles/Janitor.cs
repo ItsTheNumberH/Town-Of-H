@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
         public Janitor(PlayerControl player) : base(player)
         {
             Name = "Janitor";
-            ImpostorText = () => "Clean up bodies";
+            ImpostorText = () => "Kill and clean up bodies";
             TaskText = () => "Clean bodies to prevent Crewmates from discovering them.";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Janitor;

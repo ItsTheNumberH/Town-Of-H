@@ -9,8 +9,6 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
     {
         public static Sprite SampleSprite => TownOfUs.SampleSprite;
         public static Sprite MorphSprite => TownOfUs.MorphSprite;
-
-
         public static void Postfix(HudManager __instance)
         {
             if (PlayerControl.AllPlayerControls.Count <= 1) return;

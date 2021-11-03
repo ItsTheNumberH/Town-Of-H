@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+using System.Linq;
 
 namespace TownOfUs.NeutralRoles.PhantomMod
 {
@@ -33,7 +34,6 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                 Role.RoleDictionary.Remove(PlayerControl.LocalPlayer.PlayerId);
                 var role = new Phantom(PlayerControl.LocalPlayer);
                 role.RegenTask();
-                Lights.SetLights();
 
                 RemoveTasks(PlayerControl.LocalPlayer);
                 PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
@@ -50,8 +50,17 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
             var startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
+            if (PlayerControl.GameOptions.MapId == 2)
+            {
+                while (startingVent == ShipStatus.Instance.AllVents[5])
+                {
+                    startingVent = ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
+                }
+            }
             PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
-            PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
+            if (CustomGameOptions.PhantomSpawnInVent) {
+                PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
+            }
         }
 
         public static void Postfix(ExileController __instance) => ExileControllerPostfix(__instance);
@@ -76,6 +85,8 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                             console.Image.color = Color.white;
                     normalPlayerTask.taskStep = 0;
 
+                    if (normalPlayerTask.TaskType == TaskTypes.UploadData)
+                        normalPlayerTask.taskStep = 1;
                     if (updateArrow)
                         normalPlayerTask.UpdateArrow();
                     

@@ -7,6 +7,7 @@ using Il2CppSystem.Collections.Generic;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.InvestigatorMod;
+using TownOfUs.CrewmateRoles.TrackerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SnitchMod;
 using TownOfUs.Extensions;
@@ -65,7 +66,10 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             writer.Write(playerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            Shift(role, role.ClosestPlayer);
+            try {
+                Shift(role, role.ClosestPlayer);
+            } catch {
+            }
             return false;
         }
 
@@ -127,9 +131,32 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Arsonist:
                 case RoleEnum.Crewmate:
                 case RoleEnum.Altruist:
+                case RoleEnum.Vigilante:
+                case RoleEnum.Glitch:
+                case RoleEnum.Tracker:
+                case RoleEnum.Chameleon:
 
-                    if (role == RoleEnum.Investigator) Footprint.DestroyAll(Role.GetRole<Investigator>(other));
+                    if (role == RoleEnum.Glitch) {
+                        if (CustomGameOptions.ShiftGlitch) {
+                        } else {
+                            shifter.Data.IsImpostor = true;
+                            shifter.MurderPlayer(shifter);
+                            shifter.Data.IsImpostor = false;
+                            swapTasks = false;
+                            break;
+                        }
+                    }
 
+                    if (role == RoleEnum.Investigator) {
+                        Footprint.DestroyAll(Role.GetRole<Investigator>(other));
+                    }
+                    if (role == RoleEnum.Chameleon) {
+                        foreach (var chameleonRole in Role.AllRoles.Where(x => x.RoleType == RoleEnum.Chameleon))
+                        {
+                            var chameleon = (Chameleon) chameleonRole;
+                            chameleon.UnSwoop();
+                        }
+                    }
 
                     newRole = Role.GetRole(other);
                     newRole.Player = shifter;
@@ -159,7 +186,6 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                         Modifier.ModifierDictionary.Remove(other.PlayerId);
                         Modifier.ModifierDictionary.Add(shifter.PlayerId, modifier);
                     }
-
 
                     Role.RoleDictionary.Remove(shifter.PlayerId);
                     Role.RoleDictionary.Remove(other.PlayerId);
@@ -193,7 +219,12 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                     {
                         new Crewmate(other);
                     }
-
+                    if (shifter.Is(RoleEnum.Glitch) && other.AmOwner) {
+                        Role.GetRole<Glitch>(shifter).HackButton.Destroy();
+                        Role.GetRole<Glitch>(shifter).MimicButton.Destroy();
+                        Role.GetRole<Glitch>(shifter).HackButton.renderer.enabled = false;
+                        Role.GetRole<Glitch>(shifter).MimicButton.renderer.enabled = false;
+                    }
 
                     break;
 
@@ -207,8 +238,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Janitor:
                 case RoleEnum.LoverImpostor:
                 case RoleEnum.Impostor:
-                case RoleEnum.Glitch:
                 case RoleEnum.Shifter:
+                case RoleEnum.Grenadier:
+                case RoleEnum.Poisoner:
                     shifter.Data.IsImpostor = true;
                     shifter.MurderPlayer(shifter);
                     shifter.Data.IsImpostor = false;
@@ -228,8 +260,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 other.myTasks = tasks2;
                 other.Data.Tasks = taskinfos2;
 
-                if (other.AmOwner) Coroutines.Start(ShowShift());
-
+                if (CustomGameOptions.ShowShift) {
+                    if (other.AmOwner) Coroutines.Start(ShowShift());
+                }
                 if (lovers)
                 {
                     var lover = Role.GetRole<Lover>(shifter);
@@ -252,17 +285,22 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (resetShifter) shifterRole.RegenTask();
             }
 
-            //System.Console.WriteLine(shifter.Is(RoleEnum.Sheriff));
-            //System.Console.WriteLine(other.Is(RoleEnum.Sheriff));
-            //System.Console.WriteLine(Roles.Role.GetRole(shifter));
             if (shifter.AmOwner || other.AmOwner)
             {
-                if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner)
+                if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner) {
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
+                    Role.GetRole<Arsonist>(shifter).IgniteButton.renderer.enabled = false;
+                }
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
                 DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;
-
-                Lights.SetLights();
+                
+                if (shifter.Is(RoleEnum.Chameleon) && other.AmOwner) {
+                    Role.GetRole<Chameleon>(shifter).SwoopButton.Destroy();
+                    Role.GetRole<Chameleon>(shifter).SwoopButton.renderer.enabled = false;
+                }
+                if (shifter.Is(RoleEnum.Tracker) && other.AmOwner) {
+                    Role.GetRole<Tracker>(shifter).TrackerArrows.DestroyAll();
+                }
             }
         }
     }

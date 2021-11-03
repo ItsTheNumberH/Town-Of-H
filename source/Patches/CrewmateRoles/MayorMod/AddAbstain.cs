@@ -18,7 +18,6 @@ namespace TownOfUs.CrewmateRoles.MayorMod
             role.Abstain.skipVoteText.text = "Abstain";
         }
 
-
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
         public class MeetingHudStart
         {

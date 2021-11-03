@@ -18,13 +18,11 @@ namespace TownOfUs
         private static Sprite Shift => TownOfUs.Shift;
         private static Sprite Rewind => TownOfUs.Rewind;
         private static Sprite Medic => TownOfUs.MedicSprite;
+        private static Sprite Tracker => TownOfUs.TrackerSprite;
         private static Sprite Seer => TownOfUs.SeerSprite;
         private static Sprite Douse => TownOfUs.DouseSprite;
-
         private static Sprite Revive => TownOfUs.ReviveSprite;
-
         private static Sprite Button => TownOfUs.ButtonSprite;
-
 
         public static void Postfix(HudManager __instance)
         {
@@ -49,6 +47,11 @@ namespace TownOfUs
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Medic))
             {
                 __instance.KillButton.renderer.sprite = Medic;
+                flag = true;
+            }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Tracker))
+            {
+                __instance.KillButton.renderer.sprite = Tracker;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist))

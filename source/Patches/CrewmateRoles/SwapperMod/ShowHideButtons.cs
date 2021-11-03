@@ -96,13 +96,13 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
 
                 var playerControl = playerInfo.Object;
                 
-                if (playerControl.Is(RoleEnum.Assassin) && playerInfo.IsDead)
+                if ((playerControl.Is(RoleEnum.Assassin) && playerInfo.IsDead) || (playerControl.Is(RoleEnum.Vigilante) && playerInfo.IsDead))
                 {
                     playerVoteArea.VotedFor = PlayerVoteArea.DeadVote;
                     playerVoteArea.SetDead(false, true);
                     return true;
                 }
-                    
+
                 
                 return true;
             }

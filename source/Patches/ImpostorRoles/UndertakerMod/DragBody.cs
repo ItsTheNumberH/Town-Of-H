@@ -33,7 +33,6 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                     role.CurrentlyDragging = null;
                     body.bodyRenderer.material.SetFloat("_Outline", 0f);
                     role.LastDragged = DateTime.UtcNow;
-
                 }
                 return;
             }
@@ -59,7 +58,6 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
             var material = body.bodyRenderer.material;
             material.SetColor("_OutlineColor", Color.green);
             material.SetFloat("_Outline", 1f);
-            
         }
     }
 }

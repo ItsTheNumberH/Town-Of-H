@@ -40,7 +40,7 @@ namespace TownOfUs.Roles
             distPercent = Mathf.Max(0, distPercent - 1);
 
             var velocity = Player.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
-            color.a = 0.07f + velocity / Player.MyPhysics.TrueGhostSpeed * 0.13f;
+            color.a = 0.07f + velocity / Player.MyPhysics.TrueGhostSpeed * 0.1f;
             color.a = Mathf.Lerp(color.a, 0, distPercent);
 
             Player.MyRend.color = color;

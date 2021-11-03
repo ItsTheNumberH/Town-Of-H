@@ -51,6 +51,9 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
 
             Utils.SetTarget(ref role.ClosestPlayer, __instance.KillButton, float.NaN, notDoused);
 
+            if (role.ClosestPlayer != null) {
+                role.ClosestPlayer.myRend.material.SetColor("_OutlineColor", role.Color);
+            }
 
             if (!role.IgniteButton.isCoolingDown & role.IgniteButton.isActiveAndEnabled & !role.IgniteUsed &
                 role.CheckEveryoneDoused())

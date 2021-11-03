@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TMPro;
+using TownOfUs.CustomHats;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
@@ -100,7 +101,8 @@ namespace TownOfUs.Roles
         {
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2.0f,
+                Player.Data.HatId == 0U ? 1.5f :
+                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
             if (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles) return Utils.ShowDeadBodies;
@@ -171,7 +173,8 @@ namespace TownOfUs.Roles
 
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2.0f,
+                Player.Data.HatId == 0U ? 1.5f :
+                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
             return Player.name + "\n" + Name;
@@ -280,8 +283,6 @@ namespace TownOfUs.Roles
                     //                        Scale = ModifierText.scale;
                     else
                         ModifierText = null;
-
-                    Lights.SetLights();
                 }
             }
 
@@ -298,7 +299,6 @@ namespace TownOfUs.Roles
                     //                        Scale = ModifierText.scale;
                     else
                         ModifierText = null;
-                    Lights.SetLights();
                 }
             }
 
@@ -447,10 +447,13 @@ namespace TownOfUs.Roles
                     ((Snitch)role).ImpArrows.DestroyAll();
                     ((Snitch)role).SnitchArrows.DestroyAll();
                 }
+                foreach (var role in AllRoles.Where(x => x.RoleType == RoleEnum.Tracker))
+                {
+                    ((Tracker)role).TrackerArrows.DestroyAll();
+                }
 
                 RoleDictionary.Clear();
                 Modifier.ModifierDictionary.Clear();
-                Lights.SetLights(Color.white);
             }
         }
 

@@ -56,20 +56,26 @@ namespace TownOfUs.Extensions
         public static bool TryGetAppearance(this PlayerControl player, IVisualAlteration modifier, out VisualAppearance appearance)
         {
             if (modifier != null)
-                return modifier.TryGetModifiedAppearance(out appearance);
-
+                try {
+                    return modifier.TryGetModifiedAppearance(out appearance);
+                } catch {
+                }
             appearance = player.GetDefaultAppearance();
             return false;
         }
 
         public static VisualAppearance GetAppearance(this PlayerControl player)
         {
-            if (player.TryGetAppearance(Role.GetRole(player) as IVisualAlteration, out var appearance))
-                return appearance;
-            else if (player.TryGetAppearance(Modifier.GetModifier(player) as IVisualAlteration, out appearance))
-                return appearance;
-            else
+            try {
+                if (player.TryGetAppearance(Role.GetRole(player) as IVisualAlteration, out var appearance))
+                    return appearance;
+                else if (player.TryGetAppearance(Modifier.GetModifier(player) as IVisualAlteration, out appearance))
+                    return appearance;
+                else
+                    return player.GetDefaultAppearance();
+            } catch {
                 return player.GetDefaultAppearance();
+            }
         }
     }
 }

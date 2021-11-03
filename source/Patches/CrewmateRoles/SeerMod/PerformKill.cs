@@ -15,6 +15,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Seer);
             if (!flag) return true;
             var role = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
+            role.randomSeerAccuracy = UnityEngine.Random.RandomRangeInt(0, 100);
+            if (role.UsedThisRound) return false;
             if (!PlayerControl.LocalPlayer.CanMove || role.ClosestPlayer == null) return false;
             var flag2 = role.SeerTimer() == 0f;
             if (!flag2) return false;
@@ -24,6 +26,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                 PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
             if (role.ClosestPlayer == null) return false;
             var playerId = role.ClosestPlayer.PlayerId;
+            role.UsedThisRound = true;
 
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,

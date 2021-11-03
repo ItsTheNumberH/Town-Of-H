@@ -3,7 +3,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
     public enum SeerInfo
     {
         Role = 0,
-        Faction
+        Faction,
+        Roles
     }
 
     public enum SeeReveal

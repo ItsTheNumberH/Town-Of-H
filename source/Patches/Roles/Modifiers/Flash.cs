@@ -18,7 +18,7 @@ namespace TownOfUs.Roles.Modifiers
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)
         {
             appearance = Player.GetDefaultAppearance();
-            appearance.SpeedFactor = SpeedFactor;
+            appearance.SpeedFactor = CustomGameOptions.FlashSpeed;
             return true;
         }
     }

@@ -551,7 +551,6 @@ namespace TownOfUs.Roles
                     }
 
                     __gInstance.LastHack = DateTime.UtcNow;
-                    //System.Console.WriteLine("Hacking " + __gInstance.HackTarget.Data.PlayerName + "...");
                     __gInstance.RpcSetHacked(__gInstance.HackTarget);
                 }
             }

@@ -32,6 +32,7 @@ namespace TownOfUs
 
             if (player.Is(RoleEnum.Morphling)
                 || player.Is(RoleEnum.Swooper)
+                || player.Is(RoleEnum.Grenadier)
                 || (player.Is(RoleEnum.Undertaker) && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
                 return false;
 

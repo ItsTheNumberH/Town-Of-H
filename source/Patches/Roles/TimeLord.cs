@@ -47,7 +47,7 @@ namespace TownOfUs.Roles
 
         public float GetCooldown()
         {
-            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.SheriffKillCd;
+            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.RewindCooldown;
         }
     }
 }

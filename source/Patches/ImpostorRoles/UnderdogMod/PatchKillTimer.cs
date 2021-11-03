@@ -11,7 +11,12 @@ namespace TownOfUs.ImpostorRoles.UnderdogMod
         {
             var role = Role.GetRole(__instance);
             if (role?.RoleType != RoleEnum.Underdog) return true;
-            var maxTimer = ((Underdog)role).MaxTimer();
+            var maxTimer = 1f;
+            if (CustomGameOptions.UnderdogPlayers) {
+                maxTimer = ((Underdog)role).MaxTimerRemainingPlayers();
+            } else {
+                maxTimer = ((Underdog)role).MaxTimer();
+            }
             __instance.killTimer = Mathf.Clamp(time, 0, maxTimer);
             HudManager.Instance.KillButton.SetCoolDown(__instance.killTimer, maxTimer);
             return false;

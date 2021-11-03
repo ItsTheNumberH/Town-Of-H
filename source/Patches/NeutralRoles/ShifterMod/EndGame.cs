@@ -12,7 +12,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             if (reason != GameOverReason.HumansByVote && reason != GameOverReason.HumansByTask) return true;
 
             foreach (var role in Role.AllRoles)
-                if (role.RoleType == RoleEnum.Shifter)
+                if (role.RoleType == RoleEnum.Shifter && !CustomGameOptions.ShifterCrewmate)
                     ((Shifter) role).Loses();
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.ShifterLose,

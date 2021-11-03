@@ -38,6 +38,9 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                     KillButton.SetCoolDown(role.SheriffKillTimer(), PlayerControl.GameOptions.KillCooldown + 15f);
 
                     Utils.SetTarget(ref role.ClosestPlayer, KillButton);
+                    if (role.ClosestPlayer != null) {
+                        role.ClosestPlayer.myRend.material.SetColor("_OutlineColor", role.Color);
+                    }
                 }
             }
             else

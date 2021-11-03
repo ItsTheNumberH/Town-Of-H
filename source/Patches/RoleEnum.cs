@@ -17,6 +17,7 @@ namespace TownOfUs
         Executioner,
         Spy,
         Snitch,
+        Tracker,
         Arsonist,
         Altruist,
         Phantom,
@@ -28,7 +29,11 @@ namespace TownOfUs
         Janitor,
         Undertaker,
         Assassin,
+        Vigilante,
+        Chameleon,
         Underdog,
+        Grenadier,
+        Poisoner,
 
 
         Glitch,
@@ -42,10 +47,12 @@ namespace TownOfUs
     {
         Torch,
         Diseased,
+        Bait,
         Flash,
         Tiebreaker,
         Drunk,
         BigBoi,
+        Child,
         ButtonBarry
     }
 }

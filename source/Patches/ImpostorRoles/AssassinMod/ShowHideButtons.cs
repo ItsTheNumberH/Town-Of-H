@@ -55,7 +55,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) return;
             var assassin = Role.GetRole<Assassin>(PlayerControl.LocalPlayer);
-            HideButtons(assassin);
+            //HideButtons(assassin);
         }
     }
 }

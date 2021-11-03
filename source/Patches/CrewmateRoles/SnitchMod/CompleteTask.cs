@@ -23,13 +23,17 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
             switch (tasksLeft)
             {
                 case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
 
                     role.RegenTask();
                     if (PlayerControl.LocalPlayer.Is(RoleEnum.Snitch))
                     {
                         Coroutines.Start(Utils.FlashCoroutine(role.Color));
                     }
-                    else if (PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Is(RoleEnum.Glitch))
+                    else if (PlayerControl.LocalPlayer.Data.IsImpostor || (CustomGameOptions.SnitchSeesNeutrals && (PlayerControl.LocalPlayer.Is(RoleEnum.Glitch) || PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist) || PlayerControl.LocalPlayer.Is(RoleEnum.Jester) || PlayerControl.LocalPlayer.Is(RoleEnum.Shifter) || PlayerControl.LocalPlayer.Is(RoleEnum.Executioner))))
                     {
                         Coroutines.Start(Utils.FlashCoroutine(role.Color));
                         var gameObj = new GameObject();
@@ -62,6 +66,10 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
                             role.SnitchArrows.Add(arrow);
                             role.SnitchTargets.Add(imp);
                         }
+                    }
+                    else if (PlayerControl.LocalPlayer.Data.IsImpostor || (PlayerControl.LocalPlayer.Is(RoleEnum.Glitch) && CustomGameOptions.SnitchSeesNeutrals))
+                    {
+                        Coroutines.Start(Utils.FlashCoroutine(Color.green));
                     }
 
                     break;

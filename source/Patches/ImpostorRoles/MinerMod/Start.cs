@@ -6,16 +6,16 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.MinerMod
 {
-    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
     public static class Start
     {
-        public static void Postfix(ShipStatus __instance)
+        public static void Postfix(IntroCutscene._CoBegin_d__14 __instance)
         {
             foreach (var role in Role.GetRoles(RoleEnum.Miner))
             {
                 var miner = (Miner) role;
                 miner.LastMined = DateTime.UtcNow;
-                miner.LastMined = miner.LastMined.AddSeconds(-10f);
+                miner.LastMined = miner.LastMined.AddSeconds(CustomGameOptions.InitialCooldowns - CustomGameOptions.MineCd);
                 var vents = Object.FindObjectsOfType<Vent>();
                 miner.VentSize =
                     Vector2.Scale(vents[0].GetComponent<BoxCollider2D>().size, vents[0].transform.localScale) * 0.75f;

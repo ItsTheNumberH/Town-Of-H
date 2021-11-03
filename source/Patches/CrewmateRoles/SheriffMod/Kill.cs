@@ -43,7 +43,9 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             var flag4 = role.ClosestPlayer.Data.IsImpostor ||
                         role.ClosestPlayer.Is(RoleEnum.Jester) && CustomGameOptions.SheriffKillsJester ||
                         role.ClosestPlayer.Is(RoleEnum.Glitch) && CustomGameOptions.SheriffKillsGlitch ||
-                        role.ClosestPlayer.Is(RoleEnum.Arsonist) && CustomGameOptions.SheriffKillsArsonist;
+                        role.ClosestPlayer.Is(RoleEnum.Arsonist) && CustomGameOptions.SheriffKillsArsonist ||
+                        role.ClosestPlayer.Is(RoleEnum.Shifter) && CustomGameOptions.SheriffKillsShifter ||
+                        role.ClosestPlayer.Is(RoleEnum.Executioner) && CustomGameOptions.SheriffKillsExecutioner;
             if (!flag4)
             {
                 if (CustomGameOptions.SheriffKillOther)

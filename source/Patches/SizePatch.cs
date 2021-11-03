@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using TownOfUs.Extensions;
 
 namespace TownOfUs.Patches
@@ -12,7 +13,10 @@ namespace TownOfUs.Patches
         {
             foreach (var player in PlayerControl.AllPlayerControls.ToArray())
             {
-                player.transform.localScale = player.GetAppearance().SizeFactor;
+                try {
+                    player.transform.localScale = player.GetAppearance().SizeFactor;
+                } catch {
+                }
             }
 
             // This was previously commented out, so I converted it and left it disabled.

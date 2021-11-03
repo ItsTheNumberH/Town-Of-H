@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CustomHats;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles;
@@ -46,7 +47,8 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(targetAppearance.HatId, targetAppearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2.0f,
+                Player.Data.HatId == 0U ? 1.5f :
+                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
 
@@ -83,7 +85,8 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                appearance.HatId == 0U ? 1.5f : 2.0f,
+                appearance.HatId == 0U ? 1.5f :
+                HatCreation.TallIds.Contains(appearance.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
 
@@ -325,7 +328,9 @@ namespace TownOfUs
                     {
                     }
 
-                    DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killer.Data, data);
+                    if (CustomGameOptions.ShowKillAnimation) {
+                        DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killer.Data, data);
+                    }
                     DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(false);
                     target.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
                     target.RpcSetScanner(false);
@@ -380,10 +385,18 @@ namespace TownOfUs
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
                 }
+                if (target.Is(ModifierEnum.Bait))
+                {
+                    killer.CmdReportDeadBody(GameData.Instance.GetPlayerById(target.PlayerId));
+                }
 
                 if (killer.Is(RoleEnum.Underdog))
                 {
-                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImp() ? 0.5f : 1.5f));
+                    if (CustomGameOptions.UnderdogPlayers) {
+                        killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImpRemainingPlayers()));
+                    } else {
+                        killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImp() ? 0.5f : 1.5f));
+                    }            
                     return;
                 }
 
@@ -441,7 +454,7 @@ namespace TownOfUs
             public static void Postfix()
             {
                 if (!RpcHandling.Check(20)) return;
-
+                /*
                 if (PlayerControl.LocalPlayer.name == "Sykkuno")
                 {
                     var edison = PlayerControl.AllPlayerControls.ToArray()
@@ -462,7 +475,7 @@ namespace TownOfUs
                         sykkuno.name = "babe's babe";
                         sykkuno.nameText.text = "babe's babe";
                     }
-                }
+                }*/
             }
         }
     }
