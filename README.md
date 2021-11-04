@@ -83,6 +83,13 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
   <details>
+  <summary> v4.0.6 </summary>
+   <ul> <li> End game summary added </li> </ul>
+   <ul> <li> Option to show end game summary</li> </ul>
+   <ul> <li> Vigilante now able to kill Loving Impostor </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
   <summary> v4.0.5 </summary>
    <ul> <li> Tracker new button sprite </li> </ul>
    <ul> <li> Arsonist new ignite sprite from The Other Roles </li> </ul>
@@ -587,7 +594,7 @@ After a set period of time, the player will be resurrected, if the revival isn't
 ## Chameleon
 ### **Team: Crewmates**
 
-The Chameleon is a Crewmate that can temporarily turn completely invisible.\
+The Chameleon is a Crewmate that can temporarily turn completely invisible.
 
 ### Game Options
 | Name | Description | Type | Default |
