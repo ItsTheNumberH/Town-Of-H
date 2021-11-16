@@ -57,6 +57,12 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.11 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.11/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.10 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.10/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.9 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.9/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.8 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.8/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.7 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.7/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.6 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.6/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.5 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.5/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.4/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.3/TownOfUs.dll) |
