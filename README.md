@@ -82,7 +82,40 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <details>
   <summary> Changelog </summary>
+   <details>
+  <summary> v4.0.11 </summary>
+   <ul> <li> New role - Cannibal </li> </ul>
+   <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.10 </summary>
+   <ul> <li> Chameleon colour lightened to look less like The Glitch </li> </ul>
+   <ul> <li> Giant colour changed to look less like Flash</li> </ul>
+   <ul> <li> Modifiers added to end game summary</li> </ul>
+   <ul> <li> New Modifier: Blind</li> </ul>
+   <ul> <li> New Modifier: Volatile</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.9 </summary>
+   <ul> <li> Poisoner kill animation now shows poisoner killing </li> </ul>
+   <ul> <li> Option for poisoner start game cooldown</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.8 </summary>
+   <ul> <li> Vigilante can now select Poisoner </li> </ul>
+   <ul> <li> Silly Snitch glitch fixed</li> </ul>
+   <ul> <li> Poisoner now has alert delay </li> </ul>
+ </li> </ul>
+  </details>
   <details>
+  <summary> v4.0.7 </summary>
+   <ul> <li> Automatic updater added </li> </ul>
+ </li> </ul>
+  </details>
+ <details>
   <summary> v4.0.6 </summary>
    <ul> <li> End game summary added </li> </ul>
    <ul> <li> Option to show end game summary</li> </ul>
