@@ -43,6 +43,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Undertaker](#undertaker)
 
 **Modifiers**
+- [Bait](#bait)
 - [Blind](#blind)
 - [Button Barry](#button-barry)
 - [Child](#child)
