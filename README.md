@@ -897,7 +897,7 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 # Modifiers
 Modifiers are added on top of players' roles.
 ## Torch
-### **Applied to: Crewmates**
+### **Applied to: All**
 The Torch's vision doesn't get reduced when the lights are sabotaged.
 ### Game Options
 | Name | Description | Type | Default |
@@ -906,7 +906,7 @@ The Torch's vision doesn't get reduced when the lights are sabotaged.
 
 -----------------------
 ## Diseased
-### **Applied to: Crewmates**
+### **Applied to: All**
 Killing the Diseased triples the killer's Kill cooldown.
 ### Game Options
 | Name | Description | Type | Default |
@@ -915,7 +915,7 @@ Killing the Diseased triples the killer's Kill cooldown.
 
 -----------------------
 ## Bait
-### **Applied to: Crewmates**
+### **Applied to: All**
 Killing the Bait causes an instant self report.
 ### Game Options
 | Name | Description | Type | Default |
@@ -925,7 +925,7 @@ Killing the Bait causes an instant self report.
 
 -----------------------
 ## Blind
-### **Applied to: Crewmates**
+### **Applied to: All**
 The report button never lights up.
 ### Game Options
 | Name | Description | Type | Default |
@@ -935,7 +935,7 @@ The report button never lights up.
 
 -----------------------
 ## Volatile
-### **Applied to: Everyone**
+### **Applied to: All**
 Every 45 seconds, one of several things could happen.\
 The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
 ### Game Options
