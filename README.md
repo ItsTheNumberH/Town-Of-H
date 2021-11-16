@@ -23,33 +23,37 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Vigilante](#vigilante)
 
 **Neutral Roles**
-- [Jester](#jester)
-- [Shifter](#shifter)
-- [The Glitch](#the-glitch)
-- [Executioner](#executioner)
 - [Arsonist](#arsonist)
+- [Cannibal](#cannibal)
+- [Executioner](#executioner)
+- [The Glitch](#the-glitch)
+- [Jester](#jester)
 - [Phantom](#phantom)
+- [Shifter](#shifter)
 
 **Impostor Roles**
-- [Janitor](#janitor)
-- [Morphling](#morphling)
-- [Camouflager](#camouflager)
-- [Miner](#miner)
-- [Swooper](#swooper)
 - [Assassin](#assassin)
+- [Camouflager](#camouflager)
+- [Janitor](#janitor)
+- [Miner](#miner)
+- [Morphling](#morphling)
+- [Poisoner](#poisoner)
+- [Swooper](#swooper)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
-- [Poisoner](#poisoner)
 
 **Modifiers**
-- [Torch](#torch)
-- [Diseased](#diseased)
+- [Blind](#blind)
+- [Button Barry](#button-barry)
 - [Child](#child)
-- [Flash](#flash)
-- [Tiebreaker](#tiebreaker)
+- [Diseased](#diseased)
 - [Drunk](#drunk)
 - [Giant](#giant)
-- [Button Barry](#button-barry)
+- [Flash](#flash)
+- [Flash Speed](#flashspeed)
+- [Tiebreaker](#tiebreaker)
+- [Torch](#torch)
+- [Volatile](#volatile)
 
 
 
@@ -690,6 +694,20 @@ Swapping roles with an Impostor fails and kills the Shifter.
 | Who gets the Shifter role on Shift | Who will receive the Shifter role upon getting Shifted into | Non-Impostors / Regular Crewmates / Nobody | Non-Impostors |
 
 -----------------------
+## Cannibal
+### **Team: Neutral**
+The Cannibal is a Neutral role who eats bodies to win.\
+They have zero tasks.\
+Press 'eat' on a dead body to eat it. It dissappears like the janitors clean button.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Cannibal | The percentage probability of the Cannibal appearing | Percentage | 0% |
+| Cannibal Bodies | Number of eaten bodies needed to win | Number | 3 |
+| Arrows to bodies | If the Cannibal gets arrows pointing to dead bodies | Bool | False |
+
+-----------------------
 ## The Glitch
 ### **Team: Neutral**
 
@@ -893,6 +911,36 @@ Killing the Diseased triples the killer's Kill cooldown.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Diseased | The percentage probability of the Diseased appearing | Percentage | 0% |
+
+-----------------------
+## Bait
+### **Applied to: Crewmates**
+Killing the Bait causes an instant self report.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Bait | The percentage probability of the Bait appearing | Percentage | 0% |
+
+
+-----------------------
+## Blind
+### **Applied to: Crewmates**
+The report button never lights up.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Blind | The percentage probability of the Blind modifier appearing | Percentage | 0% |
+
+
+-----------------------
+## Volatile
+### **Applied to: Everyone**
+Every 45 seconds, one of several things could happen.\
+The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
 
 -----------------------
 ## Flash
