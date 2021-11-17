@@ -85,6 +85,16 @@ namespace TownOfUs
                 return;
             }
 
+            var cannibal =
+                Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Cannibal && ((Cannibal) x).CannibalWins);
+            if (cannibal != null)
+            {
+                var winners = Utils.potentialWinners.Where(x => x.Name == cannibal.PlayerName).ToList();
+                TempData.winners = new List<WinningPlayerData>();
+                foreach (var win in winners) TempData.winners.Add(win);
+                return;
+            }
+
             var phantom =
                 Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Phantom && ((Phantom) x).CompletedTasks);
             if (phantom != null)

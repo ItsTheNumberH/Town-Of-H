@@ -10,7 +10,9 @@ namespace TownOfUs.Modifiers
             public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
             {
                 if (target.Is(ModifierEnum.Bait))
-                      __instance.CmdReportDeadBody(GameData.Instance.GetPlayerById(target.PlayerId));
+                {
+                    __instance.CmdReportDeadBody(GameData.Instance.GetPlayerById(target.PlayerId));
+                }
             }
         }
     }

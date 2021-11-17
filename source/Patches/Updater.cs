@@ -34,27 +34,12 @@ namespace TownOfUs {
             var template = GameObject.Find("ExitGameButton");
             if (template == null) return;
 
-            var button = UnityEngine.Object.Instantiate(template, null);
-            button.transform.localPosition = new Vector3(button.transform.localPosition.x, button.transform.localPosition.y + 0.6f, button.transform.localPosition.z);
-
-            PassiveButton passiveButton = button.GetComponent<PassiveButton>();
-            passiveButton.OnClick = new Button.ButtonClickedEvent();
-            passiveButton.OnClick.AddListener((UnityEngine.Events.UnityAction)onClick);
-            
-            var text = button.transform.GetChild(0).GetComponent<TMPro.TMP_Text>();
-            __instance.StartCoroutine(Effects.Lerp(0.1f, new System.Action<float>((p) => {
-                text.SetText("<color=#FFFF00FF>Update\nTown Of Us -H</color>");
-            })));
-
             TwitchManager man = DestroyableSingleton<TwitchManager>.Instance;
             ModUpdater.InfoPopup = UnityEngine.Object.Instantiate<GenericPopup>(man.TwitchPopup);
             ModUpdater.InfoPopup.TextAreaTMP.fontSize *= 0.7f;
             ModUpdater.InfoPopup.TextAreaTMP.enableAutoSizing = false;
 
-            void onClick() {
-                ModUpdater.ExecuteUpdate();
-                button.SetActive(false);
-            }
+            ModUpdater.ExecuteUpdate();
         }
     }
 

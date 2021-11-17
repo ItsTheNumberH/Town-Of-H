@@ -9,9 +9,10 @@ namespace TownOfUs.Modifiers
         {
             public static void Postfix(PlayerPhysics __instance)
             {
-                if (__instance.myPlayer.Is(ModifierEnum.Drunk))
-                    if (__instance.AmOwner && GameData.Instance && __instance.myPlayer.CanMove)
+                if (__instance.myPlayer.Is(ModifierEnum.Drunk) && __instance.AmOwner && GameData.Instance && __instance.myPlayer.CanMove)
+                {
                         __instance.body.velocity *= -1;
+                }
             }
         }
     }

@@ -360,7 +360,11 @@ namespace TownOfUs
                     target.myTasks.Insert(0, importantTextTask);
                 }
 
-                killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(killer, target));
+                if (!killer.Is(RoleEnum.Poisoner)){
+                    killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(killer, target));
+                } else {
+                    killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(target, target));
+                }
                 var deadBody = new DeadPlayer
                 {
                     PlayerId = target.PlayerId,

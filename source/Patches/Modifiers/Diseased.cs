@@ -10,7 +10,9 @@ namespace TownOfUs.Modifiers
             public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
             {
                 if (target.Is(ModifierEnum.Diseased))
+                {
                     __instance.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
+                }
             }
         }
     }

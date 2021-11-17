@@ -8,7 +8,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Giant";
             TaskText = () => "Big and slow";
-            Color = new Color(1f, 0.5f, 0.5f, 1f);
+            Color = new Color(0.83f, 0.69f, 0.22f, 1f);
             ModifierType = ModifierEnum.BigBoi;
         }
     }

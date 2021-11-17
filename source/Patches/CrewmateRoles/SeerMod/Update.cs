@@ -45,8 +45,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                         if (CustomGameOptions.SeerInfo == SeerInfo.Roles) {
                             var role = Role.GetRole(player);
                             state.NameText.color = Color.white;
-                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter") {
-                                state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>", true);
+                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter" || role.Name == "Cannibal") {
+                                state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 state.NameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
                             } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
@@ -59,8 +59,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 state.NameText.text = NameText(player, " <color=#00B3B3FF>Inv</color>/<color=#00B3B3FF>Tra</color>/<color=#8C4005FF>Exe</color>", true);
                             } else if (role.Name == "Medic" || role.Name == "Lover" || role.Name == "Loving Impostor" || role.Name == "Janitor") {
                                 state.NameText.text = NameText(player, " <color=#006600FF>Med</color>/<color=#FF0000FF>Jan</color>/<color=#FF66CCFF>Lov</color>/<color=#FF0000FF>LovImp</color>", true);
-                            } else if (role.Name == "Snitch" || role.Name == "Spy" || role.Name == "Underdog") {
-                                state.NameText.text = NameText(player, " <color=#D4AF37FF>Sni</color>/<color=#CCA3CCFF>Spy</color>/<color=#FF0000FF>Udg</color>", true);
+                            } else if (role.Name == "Snitch" || role.Name == "Spy" || role.Name == "Underdog" || role.Name == "Poisoner") {
+                                state.NameText.text = NameText(player, " <color=#D4AF37FF>Sni</color>/<color=#CCA3CCFF>Spy</color>/<color=#FF0000FF>Poi</color>", true);
                             } else if (role.Name == "Vigilante" || role.Name == "Assassin" || role.Name == "Swooper") {
                                 state.NameText.text = NameText(player, " <color=#FFFF00FF>Vig</color>/<color=#FF0000FF>Ass</color>/<color=#FF0000FF>Swo</color>", true);
                             } else if (role.Name == "Camouflager" || role.Name == "Chameleon" || role.Name == "Grenadier") {
@@ -148,8 +148,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                         if (CustomGameOptions.SeerInfo == SeerInfo.Roles) {
                             var role = Role.GetRole(player);
                             player.nameText.color = Color.white;
-                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter") {
-                                player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>", true);
+                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter" || role.Name == "Cannibal") {
+                                player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 player.nameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
                             } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
@@ -162,8 +162,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 player.nameText.text = NameText(player, " <color=#00B3B3FF>Inv</color>/<color=#00B3B3FF>Tra</color>/<color=#8C4005FF>Exe</color>", true);
                             } else if (role.Name == "Medic" || role.Name == "Lover" || role.Name == "Loving Impostor" || role.Name == "Janitor") {
                                 player.nameText.text = NameText(player, " <color=#006600FF>Med</color>/<color=#FF0000FF>Jan</color>/<color=#FF66CCFF>Lov</color>/<color=#FF0000FF>LovImp</color>", true);
-                            } else if (role.Name == "Snitch" || role.Name == "Spy" || role.Name == "Underdog") {
-                                player.nameText.text = NameText(player, " <color=#D4AF37FF>Sni</color>/<color=#CCA3CCFF>Spy</color>/<color=#FF0000FF>Udg</color>", true);
+                            } else if (role.Name == "Snitch" || role.Name == "Spy" || role.Name == "Underdog" || role.Name == "Poisoner") {
+                                player.nameText.text = NameText(player, " <color=#D4AF37FF>Sni</color>/<color=#CCA3CCFF>Spy</color>/<color=#FF0000FF>Poi</color>", true);
                             } else if (role.Name == "Vigilante" || role.Name == "Assassin" || role.Name == "Swooper") {
                                 player.nameText.text = NameText(player, " <color=#FFFF00FF>Vig</color>/<color=#FF0000FF>Ass</color>/<color=#FF0000FF>Swo</color>", true);
                             } else if (role.Name == "Camouflager" || role.Name == "Chameleon" || role.Name == "Grenadier") {

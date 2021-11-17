@@ -135,6 +135,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Glitch:
                 case RoleEnum.Tracker:
                 case RoleEnum.Chameleon:
+                case RoleEnum.Cannibal:
 
                     if (role == RoleEnum.Glitch) {
                         if (CustomGameOptions.ShiftGlitch) {
@@ -285,11 +286,26 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (resetShifter) shifterRole.RegenTask();
             }
 
+            if (shifter.Is(RoleEnum.Arsonist))
+            {
+                var role2 = Role.GetRole<Arsonist>(shifter);
+                if (role2.DousedPlayers.Contains(shifter.PlayerId))
+                {
+                    role2.DousedPlayers.Add(other.PlayerId);
+                    role2.DousedPlayers.Remove(shifter.PlayerId);
+                }
+            }
             if (shifter.AmOwner || other.AmOwner)
             {
                 if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner) {
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
-                    Role.GetRole<Arsonist>(shifter).IgniteButton.renderer.enabled = false;
+                    //Role.GetRole<Arsonist>(shifter).IgniteButton.renderer.enabled = false;
+                }
+                if (shifter.Is(RoleEnum.Cannibal))
+                {
+                    Role.GetRole<Cannibal>(shifter).EatButton.Destroy();
+                    Role.GetRole<Cannibal>(shifter).EatButton.renderer.enabled = false;
+                    DestroyableSingleton<HudManager>.Instance.KillButton.renderer.enabled = false;
                 }
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
                 DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;

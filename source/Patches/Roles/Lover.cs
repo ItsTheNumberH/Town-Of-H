@@ -60,7 +60,15 @@ namespace TownOfUs.Roles
             {
                 Player.nameText.color = Palette.ImpostorRed;
                 if (player != null) player.NameText.color = Palette.ImpostorRed;
-                return Player.name + "\n" + "Impostor";
+                if (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
+                        MeetingHud.Instance.state == MeetingHud.VoteStates.Results)
+                {
+                    return Player.name;
+                }
+                else
+                {
+                    return Player.name + "\n" + "Impostor";
+                }
             }
 
 
@@ -116,7 +124,6 @@ namespace TownOfUs.Roles
         internal override bool EABBNOODFGL(ShipStatus __instance)
         {
             if (FourPeopleLeft()) return false;
-
             if (CheckLoversWin())
             {
                 //System.Console.WriteLine("LOVERS WIN");
@@ -128,7 +135,6 @@ namespace TownOfUs.Roles
                 Utils.EndGame();
                 return false;
             }
-
             return true;
         }
 
@@ -140,7 +146,7 @@ namespace TownOfUs.Roles
             var lover1 = Player;
             var lover2 = OtherLover.Player;
             {
-                return !lover1.Data.IsDead && !lover2.Data.IsDead &&
+                return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                        alives.Count() == 4 && LoverImpostor;
             }
         }
@@ -153,7 +159,7 @@ namespace TownOfUs.Roles
             var lover1 = Player;
             var lover2 = OtherLover.Player;
 
-            return !lover1.Data.IsDead && !lover2.Data.IsDead &&
+            return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                    (alives.Count == 3) | (alives.Count == 2);
         }
 

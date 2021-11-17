@@ -16,6 +16,7 @@ namespace TownOfUs
         public static int LoversOn => (int) Generate.LoversOn.Get();
         public static int SheriffOn => (int) Generate.SheriffOn.Get();
         public static int JanitorOn => (int) Generate.JanitorOn.Get();
+        public static int CannibalOn => (int) Generate.CannibalOn.Get();
         public static int EngineerOn => (int) Generate.EngineerOn.Get();
         public static int SwapperOn => (int) Generate.SwapperOn.Get();
         public static int ShifterOn => (int) Generate.ShifterOn.Get();
@@ -43,18 +44,22 @@ namespace TownOfUs
         public static int GrenadierOn => (int)Generate.GrenadierOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static bool PhantomSpawnInVent => (bool) Generate.PhantomSpawnInVent.Get();
-        public static int TorchOn => (int) Generate.TorchOn.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
         public static int BaitOn => (int) Generate.BaitOn.Get();
+        public static int BigBoiOn => (int) Generate.BigBoiOn.Get();
+        public static int BlindOn => (int) Generate.BlindOn.Get();
+        public static int ButtonBarryOn => (int) Generate.ButtonBarryOn.Get();
+        public static int ChildOn => (int) Generate.ChildOn.Get();
+        public static int DrunkOn => (int) Generate.DrunkOn.Get();
         public static int FlashOn => (int) Generate.FlashOn.Get();
         public static int TiebreakerOn => (int) Generate.TiebreakerOn.Get();
-        public static int DrunkOn => (int) Generate.DrunkOn.Get();
-        public static int BigBoiOn => (int) Generate.BigBoiOn.Get();
-        public static int ChildOn => (int) Generate.ChildOn.Get();
-        public static int ButtonBarryOn => (int) Generate.ButtonBarryOn.Get();
+        public static int TorchOn => (int) Generate.TorchOn.Get();
+        public static int VolatileOn => (int) Generate.VolatileOn.Get();
         public static int VanillaGame => (int) Generate.VanillaGame.Get();
         public static float InitialCooldowns => Generate.InitialCooldowns.Get();
+        public static float InitialPoisonerCooldown => Generate.InitialPoisonerCooldown.Get();
         public static bool ShowKillAnimation => Generate.ShowKillAnimation.Get();
+        public static bool ShowEndgameSummary => Generate.ShowEndgameSummary.Get();
         public static bool BothLoversDie => Generate.BothLoversDie.Get();
         public static bool ShowSheriff => Generate.ShowSheriff.Get();
         public static bool SheriffKillOther => Generate.SheriffKillOther.Get();
@@ -110,6 +115,9 @@ namespace TownOfUs
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
         public static float PoisonerCd => Generate.PoisonerCooldown.Get();
         public static float PoisonerDuration => Generate.PoisonerDuration.Get();
+        public static float PoisonAlertDelay => Generate.PoisonAlertDelay.Get();
+        public static int NumberCannibalBodies => (int) Generate.NumberCannibalBodies.Get();
+        public static bool CannibalBodyArrows => Generate.CannibalBodyArrows.Get();
         
         public static PoisonNotificationOptions PoisonAlertOption =>
             (PoisonNotificationOptions) Generate.WhoGetsPoisonAlert.Get();

@@ -16,7 +16,7 @@ namespace TownOfUs.Roles
             Name = "Chameleon";
             ImpostorText = () => "Blend into the background";
             TaskText = () => "Blend in and snoop on the impostors";
-            Color = Color.green;
+            Color = new Color(0.4f, 0.9f, 0.4f, 1f);
             RoleType = RoleEnum.Chameleon;
         }
 

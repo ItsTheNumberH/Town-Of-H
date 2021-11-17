@@ -46,11 +46,12 @@ namespace TownOfUs.Roles
             if (CustomGameOptions.AssassinGuessChameleon) ColorMapping.Add("Chameleon", Color.green);
             if (CustomGameOptions.AssassinGuessNeutrals)
             {
-                ColorMapping.Add("Jester", new Color(1f, 0.75f, 0.8f, 1f));
-                ColorMapping.Add("Shifter", new Color(0.6f, 0.6f, 0.6f, 1f));
+                ColorMapping.Add("Arsonist", new Color(1f, 0.3f, 0f));
+                ColorMapping.Add("Cannibal", Palette.Brown);
                 ColorMapping.Add("Executioner", new Color(0.55f, 0.25f, 0.02f, 1f));
                 ColorMapping.Add("The Glitch", Color.green);
-                ColorMapping.Add("Arsonist", new Color(1f, 0.3f, 0f));
+                ColorMapping.Add("Jester", new Color(1f, 0.75f, 0.8f, 1f));
+                ColorMapping.Add("Shifter", new Color(0.6f, 0.6f, 0.6f, 1f));
             }
 
         }

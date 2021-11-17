@@ -16,8 +16,10 @@ namespace TownOfUs.Roles
             { "Camouflager", Palette.ImpostorRed },
             { "Grenadier", Palette.ImpostorRed },
             { "Janitor", Palette.ImpostorRed },
+            { "Loving Impostor", Palette.ImpostorRed },
             { "Miner", Palette.ImpostorRed },
             { "Morphling", Palette.ImpostorRed },
+            { "Poisoner", Palette.ImpostorRed },
             { "Swooper", Palette.ImpostorRed },
             { "Underdog", Palette.ImpostorRed },
             { "Undertaker", Palette.ImpostorRed },
@@ -29,8 +31,8 @@ namespace TownOfUs.Roles
         public Vigilante(PlayerControl player) : base(player)
         {
             Name = "Vigilante";
-            ImpostorText = () => "Kill bad people during meetings if you can guess their roles";
-            TaskText = () => "Guess the roles of bad people and kill them mid-meeting";
+            ImpostorText = () => "Kill bad roles during meetings";
+            TaskText = () => "Guess roles to kill them in meetings";
             Color = Color.yellow;
             RoleType = RoleEnum.Vigilante;
 
@@ -38,11 +40,12 @@ namespace TownOfUs.Roles
 
             if (CustomGameOptions.VigilanteGuessNeutrals)
             {
-                ColorMapping.Add("Jester", new Color(1f, 0.75f, 0.8f, 1f));
-                ColorMapping.Add("Shifter", new Color(0.6f, 0.6f, 0.6f, 1f));
+                ColorMapping.Add("Arsonist", new Color(1f, 0.3f, 0f));
+                ColorMapping.Add("Cannibal", Palette.Brown);
                 ColorMapping.Add("Executioner", new Color(0.55f, 0.25f, 0.02f, 1f));
                 ColorMapping.Add("The Glitch", Color.green);
-                ColorMapping.Add("Arsonist", new Color(1f, 0.3f, 0f));
+                ColorMapping.Add("Jester", new Color(1f, 0.75f, 0.8f, 1f));
+                ColorMapping.Add("Shifter", new Color(0.6f, 0.6f, 0.6f, 1f));
             }
 
             if (CustomGameOptions.VigilanteImpostorGuess) ColorMapping.Add("Impostor", Palette.ImpostorRed);

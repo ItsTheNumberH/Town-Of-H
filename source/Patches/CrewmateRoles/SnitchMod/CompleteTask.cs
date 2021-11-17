@@ -23,10 +23,6 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
             switch (tasksLeft)
             {
                 case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
 
                     role.RegenTask();
                     if (PlayerControl.LocalPlayer.Is(RoleEnum.Snitch))

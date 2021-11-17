@@ -13,7 +13,7 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             {
                 var poisoner = (Poisoner) role;
                 poisoner.LastPoisoned = DateTime.UtcNow;
-                poisoner.LastPoisoned = poisoner.LastPoisoned.AddSeconds(CustomGameOptions.InitialCooldowns - CustomGameOptions.PoisonerCd);
+                poisoner.LastPoisoned = poisoner.LastPoisoned.AddSeconds(CustomGameOptions.InitialPoisonerCooldown - CustomGameOptions.PoisonerCd);
                 if (PlayerControl.LocalPlayer.Is(RoleEnum.Poisoner)) {
                     DestroyableSingleton<HudManager>.Instance.KillButton.enabled = false;
                     DestroyableSingleton<HudManager>.Instance.KillButton.renderer.enabled = false;

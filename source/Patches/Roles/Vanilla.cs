@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
         {
             Name = "Impostor";
             ImpostorText = () => "A normal impostor";
-            Hidden = true;
+            //Hidden = true;
             Faction = Faction.Impostors;
             RoleType = RoleEnum.Impostor;
             Color = Palette.ImpostorRed;

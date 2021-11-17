@@ -43,12 +43,7 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             role.PoisonedPlayer = target;
             role.PoisonButton.SetTarget(null);
             DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
-            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.PoisonAlert,
-                SendOption.Reliable, -1);
-            writer.Write(PlayerControl.LocalPlayer.PlayerId);
-            writer.Write(role.PoisonedPlayer.PlayerId);
-            AmongUsClient.Instance.FinishRpcImmediately(writer);
+
             role.TimeRemaining = CustomGameOptions.PoisonerDuration;
             role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonerDuration);
             role.Player.SetKillTimer(0);

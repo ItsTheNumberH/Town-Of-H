@@ -25,11 +25,12 @@ namespace TownOfUs
     public class TownOfUs : BasePlugin
     {
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "4.0.5";
+        public const string VersionString = "4.0.11";
         public static System.Version Version = System.Version.Parse(VersionString);
         
         public static Sprite LogoBanner;
         public static Sprite JanitorClean;
+        public static Sprite CannibalEat;
         public static Sprite EngineerFix;
         public static Sprite SwapperSwitch;
         public static Sprite SwapperSwitchDisabled;
@@ -83,6 +84,7 @@ namespace TownOfUs
 
             LogoBanner = CreateSprite("TownOfUs.Resources.TownOfH.png");
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
+            CannibalEat = CreateSprite("TownOfUs.Resources.Eat.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
             SwapperSwitch = CreateSprite("TownOfUs.Resources.SwapperSwitch.png");
             SwapperSwitchDisabled = CreateSprite("TownOfUs.Resources.SwapperSwitchDisabled.png");

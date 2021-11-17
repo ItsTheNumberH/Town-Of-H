@@ -27,6 +27,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption GlitchOn;
         public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption ArsonistOn;
+        public static CustomNumberOption CannibalOn;
         public static CustomHeaderOption GhostRoles;
         public static CustomNumberOption PhantomOn;
 
@@ -52,6 +53,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Modifiers;
         public static CustomNumberOption BaitOn;
+        public static CustomNumberOption BlindOn;
         public static CustomNumberOption ChildOn;
         public static CustomNumberOption DiseasedOn;
         public static CustomNumberOption DrunkOn;
@@ -59,6 +61,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption BigBoiOn;
         public static CustomNumberOption TiebreakerOn;
         public static CustomNumberOption TorchOn;
+        public static CustomNumberOption VolatileOn;
 
 
         public static CustomHeaderOption CustomGameSettings;
@@ -72,6 +75,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption InitialCooldowns;
         public static CustomToggleOption ShowKillAnimation;
+        public static CustomToggleOption ShowEndgameSummary;
 
         public static CustomHeaderOption Mayor;
         public static CustomNumberOption MayorVoteBank;
@@ -149,7 +153,9 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MorphlingDuration;
         public static CustomHeaderOption Poisoner;
         public static CustomNumberOption PoisonerCooldown;
+        public static CustomNumberOption InitialPoisonerCooldown;
         public static CustomNumberOption PoisonerDuration;
+        public static CustomNumberOption PoisonAlertDelay;
         public static CustomStringOption WhoGetsPoisonAlert;
 
         public static CustomHeaderOption Camouflager;
@@ -178,6 +184,11 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Arsonist;
         public static CustomNumberOption DouseCooldown;
         public static CustomToggleOption ArsonistGameEnd;
+
+        public static CustomHeaderOption Cannibal;
+        public static CustomNumberOption NumberCannibalBodies;
+        public static CustomToggleOption CannibalBodyArrows;
+
         public static CustomHeaderOption Phantom;
         public static CustomToggleOption PhantomSpawnInVent;
 
@@ -223,7 +234,7 @@ namespace TownOfUs.CustomOption
             CrewmateRoles = new CustomHeaderOption(num++, "Crewmate Roles");
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ChameleonOn = new CustomNumberOption(true, num++, "<color=#00FF00FF>Chameleon</color>", 0f, 0f, 100f, 10f,
+            ChameleonOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Chameleon</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -235,7 +246,13 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Snitch</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>Spy</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             SwapperOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Swapper</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -243,18 +260,14 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             TrackerOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Tracker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Snitch</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>Spy</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
             VigilanteOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Vigilante</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             /*NEUTRAL ROLES */
             NeutralRoles = new CustomHeaderOption(num++, "Neutral Roles");
             ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            CannibalOn = new CustomNumberOption(true, num++, "<color=#AC8A00FF>Cannibal</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 0f, 0f, 100f,
                 10f, PercentFormat);
@@ -298,6 +311,9 @@ namespace TownOfUs.CustomOption
             BaitOn =
                 new CustomNumberOption(true, num++, "<color=#00B3B3FF>Bait</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            BlindOn =
+                new CustomNumberOption(true, num++, "<color=#AAAAAAFF>Blind</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
@@ -313,12 +329,15 @@ namespace TownOfUs.CustomOption
             FlashSpeed =
                 new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash speed</color>", 1f, 1f, 3f, 0.1f,
                 PlusFormat);
-            BigBoiOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Giant</color>", 0f, 0f, 100f, 10f,
+            BigBoiOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Giant</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>Tiebreaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            VolatileOn =
+                new CustomNumberOption(true, num++, "<color=#FFA60AFF>Volatile</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
 
             /* CUSTOM GAMES SETTINGS */
             CustomGameSettings =
@@ -338,6 +357,7 @@ namespace TownOfUs.CustomOption
             InitialCooldowns =
                 new CustomNumberOption(num++, "Game Start Cooldowns", 10, 10, 30, 2.5f, CooldownFormat);
             ShowKillAnimation = new CustomToggleOption(num++, "Show Kill Animation", true);
+            ShowEndgameSummary = new CustomToggleOption(num++, "Show End game Summary", true);
 
             /* ROLE SETTINGS */
             /* ALTRUIST */
@@ -349,7 +369,7 @@ namespace TownOfUs.CustomOption
 
             /* CHAMELEON */
             Chameleon =
-                new CustomHeaderOption(num++, "<color=#00FF00FF>Chameleon</color>");
+                new CustomHeaderOption(num++, "<color=#66E666FF>Chameleon</color>");
             ChameleonCooldown =
                 new CustomNumberOption(num++, "Chameleon Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             ChameleonDuration =
@@ -478,6 +498,12 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Douse Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             ArsonistGameEnd = new CustomToggleOption(num++, "Game keeps going so long as Arsonist is alive", false);
 
+            /* CANNIBAL */
+            Cannibal = new CustomHeaderOption(num++, "<color=#AC8A00FF>Cannibal</color>");
+            NumberCannibalBodies =
+                new CustomNumberOption(num++, "Bodies to consume", 3, 1, 5, 1);
+            CannibalBodyArrows = new CustomToggleOption(num++, "Arrows to bodies", false);
+
             /* EXECUTIONER */
             Executioner =
                 new CustomHeaderOption(num++, "<color=#8C4005FF>Executioner</color>");
@@ -559,8 +585,12 @@ namespace TownOfUs.CustomOption
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Poisoner</color>");
             PoisonerCooldown =
                 new CustomNumberOption(num++, "Poisoner Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            InitialPoisonerCooldown =
+                new CustomNumberOption(num++, "Game Start Poisoner Cooldown", 10, 10, 40, 2.5f, CooldownFormat);
             PoisonerDuration =
                 new CustomNumberOption(num++, "Poisoner Duration", 10, 1, 10, 1f, CooldownFormat);
+            PoisonAlertDelay =
+                new CustomNumberOption(num++, "Poison alert delay", 5, 0, 5, 1f, CooldownFormat);
             WhoGetsPoisonAlert =
                 new CustomStringOption(num++, "Who gets poison alert",
                     new[] {"Poisoned", "Everyone", "Nobody"});

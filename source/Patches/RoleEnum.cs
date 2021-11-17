@@ -34,6 +34,7 @@ namespace TownOfUs
         Underdog,
         Grenadier,
         Poisoner,
+        Cannibal,
 
 
         Glitch,
@@ -48,11 +49,13 @@ namespace TownOfUs
         Torch,
         Diseased,
         Bait,
+        Blind,
         Flash,
         Tiebreaker,
         Drunk,
         BigBoi,
         Child,
-        ButtonBarry
+        ButtonBarry,
+        Volatile
     }
 }

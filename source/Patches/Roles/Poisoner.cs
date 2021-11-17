@@ -2,6 +2,7 @@ using System;
 using TownOfUs.Extensions;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
+using Hazel;
 
 namespace TownOfUs.Roles
 {
@@ -13,6 +14,7 @@ namespace TownOfUs.Roles
         public DateTime LastPoisoned;
         public PlayerControl PoisonedPlayer;
         public float TimeRemaining;
+        public bool poisonAlerted = false;
 
         public Poisoner(PlayerControl player) : base(player)
         {
@@ -38,13 +40,22 @@ namespace TownOfUs.Roles
         public void Poison()
         {
             TimeRemaining -= Time.deltaTime;
-            if (TimeRemaining <= 0) {
+            if (!poisonAlerted && TimeRemaining <= CustomGameOptions.PoisonAlertDelay) {
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte) CustomRPC.PoisonAlert,
+                    SendOption.Reliable, -1);
+                writer.Write(PlayerControl.LocalPlayer.PlayerId);
+                writer.Write(PoisonedPlayer.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+                poisonAlerted = true;
+            } else if (TimeRemaining <= 0) {
                 PoisonKill();
+                poisonAlerted = false;
             }
         }
         public void PoisonKill()
         {
-            Utils.RpcMurderPlayer(PoisonedPlayer, PoisonedPlayer);
+            Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, PoisonedPlayer);
             PoisonedPlayer = null;
             LastPoisoned = DateTime.UtcNow;
             SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.5f);
