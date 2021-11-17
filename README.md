@@ -1,4 +1,4 @@
- ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixes and many more options. Source code is added to each release**
+ ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixes and many more options. Source code is added to each release
 
 ![LOGO](./Images/TOU-logo.png)
 ![Roles](./Images/Roles3.png)
@@ -23,33 +23,38 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Vigilante](#vigilante)
 
 **Neutral Roles**
-- [Jester](#jester)
-- [Shifter](#shifter)
-- [The Glitch](#the-glitch)
-- [Executioner](#executioner)
 - [Arsonist](#arsonist)
+- [Cannibal](#cannibal)
+- [Executioner](#executioner)
+- [The Glitch](#the-glitch)
+- [Jester](#jester)
 - [Phantom](#phantom)
+- [Shifter](#shifter)
 
 **Impostor Roles**
-- [Janitor](#janitor)
-- [Morphling](#morphling)
-- [Camouflager](#camouflager)
-- [Miner](#miner)
-- [Swooper](#swooper)
 - [Assassin](#assassin)
+- [Camouflager](#camouflager)
+- [Janitor](#janitor)
+- [Miner](#miner)
+- [Morphling](#morphling)
+- [Poisoner](#poisoner)
+- [Swooper](#swooper)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
-- [Poisoner](#poisoner)
 
 **Modifiers**
-- [Torch](#torch)
-- [Diseased](#diseased)
+- [Bait](#bait)
+- [Blind](#blind)
+- [Button Barry](#button-barry)
 - [Child](#child)
-- [Flash](#flash)
-- [Tiebreaker](#tiebreaker)
+- [Diseased](#diseased)
 - [Drunk](#drunk)
 - [Giant](#giant)
-- [Button Barry](#button-barry)
+- [Flash](#flash)
+- [Flash Speed](#flashspeed)
+- [Tiebreaker](#tiebreaker)
+- [Torch](#torch)
+- [Volatile](#volatile)
 
 
 
@@ -57,6 +62,12 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.11 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.11/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.10 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.10/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.9 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.9/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.8 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.8/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.7 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.7/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.6 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.6/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.5 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.5/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.4/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.3/TownOfUs.dll) |
@@ -82,6 +93,46 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <details>
   <summary> Changelog </summary>
+   <details>
+  <summary> v4.0.11 </summary>
+   <ul> <li> New role - Cannibal </li> </ul>
+   <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.10 </summary>
+   <ul> <li> Chameleon colour lightened to look less like The Glitch </li> </ul>
+   <ul> <li> Giant colour changed to look less like Flash</li> </ul>
+   <ul> <li> Modifiers added to end game summary</li> </ul>
+   <ul> <li> New Modifier: Blind</li> </ul>
+   <ul> <li> New Modifier: Volatile</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.9 </summary>
+   <ul> <li> Poisoner kill animation now shows poisoner killing </li> </ul>
+   <ul> <li> Option for poisoner start game cooldown</li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.8 </summary>
+   <ul> <li> Vigilante can now select Poisoner </li> </ul>
+   <ul> <li> Silly Snitch glitch fixed</li> </ul>
+   <ul> <li> Poisoner now has alert delay </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.7 </summary>
+   <ul> <li> Automatic updater added </li> </ul>
+ </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.6 </summary>
+   <ul> <li> End game summary added </li> </ul>
+   <ul> <li> Option to show end game summary</li> </ul>
+   <ul> <li> Vigilante now able to kill Loving Impostor </li> </ul>
+ </li> </ul>
+  </details>
   <details>
   <summary> v4.0.5 </summary>
    <ul> <li> Tracker new button sprite </li> </ul>
@@ -587,7 +638,7 @@ After a set period of time, the player will be resurrected, if the revival isn't
 ## Chameleon
 ### **Team: Crewmates**
 
-The Chameleon is a Crewmate that can temporarily turn completely invisible.\
+The Chameleon is a Crewmate that can temporarily turn completely invisible.
 
 ### Game Options
 | Name | Description | Type | Default |
@@ -642,6 +693,20 @@ Swapping roles with an Impostor fails and kills the Shifter.
 | Shifter | The percentage probability of the Shifter appearing | Percentage | 0% |
 | Shifter Cooldown | The cooldown on the Shifter's Shift button | Time | 30s |
 | Who gets the Shifter role on Shift | Who will receive the Shifter role upon getting Shifted into | Non-Impostors / Regular Crewmates / Nobody | Non-Impostors |
+
+-----------------------
+## Cannibal
+### **Team: Neutral**
+The Cannibal is a Neutral role who eats bodies to win.\
+They have zero tasks.\
+Press 'eat' on a dead body to eat it. It dissappears like the janitors clean button.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Cannibal | The percentage probability of the Cannibal appearing | Percentage | 0% |
+| Cannibal Bodies | Number of eaten bodies needed to win | Number | 3 |
+| Arrows to bodies | If the Cannibal gets arrows pointing to dead bodies | Bool | False |
 
 -----------------------
 ## The Glitch
@@ -832,7 +897,7 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 # Modifiers
 Modifiers are added on top of players' roles.
 ## Torch
-### **Applied to: Crewmates**
+### **Applied to: All**
 The Torch's vision doesn't get reduced when the lights are sabotaged.
 ### Game Options
 | Name | Description | Type | Default |
@@ -841,12 +906,42 @@ The Torch's vision doesn't get reduced when the lights are sabotaged.
 
 -----------------------
 ## Diseased
-### **Applied to: Crewmates**
+### **Applied to: All**
 Killing the Diseased triples the killer's Kill cooldown.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Diseased | The percentage probability of the Diseased appearing | Percentage | 0% |
+
+-----------------------
+## Bait
+### **Applied to: All**
+Killing the Bait causes an instant self report.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Bait | The percentage probability of the Bait appearing | Percentage | 0% |
+
+
+-----------------------
+## Blind
+### **Applied to: All**
+The report button never lights up.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Blind | The percentage probability of the Blind modifier appearing | Percentage | 0% |
+
+
+-----------------------
+## Volatile
+### **Applied to: All**
+Every 45 seconds, one of several things could happen.\
+The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
 
 -----------------------
 ## Flash
@@ -944,7 +1039,8 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [TorchMod](https://github.com/tomozbot/TorchMod) - For the inspirtation of the Torch Mod.\
 [XtraCube](https://github.com/XtraCube) - For the RainbowMod.\
 [PhasmoFireGod](https://twitch.tv/PhasmoFireGod) - Button Art.\
-[TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child and Spy roles.
+[TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child Modifier and Spy roles.
+[Town-Of-Us-R](https://github.com/eDonnes124/Town-Of-Us-R) - For the continuation of Town Of Us and the Grenadier role.
 
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
 v1.0.3 uses [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) directly.\
