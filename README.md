@@ -7,19 +7,20 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 
 **Crewmate Roles**
-- [Mayor](#mayor)
-- [Lovers](#lovers)
-- [Sheriff](#sheriff)
-- [Engineer](#engineer)
-- [Swapper](#swapper)
-- [Investigator](#investigator)
-- [Time Lord](#time-lord)
-- [Medic](#medic)
-- [Seer](#seer)
-- [Spy](#spy)
-- [Snitch](#snitch)
 - [Altruist](#altruist)
 - [Chameleon](#chameleon)
+- [Engineer](#engineer)
+- [Investigator](#investigator)
+- [Lovers](#lovers)
+- [Mayor](#mayor)
+- [Medic](#medic)
+- [Seer](#seer)
+- [Sheriff](#sheriff)
+- [Snitch](#snitch)
+- [Spy](#spy)
+- [Swapper](#swapper)
+- [Time Lord](#time-lord)
+- [Tracker](#tracker)
 - [Vigilante](#vigilante)
 
 **Neutral Roles**
@@ -34,6 +35,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 **Impostor Roles**
 - [Assassin](#assassin)
 - [Camouflager](#camouflager)
+- [Framer](#framer)
+- [Grenadier](#grenadier)
 - [Janitor](#janitor)
 - [Miner](#miner)
 - [Morphling](#morphling)
@@ -663,6 +666,20 @@ If they guessed wrong, they die instead.
 | Vigilante Guess Neutral  | Whether the Vigilante can Guess Neutral roles | Toggle | False |
 | Vigilante Multiple Kill  | Whether the Vigilante can kill more than once per meeting | Toggle | True |
 | Vigilante Guess Chameleon | Whether the Vigilante can Guess "Chameleon" | Toggle | False |
+-----------------------
+
+## Tracker
+### **Team: Crewmates**
+
+The Tracker is a Crewmate that can track crewmates movements.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Tracker | The percentage probability of the Tracker appearing | Percentage | 0% |
+| Tracker Cooldown | The cooldown of the Trackers Track button | Number | 10s |
+| Track Per | Whether the Tracker can use their ability once per round or game | Round/Game | Round |
+| Track Interval  | How often teh trackers arrows update | Number | 25s |
 
 -----------------------
 # Neutral Roles
@@ -810,6 +827,36 @@ Everyone then goes grey for a certain period of time, along with their names dis
 | Camouflager | The percentage probability of the Camouflager appearing | Percentage | 0% |
 | Camouflage Cooldown | The cooldown of the Camouflager's Camouflage button | Time | 25s |
 | Camouflage Duration | How long the Camouflage lasts for | Time | 10s |
+
+-----------------------
+## Grenadier
+### **Team: Impostors**
+
+The Grenadier is an Impostor that can flashbang crewmates to blind them.\
+Everyones screen goes grey for a certain period of time, impostors only tints slightly grey.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
+| Grenadier Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
+| Grenadier Duration | How long the Flash lasts for | Time | 10s |
+| Grenadier Vent | If the Grenadier can vent | Bool | false |
+
+-----------------------
+## Framer
+### **Team: Impostors**
+
+The Framer is an Impostor that can frame a crewmate to appear as them.\
+The framed target, after a few seconds, appears as the framers character for a specified amount of time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Framer | The percentage probability of the Framer appearing | Percentage | 0% |
+| Framer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Delay before framing | How long before the target is framed | Time | 10s |
+| Frame duration | How long the target is framed for | Time | 10s |
 
 -----------------------
 ## Miner
