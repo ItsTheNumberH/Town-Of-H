@@ -832,8 +832,8 @@ Everyones screen goes grey for a certain period of time, impostors only tints sl
 ## Framer
 ### **Team: Impostors**
 
-The Framer is an Impostor that can frame a crewmate to appear as the them.\
-The framed target, after a few seconds, appears as the framers character fo a specified amount fo time.
+The Framer is an Impostor that can frame a crewmate to appear as them.\
+The framed target, after a few seconds, appears as the framers character for a specified amount of time.
 
 ### Game Options
 | Name | Description | Type | Default |
