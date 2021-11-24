@@ -7,19 +7,19 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 
 **Crewmate Roles**
-- [Mayor](#mayor)
-- [Lovers](#lovers)
-- [Sheriff](#sheriff)
-- [Engineer](#engineer)
-- [Swapper](#swapper)
-- [Investigator](#investigator)
-- [Time Lord](#time-lord)
-- [Medic](#medic)
-- [Seer](#seer)
-- [Spy](#spy)
-- [Snitch](#snitch)
 - [Altruist](#altruist)
 - [Chameleon](#chameleon)
+- [Engineer](#engineer)
+- [Investigator](#investigator)
+- [Lovers](#lovers)
+- [Mayor](#mayor)
+- [Medic](#medic)
+- [Seer](#seer)
+- [Sheriff](#sheriff)
+- [Snitch](#snitch)
+- [Swapper](#swapper)
+- [Time Lord](#time-lord)
+- [Spy](#spy)
 - [Vigilante](#vigilante)
 
 **Neutral Roles**
