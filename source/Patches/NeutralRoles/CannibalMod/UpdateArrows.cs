@@ -8,19 +8,16 @@ namespace TownOfUs.NeutralRoles.CannibalMod
     {
         public static void Postfix(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Cannibal)) return;
-            if (CustomGameOptions.CannibalBodyArrows) {
-                if (HudManagerUpdate.Arrow != null)
+            if (HudManagerUpdate.Arrow != null)
+            {
+                if (LobbyBehaviour.Instance || MeetingHud.Instance || PlayerControl.LocalPlayer.Data.IsDead ||
+                    HudManagerUpdate.Target == null)
                 {
-                    if (LobbyBehaviour.Instance || MeetingHud.Instance || PlayerControl.LocalPlayer.Data.IsDead ||
-                        HudManagerUpdate.Target == null)
-                    {
-                        HudManagerUpdate.Arrow.gameObject.Destroy();
-                        return;
-                    }
-
-                    HudManagerUpdate.Arrow.target = HudManagerUpdate.Target.transform.position;
+                    HudManagerUpdate.Arrow.gameObject.Destroy();
+                    return;
                 }
+
+                HudManagerUpdate.Arrow.target = HudManagerUpdate.Target.transform.position;
             }
         }
     }

@@ -11,7 +11,7 @@ namespace TownOfUs.NeutralRoles.CannibalMod
         public static void Postfix(EndGameManager __instance)
         {
             var role = Role.AllRoles.FirstOrDefault(x =>
-                x.RoleType == RoleEnum.Cannibal && ((Cannibal) x).CannibalWins);
+                x.RoleType == RoleEnum.Cannibal && ((Cannibal) x).CannibalWin);
             if (role == null) return;
             if (Role.GetRoles(RoleEnum.Jester).Any(x => ((Jester) x).VotedOut)) return;
             PoolablePlayer[] array = Object.FindObjectsOfType<PoolablePlayer>();

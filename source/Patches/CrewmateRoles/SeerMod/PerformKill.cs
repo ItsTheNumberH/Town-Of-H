@@ -11,9 +11,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return true;
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Seer);
-            if (!flag) return true;
             var role = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
             role.randomSeerAccuracy = UnityEngine.Random.RandomRangeInt(0, 100);
             if (role.UsedThisRound) return false;

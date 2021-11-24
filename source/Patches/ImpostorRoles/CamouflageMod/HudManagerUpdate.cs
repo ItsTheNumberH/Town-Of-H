@@ -11,10 +11,10 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
 
         public static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Camouflager)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Camouflager)) return;
             var role = Role.GetRole<Camouflager>(PlayerControl.LocalPlayer);
             if (role.CamouflageButton == null)
             {

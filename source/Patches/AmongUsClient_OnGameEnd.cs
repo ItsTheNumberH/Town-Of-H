@@ -86,7 +86,7 @@ namespace TownOfUs
             }
 
             var cannibal =
-                Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Cannibal && ((Cannibal) x).CannibalWins);
+                Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Cannibal && ((Cannibal) x).CannibalWin);
             if (cannibal != null)
             {
                 var winners = Utils.potentialWinners.Where(x => x.Name == cannibal.PlayerName).ToList();

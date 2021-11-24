@@ -13,10 +13,10 @@ namespace TownOfUs.NeutralRoles.ShifterMod
 
         public static void UpdateShiftButton(PlayerControl __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Shifter)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Shifter)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];

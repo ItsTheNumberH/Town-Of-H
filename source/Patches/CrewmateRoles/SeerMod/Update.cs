@@ -49,8 +49,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 state.NameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
-                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
-                                state.NameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>", true);
+                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling" || role.Name == "Framer") {
+                                state.NameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>/<color=#FF0000FF>Fra</color>", true);
                             } else if (role.Name == "Engineer" || role.Name == "Miner" || role.Name == "Arsonist") {
                                 state.NameText.text = NameText(player, " <color=#FFA60AFF>Eng</color>/<color=#FF0000FF>Min</color>/<color=#FF4D00FF>Ars</color>", true);
                             } else if (role.Name == "Altruist" || role.Name == "Time Lord" || role.Name == "Undertaker") {
@@ -152,8 +152,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 player.nameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
-                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
-                                player.nameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>", true);
+                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling" || role.Name == "Framer") {
+                                player.nameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>/<color=#FF0000FF>Fra</color>", true);
                             } else if (role.Name == "Engineer" || role.Name == "Miner" || role.Name == "Arsonist") {
                                 player.nameText.text = NameText(player, " <color=#FFA60AFF>Eng</color>/<color=#FF0000FF>Min</color>/<color=#FF4D00FF>Ars</color>", true);
                             } else if (role.Name == "Altruist" || role.Name == "Time Lord" || role.Name == "Undertaker") {

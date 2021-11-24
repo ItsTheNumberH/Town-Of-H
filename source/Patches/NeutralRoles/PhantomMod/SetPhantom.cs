@@ -72,6 +72,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
 
 
             foreach (var task in player.myTasks)
+            {
                 if (task.TryCast<NormalPlayerTask>() != null)
                 {
                     var normalPlayerTask = task.Cast<NormalPlayerTask>();
@@ -93,6 +94,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                     var taskInfo = player.Data.FindTaskById(task.Id);
                     taskInfo.Complete = false;
                 }
+            }
         }
 
         /*public static void ResetTowels(NormalPlayerTask task)

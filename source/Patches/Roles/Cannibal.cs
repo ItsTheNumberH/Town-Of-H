@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Hazel;
 using UnityEngine;
 
@@ -8,45 +6,60 @@ namespace TownOfUs.Roles
 {
     public class Cannibal : Role
     {
-        public KillButtonManager _eatButton;
-        public bool CannibalWins;
-        public int bodiesEaten = 0;
-        public DateTime lastEaten;
-        public List<ArrowBehaviour> bodyArrows = new List<ArrowBehaviour>();
-        public List<Component> bodyTargets = new List<Component>();
-
+        public DeadBody CurrentTarget { get; set; }
+        public DateTime LE { get; set; }
+        public int EatNeed;
+        public bool CannibalWin;
+        
         public Cannibal(PlayerControl player) : base(player)
         {
             Name = "Cannibal";
-            ImpostorText = () => "Eat bodies";
-            TaskText = () => "Eat enough bodies.";
+            ImpostorText = () => "Eat Bodies";
             Color = Palette.Brown;
             RoleType = RoleEnum.Cannibal;
             Faction = Faction.Neutral;
+            EatNeed = CustomGameOptions.CannibalBodyCount >= PlayerControl.AllPlayerControls._size / 2 ? PlayerControl.AllPlayerControls._size / 2 : CustomGameOptions.CannibalBodyCount; // Limit max bodies to 1/2 of lobby
+            var body = EatNeed == 1 ? "Body" : "Bodies";
+            TaskText = () => $"Eat {EatNeed} {body} to Win\nFake Tasks:";
         }
-
-        public DeadBody CurrentTarget { get; set; }
-
-        public KillButtonManager EatButton
+        
+        internal override bool EABBNOODFGL(ShipStatus __instance)
         {
-            get => _eatButton;
-            set
+            if (EatNeed == 0)
             {
-                _eatButton = value;
-                ExtraButtons.Clear();
-                ExtraButtons.Add(value);
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.CannibalWin, SendOption.Reliable, -1);
+                writer.Write(Player.PlayerId);
+                Wins();
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+                Utils.EndGame();
+                return false;
             }
+            return true;
         }
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
-            CannibalWins = true;
+            CannibalWin = true;
         }
 
         public void Loses()
         {
             Player.Data.IsImpostor = true;
+        }
+
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        {
+            var cannibalteam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+            cannibalteam.Add(PlayerControl.LocalPlayer);
+            __instance.yourTeam = cannibalteam;
+        }
+
+        public float CannibalTimer()
+        {
+            var t = DateTime.UtcNow - LE;
+            var i = CustomGameOptions.CannibalCd * 1000;
+            if (i - (float) t.TotalMilliseconds < 0) return 0;
+            return (i - (float) t.TotalMilliseconds) / 1000;
         }
     }
 }

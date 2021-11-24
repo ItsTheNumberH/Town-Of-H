@@ -242,6 +242,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Shifter:
                 case RoleEnum.Grenadier:
                 case RoleEnum.Poisoner:
+                case RoleEnum.Framer:
                     shifter.Data.IsImpostor = true;
                     shifter.MurderPlayer(shifter);
                     shifter.Data.IsImpostor = false;
@@ -300,12 +301,6 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner) {
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
                     //Role.GetRole<Arsonist>(shifter).IgniteButton.renderer.enabled = false;
-                }
-                if (shifter.Is(RoleEnum.Cannibal))
-                {
-                    Role.GetRole<Cannibal>(shifter).EatButton.Destroy();
-                    Role.GetRole<Cannibal>(shifter).EatButton.renderer.enabled = false;
-                    DestroyableSingleton<HudManager>.Instance.KillButton.renderer.enabled = false;
                 }
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
                 DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;

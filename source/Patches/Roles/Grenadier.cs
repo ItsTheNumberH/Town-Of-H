@@ -15,15 +15,13 @@ namespace TownOfUs.Roles
         public Grenadier(PlayerControl player) : base(player)
         {
             Name = "Grenadier";
-            ImpostorText = () => "Hinder the Crewmates Vision";
+            ImpostorText = () => "Flashbang nearby Crewmates";
             TaskText = () => "Blind the crewmates to get sneaky kills";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Grenadier;
             Faction = Faction.Impostors;
         }
-
         public bool Flashed => TimeRemaining > 0f;
-
         public KillButtonManager FlashButton
         {
             get => _flashButton;

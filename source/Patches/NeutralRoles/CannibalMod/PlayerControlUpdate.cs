@@ -18,18 +18,17 @@ namespace TownOfUs.NeutralRoles.CannibalMod
             var eatButton = __instance.KillButton;
 
             var role = Role.GetRole<Cannibal>(PlayerControl.LocalPlayer);
-            if (role.EatButton == null)
+            if (PlayerControl.LocalPlayer.Data.IsDead)
             {
-                role.EatButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.EatButton.renderer.enabled = true;
+                    eatButton.gameObject.SetActive(false);
+                    eatButton.isActive = false;
             }
-
-            role.EatButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.EatButton.transform.localPosition = new Vector3(position.x - 1.3f,
-                __instance.ReportButton.transform.localPosition.y, position.z);
-
-            role.EatButton.renderer.sprite = TownOfUs.CannibalEat;
+            else
+            {
+                eatButton.gameObject.SetActive(!MeetingHud.Instance);
+                eatButton.isActive = !MeetingHud.Instance;
+                eatButton.renderer.sprite = TownOfUs.CannibalEat;
+            }
 
             var truePosition = PlayerControl.LocalPlayer.GetTruePosition();
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
@@ -56,8 +55,9 @@ namespace TownOfUs.NeutralRoles.CannibalMod
             }
 
             KillButtonTarget.SetTarget(eatButton, closestBody, role);
+            eatButton.SetCoolDown(role.CannibalTimer(), CustomGameOptions.CannibalCd);
 
-            if (CustomGameOptions.CannibalBodyArrows && Target != null && Arrow == null)
+            if (Target != null && Arrow == null)
             {
                 var gameObj = new GameObject();
                 Arrow = gameObj.AddComponent<ArrowBehaviour>();

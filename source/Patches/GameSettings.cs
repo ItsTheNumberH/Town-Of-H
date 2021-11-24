@@ -13,9 +13,8 @@ namespace TownOfUs
     [HarmonyPatch]
     public static class GameSettings
     {
-        public static bool AllOptions;
 
-        [HarmonyPatch] //ToHudString
+        [HarmonyPatch]
         private static class GameOptionsDataPatch
         {
             public static IEnumerable<MethodBase> TargetMethods()
@@ -25,31 +24,24 @@ namespace TownOfUs
 
             private static void Postfix(ref string __result)
             {
-                var builder = new StringBuilder(AllOptions ? __result : "");
+                var builder = new StringBuilder("");
 
                 foreach (var option in CustomOption.CustomOption.AllOptions)
                 {
-                    if (option.Name == "Custom Game Settings" && !AllOptions) break;
+                    if (option.Name == "Crewmate Roles") {
+                        builder.Append("<color=#00FF00FF>Version " + TownOfUs.VersionString + "</color>");
+                    }
+                    else if (option.Name == "Custom Game Settings") {
+                        builder.AppendLine("");
+                        builder.Append(new StringBuilder(__result));
+                    }
                     if (option.Type == CustomOptionType.Button) continue;
                     if (option.Type == CustomOptionType.Header) builder.AppendLine($"\n{option.Name}");
                     else if (option.Indent) builder.AppendLine($"     {option.Name}: {option}");
                     else builder.AppendLine($"{option.Name}: {option}");
                 }
-
                 __result = builder.ToString();
-
-                __result = __result.Insert(__result.IndexOf('\n'), "<color=#00FF00FF>Version " + TownOfUs.VersionString + "</color>");
-
                 __result = $"<size=1.25>{__result}</size>";
-            }
-        }
-
-        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.FixedUpdate))]
-        private static class LobbyBehaviourPatch
-        {
-            private static void Postfix()
-            {
-                if (Input.GetKeyInt(KeyCode.Tab)) AllOptions = !AllOptions;
             }
         }
 

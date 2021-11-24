@@ -35,6 +35,7 @@ namespace TownOfUs
         Grenadier,
         Poisoner,
         Cannibal,
+        Framer,
 
 
         Glitch,

@@ -13,10 +13,10 @@ namespace TownOfUs.CrewmateRoles.MedicMod
 
         public static void UpdateProtectButton(PlayerControl __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var protectButton = DestroyableSingleton<HudManager>.Instance.KillButton;

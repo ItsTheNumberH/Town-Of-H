@@ -12,11 +12,10 @@ namespace TownOfUs.NeutralRoles.CannibalMod
         public static IEnumerator EatCoroutine(DeadBody body, Cannibal role)
         {
             KillButtonTarget.SetTarget(DestroyableSingleton<HudManager>.Instance.KillButton, null, role);
-            role.Player.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
             var renderer = body.bodyRenderer;
             var backColor = renderer.material.GetColor(BackColor);
             var bodyColor = renderer.material.GetColor(BodyColor);
-            var newColor = new Color(0f, 0f, 0f, 0f);
+            var newColor = new Color(1f, 1f, 1f, 0f);
             for (var i = 0; i < 60; i++)
             {
                 if (body == null) yield break;
@@ -25,7 +24,13 @@ namespace TownOfUs.NeutralRoles.CannibalMod
                 yield return null;
             }
 
-            Object.Destroy(body.gameObject);
+            Object.Destroy(body.gameObject);    
+            role.EatNeed--;
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Cannibal))
+            {
+                var bodyTxt = role.EatNeed == 1 ? "Body" : "Bodies";
+                PlayerControl.LocalPlayer.myTasks.ToArray()[0].Cast<ImportantTextTask>().Text = $"{role.ColorString}Role: Cannibal\nEat {role.EatNeed} {bodyTxt} to Win\nFake Tasks:</color>";
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace TownOfUs
         SetChameleon,
         SetUnderdog,
         SetGrenadier,
+        SetFramer,
 
         
         SetBait,
@@ -80,6 +81,7 @@ namespace TownOfUs
         Protect,
         AttemptSound,
         Investigate,
+        Frame,
         Track,
         Rewind,
         RewindRevive,

@@ -22,12 +22,13 @@ namespace TownOfUs.CustomOption
 
 
         public static CustomHeaderOption NeutralRoles;
-        public static CustomNumberOption JesterOn;
-        public static CustomNumberOption ShifterOn;
-        public static CustomNumberOption GlitchOn;
-        public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption ArsonistOn;
         public static CustomNumberOption CannibalOn;
+        public static CustomNumberOption ExecutionerOn;
+        public static CustomNumberOption GlitchOn;
+        public static CustomNumberOption JesterOn;
+        public static CustomNumberOption ShifterOn;
+
         public static CustomHeaderOption GhostRoles;
         public static CustomNumberOption PhantomOn;
 
@@ -45,11 +46,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ChameleonOn;
         public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption GrenadierOn;
-
-
-        /*
-        public static CustomNumberOption SecurityGuardOn ;
-            */
+        public static CustomNumberOption FramerOn;
 
         public static CustomHeaderOption Modifiers;
         public static CustomNumberOption BaitOn;
@@ -91,6 +88,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SheriffKillsGlitch;
         public static CustomToggleOption SheriffKillsArsonist;
         public static CustomToggleOption SheriffKillsShifter;
+        public static CustomToggleOption SheriffKillsCannibal;
         public static CustomToggleOption SheriffKillsExecutioner;
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
@@ -186,8 +184,9 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption ArsonistGameEnd;
 
         public static CustomHeaderOption Cannibal;
+        public static CustomNumberOption CannibalCd;
         public static CustomNumberOption NumberCannibalBodies;
-        public static CustomToggleOption CannibalBodyArrows;
+        public static CustomNumberOption CannibalBodyCount;
 
         public static CustomHeaderOption Phantom;
         public static CustomToggleOption PhantomSpawnInVent;
@@ -200,6 +199,11 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption GrenadeCooldown;
         public static CustomNumberOption GrenadeDuration;
         public static CustomToggleOption GrenadierVent;
+        private static CustomHeaderOption Framer;
+        public static CustomNumberOption FrameCooldown;
+        public static CustomNumberOption TimeToFrame;
+        public static CustomNumberOption FrameDuration;
+        public static CustomStringOption FrameTarget;
 
         public static CustomHeaderOption Assassin;
         public static CustomNumberOption AssassinKills;
@@ -289,6 +293,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             CamouflagerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Camouflager</color>", 0f, 0f, 100f,
                 10f, PercentFormat);
+            FramerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Framer</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             GrenadierOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Grenadier</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Janitor</color>", 0f, 0f, 100f, 10f,
@@ -428,16 +434,18 @@ namespace TownOfUs.CustomOption
             ShowSheriff = new CustomToggleOption(num++, "Show Sheriff", false);
             SheriffKillOther =
                 new CustomToggleOption(num++, "Sheriff Miskill Kills Crewmate", false);
-            SheriffKillsJester =
-                new CustomToggleOption(num++, "Sheriff Kills Jester", false);
-            SheriffKillsGlitch =
-                new CustomToggleOption(num++, "Sheriff Kills The Glitch", false);
             SheriffKillsArsonist =
                 new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
-            SheriffKillsShifter =
-                new CustomToggleOption(num++, "Sheriff Kills Shifter", false);
+            SheriffKillsCannibal =
+                new CustomToggleOption(num++, "Sheriff Kills Cannibal", false);
             SheriffKillsExecutioner =
                 new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
+            SheriffKillsGlitch =
+                new CustomToggleOption(num++, "Sheriff Kills The Glitch", true);
+            SheriffKillsJester =
+                new CustomToggleOption(num++, "Sheriff Kills Jester", false);
+            SheriffKillsShifter =
+                new CustomToggleOption(num++, "Sheriff Kills Shifter", false);
             SheriffKillCd =
                 new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
             SheriffBodyReport = new CustomToggleOption(num++, "Sheriff can report who they've killed");
@@ -500,9 +508,9 @@ namespace TownOfUs.CustomOption
 
             /* CANNIBAL */
             Cannibal = new CustomHeaderOption(num++, "<color=#AC8A00FF>Cannibal</color>");
-            NumberCannibalBodies =
-                new CustomNumberOption(num++, "Bodies to consume", 3, 1, 5, 1);
-            CannibalBodyArrows = new CustomToggleOption(num++, "Arrows to bodies", false);
+            CannibalCd =
+                new CustomNumberOption(num++, "Cannibal Cooldown", 0f, 0f, 60f, 2.5f, CooldownFormat);
+            CannibalBodyCount = new CustomNumberOption(num++, "Number of bodies to eat", 1, 1, 5, 1);
 
             /* EXECUTIONER */
             Executioner =
@@ -534,7 +542,7 @@ namespace TownOfUs.CustomOption
             ShowShift = new CustomToggleOption(num++, "Show Shift", true);
             ShiftGlitch = new CustomToggleOption(num++, "Shift Glitch", false);
             ShifterCrewmate =
-                new CustomToggleOption(num++, "Shifter Wins With Crew", false);
+                new CustomToggleOption(num++, "Shifter Wins With Crew", true);
 
             /* PHANTOM */
             Phantom = new CustomHeaderOption(num++, "<color=#662962>Phantom</color>");
@@ -556,6 +564,14 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Camouflager Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             CamouflagerDuration =
                 new CustomNumberOption(num++, "Camouflager Duration", 10, 5, 15, 1f, CooldownFormat);
+
+            /*FRAMER*/
+            Framer = new CustomHeaderOption(num++, "<color=#FF0000FF>Framer</color>");
+            FrameCooldown = new CustomNumberOption(num++, "Frame Cooldown", 30, 10, 60, 2.5f, CooldownFormat);
+            TimeToFrame = new CustomNumberOption(num++, "Delay Before Framing", 5, 2.5f, 15, 2.5f, CooldownFormat);
+            FrameDuration = new CustomNumberOption(num++, "Frame Duration", 10, 2.5f, 20f, 2.5f, CooldownFormat);
+            FrameTarget =
+                new CustomStringOption(num++, "Frame target as", new[] {"Self", "Random"});
 
             /* GRENADIER */
             Grenadier =

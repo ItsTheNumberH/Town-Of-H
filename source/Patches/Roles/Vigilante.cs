@@ -9,24 +9,11 @@ namespace TownOfUs.Roles
     {
         public Dictionary<byte, (GameObject, GameObject, TMP_Text)> Buttons = new Dictionary<byte, (GameObject, GameObject, TMP_Text)>();
 
-
         public Dictionary<string, Color> ColorMapping = new Dictionary<string, Color>
         {
-            { "Assassin", Palette.ImpostorRed },
-            { "Camouflager", Palette.ImpostorRed },
-            { "Grenadier", Palette.ImpostorRed },
-            { "Janitor", Palette.ImpostorRed },
-            { "Loving Impostor", Palette.ImpostorRed },
-            { "Miner", Palette.ImpostorRed },
-            { "Morphling", Palette.ImpostorRed },
-            { "Poisoner", Palette.ImpostorRed },
-            { "Swooper", Palette.ImpostorRed },
-            { "Underdog", Palette.ImpostorRed },
-            { "Undertaker", Palette.ImpostorRed },
         };
 
         public Dictionary<byte, string> Guesses = new Dictionary<byte, string>();
-
 
         public Vigilante(PlayerControl player) : base(player)
         {
@@ -37,6 +24,20 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Vigilante;
 
             RemainingKills = CustomGameOptions.VigilanteKills;
+            
+            ColorMapping.Add("Assassin", Palette.ImpostorRed);
+            ColorMapping.Add("Camouflager", Palette.ImpostorRed);
+            ColorMapping.Add("Framer", Palette.ImpostorRed);
+            ColorMapping.Add("Grenadier", Palette.ImpostorRed);
+            if (CustomGameOptions.VigilanteImpostorGuess) ColorMapping.Add("Impostor", Palette.ImpostorRed);
+            ColorMapping.Add("Janitor", Palette.ImpostorRed);
+            ColorMapping.Add("Loving Impostor", Palette.ImpostorRed);
+            ColorMapping.Add("Miner", Palette.ImpostorRed);
+            ColorMapping.Add("Morphling", Palette.ImpostorRed);
+            ColorMapping.Add("Poisoner", Palette.ImpostorRed);
+            ColorMapping.Add("Swooper", Palette.ImpostorRed);
+            ColorMapping.Add("Underdog", Palette.ImpostorRed);
+            ColorMapping.Add("Undertaker", Palette.ImpostorRed);
 
             if (CustomGameOptions.VigilanteGuessNeutrals)
             {
@@ -47,8 +48,6 @@ namespace TownOfUs.Roles
                 ColorMapping.Add("Jester", new Color(1f, 0.75f, 0.8f, 1f));
                 ColorMapping.Add("Shifter", new Color(0.6f, 0.6f, 0.6f, 1f));
             }
-
-            if (CustomGameOptions.VigilanteImpostorGuess) ColorMapping.Add("Impostor", Palette.ImpostorRed);
         }
 
         public bool GuessedThisMeeting { get; set; } = false;

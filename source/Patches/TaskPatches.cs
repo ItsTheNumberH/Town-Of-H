@@ -20,7 +20,8 @@ namespace TownOfUs
                         !(
                             playerInfo._object.Is(RoleEnum.Jester) || playerInfo._object.Is(RoleEnum.Shifter) ||
                             playerInfo._object.Is(RoleEnum.Glitch) || playerInfo._object.Is(RoleEnum.Executioner) ||
-                            playerInfo._object.Is(RoleEnum.Arsonist) || playerInfo._object.Is(RoleEnum.Phantom)
+                            playerInfo._object.Is(RoleEnum.Arsonist) || playerInfo._object.Is(RoleEnum.Phantom) ||
+                            playerInfo._object.Is(RoleEnum.Cannibal)
                         ))
                         for (var j = 0; j < playerInfo.Tasks.Count; j++)
                         {
@@ -44,7 +45,8 @@ namespace TownOfUs
                            || playerControl.Is(RoleEnum.Jester)
                            || playerControl.Is(RoleEnum.Shifter)
                            || playerControl.Is(RoleEnum.Executioner)
-                           || playerControl.Is(RoleEnum.Arsonist);
+                           || playerControl.Is(RoleEnum.Arsonist)
+                           || playerControl.Is(RoleEnum.Cannibal);
 
                 // If the console is not a sabotage repair console
                 if (flag && !__instance.AllowImpostor)

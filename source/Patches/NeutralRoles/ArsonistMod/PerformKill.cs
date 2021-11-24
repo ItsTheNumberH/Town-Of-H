@@ -10,8 +10,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist);
-            if (!flag) return true;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return true;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             var role = Role.GetRole<Arsonist>(PlayerControl.LocalPlayer);

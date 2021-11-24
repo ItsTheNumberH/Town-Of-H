@@ -25,7 +25,7 @@ namespace TownOfUs
     public class TownOfUs : BasePlugin
     {
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "4.0.11";
+        public const string VersionString = "4.0.13";
         public static System.Version Version = System.Version.Parse(VersionString);
         
         public static Sprite LogoBanner;
@@ -44,6 +44,7 @@ namespace TownOfUs
         public static Sprite SeerSprite;
         public static Sprite SampleSprite;
         public static Sprite MorphSprite;
+        public static Sprite FrameSprite;
         public static Sprite PoisonSprite;
         public static Sprite PoisonedSprite;
         public static Sprite Camouflage;
@@ -97,6 +98,7 @@ namespace TownOfUs
             SeerSprite = CreateSprite("TownOfUs.Resources.Seer.png");
             SampleSprite = CreateSprite("TownOfUs.Resources.Sample.png");
             MorphSprite = CreateSprite("TownOfUs.Resources.Morph.png");
+            FrameSprite = CreateSprite("TownOfUs.Resources.Frame.png");
             PoisonSprite = CreateSprite("TownOfUs.Resources.Poison.png");
             PoisonedSprite = CreateSprite("TownOfUs.Resources.Poisoned.png");
             Camouflage = CreateSprite("TownOfUs.Resources.Camouflage.png");

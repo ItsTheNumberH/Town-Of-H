@@ -9,8 +9,7 @@ namespace TownOfUs.CrewmateRoles.ChameleonMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Chameleon);
-            if (!flag) return true;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Chameleon)) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Chameleon>(PlayerControl.LocalPlayer);

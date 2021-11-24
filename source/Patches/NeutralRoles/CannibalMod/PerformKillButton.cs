@@ -1,3 +1,4 @@
+using System;
 using HarmonyLib;
 using Hazel;
 using Reactor;
@@ -15,37 +16,25 @@ namespace TownOfUs.NeutralRoles.CannibalMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Cannibal)) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
+            if (!__instance.isActiveAndEnabled) return false;
+            if (__instance.isCoolingDown) return false;
             var role = Role.GetRole<Cannibal>(PlayerControl.LocalPlayer);
+            if (role.CannibalTimer() != 0) return false;
 
-            if (__instance == role.EatButton)
-            {
-                if (!__instance.enabled) return false;
-                var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
-                if (Vector2.Distance(role.CurrentTarget.TruePosition,
+            var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+            if (Vector2.Distance(role.CurrentTarget.TruePosition,
                     PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
-                var playerId = role.CurrentTarget.ParentId;
 
-                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+            var playerId = role.CurrentTarget.ParentId;
+            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.CannibalEat, SendOption.Reliable, -1);
-                writer.Write(PlayerControl.LocalPlayer.PlayerId);
-                writer.Write(playerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer);
+            writer.Write(PlayerControl.LocalPlayer.PlayerId);
+            writer.Write(playerId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+            role.LE = DateTime.UtcNow;
 
-                Coroutines.Start(Coroutine.EatCoroutine(role.CurrentTarget, role));
-
-                role.bodiesEaten += 1;
-
-                if (role.bodiesEaten >= CustomGameOptions.NumberCannibalBodies) {
-                    ((Cannibal) role).Wins();
-                    var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                        (byte) CustomRPC.CannibalWin, SendOption.Reliable, -1);
-                    writer2.Write(role.Player.PlayerId);
-                    AmongUsClient.Instance.FinishRpcImmediately(writer2);
-                    Utils.EndGame();
-                }
-                return false;
-            }
-            return true;
+            Coroutines.Start(Coroutine.EatCoroutine(role.CurrentTarget, role));
+            return false;
         }
     }
 }

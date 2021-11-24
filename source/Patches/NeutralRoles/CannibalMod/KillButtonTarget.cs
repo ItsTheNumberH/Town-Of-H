@@ -23,7 +23,7 @@ namespace TownOfUs.NeutralRoles.CannibalMod
             {
                 var component = role.CurrentTarget.bodyRenderer;
                 component.material.SetFloat("_Outline", 1f);
-                component.material.SetColor("_OutlineColor", Color.yellow);
+                component.material.SetColor("_OutlineColor", role.Color);
                 __instance.renderer.color = Palette.EnabledColor;
                 __instance.renderer.material.SetFloat("_Desat", 0f);
                 return;

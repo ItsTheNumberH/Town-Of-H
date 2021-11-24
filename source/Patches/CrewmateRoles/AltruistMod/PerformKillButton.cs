@@ -11,15 +11,13 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)) return true;
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Altruist);
-            if (!flag) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Altruist>(PlayerControl.LocalPlayer);
 
-            var flag2 = __instance.isCoolingDown;
-            if (flag2) return false;
+            if (__instance.isCoolingDown) return false;
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (role == null)

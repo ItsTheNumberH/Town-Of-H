@@ -1,6 +1,7 @@
 using TownOfUs.CrewmateRoles.EngineerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.ImpostorRoles.PoisonerMod;
+using TownOfUs.ImpostorRoles.FramerMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CrewmateRoles.TrackerMod;
 using TownOfUs.CustomOption;
@@ -42,6 +43,8 @@ namespace TownOfUs
         public static int ChameleonOn => (int) Generate.ChameleonOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
         public static int GrenadierOn => (int)Generate.GrenadierOn.Get();
+        public static int FramerOn => (int) Generate.FramerOn.Get();
+
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static bool PhantomSpawnInVent => (bool) Generate.PhantomSpawnInVent.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
@@ -67,6 +70,7 @@ namespace TownOfUs
         public static bool SheriffKillsGlitch => Generate.SheriffKillsGlitch.Get();
         public static bool SheriffKillsArsonist => Generate.SheriffKillsArsonist.Get();
         public static bool SheriffKillsShifter => Generate.SheriffKillsShifter.Get();
+        public static bool SheriffKillsCannibal => Generate.SheriffKillsCannibal.Get();
         public static bool SheriffKillsExecutioner => Generate.SheriffKillsExecutioner.Get();
         public static float SheriffKillCd => Generate.SheriffKillCd.Get();
         public static int MayorVoteBank => (int) Generate.MayorVoteBank.Get();
@@ -116,8 +120,8 @@ namespace TownOfUs
         public static float PoisonerCd => Generate.PoisonerCooldown.Get();
         public static float PoisonerDuration => Generate.PoisonerDuration.Get();
         public static float PoisonAlertDelay => Generate.PoisonAlertDelay.Get();
-        public static int NumberCannibalBodies => (int) Generate.NumberCannibalBodies.Get();
-        public static bool CannibalBodyArrows => Generate.CannibalBodyArrows.Get();
+        public static float CannibalCd => Generate.CannibalCd.Get();
+        public static int CannibalBodyCount => (int) Generate.CannibalBodyCount.Get();
         
         public static PoisonNotificationOptions PoisonAlertOption =>
             (PoisonNotificationOptions) Generate.WhoGetsPoisonAlert.Get();
@@ -161,5 +165,9 @@ namespace TownOfUs
         public static float GrenadeCd => Generate.GrenadeCooldown.Get();
         public static float GrenadeDuration => Generate.GrenadeDuration.Get();
         public static bool GrenadierVent => Generate.GrenadierVent.Get();
+        public static float FrameCooldown => Generate.FrameCooldown.Get();
+        public static float TimeToFrame => Generate.TimeToFrame.Get();
+        public static float FrameDuration => Generate.FrameDuration.Get();
+        public static FrameTarget FrameTarget => (FrameTarget) Generate.FrameTarget.Get();
     }
 }

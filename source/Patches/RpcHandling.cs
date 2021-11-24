@@ -22,6 +22,7 @@ using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
+using Eat = TownOfUs.NeutralRoles.CannibalMod.Coroutine;
 using CannibalCoroutine = TownOfUs.NeutralRoles.CannibalMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.ShifterMod.PerformKillButton;
@@ -315,6 +316,12 @@ namespace TownOfUs
                                 ((Shifter) role).Loses();
 
                         break;
+                    case CustomRPC.CannibalLose:
+                        foreach (var role in Role.AllRoles)
+                            if (role.RoleType == RoleEnum.Cannibal)
+                                ((Cannibal) role).Loses();
+
+                        break;
 
                     case CustomRPC.ExecutionerLose:
                         foreach (var role in Role.AllRoles)
@@ -370,24 +377,25 @@ namespace TownOfUs
                         var cannibalPlayer = Utils.PlayerById(readByte1);
                         var cannibalRole = Role.GetRole<Cannibal>(cannibalPlayer);
                         readByte = reader.ReadByte();
-                        var cannibalDeadBodies = Object.FindObjectsOfType<DeadBody>();
-                        foreach (var body in cannibalDeadBodies)
+                        var deads = Object.FindObjectsOfType<DeadBody>();
+                        foreach (var body in deads)
                             if (body.ParentId == readByte)
-                                Coroutines.Start(CannibalCoroutine.EatCoroutine(body, cannibalRole));
-                        cannibalRole.lastEaten = DateTime.UtcNow;
+                                Coroutines.Start(Eat.EatCoroutine(body, cannibalRole));
                         break;
 
                     case CustomRPC.PoisonAlert:
                         readByte1 = reader.ReadByte();
                         var poisonerPlayer = Utils.PlayerById(readByte1);
                         var poisonerRole = Role.GetRole<Poisoner>(poisonerPlayer);
-                        if (CustomGameOptions.PoisonAlertOption == PoisonNotificationOptions.Poisoned) {
-                            var poisonedPlayer = Utils.PlayerById(reader.ReadByte());
-                            if (poisonedPlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId && !poisonedPlayer.Data.IsDead) {
+                        if (CustomGameOptions.PoisonAlertDelay < CustomGameOptions.PoisonerDuration) {
+                            if (CustomGameOptions.PoisonAlertOption == PoisonNotificationOptions.Poisoned) {
+                                var poisonedPlayer = Utils.PlayerById(reader.ReadByte());
+                                if (poisonedPlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId && !poisonedPlayer.Data.IsDead) {
+                                    Coroutines.Start(Utils.FlashCoroutine(Palette.Purple, CustomGameOptions.PoisonerDuration - CustomGameOptions.PoisonAlertDelay));
+                                }
+                            } else if (CustomGameOptions.PoisonAlertOption == PoisonNotificationOptions.Everyone) {
                                 Coroutines.Start(Utils.FlashCoroutine(Palette.Purple, CustomGameOptions.PoisonerDuration - CustomGameOptions.PoisonAlertDelay));
                             }
-                        } else if (CustomGameOptions.PoisonAlertOption == PoisonNotificationOptions.Everyone) {
-                            Coroutines.Start(Utils.FlashCoroutine(Palette.Purple, CustomGameOptions.PoisonerDuration - CustomGameOptions.PoisonAlertDelay));
                         }
                         break;
                     case CustomRPC.EngineerFix:
@@ -401,7 +409,6 @@ namespace TownOfUs
                         break;
 
                     case CustomRPC.SetExtraVotes:
-
                         var mayor = Utils.PlayerById(reader.ReadByte());
                         var mayorRole = Role.GetRole<Mayor>(mayor);
                         mayorRole.ExtraVotes = reader.ReadBytesAndSize().ToList();
@@ -519,6 +526,14 @@ namespace TownOfUs
                         morphRole.TimeRemaining = CustomGameOptions.MorphlingDuration;
                         morphRole.MorphedPlayer = morphTarget;
                         break;
+                    case CustomRPC.Frame:
+                    {
+                        PlayerControl framer = Utils.PlayerById(reader.ReadByte());
+                        PlayerControl framed = Utils.PlayerById(reader.ReadByte());
+                        Framer role = Role.GetRole<Framer>(framer);
+                        role.StartFrame(framed);
+                        break;
+                    }
                     case CustomRPC.SetExecutioner:
                         new Executioner(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -572,6 +587,9 @@ namespace TownOfUs
                     case CustomRPC.SetGrenadier:
                         new Grenadier(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetFramer:
+                        new Framer(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.FlashGrenade:
                         var grenadier = Utils.PlayerById(reader.ReadByte());
                         var grenadierRole = Role.GetRole<Grenadier>(grenadier);
@@ -617,13 +635,8 @@ namespace TownOfUs
                                 ((Arsonist) role).Loses();
                         break;
                     case CustomRPC.CannibalWin:
-                        var theCannibalTheRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Cannibal);
-                        ((Cannibal) theCannibalTheRole)?.Wins();
-                        break;
-                    case CustomRPC.CannibalLose:
-                        foreach (var role in Role.AllRoles)
-                            if (role.RoleType == RoleEnum.Cannibal)
-                                ((Cannibal) role).Loses();
+                        var theCannibalRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Cannibal);
+                        ((Cannibal) theCannibalRole)?.Wins();
                         break;
                     case CustomRPC.SetImpostor:
                         new Impostor(Utils.PlayerById(reader.ReadByte()));
@@ -693,20 +706,20 @@ namespace TownOfUs
                         break;
                     case CustomRPC.Drag:
                         readByte1 = reader.ReadByte();
-                        var dienerPlayer = Utils.PlayerById(readByte1);
-                        var dienerRole = Role.GetRole<Undertaker>(dienerPlayer);
+                        var undertakerPlayer = Utils.PlayerById(readByte1);
+                        var undertakerRole = Role.GetRole<Undertaker>(undertakerPlayer);
                         readByte = reader.ReadByte();
-                        var dienerBodies = Object.FindObjectsOfType<DeadBody>();
-                        foreach (var body in dienerBodies)
+                        var undertakerBodies = Object.FindObjectsOfType<DeadBody>();
+                        foreach (var body in undertakerBodies)
                             if (body.ParentId == readByte)
-                                dienerRole.CurrentlyDragging = body;
+                                undertakerRole.CurrentlyDragging = body;
 
                         break;
                     case CustomRPC.Drop:
                         readByte1 = reader.ReadByte();
-                        var dienerPlayer2 = Utils.PlayerById(readByte1);
-                        var dienerRole2 = Role.GetRole<Undertaker>(dienerPlayer2);
-                        dienerRole2.CurrentlyDragging = null;
+                        var undertakerPlayer2 = Utils.PlayerById(readByte1);
+                        var undertakerRole2 = Role.GetRole<Undertaker>(undertakerPlayer2);
+                        undertakerRole2.CurrentlyDragging = null;
 
                         break;
                     case CustomRPC.SetAssassin:
@@ -867,6 +880,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.GrenadierOn))
                     ImpostorRoles.Add((typeof(Grenadier), CustomRPC.SetGrenadier, CustomGameOptions.GrenadierOn));
+
+                if (Check(CustomGameOptions.FramerOn))
+                    ImpostorRoles.Add((typeof(Framer), CustomRPC.SetFramer, CustomGameOptions.FramerOn));
                 #endregion
                 #region Global Modifiers
                 if (Check(CustomGameOptions.TorchOn))

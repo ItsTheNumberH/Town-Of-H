@@ -32,6 +32,15 @@ namespace TownOfUs
             Player.MyPhysics.SetSkin(skin);
         }
 
+        public static void Frame(PlayerControl player, PlayerControl framer)
+        {
+            Morph(player, framer); 
+        }
+        public static void Unframe(PlayerControl player)
+        {
+            Unmorph(player);
+            player.MyRend.color = Color.white;
+        }
         public static void Morph(PlayerControl Player, PlayerControl MorphedPlayer, bool resetAnim = false)
         {
             if (CamouflageUnCamouflage.IsCamoed) return;

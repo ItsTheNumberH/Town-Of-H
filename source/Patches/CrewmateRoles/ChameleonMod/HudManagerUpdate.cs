@@ -11,10 +11,10 @@ namespace TownOfUs.CrewmateRoles.ChameleonMod
 
         public static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Chameleon)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Chameleon)) return;
             var role = Role.GetRole<Chameleon>(PlayerControl.LocalPlayer);
             if (role.SwoopButton == null)
             {
