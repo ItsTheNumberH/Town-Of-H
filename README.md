@@ -34,6 +34,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 **Impostor Roles**
 - [Assassin](#assassin)
 - [Camouflager](#camouflager)
+- [Framer](#framer)
+- [Grenadier](#grenadier)
 - [Janitor](#janitor)
 - [Miner](#miner)
 - [Morphling](#morphling)
@@ -810,6 +812,36 @@ Everyone then goes grey for a certain period of time, along with their names dis
 | Camouflager | The percentage probability of the Camouflager appearing | Percentage | 0% |
 | Camouflage Cooldown | The cooldown of the Camouflager's Camouflage button | Time | 25s |
 | Camouflage Duration | How long the Camouflage lasts for | Time | 10s |
+
+-----------------------
+## Grenadier
+### **Team: Impostors**
+
+The Grenadier is an Impostor that can flashbang crewmates to blind them.\
+Everyones screen goes grey for a certain period of time, impostors only tints slightly grey.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
+| Grenadier Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
+| Grenadier Duration | How long the Flash lasts for | Time | 10s |
+| Grenadier Vent | If the Grenadier can vent | Bool | false |
+
+-----------------------
+## Framer
+### **Team: Impostors**
+
+The Framer is an Impostor that can frame a crewmate to appear as the them.\
+The framed target, after a few seconds, appears as the framers character fo a specified amount fo time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Framer | The percentage probability of the Framer appearing | Percentage | 0% |
+| Framer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Delay before framing | How long before the target is framed | Time | 10s |
+| Frame duration | How long the target is framed for | Time | 10s |
 
 -----------------------
 ## Miner
