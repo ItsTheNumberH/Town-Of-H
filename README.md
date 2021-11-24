@@ -17,9 +17,10 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Seer](#seer)
 - [Sheriff](#sheriff)
 - [Snitch](#snitch)
+- [Spy](#spy)
 - [Swapper](#swapper)
 - [Time Lord](#time-lord)
-- [Spy](#spy)
+- [Tracker](#tracker)
 - [Vigilante](#vigilante)
 
 **Neutral Roles**
@@ -665,6 +666,20 @@ If they guessed wrong, they die instead.
 | Vigilante Guess Neutral  | Whether the Vigilante can Guess Neutral roles | Toggle | False |
 | Vigilante Multiple Kill  | Whether the Vigilante can kill more than once per meeting | Toggle | True |
 | Vigilante Guess Chameleon | Whether the Vigilante can Guess "Chameleon" | Toggle | False |
+-----------------------
+
+## Tracker
+### **Team: Crewmates**
+
+The Tracker is a Crewmate that can track crewmates movements.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Tracker | The percentage probability of the Tracker appearing | Percentage | 0% |
+| Tracker Cooldown | The cooldown of the Trackers Track button | Number | 10s |
+| Track Per | Whether the Tracker can use their ability once per round or game | Round/Game | Round |
+| Track Interval  | How often teh trackers arrows update | Number | 25s |
 
 -----------------------
 # Neutral Roles
