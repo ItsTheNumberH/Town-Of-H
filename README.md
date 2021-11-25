@@ -41,6 +41,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Miner](#miner)
 - [Morphling](#morphling)
 - [Poisoner](#poisoner)
+- [Puppeteer](#puppeteer)
 - [Swooper](#swooper)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
@@ -884,6 +885,23 @@ The Poisoner is an Impostor that can poison crewmates instead of outright killin
 | Poisoner Cooldown | The cooldown of the Poisoner's Poison button | Time | 25s |
 | Poison Duration | The duration of the Poisoner's Poison before it kills the target | Time | 10s |
 | Poison Alert | Who gets alerted to someone being poisoned | No one/Target/Everyone | Target |
+
+-----------------------
+## Puppeteer
+### **Team: Impostors**
+
+The Puppeteer is an Impostor that can control a nearby crewmate to kill.\
+But only when nearby for a few seconds.\
+The Puppeteer is also frozen for a few seconds after puppeteering.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Puppeteer | The percentage probability of the Puppeteer appearing | Percentage | 0% |
+| Puppeteer Cooldown | The cooldown of the Puppeteer's Puppeteer button | Time | 25s |
+| Possess Time | The duration of the Puppeteers's Posession before it forces the target to kill | Time | 3s |
+| Possess Max Time | Maximum time to hold possession while no kill target found | Time | 15s |
+| Wait time after kill | How long the Puppeteer is frozen for after commanding a kill | Time | 3s |
 
 -----------------------
 ## Swooper
