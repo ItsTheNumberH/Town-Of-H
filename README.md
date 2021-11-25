@@ -55,7 +55,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Lagger](#lagger)
-- [Lagger Speed](#lagger speed)
+- [Lagger Speed](#laggerspeed)
 - [Tiebreaker](#tiebreaker)
 - [Torch](#torch)
 - [Volatile](#volatile)
