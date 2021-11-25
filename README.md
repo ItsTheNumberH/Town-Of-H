@@ -54,8 +54,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Diseased](#diseased)
 - [Drunk](#drunk)
 - [Giant](#giant)
-- [Flash](#flash)
-- [Flash Speed](#flashspeed)
+- [Lagger](#lagger)
+- [Lagger Speed](#lagger speed)
 - [Tiebreaker](#tiebreaker)
 - [Torch](#torch)
 - [Volatile](#volatile)
@@ -1009,13 +1009,23 @@ The volatile player could see a fake sabotage, hear a fake death sound, see a fa
 | Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
 
 -----------------------
-## Flash
+## Lagger
 ### **Applied to: All**
-The Flash travels at twice the speed of a normal player.
+The Lagger travels at (#laggerspeed) x the speed of a normal player.\
+Due to issues with the Flash modifier, it has been renamed to 'Lagger'. This will be reverted to 'Flash' if it is ever fixed.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Flash | The percentage probability of the Flash appearing | Percentage | 0% |
+| Lagger | The percentage probability of the Lagger appearing | Percentage | 0% |
+
+-----------------------
+## Lagger Speed
+### **Applied to: All**
+The speed multiplier for the Lagger (Previously known as Flash).
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Lagger Speed | The speed increase for the Lagger | Number | 2 |
 
 -----------------------
 ## Tiebreaker
