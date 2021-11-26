@@ -398,7 +398,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 -----------------------
 # Installation
 <details>
- <summary>Expand</summary>
+ <summary>Guide</summary>
+ 
 ## Requirements 
 - Among Us
 - Steam or Epic Games
