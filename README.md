@@ -397,6 +397,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 -----------------------
 # Installation
+<details>
+ <summary>Expand</summary>
 ## Requirements 
 - Among Us
 - Steam or Epic Games
@@ -463,8 +465,7 @@ A first launch may take up to 5 minutes, so be patient if it doesn't launch imme
 
 ![Install](https://i.imgur.com/pvBAyZN.png)
 <br/>
-## Issues
-If you have issues installing Town of Us, you can join our [Discord](https://discord.gg/polus) to receive help.
+</details>
 
 -----------------------
 # Roles
