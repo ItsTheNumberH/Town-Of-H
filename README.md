@@ -69,6 +69,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.15 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.15/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.14 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.14/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.13 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.13/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.12 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.12/TownOfUs.dll) |
@@ -103,6 +104,16 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 <details>
   <summary> Changelog </summary>
+   <details>
+  <summary> v4.0.15 </summary>
+   <ul> <li> Finished alphabetising and cleaning up roles code </li> </ul>
+   <ul> <li> New role 'Freezer' added </li> </ul>
+   <ul> <li> Once frozen, you cannot move and will die if: </li> </ul>
+   <ul> <li> Touched by another player </li> </ul>
+   <ul> <li> A meeting is called/body reported </li> </ul>
+   <ul> <li> After 20 seconds (configurable) </li> </ul>
+ </li> </ul>
+  </details>
   <details>
   <summary> v4.0.14 </summary>
    <ul> <li> New role 'Puppeteer' added </li> </ul>
