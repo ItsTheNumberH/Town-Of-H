@@ -889,8 +889,8 @@ Everyone then goes grey for a certain period of time, along with their names dis
 ## Framer
 ### **Team: Impostors**
 
-The Framer is an Impostor that can frame a crewmate to appear as them.\
-The framed target, after a few seconds, appears as the framers character for a specified amount of time.
+The Framer is an Impostor that can frame a crewmate to appear as the frame / another crewmate.\
+The framed target, after a few seconds, appears as the framers character / another character for a specified amount of time.
 
 ### Game Options
 | Name | Description | Type | Default |
@@ -899,6 +899,7 @@ The framed target, after a few seconds, appears as the framers character for a s
 | Framer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
 | Delay before framing | How long before the target is framed | Time | 10s |
 | Frame duration | How long the target is framed for | Time | 10s |
+| Frame target | who to frame the crewmate as | Self | Random | Random |
 
 -----------------------
 
@@ -914,6 +915,7 @@ They will die if touched by another player, if a meeting is called, or after a s
 |----------|:-------------:|:------:|:------:|
 | Freezer | The percentage probability of the Framer appearing | Percentage | 0% |
 | Freezer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Defrost time | The time until the crewmate dies automatically | Time | 20s |
 
 -----------------------
 
