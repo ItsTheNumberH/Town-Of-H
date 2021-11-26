@@ -3,9 +3,9 @@
 ![LOGO](./Images/TOU-logo.png)
 ![Roles](./Images/Roles3.png)
 
-An Among Us mod that adds a bunch of roles, modifiers and game settings
+An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
-
+# Contents
 **Crewmate Roles**
 - [Altruist](#altruist)
 - [Chameleon](#chameleon)
