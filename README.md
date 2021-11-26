@@ -927,6 +927,7 @@ They will die if touched by another player, if a meeting is called, or after a s
 |----------|:-------------:|:------:|:------:|
 | Freezer | The percentage probability of the Framer appearing | Percentage | 0% |
 | Freezer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Defrost Time | Time until a frozen crewmate automatically dies | Time | 20s |
 
 -----------------------
 
