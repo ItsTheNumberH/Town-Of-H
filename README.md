@@ -29,13 +29,16 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Executioner](#executioner)
 - [The Glitch](#the-glitch)
 - [Jester](#jester)
-- [Phantom](#phantom)
 - [Shifter](#shifter)
+
+**Ghost Roles**
+- [Phantom](#phantom)
 
 **Impostor Roles**
 - [Assassin](#assassin)
 - [Camouflager](#camouflager)
 - [Framer](#framer)
+- [Freezer](#freezer)
 - [Grenadier](#grenadier)
 - [Janitor](#janitor)
 - [Miner](#miner)
@@ -66,6 +69,9 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.14 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.14/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.13 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.13/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.12 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.12/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.11 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.11/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.10 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.10/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.9 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.9/TownOfUs.dll) |
@@ -97,7 +103,29 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <details>
   <summary> Changelog </summary>
-   <details>
+  <details>
+  <summary> v4.0.14 </summary>
+   <ul> <li> New role 'Puppeteer' added </li> </ul>
+   <ul> <li> Control nearby crewmate to make them kill </li> </ul>
+   <ul> <li> Must stay close to them for a few seconds for successful puppeteering </li> </ul>
+   <ul> <li> Assassin can now only guess enabled roles </li> </ul>
+   <ul> <li> Flash renamed to Lagger (As it's still laggy. Will revert if/when Flash is fixed) </li> </ul>
+   <ul> <li> Few text changes </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.13 </summary>
+   <ul> <li> New Role 'Framer' added </li> </ul>
+   <ul> <li> Frame the crewmates to look like other players </li> </ul>
+   <ul> <li> Minor optimisations to role generation </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.12 </summary>
+   <ul> <li> Cannibal bug fix for end game </li> </ul>
+ </li> </ul>
+  </details>
+  <details>
   <summary> v4.0.11 </summary>
    <ul> <li> New role - Cannibal </li> </ul>
    <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
@@ -430,57 +458,41 @@ If you have issues installing Town of Us, you can join our [Discord](https://dis
 -----------------------
 # Roles
 # Crewmate Roles
-## Mayor
+
+## Altruist
 ### **Team: Crewmates**
-The Mayor is a Crewmate that can vote multiple times.\
-The Mayor has a Vote Bank, which is the number of times they can vote.\
-They have the option to abstain their vote during a meeting, adding that vote to the Vote Bank.\
-As long as not everyone has voted, the Mayor can use as many votes from their Vote Bank as they please.
+
+The Altruist is a Crewmate that is capable of reviving dead players.\
+Upon finding a dead body, the Altruist can hit their revive button, risking sacrificing themselves for the revival of another player.\
+If enabled, the dead body disappears, so only they Altruist's body remains at the scene.\
+After a set period of time, the player will be resurrected, if the revival isn't interrupted.
 
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Mayor | The percentage probability of the Mayor appearing | Percentage | 0% |
-| Initial Mayor Vote Bank | The number of votes in the Vote Bank at the start of a game | Number | 1 |
-| Mayor Votes Show Anonymous | Whether the Mayor's extra votes will show up anonymously | Toggle | False |
+| Altruist | The percentage probability of the Altruist appearing | Percentage | 0% |
+| Altruist Revive Duration | The time it takes for the Altruist to revive a dead body | Time | 10s |
+| Target's body disappears on beginning of revive | Whether the dead body of the player the Altruist is reviving disappears upon revival | Toggle | False |
 
 -----------------------
-## Lovers
-### **Team: Crewmates or Impostors**
-The Lovers are two players who are linked together.\
-These two players get picked randomly between Crewmates and Impostors.\
-They gain the primary objective to stay alive together.\
-If they are both among the last 3 players, they win.\
-In order to so, they gain access to a private chat, only visible by them in between meetings.\
-However, they can also win with their respective team, hence why the Lovers do not know the role of the other lover.
 
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Lovers | The percentage probability of the Lovers appearing | Percentage | 0% |
-| Both Lovers Die | Whether the other Lover automatically dies if the other does | Toggle | True |
-
------------------------
-## Sheriff
+## Chameleon
 ### **Team: Crewmates**
-The Sheriff is a Crewmate that has the ability to eliminate the Impostors using their kill button.\
-However, if they kill a Crewmate or a Neutral player they can't kill, they instead die themselves.
+
+The Chameleon is a Crewmate that can temporarily turn completely invisible.
 
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Sheriff | The percentage probability of the Sheriff appearing | Percentage | 0% |
-| Show Sheriff | Whether everybody can see who the Sheriff is | Toggle | False |
-| Sheriff Miskill Kills Crewmate | Whether the other player is killed if the Sheriff Misfires | Toggle | False |
-| Sheriff Kills Jester | Whether the Sheriff is able to kill the Jester | Toggle | False |
-| Sheriff Kills The Glitch | Whether the Sheriff is able to kill The Glitch | Toggle | False |
-| Sheriff Kills Arsonist | Whether the Sheriff is able to kill the Arsonist | Toggle | False |
-| Sheriff Kill Cooldown | The cooldown on the Sheriff's kill button | Time | 25s |
-| Sheriff can report who they've killed | Whether the Sheriff is able to report their own kills | Toggle | True |
+| Chameleon | The percentage probability of the Chameleon appearing | Percentage | 0% |
+| Chameleon Cooldown | The cooldown of the Chameleon's Hide button | Time | 25s |
+| Chameleon Duration | How long the Chameleon's hide lasts for | Time | 10s |
 
 -----------------------
+
 ## Engineer
 ### **Team: Crewmates**
+
 The Engineer is a Crewmate that can fix sabotages from anywhere on the map.\
 They can use vents to get across the map easily.
 
@@ -491,19 +503,10 @@ They can use vents to get across the map easily.
 | Engineer Fix Per | Whether the Engineer can fix 1 sabotage per round or per game | Round / Game | Round |
 
 -----------------------
-## Swapper
-### **Team: Crewmates**
-The Swapper is a Crewmate that can swap the votes on 2 players during a meeting.\
-All the votes for the first player will instead be counted towards the second player and vice versa.
 
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Swapper | The percentage probability of the Swapper appearing | Percentage | 0% |
-
------------------------
 ## Investigator
 ### **Team: Crewmates**
+
 The Investigator is a Crewmate that can see the footprints of players.\
 Every footprint disappears after a set amount of time.
 
@@ -518,29 +521,50 @@ Every footprint disappears after a set amount of time.
 | Footprint Vent Visible | Whether footprints near vents are shown | Toggle | False
 
 -----------------------
-## Time Lord
-### **Team: Crewmates**
-The Time Lord is a Crewmate that can rewind time and reverse the positions of all players.\
-If enabled, any players killed during this time will be revived.\
-Nothing but movements and kills are affected.\
-If enabled, the Time Lord can't use Vitals to make things more balanced.
+
+## Lovers
+### **Team: Crewmates or Impostors**
+
+The Lovers are two players who are linked together.\
+These two players get picked randomly between Crewmates and Impostors.\
+They gain the primary objective to stay alive together.\
+If they are both among the last 3 players, they win.\
+In order to so, they gain access to a private chat, only visible by them in between meetings.\
+However, they can also win with their respective team, hence why the Lovers do not know the role of the other lover.
 
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Time Lord | The percentage probability of the Time Lord appearing | Percentage | 0% |
-| Revive During Rewind | Whether the Time Lord revives dead players when rewinding | Toggle | False |
-| Rewind Duration | How far the rewind goes back in time | Time | 3s |
-| Rewind Cooldown | The cooldown of the Time Lord's Rewind button | Time | 25s |
-| Time Lord can use Vitals | Whether the Time Lord has the ability to use Vitals | Toggle | False |
+| Lovers | The percentage probability of the Lovers appearing | Percentage | 0% |
+| Both Lovers Die | Whether the other Lover automatically dies if the other does | Toggle | True |
 
 -----------------------
+
+## Mayor
+### **Team: Crewmates**
+
+The Mayor is a Crewmate that can vote multiple times.\
+The Mayor has a Vote Bank, which is the number of times they can vote.\
+They have the option to abstain their vote during a meeting, adding that vote to the Vote Bank.\
+As long as not everyone has voted, the Mayor can use as many votes from their Vote Bank as they please.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Mayor | The percentage probability of the Mayor appearing | Percentage | 0% |
+| Initial Mayor Vote Bank | The number of votes in the Vote Bank at the start of a game | Number | 1 |
+| Mayor Votes Show Anonymous | Whether the Mayor's extra votes will show up anonymously | Toggle | False |
+
+-----------------------
+
 ## Medic
 ### **Team: Crewmates**
+
 The Medic is a Crewmate that can give any player a shield that will make them immortal until the Medic dies.\
 A Shielded player cannot be Shifted into, Hacked or Killed by anyone, unless by suicide.\
 If the Medic reports a dead body, they can get a report containing clues to the Killer's identity.\
 A report can contain the name of the killer or the color type (Darker/Lighter)
+
 ### Colors
 - Red - Darker
 - Blue - Darker
@@ -582,12 +606,15 @@ A report can contain the name of the killer or the color type (Darker/Lighter)
 | Shield breaks on murder attempt | Whether the Shield breaks when someone attempts to Shift into, Hack or Kill them | Toggle | False |
 
 -----------------------
+
 ## Seer
 ### **Team: Crewmates**
+
 The Seer is a Crewmate that can reveal the roles of other players.\
 Based on settings, the Seer can find out whether a role is Good, Evil or Neutral, or they can find out the role itself.\
 A player's name will change color to their team or role.\
 If the Seer investigates someone, the Seer's name will change color to inform that player who the Seer is.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
@@ -598,18 +625,27 @@ If the Seer investigates someone, the Seer's name will change color to inform th
 | Neutrals show up as Impostors | When the Info is set to Team, Neutral roles show up as Red, like Impostors | Toggle | False |
 
 -----------------------
-## Spy
+
+## Sheriff
 ### **Team: Crewmates**
 
-The Spy is a Crewmate that gains more information when on Admin Table and Vitals.\
-On Admin Table, the Spy can see the colors of every person on the map.\
-On Vitals, the Spy can see how long killed bodies have been dead for.
+The Sheriff is a Crewmate that has the ability to eliminate the Impostors using their kill button.\
+However, if they kill a Crewmate or a Neutral player they can't kill, they instead die themselves.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Spy | The percentage probability of the Spy appearing | Percentage | 0% |
+| Sheriff | The percentage probability of the Sheriff appearing | Percentage | 0% |
+| Show Sheriff | Whether everybody can see who the Sheriff is | Toggle | False |
+| Sheriff Miskill Kills Crewmate | Whether the other player is killed if the Sheriff Misfires | Toggle | False |
+| Sheriff Kills Jester | Whether the Sheriff is able to kill the Jester | Toggle | False |
+| Sheriff Kills The Glitch | Whether the Sheriff is able to kill The Glitch | Toggle | False |
+| Sheriff Kills Arsonist | Whether the Sheriff is able to kill the Arsonist | Toggle | False |
+| Sheriff Kill Cooldown | The cooldown on the Sheriff's kill button | Time | 25s |
+| Sheriff can report who they've killed | Whether the Sheriff is able to report their own kills | Toggle | True |
 
 -----------------------
+
 ## Snitch
 ### **Team: Crewmates**
 
@@ -624,32 +660,65 @@ However, when they only have a single task left, the Impostors get an arrow poin
 | Snitch knows who they are on Game Start | Whether the Snitch knows their role at the start of a game | Toggle | False |
 
 -----------------------
-## Altruist
+
+## Spy
 ### **Team: Crewmates**
 
-The Altruist is a Crewmate that is capable of reviving dead players.\
-Upon finding a dead body, the Altruist can hit their revive button, risking sacrificing themselves for the revival of another player.\
-If enabled, the dead body disappears, so only they Altruist's body remains at the scene.\
-After a set period of time, the player will be resurrected, if the revival isn't interrupted.
+The Spy is a Crewmate that gains more information when on Admin Table and Vitals.\
+On Admin Table, the Spy can see the colors of every person on the map.\
+On Vitals, the Spy can see how long killed bodies have been dead for.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Altruist | The percentage probability of the Altruist appearing | Percentage | 0% |
-| Altruist Revive Duration | The time it takes for the Altruist to revive a dead body | Time | 10s |
-| Target's body disappears on beginning of revive | Whether the dead body of the player the Altruist is reviving disappears upon revival | Toggle | False |
+| Spy | The percentage probability of the Spy appearing | Percentage | 0% |
+
 -----------------------
 
-## Chameleon
+## Swapper
 ### **Team: Crewmates**
 
-The Chameleon is a Crewmate that can temporarily turn completely invisible.
+The Swapper is a Crewmate that can swap the votes on 2 players during a meeting.\
+All the votes for the first player will instead be counted towards the second player and vice versa.
 
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Chameleon | The percentage probability of the Chameleon appearing | Percentage | 0% |
-| Chameleon Cooldown | The cooldown of the Chameleon's Hide button | Time | 25s |
-| Chameleon Duration | How long the Chameleon's hide lasts for | Time | 10s |
+| Swapper | The percentage probability of the Swapper appearing | Percentage | 0% |
+
+-----------------------
+
+## Time Lord
+### **Team: Crewmates**
+
+The Time Lord is a Crewmate that can rewind time and reverse the positions of all players.\
+If enabled, any players killed during this time will be revived.\
+Nothing but movements and kills are affected.\
+If enabled, the Time Lord can't use Vitals to make things more balanced.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Time Lord | The percentage probability of the Time Lord appearing | Percentage | 0% |
+| Revive During Rewind | Whether the Time Lord revives dead players when rewinding | Toggle | False |
+| Rewind Duration | How far the rewind goes back in time | Time | 3s |
+| Rewind Cooldown | The cooldown of the Time Lord's Rewind button | Time | 25s |
+| Time Lord can use Vitals | Whether the Time Lord has the ability to use Vitals | Toggle | False |
+
+-----------------------
+
+## Tracker
+### **Team: Crewmates**
+
+The Tracker is a Crewmate that can track crewmates movements.\
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Tracker | The percentage probability of the Tracker appearing | Percentage | 0% |
+| Tracker Cooldown | The cooldown of the Trackers Track button | Number | 10s |
+| Track Per | Whether the Tracker can use their ability once per round or game | Round/Game | Round |
+| Track Interval  | How often teh trackers arrows update | Number | 25s |
+
 -----------------------
 
 ## Vigilante
@@ -667,57 +736,32 @@ If they guessed wrong, they die instead.
 | Vigilante Guess Neutral  | Whether the Vigilante can Guess Neutral roles | Toggle | False |
 | Vigilante Multiple Kill  | Whether the Vigilante can kill more than once per meeting | Toggle | True |
 | Vigilante Guess Chameleon | Whether the Vigilante can Guess "Chameleon" | Toggle | False |
------------------------
-
-## Tracker
-### **Team: Crewmates**
-
-The Tracker is a Crewmate that can track crewmates movements.\
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Tracker | The percentage probability of the Tracker appearing | Percentage | 0% |
-| Tracker Cooldown | The cooldown of the Trackers Track button | Number | 10s |
-| Track Per | Whether the Tracker can use their ability once per round or game | Round/Game | Round |
-| Track Interval  | How often teh trackers arrows update | Number | 25s |
 
 -----------------------
+
 # Neutral Roles
-## Jester
-### **Team: Neutral**
-The Jester is a Neutral role with its own win condition.\
-If they are voted out after a meeting, the game finishes and they win.\
-However, the Jester does not win if the Crewmates, Impostors or another Neutral role wins.
 
+## Arsonist
+### **Team: Neutral**
+
+The Arsonist is a Neutral role with its own win condition.\
+They have the ability to douse other players with gasoline.\
+Once they have doused every player remaining, they can Ignite everyone at once.\
+Upon Igniting every player, they win the game.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Jester | The percentage probability of the Jester appearing | Percentage | 0% |
-
------------------------
-## Shifter
-### **Team: Neutral**
-The Shifter is a Neutral role with no win condition.\
-They have zero tasks and are essentially roleless.\
-However, they can swap roles with other players.\
-Swapping roles with a custom role gives the Shifter their role and tasks and turns the other player into a Crewmate.\
-Swapping roles with a Crewmate swaps tasks.\
-Swapping roles with an Impostor fails and kills the Shifter.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Shifter | The percentage probability of the Shifter appearing | Percentage | 0% |
-| Shifter Cooldown | The cooldown on the Shifter's Shift button | Time | 30s |
-| Who gets the Shifter role on Shift | Who will receive the Shifter role upon getting Shifted into | Non-Impostors / Regular Crewmates / Nobody | Non-Impostors |
+| Arsonist | The percentage probability of the Arsonist appearing | Percentage | 0% |
+| Douse Cooldown | The cooldown of the Arsonist's Douse button | Time | 25s |
+| Game keeps going so long as Arsonist is alive | Whether the game keeps going while the Arsonist remains | Toggle | False |
 
 -----------------------
 ## Cannibal
 ### **Team: Neutral**
+
 The Cannibal is a Neutral role who eats bodies to win.\
 They have zero tasks.\
-Press 'eat' on a dead body to eat it. It dissappears like the janitors clean button.\
+Press 'eat' on a dead body to eat it. It dissappears like the janitors clean button.
 
 ### Game Options
 | Name | Description | Type | Default |
@@ -727,6 +771,21 @@ Press 'eat' on a dead body to eat it. It dissappears like the janitors clean but
 | Arrows to bodies | If the Cannibal gets arrows pointing to dead bodies | Bool | False |
 
 -----------------------
+
+## Executioner
+### **Team: Neutral**
+
+The Executioner is a Neutral role with its own win condition.\
+Their goal is to vote out a player, specified in the beginning of a game.\
+If that player gets voted out, they win the game.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Executioner | The percentage probability of the Executioner appearing | Percentage | 0% |
+| Executioner becomes on Target Dead | Which role the Executioner becomes when their target dies | Crewmate / Jester | Crewmate |
+
+-----------------------
+
 ## The Glitch
 ### **Team: Neutral**
 
@@ -749,34 +808,40 @@ The Glitch can Mimic someone, which results in them looking exactly like the oth
 | Glitch Hack Distance | How far away The Glitch can Hack someone from | Short / Normal / Long | Short |
 
 -----------------------
-## Executioner
+
+## Jester
 ### **Team: Neutral**
 
-The Executioner is a Neutral role with its own win condition.\
-Their goal is to vote out a player, specified in the beginning of a game.\
-If that player gets voted out, they win the game.
+The Jester is a Neutral role with its own win condition.\
+If they are voted out after a meeting, the game finishes and they win.\
+However, the Jester does not win if the Crewmates, Impostors or another Neutral role wins.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Executioner | The percentage probability of the Executioner appearing | Percentage | 0% |
-| Executioner becomes on Target Dead | Which role the Executioner becomes when their target dies | Crewmate / Jester | Crewmate |
+| Jester | The percentage probability of the Jester appearing | Percentage | 0% |
 
 -----------------------
-## Arsonist
-### **Team: Neutral**
 
-The Arsonist is a Neutral role with its own win condition.\
-They have the ability to douse other players with gasoline.\
-Once they have doused every player remaining, they can Ignite everyone at once.\
-Upon Igniting every player, they win the game.
+## Shifter
+### **Team: Neutral**
+The Shifter is a Neutral role with no win condition.\
+They have zero tasks and are essentially roleless.\
+However, they can swap roles with other players.\
+Swapping roles with a custom role gives the Shifter their role and tasks and turns the other player into a Crewmate.\
+Swapping roles with a Crewmate swaps tasks.\
+Swapping roles with an Impostor fails and kills the Shifter.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Arsonist | The percentage probability of the Arsonist appearing | Percentage | 0% |
-| Douse Cooldown | The cooldown of the Arsonist's Douse button | Time | 25s |
-| Game keeps going so long as Arsonist is alive | Whether the game keeps going while the Arsonist remains | Toggle | False |
+| Shifter | The percentage probability of the Shifter appearing | Percentage | 0% |
+| Shifter Cooldown | The cooldown on the Shifter's Shift button | Time | 30s |
+| Who gets the Shifter role on Shift | Who will receive the Shifter role upon getting Shifted into | Non-Impostors / Regular Crewmates / Nobody | Non-Impostors |
 
 -----------------------
+
+# Ghost Roles
 ## Phantom
 ### **Team: Neutral**
 
@@ -789,6 +854,85 @@ They become half-invisible when they die and has to complete all their tasks wit
 
 -----------------------
 # Impostor Roles
+## Assassin
+### **Team: Impostors**
+
+The Assassin is an Impostor that can kill during meetings by guessing the role of non-Impostors.\
+If they guessed wrong, they die instead.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
+| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
+| Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
+| Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
+| Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
+
+-----------------------
+
+## Camouflager
+### **Team: Impostors**
+
+The Camouflager is an Impostor that can turn everyone into colorless characters.\
+Everyone then goes grey for a certain period of time, along with their names disappearing, making them become unrecognizable.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Camouflager | The percentage probability of the Camouflager appearing | Percentage | 0% |
+| Camouflage Cooldown | The cooldown of the Camouflager's Camouflage button | Time | 25s |
+| Camouflage Duration | How long the Camouflage lasts for | Time | 10s |
+
+-----------------------
+
+## Framer
+### **Team: Impostors**
+
+The Framer is an Impostor that can frame a crewmate to appear as them.\
+The framed target, after a few seconds, appears as the framers character for a specified amount of time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Framer | The percentage probability of the Framer appearing | Percentage | 0% |
+| Framer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Delay before framing | How long before the target is framed | Time | 10s |
+| Frame duration | How long the target is framed for | Time | 10s |
+
+-----------------------
+
+## Freezer
+### **Team: Impostors**
+
+The Freezer is an Impostor that can freeze crewmates to stick them in place.\
+Frozen crewmates cannot move.\
+They will die if touched by another player, if a meeting is called, or after a specified amount fo time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Freezer | The percentage probability of the Framer appearing | Percentage | 0% |
+| Freezer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+
+-----------------------
+
+## Grenadier
+### **Team: Impostors**
+
+The Grenadier is an Impostor that can flashbang crewmates to blind them.\
+Everyones screen goes grey for a certain period of time, impostors only tints slightly grey.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
+| Grenadier Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
+| Grenadier Duration | How long the Flash lasts for | Time | 10s |
+| Grenadier Vent | If the Grenadier can vent | Bool | false |
+
+-----------------------
+
 ## Janitor
 ### **Team: Impostors**
 The Janitor is an Impostor that can clean up bodies.\
@@ -800,6 +944,21 @@ Both their Kill and Clean ability have a shared cooldown, meaning they have to c
 | Janitor | The percentage probability of the Janitor appearing | Percentage | 0% |
 
 -----------------------
+
+## Miner
+### **Team: Impostors**
+
+The Miner is an Impostor that can create new vents.\
+These vents only connect to each other, forming a new passway.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Miner | The percentage probability of the Miner appearing | Percentage | 0% |
+| Mine Cooldown | The cooldown of the Miner's Mine button | Time | 25s |
+
+-----------------------
+
 ## Morphling
 ### **Team: Impostors**
 
@@ -816,63 +975,7 @@ To balance the role, they can't vent.
 | Morph Duration | How long the Morph lasts for | Time | 10s |
 
 -----------------------
-## Camouflager
-### **Team: Impostors**
 
-The Camouflager is an Impostor that can turn everyone into colorless characters.\
-Everyone then goes grey for a certain period of time, along with their names disappearing, making them become unrecognizable.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Camouflager | The percentage probability of the Camouflager appearing | Percentage | 0% |
-| Camouflage Cooldown | The cooldown of the Camouflager's Camouflage button | Time | 25s |
-| Camouflage Duration | How long the Camouflage lasts for | Time | 10s |
-
------------------------
-## Grenadier
-### **Team: Impostors**
-
-The Grenadier is an Impostor that can flashbang crewmates to blind them.\
-Everyones screen goes grey for a certain period of time, impostors only tints slightly grey.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
-| Grenadier Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
-| Grenadier Duration | How long the Flash lasts for | Time | 10s |
-| Grenadier Vent | If the Grenadier can vent | Bool | false |
-
------------------------
-## Framer
-### **Team: Impostors**
-
-The Framer is an Impostor that can frame a crewmate to appear as them.\
-The framed target, after a few seconds, appears as the framers character for a specified amount of time.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Framer | The percentage probability of the Framer appearing | Percentage | 0% |
-| Framer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
-| Delay before framing | How long before the target is framed | Time | 10s |
-| Frame duration | How long the target is framed for | Time | 10s |
-
------------------------
-## Miner
-### **Team: Impostors**
-
-The Miner is an Impostor that can create new vents.\
-These vents only connect to each other, forming a new passway.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Miner | The percentage probability of the Miner appearing | Percentage | 0% |
-| Mine Cooldown | The cooldown of the Miner's Mine button | Time | 25s |
-
------------------------
 ## Poisoner
 ### **Team: Impostors**
 
@@ -887,6 +990,7 @@ The Poisoner is an Impostor that can poison crewmates instead of outright killin
 | Poison Alert | Who gets alerted to someone being poisoned | No one/Target/Everyone | Target |
 
 -----------------------
+
 ## Puppeteer
 ### **Team: Impostors**
 
@@ -904,6 +1008,7 @@ The Puppeteer is also frozen for a few seconds after puppeteering.
 | Wait time after kill | How long the Puppeteer is frozen for after commanding a kill | Time | 3s |
 
 -----------------------
+
 ## Swooper
 ### **Team: Impostors**
 
@@ -916,34 +1021,6 @@ To balance the role, they can't vent.
 | Swooper | The percentage probability of the Swooper appearing | Percentage | 0% |
 | Swooper Cooldown | The cooldown of the Swooper's Swoop button | Time | 25s |
 | Swooper Duration | How long the Swooping lasts for | Time | 10s |
-
------------------------
-## Assassin
-### **Team: Impostors**
-
-The Assassin is an Impostor that can kill during meetings by guessing the role of non-Impostors.\
-If they guessed wrong, they die instead.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
-| Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
-| Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
-| Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
-
------------------------
-## Undertaker
-### **Team: Impostors**
-
-The Undertaker is an Impostor that can drag and drop bodies.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Undertaker | The percentage probability of the Undertaker appearing | Percentage | 0% |
-| Undertaker Drag Cooldown | The cooldown of the Undertaker Drag ability | Time | 25s |
 
 -----------------------
 ## Underdog
@@ -959,36 +1036,34 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 
 -----------------------
 
+## Undertaker
+### **Team: Impostors**
+
+The Undertaker is an Impostor that can drag and drop bodies.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Undertaker | The percentage probability of the Undertaker appearing | Percentage | 0% |
+| Undertaker Drag Cooldown | The cooldown of the Undertaker Drag ability | Time | 25s |
+
+-----------------------
+
 # Modifiers
 Modifiers are added on top of players' roles.
-## Torch
-### **Applied to: All**
-The Torch's vision doesn't get reduced when the lights are sabotaged.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Torch | The percentage probability of the Torch appearing | Percentage | 0% |
 
------------------------
-## Diseased
-### **Applied to: All**
-Killing the Diseased triples the killer's Kill cooldown.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Diseased | The percentage probability of the Diseased appearing | Percentage | 0% |
-
------------------------
 ## Bait
 ### **Applied to: All**
+
 Killing the Bait causes an instant self report.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Bait | The percentage probability of the Bait appearing | Percentage | 0% |
 
-
 -----------------------
+
 ## Blind
 ### **Applied to: All**
 The report button never lights up.
@@ -997,86 +1072,135 @@ The report button never lights up.
 |----------|:-------------:|:------:|:------:|
 | Blind | The percentage probability of the Blind modifier appearing | Percentage | 0% |
 
-
 -----------------------
-## Volatile
-### **Applied to: All**
-Every 45 seconds, one of several things could happen.\
-The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
 
------------------------
-## Lagger
-### **Applied to: All**
-The Lagger travels at (#laggerspeed) x the speed of a normal player.\
-Due to issues with the Flash modifier, it has been renamed to 'Lagger'. This will be reverted to 'Flash' if it is ever fixed.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Lagger | The percentage probability of the Lagger appearing | Percentage | 0% |
-
------------------------
-## Lagger Speed
-### **Applied to: All**
-The speed multiplier for the Lagger (Previously known as Flash).
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Lagger Speed | The speed increase for the Lagger | Number | 2 |
-
------------------------
-## Tiebreaker
-### **Applied to: All**
-If any vote is a draw, the Tiebreaker's vote will go through.\
-If they voted another player, they will get voted out.\
-If the Tiebreaker is the Mayor, it applies to the Mayor's __first__ vote.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Tiebreaker | The percentage probability of the Tiebreaker appearing | Percentage | 0% |
-
------------------------
-## Drunk
-### **Applied to: All**
-The Drunk's controls are inverted.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Drunk | The percentage probability of the Drunk appearing | Percentage | 0% |
-
------------------------
-## Giant
-### **Applied to: All**
-The Giant is a gigantic Crewmate, that has a decreased walk speed.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Giant | The percentage probability of the Giant appearing | Percentage | 0% |
-
------------------------
-## Child
-### **Applied to: All**
-The Child is a tiny Crewmate.
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Child | The percentage probability of the Child appearing | Percentage | 0% |
-
------------------------
 ## Button Barry
 ### **Applied to: All**
+
 Button Barry has the ability to call a meeting from anywhere on the map, even during sabotages.
 They have the same amount of meetings as a regular player.
+
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Button Barry | The percentage probability of Button Barry appearing | Percentage | 0% |
 
 -----------------------
+
+## Child
+### **Applied to: All**
+
+The Child is a tiny Crewmate.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Child | The percentage probability of the Child appearing | Percentage | 0% |
+
+-----------------------
+
+## Diseased
+### **Applied to: All**
+
+Killing the Diseased triples the killer's Kill cooldown.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Diseased | The percentage probability of the Diseased appearing | Percentage | 0% |
+
+-----------------------
+
+## Drunk
+### **Applied to: All**
+
+The Drunk's controls are inverted.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Drunk | The percentage probability of the Drunk appearing | Percentage | 0% |
+
+-----------------------
+
+## Giant
+### **Applied to: All**
+
+The Giant is a gigantic Crewmate, that has a decreased walk speed.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Giant | The percentage probability of the Giant appearing | Percentage | 0% |
+
+-----------------------
+
+## Lagger
+### **Applied to: All**
+
+The Lagger travels at (#laggerspeed) x the speed of a normal player.\
+Due to issues with the Flash modifier, it has been renamed to 'Lagger'. This will be reverted to 'Flash' if it is ever fixed.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Lagger | The percentage probability of the Lagger appearing | Percentage | 0% |
+
+-----------------------
+
+## LaggerSpeed
+### **Applied to: All**
+
+The speed multiplier for the Lagger (Previously known as Flash).
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| LaggerSpeed | The speed increase for the Lagger | Number | 2 |
+
+-----------------------
+
+## Tiebreaker
+### **Applied to: All**
+
+If any vote is a draw, the Tiebreaker's vote will go through.\
+If they voted another player, they will get voted out.\
+If the Tiebreaker is the Mayor, it applies to the Mayor's __first__ vote.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Tiebreaker | The percentage probability of the Tiebreaker appearing | Percentage | 0% |
+
+-----------------------
+
+## Torch
+### **Applied to: All**
+
+The Torch's vision doesn't get reduced when the lights are sabotaged.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Torch | The percentage probability of the Torch appearing | Percentage | 0% |
+
+-----------------------
+
+## Volatile
+### **Applied to: All**
+
+Every 45 seconds, one of several things could happen.\
+The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
+
+-----------------------
+
 # Custom Game Options
+
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Camouflaged Comms | Whether everyone becomes camouflaged when Comms are sabotaged | Toggle | False |
@@ -1116,6 +1240,8 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [PhasmoFireGod](https://twitch.tv/PhasmoFireGod) - Button Art.\
 [TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child Modifier and Spy roles.
 [Town-Of-Us-R](https://github.com/eDonnes124/Town-Of-Us-R) - For the continuation of Town Of Us and the Grenadier role.
+[Town-Of-Moss](https://github.com/Koke1024/Town-Of-Moss) - For inspiration of the Freezer, and Puppeteer roles.
+[Town-Of-Us Anusien](https://github.com/Anusien/Town-Of-Us) - For inspiration of the Framer role.
 
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
 v1.0.3 uses [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) directly.\
