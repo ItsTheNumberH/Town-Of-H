@@ -104,7 +104,19 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 <details>
   <summary> Changelog </summary>
-   <details>
+    <details>
+  <summary> v4.1.1 </summary>
+   <ul> <li> Minor edit to lobby banner(s) </li> </ul>
+   <ul> <li> Commented out Vitals for Spy as it currently doesn't work </li> </ul>
+  </details>
+  <details>
+  <summary> v4.1.0 </summary>
+   <ul> <li> 4.1.0 release as roles ready for use, most bugs squashed </li> </ul>
+   <ul> <li> New option: No skipping in button meetings </li> </ul>
+   <ul> <li> New option: Parallel Medbay Scans </li> </ul>
+   <ul> <li> Added banners/default Town Of Us -H banner in lobby </li> </ul>
+  </details>
+ <details>
   <summary> v4.0.15 </summary>
    <ul> <li> Finished alphabetising and cleaning up roles code </li> </ul>
    <ul> <li> New role 'Freezer' added </li> </ul>
@@ -112,7 +124,6 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Touched by another player </li> </ul>
    <ul> <li> A meeting is called/body reported </li> </ul>
    <ul> <li> After 20 seconds (configurable) </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.14 </summary>
@@ -122,25 +133,21 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Assassin can now only guess enabled roles </li> </ul>
    <ul> <li> Flash renamed to Lagger (As it's still laggy. Will revert if/when Flash is fixed) </li> </ul>
    <ul> <li> Few text changes </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.13 </summary>
    <ul> <li> New Role 'Framer' added </li> </ul>
    <ul> <li> Frame the crewmates to look like other players </li> </ul>
    <ul> <li> Minor optimisations to role generation </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.12 </summary>
    <ul> <li> Cannibal bug fix for end game </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.11 </summary>
    <ul> <li> New role - Cannibal </li> </ul>
    <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.10 </summary>
@@ -149,32 +156,27 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Modifiers added to end game summary</li> </ul>
    <ul> <li> New Modifier: Blind</li> </ul>
    <ul> <li> New Modifier: Volatile</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.9 </summary>
    <ul> <li> Poisoner kill animation now shows poisoner killing </li> </ul>
    <ul> <li> Option for poisoner start game cooldown</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.8 </summary>
    <ul> <li> Vigilante can now select Poisoner </li> </ul>
    <ul> <li> Silly Snitch glitch fixed</li> </ul>
    <ul> <li> Poisoner now has alert delay </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.7 </summary>
    <ul> <li> Automatic updater added </li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.6 </summary>
    <ul> <li> End game summary added </li> </ul>
    <ul> <li> Option to show end game summary</li> </ul>
    <ul> <li> Vigilante now able to kill Loving Impostor </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.5 </summary>
@@ -184,7 +186,6 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Timelord cooldown fix </li> </ul>
    <ul> <li> Poisoner is now in a playable state </li> </ul>
    <ul> <li> Chameleon is now completely invisible (So no red outline for impostors to see!) but this includes being invisible to yourself </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.4 </summary>
