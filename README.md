@@ -69,6 +69,9 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.2/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.1 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.1/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.0 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.0/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.15 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.15/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.14 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.14/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.13 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.13/TownOfUs.dll) |
@@ -105,6 +108,10 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 <details>
   <summary> Changelog </summary>
     <details>
+  <summary> v4.1.2 </summary>
+   <ul> <li> Minor code tidying </li> </ul>
+  </details>
+ <details>
   <summary> v4.1.1 </summary>
    <ul> <li> Minor edit to lobby banner(s) </li> </ul>
    <ul> <li> Commented out Vitals for Spy as it currently doesn't work </li> </ul>
