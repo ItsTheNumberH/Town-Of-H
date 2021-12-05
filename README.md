@@ -1257,6 +1257,7 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [Town-Of-Us-R](https://github.com/eDonnes124/Town-Of-Us-R) - For the continuation of Town Of Us and the Grenadier role.
 [Town-Of-Moss](https://github.com/Koke1024/Town-Of-Moss) - For inspiration of the Freezer, and Puppeteer roles.
 [Town-Of-Us Anusien](https://github.com/Anusien/Town-Of-Us) - For inspiration of the Framer role.
+[Better Polus] https://github.com/Brybry16/BetterPolus - For the reimagining of the Polus map
 
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
 v1.0.3 uses [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) directly.\
