@@ -69,6 +69,10 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.2/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.1 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.1/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.0 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.0/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.15 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.15/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.14 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.14/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.13 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.13/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.12 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.12/TownOfUs.dll) |
@@ -103,6 +107,32 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 <details>
   <summary> Changelog </summary>
+    <details>
+  <summary> v4.1.2 </summary>
+   <ul> <li> Bug fix for Cannibal button not appearing </li> </ul>
+   <ul> <li> Minor code tidying </li> </ul>
+  </details>
+ <details>
+  <summary> v4.1.1 </summary>
+   <ul> <li> Minor edit to lobby banner(s) </li> </ul>
+   <ul> <li> Commented out Vitals for Spy as it currently doesn't work </li> </ul>
+  </details>
+  <details>
+  <summary> v4.1.0 </summary>
+   <ul> <li> 4.1.0 release as roles ready for use, most bugs squashed </li> </ul>
+   <ul> <li> New option: No skipping in button meetings </li> </ul>
+   <ul> <li> New option: Parallel Medbay Scans </li> </ul>
+   <ul> <li> Added banners/default Town Of Us -H banner in lobby </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.15 </summary>
+   <ul> <li> Finished alphabetising and cleaning up roles code </li> </ul>
+   <ul> <li> New role 'Freezer' added </li> </ul>
+   <ul> <li> Once frozen, you cannot move and will die if: </li> </ul>
+   <ul> <li> Touched by another player </li> </ul>
+   <ul> <li> A meeting is called/body reported </li> </ul>
+   <ul> <li> After 20 seconds (configurable) </li> </ul>
+  </details>
   <details>
   <summary> v4.0.14 </summary>
    <ul> <li> New role 'Puppeteer' added </li> </ul>
@@ -111,25 +141,21 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Assassin can now only guess enabled roles </li> </ul>
    <ul> <li> Flash renamed to Lagger (As it's still laggy. Will revert if/when Flash is fixed) </li> </ul>
    <ul> <li> Few text changes </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.13 </summary>
    <ul> <li> New Role 'Framer' added </li> </ul>
    <ul> <li> Frame the crewmates to look like other players </li> </ul>
    <ul> <li> Minor optimisations to role generation </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.12 </summary>
    <ul> <li> Cannibal bug fix for end game </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.11 </summary>
    <ul> <li> New role - Cannibal </li> </ul>
    <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.10 </summary>
@@ -138,32 +164,27 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Modifiers added to end game summary</li> </ul>
    <ul> <li> New Modifier: Blind</li> </ul>
    <ul> <li> New Modifier: Volatile</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.9 </summary>
    <ul> <li> Poisoner kill animation now shows poisoner killing </li> </ul>
    <ul> <li> Option for poisoner start game cooldown</li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.8 </summary>
    <ul> <li> Vigilante can now select Poisoner </li> </ul>
    <ul> <li> Silly Snitch glitch fixed</li> </ul>
    <ul> <li> Poisoner now has alert delay </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.7 </summary>
    <ul> <li> Automatic updater added </li> </ul>
- </li> </ul>
   </details>
  <details>
   <summary> v4.0.6 </summary>
    <ul> <li> End game summary added </li> </ul>
    <ul> <li> Option to show end game summary</li> </ul>
    <ul> <li> Vigilante now able to kill Loving Impostor </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.5 </summary>
@@ -173,7 +194,6 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
    <ul> <li> Timelord cooldown fix </li> </ul>
    <ul> <li> Poisoner is now in a playable state </li> </ul>
    <ul> <li> Chameleon is now completely invisible (So no red outline for impostors to see!) but this includes being invisible to yourself </li> </ul>
- </li> </ul>
   </details>
   <details>
   <summary> v4.0.4 </summary>
@@ -386,6 +406,9 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 -----------------------
 # Installation
+<details>
+ <summary>Guide</summary>
+ 
 ## Requirements 
 - Among Us
 - Steam or Epic Games
@@ -452,8 +475,7 @@ A first launch may take up to 5 minutes, so be patient if it doesn't launch imme
 
 ![Install](https://i.imgur.com/pvBAyZN.png)
 <br/>
-## Issues
-If you have issues installing Town of Us, you can join our [Discord](https://discord.gg/polus) to receive help.
+</details>
 
 -----------------------
 # Roles
@@ -889,8 +911,9 @@ Everyone then goes grey for a certain period of time, along with their names dis
 ## Framer
 ### **Team: Impostors**
 
-The Framer is an Impostor that can frame a crewmate to appear as them.\
-The framed target, after a few seconds, appears as the framers character for a specified amount of time.
+
+The Framer is an Impostor that can frame a crewmate to appear as another player.\
+The framed target, after a few seconds, appears as another player for a specified amount of time.
 
 ### Game Options
 | Name | Description | Type | Default |
@@ -907,13 +930,14 @@ The framed target, after a few seconds, appears as the framers character for a s
 
 The Freezer is an Impostor that can freeze crewmates to stick them in place.\
 Frozen crewmates cannot move.\
-They will die if touched by another player, if a meeting is called, or after a specified amount fo time.
+They will die if touched by another player, if a meeting is called, or after a specified amount of time.
 
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Freezer | The percentage probability of the Framer appearing | Percentage | 0% |
 | Freezer Cooldown | The cooldown of the Framer's Frame button | Time | 25s |
+| Defrost Time | Time until a frozen crewmate automatically dies | Time | 20s |
 
 -----------------------
 
@@ -1221,8 +1245,6 @@ A rainbow color has also been added. Anyone who equips this color will constantl
 ## Custom Hats!
 Custom hats have been added, made by some very talented artists. These are mostly hats for streamers.
 
-
-
 -----------------------
 # Bug / Suggestions
 If you have any bugs or any need to contact me, join the [Discord server](https://discord.gg/polus) or create a ticket on GitHub.
@@ -1242,6 +1264,7 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [Town-Of-Us-R](https://github.com/eDonnes124/Town-Of-Us-R) - For the continuation of Town Of Us and the Grenadier role.
 [Town-Of-Moss](https://github.com/Koke1024/Town-Of-Moss) - For inspiration of the Freezer, and Puppeteer roles.
 [Town-Of-Us Anusien](https://github.com/Anusien/Town-Of-Us) - For inspiration of the Framer role.
+[Better Polus] (https://github.com/Brybry16/BetterPolus) - For the reimagining of the Polus map
 
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
 v1.0.3 uses [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) directly.\
