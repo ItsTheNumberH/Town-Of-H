@@ -109,6 +109,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
   <summary> Changelog </summary>
     <details>
   <summary> v4.1.2 </summary>
+   <ul> <li> Bug fix for Cannibal button not appearing </li> </ul>
    <ul> <li> Minor code tidying </li> </ul>
   </details>
  <details>
@@ -910,8 +911,8 @@ Everyone then goes grey for a certain period of time, along with their names dis
 ## Framer
 ### **Team: Impostors**
 
-The Framer is an Impostor that can frame a crewmate to appear as them.\
-The framed target, after a few seconds, appears as the framers character for a specified amount of time.
+The Framer is an Impostor that can frame a crewmate to appear as another player.\
+The framed target, after a few seconds, appears as another player for a specified amount of time.
 
 ### Game Options
 | Name | Description | Type | Default |
