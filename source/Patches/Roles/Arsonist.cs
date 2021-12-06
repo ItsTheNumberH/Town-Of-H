@@ -15,7 +15,6 @@ namespace TownOfUs.Roles
         public bool IgniteUsed;
         public DateTime LastDoused;
 
-
         public Arsonist(PlayerControl player) : base(player)
         {
             Name = "Arsonist";

@@ -89,7 +89,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
             GlitchWins = true;
         }
 
@@ -347,16 +346,17 @@ namespace TownOfUs.Roles
                         }
                     }
 
-                    var totalHacktime = (DateTime.UtcNow - tickDictionary[hackPlayer.PlayerId]).TotalMilliseconds /
-                                        1000;
+                    var totalHacktime = (DateTime.UtcNow - tickDictionary[hackPlayer.PlayerId]).TotalMilliseconds / 1000;
                     hackText.Text =
                         $"{__instance.ColorString}Hacked {hackPlayer.Data.PlayerName} ({CustomGameOptions.HackDuration - Math.Round(totalHacktime)}s)</color>";
                     if (MeetingHud.Instance || totalHacktime > CustomGameOptions.HackDuration || hackPlayer == null ||
                         hackPlayer.Data.IsDead)
                     {
-                        foreach (var obj in lockImg)
-                            if (obj != null)
+                        foreach (var obj in lockImg) {
+                            if (obj != null) {
                                 obj.SetActive(false);
+                            }
+                        }
 
                         if (PlayerControl.LocalPlayer == hackPlayer)
                         {
@@ -366,13 +366,13 @@ namespace TownOfUs.Roles
                             HudManager.Instance.UseButton.currentButtonShown.graphic.color = Palette.EnabledColor;
                             HudManager.Instance.UseButton.currentButtonShown.graphic.material.SetFloat("_Desat", 0f);
                             var role = GetRole(PlayerControl.LocalPlayer);
-                            if (role != null)
-                                if (role.ExtraButtons.Count > 0)
-                                {
+                            if (role != null) {
+                                if (role.ExtraButtons.Count > 0) {
                                     role.ExtraButtons[0].enabled = true;
                                     role.ExtraButtons[0].renderer.color = Palette.EnabledColor;
                                     role.ExtraButtons[0].renderer.material.SetFloat("_Desat", 0f);
                                 }
+                            }
                         }
 
                         tickDictionary.Remove(hackPlayer.PlayerId);

@@ -10,9 +10,9 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
     {
         public static void Postfix(PlayerControl __instance)
         {
+            if (!__instance.Is(RoleEnum.Sheriff)) return;
             if (!__instance.AmOwner) return;
             if (!__instance.CanMove) return;
-            if (!__instance.Is(RoleEnum.Sheriff)) return;
             if (CustomGameOptions.SheriffBodyReport) return;
             var truePosition = __instance.GetTruePosition();
 

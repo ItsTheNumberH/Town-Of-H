@@ -146,7 +146,7 @@ namespace TownOfUs {
                         responseStream.CopyTo(fileStream); 
                     }
                 }
-                showPopup("Town Of Us -H\nupdated successfully\nPlease restart the game.");
+                showPopup("Town Of Us -H\nupdated successfully.\nPlease restart the game.");
                 return true;
             } catch (System.Exception ex) {
                 System.Console.WriteLine(ex);

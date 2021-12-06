@@ -7,6 +7,7 @@ namespace TownOfUs.NeutralRoles.CannibalMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HudManagerUpdate
     {
+        public static Sprite SwoopSprite => TownOfUs.CannibalEat;
         public static ArrowBehaviour Arrow;
         public static DeadBody Target;
         public static void Postfix(HudManager __instance)
@@ -15,20 +16,24 @@ namespace TownOfUs.NeutralRoles.CannibalMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            var eatButton = __instance.KillButton;
 
             var role = Role.GetRole<Cannibal>(PlayerControl.LocalPlayer);
-            if (PlayerControl.LocalPlayer.Data.IsDead)
+            if (role.eatButton == null)
             {
-                    eatButton.gameObject.SetActive(false);
-                    eatButton.isActive = false;
+                role.eatButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.eatButton.renderer.enabled = true;
             }
-            else
-            {
-                eatButton.gameObject.SetActive(!MeetingHud.Instance);
-                eatButton.isActive = !MeetingHud.Instance;
-                eatButton.renderer.sprite = TownOfUs.CannibalEat;
-            }
+
+            role.eatButton.renderer.sprite = SwoopSprite;
+            role.eatButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+            var position = __instance.KillButton.transform.localPosition;
+            role.eatButton.transform.localPosition = new Vector3(position.x - 1.3f,
+                __instance.ReportButton.transform.localPosition.y - 1.3f, position.z);
+
+            role.eatButton.SetCoolDown(role.CannibalTimer(), CustomGameOptions.ChameleonCd);
+
+            role.eatButton.renderer.color = Palette.EnabledColor;
+            role.eatButton.renderer.material.SetFloat("_Desat", 0f);
 
             var truePosition = PlayerControl.LocalPlayer.GetTruePosition();
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
@@ -54,8 +59,7 @@ namespace TownOfUs.NeutralRoles.CannibalMod
                 closestDistance = distance;
             }
 
-            KillButtonTarget.SetTarget(eatButton, closestBody, role);
-            eatButton.SetCoolDown(role.CannibalTimer(), CustomGameOptions.CannibalCd);
+            KillButtonTarget.SetTarget(role.eatButton, closestBody, role);
 
             if (Target != null && Arrow == null)
             {

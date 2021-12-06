@@ -11,7 +11,7 @@ namespace TownOfUs.Modifiers
             {
                 if (__instance.myPlayer.Is(ModifierEnum.Drunk) && __instance.AmOwner && GameData.Instance && __instance.myPlayer.CanMove)
                 {
-                        __instance.body.velocity *= -1;
+                    __instance.body.velocity *= -1;
                 }
             }
         }

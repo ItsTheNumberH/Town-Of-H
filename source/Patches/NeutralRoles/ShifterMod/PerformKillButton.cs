@@ -99,8 +99,6 @@ namespace TownOfUs.NeutralRoles.ShifterMod
         public static void Shift(Shifter shifterRole, PlayerControl other)
         {
             var role = Utils.GetRole(other);
-            //System.Console.WriteLine(role);
-            //TODO - Shift Animation
             shifterRole.LastShifted = DateTime.UtcNow;
             var shifter = shifterRole.Player;
             List<PlayerTask> tasks1, tasks2;
@@ -243,6 +241,8 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Grenadier:
                 case RoleEnum.Poisoner:
                 case RoleEnum.Framer:
+                case RoleEnum.Puppeteer:
+                case RoleEnum.Freezer:
                     shifter.Data.IsImpostor = true;
                     shifter.MurderPlayer(shifter);
                     shifter.Data.IsImpostor = false;

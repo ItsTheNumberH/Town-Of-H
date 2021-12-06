@@ -9,8 +9,8 @@ namespace TownOfUs.Roles.Modifiers
 
         public Flash(PlayerControl player) : base(player)
         {
-            Name = "Flash";
-            TaskText = () => "Superspeed!";
+            Name = "Lagger"; //"Flash";
+            TaskText = () => "You appear laggy to everyone else"; //"Superspeed!";
             Color = new Color(1f, 0.5f, 0.5f, 1f);
             ModifierType = ModifierEnum.Flash;
         }

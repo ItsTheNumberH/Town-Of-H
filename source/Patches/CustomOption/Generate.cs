@@ -32,11 +32,11 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption GhostRoles;
         public static CustomNumberOption PhantomOn;
 
-
         public static CustomHeaderOption ImpostorRoles;
         public static CustomNumberOption JanitorOn;
         public static CustomNumberOption MorphlingOn;
         public static CustomNumberOption PoisonerOn;
+        public static CustomNumberOption PuppeteerOn;
         public static CustomNumberOption CamouflagerOn;
         public static CustomNumberOption MinerOn;
         public static CustomNumberOption SwooperOn;
@@ -47,6 +47,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption GrenadierOn;
         public static CustomNumberOption FramerOn;
+        public static CustomNumberOption FreezerOn;
 
         public static CustomHeaderOption Modifiers;
         public static CustomNumberOption BaitOn;
@@ -55,11 +56,10 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption DiseasedOn;
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption FlashOn;
-        public static CustomNumberOption BigBoiOn;
+        public static CustomNumberOption GiantOn;
         public static CustomNumberOption TiebreakerOn;
         public static CustomNumberOption TorchOn;
         public static CustomNumberOption VolatileOn;
-
 
         public static CustomHeaderOption CustomGameSettings;
         public static CustomToggleOption ColourblindComms;
@@ -68,6 +68,9 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption DeadSeeRoles;
         public static CustomNumberOption MaxImpostorRoles;
         public static CustomNumberOption MaxNeutralRoles;
+        public static CustomToggleOption allowParallelMedBayScans;
+        public static CustomToggleOption blockSkippingInEmergencyMeetings;
+        public static CustomToggleOption BetterPolus;
         public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption InitialCooldowns;
@@ -93,13 +96,12 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
 
-
         public static CustomHeaderOption Shifter;
         public static CustomNumberOption ShifterCd;
         public static CustomStringOption WhoShifts;
         public static CustomToggleOption ShiftGlitch;
         public static CustomToggleOption ShifterCrewmate;
-
+        public static CustomToggleOption ShowShift;
 
         public static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
@@ -110,6 +112,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption FootprintDuration;
         public static CustomToggleOption AnonymousFootPrint;
         public static CustomToggleOption VentFootprintVisible;
+
         public static CustomHeaderOption Tracker;
         public static CustomNumberOption TrackerCooldown;
         public static CustomStringOption TrackPer;
@@ -136,6 +139,7 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption SeeReveal;
         public static CustomToggleOption NeutralRed;
         public static CustomStringOption SeerPer;
+
         public static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
         public static CustomNumberOption MimicDurationOption;
@@ -149,12 +153,19 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Morphling;
         public static CustomNumberOption MorphlingCooldown;
         public static CustomNumberOption MorphlingDuration;
+
         public static CustomHeaderOption Poisoner;
         public static CustomNumberOption PoisonerCooldown;
         public static CustomNumberOption InitialPoisonerCooldown;
         public static CustomNumberOption PoisonerDuration;
         public static CustomNumberOption PoisonAlertDelay;
         public static CustomStringOption WhoGetsPoisonAlert;
+
+        public static CustomHeaderOption Puppeteer;
+
+        public static CustomHeaderOption Freezer;
+        public static CustomNumberOption FreezeBreakTime;
+        public static CustomNumberOption FreezerCooldown;
 
         public static CustomHeaderOption Camouflager;
         public static CustomNumberOption CamouflagerCooldown;
@@ -167,7 +178,6 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
 
-        public static CustomToggleOption ShowShift;
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
@@ -193,12 +203,15 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
+
         public static CustomHeaderOption Underdog;
         public static CustomToggleOption UnderdogPlayers;
+
         public static CustomHeaderOption Grenadier;
         public static CustomNumberOption GrenadeCooldown;
         public static CustomNumberOption GrenadeDuration;
         public static CustomToggleOption GrenadierVent;
+
         private static CustomHeaderOption Framer;
         public static CustomNumberOption FrameCooldown;
         public static CustomNumberOption TimeToFrame;
@@ -212,19 +225,28 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption AssassinCrewmateGuess;
         public static CustomToggleOption AssassinMultiKill;
         public static CustomToggleOption AssassinShowKill;
+
         public static CustomHeaderOption Vigilante;
         public static CustomNumberOption VigilanteKills;
         public static CustomToggleOption VigilanteGuessNeutrals;
         public static CustomToggleOption VigilanteImpostorGuess;
         public static CustomToggleOption VigilanteMultiKill;
         public static CustomToggleOption VigilanteShowKill;
+
         public static CustomHeaderOption Chameleon;
         public static CustomNumberOption ChameleonCooldown;
         public static CustomNumberOption ChameleonDuration;
+
+        public static CustomNumberOption PossessTime;
+        public static CustomNumberOption PossessCd;
+        public static CustomNumberOption PossessMaxTime;
+        public static CustomNumberOption ReleaseWaitTime;
+
+        public static CustomNumberOption FlashSpeed;
+
         public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
         private static Func<object, string> PlusFormat { get; } = value => $"+{value:0.0#}";
-        public static CustomNumberOption FlashSpeed;
 
 
         public static void GenerateAll()
@@ -295,6 +317,8 @@ namespace TownOfUs.CustomOption
                 10f, PercentFormat);
             FramerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Framer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            FreezerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Freezer</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             GrenadierOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Grenadier</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Janitor</color>", 0f, 0f, 100f, 10f,
@@ -304,6 +328,8 @@ namespace TownOfUs.CustomOption
             MorphlingOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Morphling</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             PoisonerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Poisoner</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            PuppeteerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Puppeteer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Swooper</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -330,12 +356,12 @@ namespace TownOfUs.CustomOption
                     PercentFormat);
             DrunkOn = new CustomNumberOption(true, num++, "<color=#758000FF>Drunk</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash</color>", 0f, 0f, 100f, 10f,
+            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Lagger</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             FlashSpeed =
-                new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash speed</color>", 1f, 1f, 3f, 0.1f,
+                new CustomNumberOption(true, num++, "<color=#FF8080FF>Lagger speed</color>", 1f, 1f, 3f, 0.1f,
                 PlusFormat);
-            BigBoiOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Giant</color>", 0f, 0f, 100f, 10f,
+            GiantOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Giant</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>Tiebreaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -363,6 +389,9 @@ namespace TownOfUs.CustomOption
             InitialCooldowns =
                 new CustomNumberOption(num++, "Game Start Cooldowns", 10, 10, 30, 2.5f, CooldownFormat);
             ShowKillAnimation = new CustomToggleOption(num++, "Show Kill Animation", true);
+            allowParallelMedBayScans = new CustomToggleOption(num++, "Allow parallel Med Bay Scans");
+            blockSkippingInEmergencyMeetings = new CustomToggleOption(num++, "No skipping in emergency meetings");
+            BetterPolus = new CustomToggleOption(num++, "Better Polus MOD", true);
             ShowEndgameSummary = new CustomToggleOption(num++, "Show End game Summary", true);
 
             /* ROLE SETTINGS */
@@ -494,7 +523,7 @@ namespace TownOfUs.CustomOption
 
             /* VIGILANTE */
             Vigilante = new CustomHeaderOption(num++, "<color=#FFFF00FF>Vigilante</color>");
-            VigilanteKills = new CustomNumberOption(num++, "Number of Vigilante Kills", 1, 1, 5, 1);
+            VigilanteKills = new CustomNumberOption(num++, "Number of Vigilante Kills", 1, 1, 15, 1);
             VigilanteImpostorGuess = new CustomToggleOption(num++, "Vigilante can Guess \"Impostor\"", false);
             VigilanteGuessNeutrals = new CustomToggleOption(num++, "Vigilante can Guess Neutral roles", false);
             VigilanteMultiKill = new CustomToggleOption(num++, "Vigilante can kill more than once per meeting");
@@ -573,6 +602,12 @@ namespace TownOfUs.CustomOption
             FrameTarget =
                 new CustomStringOption(num++, "Frame target as", new[] {"Self", "Random"});
 
+            /* FREEZER */
+            Freezer = new CustomHeaderOption(num++, "<color=#FF0000FF>Freezer</color>");
+            FreezerCooldown =
+                new CustomNumberOption(num++, "Freezer Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            FreezeBreakTime = new CustomNumberOption(num++, "Defrost Time", 20.0f, 5f, 60f, 5f, CooldownFormat);
+
             /* GRENADIER */
             Grenadier =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Grenadier</color>");
@@ -610,6 +645,12 @@ namespace TownOfUs.CustomOption
             WhoGetsPoisonAlert =
                 new CustomStringOption(num++, "Who gets poison alert",
                     new[] {"Poisoned", "Everyone", "Nobody"});
+
+            /* PUPPETEER */
+            Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
+            PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);
+            PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
+            ReleaseWaitTime = new CustomNumberOption(num++, "Wait Time After Release", 3.0f, 1f, 10f, 0.5f, CooldownFormat);
 
             /* SWOOPER */
             Swooper = new CustomHeaderOption(num++, "<color=#FF0000FF>Swooper</color>");

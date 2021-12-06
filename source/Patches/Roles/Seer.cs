@@ -13,7 +13,7 @@ namespace TownOfUs.Roles
         {
             Name = "Seer";
             ImpostorText = () => "Investigate roles";
-            TaskText = () => "Investigate the others and find the Impostor(s)";
+            TaskText = () => "Investigate other players roles";
             Color = new Color(1f, 0.8f, 0.5f, 1f);
             RoleType = RoleEnum.Seer;
         }

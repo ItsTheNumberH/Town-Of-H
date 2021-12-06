@@ -17,13 +17,11 @@ namespace TownOfUs.Patches {
         public static void clear() {
             playerRoles.Clear();
         }
-
         internal class PlayerRoleInfo {
             public string PlayerName { get; set; }
             public string Role {get;set;}
         }
     }
-
 
     [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
     public class OnGameEndPatch {
@@ -61,17 +59,19 @@ namespace TownOfUs.Patches {
                 else if (playerControl.Is(RoleEnum.Assassin)) {playerRole = "<color=#FF0000FF>Assassin</color>";}
                 else if (playerControl.Is(RoleEnum.Camouflager)) {playerRole = "<color=#FF0000FF>Camouflager</color>";}
                 else if (playerControl.Is(RoleEnum.Framer)) {playerRole = "<color=#FF0000FF>Framer</color>";}
+                else if (playerControl.Is(RoleEnum.Freezer)) {playerRole = "<color=#FF0000FF>Freezer</color>";}
                 else if (playerControl.Is(RoleEnum.Grenadier)) {playerRole = "<color=#FF0000FF>Grenadier</color>";}
                 else if (playerControl.Is(RoleEnum.Janitor)) {playerRole = "<color=#FF0000FF>Janitor</color>";}
                 else if (playerControl.Is(RoleEnum.Miner)) {playerRole = "<color=#FF0000FF>Miner</color>";}
                 else if (playerControl.Is(RoleEnum.Morphling)) {playerRole = "<color=#FF0000FF>Morphling</color>";}
                 else if (playerControl.Is(RoleEnum.Poisoner)) {playerRole = "<color=#FF0000FF>Poisoner</color>";}
+                else if (playerControl.Is(RoleEnum.Puppeteer)) {playerRole = "<color=#FF0000FF>Puppeteer</color>";}
                 else if (playerControl.Is(RoleEnum.Swooper)) {playerRole = "<color=#FF0000FF>Swooper</color>";}
                 else if (playerControl.Is(RoleEnum.Underdog)) {playerRole = "<color=#FF0000FF>Underdog</color>";}
                 else if (playerControl.Is(RoleEnum.Undertaker)) {playerRole = "<color=#FF0000FF>Undertaker</color>";}
                 if (playerControl.Is(ModifierEnum.Bait)) {
                     playerRole += " (<color=#00B3B3FF>Bait</color>)";
-                } else if (playerControl.Is(ModifierEnum.BigBoi)) {
+                } else if (playerControl.Is(ModifierEnum.Giant)) {
                     playerRole += " (<color=#D4AF37FF>Giant</color>)";
                 } else if (playerControl.Is(ModifierEnum.Blind)) {
                     playerRole += " (<color=#AAAAAAFF>Blind</color>)";

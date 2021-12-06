@@ -16,10 +16,10 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
 
         private static void UpdateButtonButton(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) return;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) return;
 

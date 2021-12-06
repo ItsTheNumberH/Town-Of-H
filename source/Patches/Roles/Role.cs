@@ -353,26 +353,30 @@ namespace TownOfUs.Roles
         {
             public static void Postfix(PlayerControl._CoSetTasks_d__83 __instance)
             {
-                if (__instance == null) return;
-                var player = __instance.__4__this;
-                var role = GetRole(player);
-                var modifier = Modifier.GetModifier(player);
+                try {
+                    if (__instance == null) return;
+                    var player = __instance.__4__this;
+                    var role = GetRole(player);
+                    var modifier = Modifier.GetModifier(player);
 
-                if (modifier != null)
-                {
-                    var modTask = new GameObject(modifier.Name + "Task").AddComponent<ImportantTextTask>();
-                    modTask.transform.SetParent(player.transform, false);
-                    modTask.Text =
-                        $"{modifier.ColorString}Modifier: {modifier.Name}\n{modifier.TaskText()}</color>";
-                    player.myTasks.Insert(0, modTask);
+                    if (modifier != null)
+                    {
+                        var modTask = new GameObject(modifier.Name + "Task").AddComponent<ImportantTextTask>();
+                        modTask.transform.SetParent(player.transform, false);
+                        modTask.Text =
+                            $"{modifier.ColorString}Modifier: {modifier.Name}\n{modifier.TaskText()}</color>";
+                        player.myTasks.Insert(0, modTask);
+                    }
+
+                    if (role == null || role.Hidden) return;
+                    if (role.RoleType == RoleEnum.Shifter && role.Player != PlayerControl.LocalPlayer) return;
+                    var task = new GameObject(role.Name + "Task").AddComponent<ImportantTextTask>();
+                    task.transform.SetParent(player.transform, false);
+                    task.Text = $"{role.ColorString}Role: {role.Name}\n{role.TaskText()}</color>";
+                    player.myTasks.Insert(0, task);
+                } catch {
+
                 }
-
-                if (role == null || role.Hidden) return;
-                if (role.RoleType == RoleEnum.Shifter && role.Player != PlayerControl.LocalPlayer) return;
-                var task = new GameObject(role.Name + "Task").AddComponent<ImportantTextTask>();
-                task.transform.SetParent(player.transform, false);
-                task.Text = $"{role.ColorString}Role: {role.Name}\n{role.TaskText()}</color>";
-                player.myTasks.Insert(0, task);
             }
         }
 

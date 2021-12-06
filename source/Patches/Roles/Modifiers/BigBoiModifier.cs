@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace TownOfUs.Roles.Modifiers
 {
-    public class BigBoiModifier : Modifier, IVisualAlteration
+    public class GiantModifier : Modifier, IVisualAlteration
     {
         public static float SpeedFactor = 0.7f;
         
-        public BigBoiModifier(PlayerControl player) : base(player)
+        public GiantModifier(PlayerControl player) : base(player)
         {
             Name = "Giant";
             TaskText = () => "Big and slow";
             Color = new Color(1f, 0.5f, 0.5f, 1f);
-            ModifierType = ModifierEnum.BigBoi;
+            ModifierType = ModifierEnum.Giant;
         }
 
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)

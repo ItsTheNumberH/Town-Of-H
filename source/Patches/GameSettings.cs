@@ -29,9 +29,8 @@ namespace TownOfUs
                 foreach (var option in CustomOption.CustomOption.AllOptions)
                 {
                     if (option.Name == "Crewmate Roles") {
-                        builder.Append("<color=#00FF00FF>Version " + TownOfUs.VersionString + "</color>");
-                    }
-                    else if (option.Name == "Custom Game Settings") {
+                        builder.Append("<color=#00FF00FF>Version " + TownOfUs.VersionString + "</color> (Scroll for all settings)");
+                    } else if (option.Name == "Custom Game Settings") {
                         builder.AppendLine("");
                         builder.Append(new StringBuilder(__result));
                     }
@@ -50,7 +49,7 @@ namespace TownOfUs
         {
             public static void Postfix(ref GameOptionsMenu __instance)
             {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 98f;
+                __instance.GetComponentInParent<Scroller>().YBounds.max = 105f;
             }
         }
     }

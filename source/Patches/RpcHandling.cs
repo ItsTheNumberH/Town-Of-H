@@ -23,7 +23,6 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
 using Eat = TownOfUs.NeutralRoles.CannibalMod.Coroutine;
-using CannibalCoroutine = TownOfUs.NeutralRoles.CannibalMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.ShifterMod.PerformKillButton;
 using Random = UnityEngine.Random; //using Il2CppSystem;
@@ -280,9 +279,14 @@ namespace TownOfUs
                         readByte = reader.ReadByte();
                         new Morphling(Utils.PlayerById(readByte));
                         break;
+                        
                     case CustomRPC.SetPoisoner:
                         readByte = reader.ReadByte();
                         new Poisoner(Utils.PlayerById(readByte));
+                        break;
+                    case CustomRPC.SetPuppeteer:
+                        readByte = reader.ReadByte();
+                        new Puppeteer(Utils.PlayerById(readByte));
                         break;
 
                     case CustomRPC.LoveWin:
@@ -327,7 +331,6 @@ namespace TownOfUs
                         foreach (var role in Role.AllRoles)
                             if (role.RoleType == RoleEnum.Executioner)
                                 ((Executioner) role).Loses();
-
                         break;
 
                     case CustomRPC.NobodyWins:
@@ -534,6 +537,24 @@ namespace TownOfUs
                         role.StartFrame(framed);
                         break;
                     }
+                    case CustomRPC.Freeze:
+                        readByte = reader.ReadByte();
+                        readByte1 = reader.ReadByte();
+                        var freezer = Role.GetRole<Freezer>(Utils.PlayerById(readByte));
+                        freezer.freezeList.Add(readByte1, 0);
+                        if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
+                            PlayerControl.LocalPlayer.moveable = false;
+                            PlayerControl.LocalPlayer.NetTransform.Halt();
+                            ImportantTextTask freezeText;
+                            freezeText = new GameObject("_Player").AddComponent<ImportantTextTask>();
+                            freezeText.transform.SetParent(PlayerControl.LocalPlayer.transform, false);
+                            freezeText.Text = "<color=#00ACC2FF>FROZEN</color>";
+                            freezeText.Index = PlayerControl.LocalPlayer.PlayerId;
+                            PlayerControl.LocalPlayer.myTasks.Insert(0, freezeText);
+                            ShipStatus.Instance.StartCoroutine(Effects.SwayX(Camera.main.transform, 0.75f, 0.25f));
+                        }
+                        Utils.AirKill(freezer.Player, Utils.PlayerById(readByte1));
+                        break;
                     case CustomRPC.SetExecutioner:
                         new Executioner(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -589,6 +610,9 @@ namespace TownOfUs
                         break;
                     case CustomRPC.SetFramer:
                         new Framer(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetFreezer:
+                        new Freezer(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.FlashGrenade:
                         var grenadier = Utils.PlayerById(reader.ReadByte());
@@ -650,8 +674,8 @@ namespace TownOfUs
                     case CustomRPC.SetAltruist:
                         new Altruist(Utils.PlayerById(reader.ReadByte()));
                         break;
-                    case CustomRPC.SetBigBoi:
-                        new BigBoiModifier(Utils.PlayerById(reader.ReadByte()));
+                    case CustomRPC.SetGiant:
+                        new GiantModifier(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.SetChild:
                         new ChildModifier(Utils.PlayerById(reader.ReadByte()));
@@ -760,6 +784,18 @@ namespace TownOfUs
                     case CustomRPC.AddMayorVoteBank:
                         Role.GetRole<Mayor>(Utils.PlayerById(reader.ReadByte())).VoteBank += reader.ReadInt32();
                         break;
+                    case CustomRPC.Possess:
+                        var puppeteer = Utils.PlayerById(reader.ReadByte());
+                        Role.GetRole<Puppeteer>(puppeteer).PossessPlayer = Utils.PlayerById(reader.ReadByte());
+                        break;
+                    case CustomRPC.UnPossess:
+                        var puppeteer3 = Utils.PlayerById(reader.ReadByte());
+                        Role.GetRole<Puppeteer>(puppeteer3).UnPossess();
+                        break;
+                    case CustomRPC.PossessKill:
+                        var puppeteer2 = Utils.PlayerById(reader.ReadByte());
+                        Role.GetRole<Puppeteer>(puppeteer2).KillUnPossess();
+                        break;
                 }
             }
         }
@@ -866,6 +902,9 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.PoisonerOn))
                     ImpostorRoles.Add((typeof(Poisoner), CustomRPC.SetPoisoner, CustomGameOptions.PoisonerOn));
 
+                if (Check(CustomGameOptions.PuppeteerOn))
+                    ImpostorRoles.Add((typeof(Puppeteer), CustomRPC.SetPuppeteer, CustomGameOptions.PuppeteerOn));
+
                 if (Check(CustomGameOptions.CamouflagerOn))
                     ImpostorRoles.Add((typeof(Camouflager), CustomRPC.SetCamouflager, CustomGameOptions.CamouflagerOn));
 
@@ -883,6 +922,10 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.FramerOn))
                     ImpostorRoles.Add((typeof(Framer), CustomRPC.SetFramer, CustomGameOptions.FramerOn));
+
+                if (Check(CustomGameOptions.FreezerOn))
+                    ImpostorRoles.Add((typeof(Freezer), CustomRPC.SetFreezer, CustomGameOptions.FreezerOn));
+
                 #endregion
                 #region Global Modifiers
                 if (Check(CustomGameOptions.TorchOn))
@@ -906,8 +949,8 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.DrunkOn))
                     GlobalModifiers.Add((typeof(Drunk), CustomRPC.SetDrunk, CustomGameOptions.DrunkOn));
 
-                if (Check(CustomGameOptions.BigBoiOn))
-                    GlobalModifiers.Add((typeof(BigBoiModifier), CustomRPC.SetBigBoi, CustomGameOptions.BigBoiOn));
+                if (Check(CustomGameOptions.GiantOn))
+                    GlobalModifiers.Add((typeof(GiantModifier), CustomRPC.SetGiant, CustomGameOptions.GiantOn));
 
                 if (Check(CustomGameOptions.ChildOn))
                     GlobalModifiers.Add((typeof(ChildModifier), CustomRPC.SetChild, CustomGameOptions.ChildOn));

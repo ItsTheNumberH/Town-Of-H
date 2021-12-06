@@ -25,10 +25,17 @@ namespace TownOfUs
     public class TownOfUs : BasePlugin
     {
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "4.0.13";
+        public const string VersionString = "4.1.2";
         public static System.Version Version = System.Version.Parse(VersionString);
         
         public static Sprite LogoBanner;
+        public static Sprite LogoLobbyBanner;
+        public static Sprite BirthdayCampFreddy;
+        public static Sprite BirthdayBal;
+        public static Sprite BirthdayH;
+        public static Sprite BirthdayCtri;
+        public static Sprite BirthdayChaos;
+        public static Sprite ChristmasLobby;
         public static Sprite JanitorClean;
         public static Sprite CannibalEat;
         public static Sprite EngineerFix;
@@ -65,6 +72,8 @@ namespace TownOfUs
         public static Sprite DragSprite;
         public static Sprite DropSprite;
         public static Sprite FlashSprite;
+        public static Sprite ControlSprite;
+        public static Sprite FreezeSprite;
 
         private static DLoadImage _iCallLoadImage;
 
@@ -83,7 +92,17 @@ namespace TownOfUs
 
             Generate.GenerateAll();
 
+            //Custom Logo and Lobby baners
             LogoBanner = CreateSprite("TownOfUs.Resources.TownOfH.png");
+            LogoLobbyBanner = CreateSprite("TownOfUs.Resources.TownOfHLobbyBanner.png");
+            BirthdayCampFreddy = CreateSprite("TownOfUs.Resources.BirthdayCampFreddy.png");
+            BirthdayBal = CreateSprite("TownOfUs.Resources.BirthdayBal.png");
+            BirthdayCtri = CreateSprite("TownOfUs.Resources.BirthdayCtri.png");
+            BirthdayChaos = CreateSprite("TownOfUs.Resources.BirthdayChaos.png");
+            BirthdayH = CreateSprite("TownOfUs.Resources.BirthdayH.png");
+            ChristmasLobby = CreateSprite("TownOfUs.Resources.ChristmasLobby.png");
+
+            //Custom buttons
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
             CannibalEat = CreateSprite("TownOfUs.Resources.Eat.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
@@ -117,6 +136,8 @@ namespace TownOfUs
             GuessSprite = CreateSprite("TownOfUs.Resources.Guess.png");
             FlashSprite = CreateSprite("TownOfUs.Resources.Flash.png");
             TrackerSprite = CreateSprite("TownOfUs.Resources.Track.png");
+            ControlSprite = CreateSprite("TownOfUs.Resources.Control.png");
+            FreezeSprite = CreateSprite("TownOfUs.Resources.Freeze.png");
 
             PalettePatch.Load();
             ClassInjector.RegisterTypeInIl2Cpp<RainbowBehaviour>();

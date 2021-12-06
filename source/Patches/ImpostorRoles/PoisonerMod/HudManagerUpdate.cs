@@ -11,10 +11,10 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
         public static Sprite PoisonedSprite => TownOfUs.PoisonedSprite;
         public static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Poisoner)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Poisoner)) return;
             var role = Role.GetRole<Poisoner>(PlayerControl.LocalPlayer);
             if (role.PoisonButton == null) {
                 role.PoisonButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);

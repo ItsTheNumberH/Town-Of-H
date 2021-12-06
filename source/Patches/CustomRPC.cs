@@ -15,6 +15,7 @@ namespace TownOfUs
         SetSeer,
         SetMorphling,
         SetPoisoner,
+        SetPuppeteer,
         SetCamouflager,
         SetExecutioner,
         SetTarget,
@@ -34,10 +35,11 @@ namespace TownOfUs
         SetUnderdog,
         SetGrenadier,
         SetFramer,
+        SetFreezer,
 
         
         SetBait,
-        SetBigBoi,
+        SetGiant,
         SetBlind,
         SetButtonBarry,
         SetChild,
@@ -113,6 +115,10 @@ namespace TownOfUs
         SyncCustomSettings,
         FixAnimation,
         
-        AddMayorVoteBank
+        AddMayorVoteBank,
+        Possess,
+        UnPossess,
+        PossessKill,
+        Freeze,
     }
 }

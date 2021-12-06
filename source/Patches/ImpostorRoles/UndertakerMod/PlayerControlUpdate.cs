@@ -9,10 +9,10 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
     {
         public static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Undertaker)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Undertaker)) return;
 
             var role = Role.GetRole<Undertaker>(PlayerControl.LocalPlayer);
             if (role.DragDropButton == null)

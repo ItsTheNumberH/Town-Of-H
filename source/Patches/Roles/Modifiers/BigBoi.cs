@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace TownOfUs.Roles.Modifiers
 {
-    public class BigBoi : Modifier
+    public class Giant : Modifier
     {
-        public BigBoi(PlayerControl player) : base(player)
+        public Giant(PlayerControl player) : base(player)
         {
             Name = "Giant";
             TaskText = () => "Big and slow";
             Color = new Color(0.83f, 0.69f, 0.22f, 1f);
-            ModifierType = ModifierEnum.BigBoi;
+            ModifierType = ModifierEnum.Giant;
         }
     }
 }

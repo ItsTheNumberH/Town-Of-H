@@ -20,7 +20,7 @@ namespace TownOfUs.Roles
         {
             Name = "Poisoner";
             ImpostorText = () => "Poison the crewmates";
-            TaskText = () => "Poison a crewmate to kill them in a few seconds";
+            TaskText = () => $"Poison a crewmate to kill them in {CustomGameOptions.PoisonerDuration} seconds";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Poisoner;
             Faction = Faction.Impostors;

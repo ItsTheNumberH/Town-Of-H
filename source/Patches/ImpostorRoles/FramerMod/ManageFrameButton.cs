@@ -11,15 +11,10 @@ namespace TownOfUs.Patches.ImpostorRoles.FramerMod
     {
         public static void Postfix(HudManager __instance)
         {
-            if (
-                PlayerControl.AllPlayerControls.Count <= 1
-                || PlayerControl.LocalPlayer == null
-                || PlayerControl.LocalPlayer.Data == null
-                || !PlayerControl.LocalPlayer.Is(RoleEnum.Framer)
-            )
-            {
-                return;
-            }
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Framer)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (PlayerControl.LocalPlayer == null) return;
+            if (PlayerControl.LocalPlayer.Data == null) return;
 
             Framer role = Role.GetRole<Framer>(PlayerControl.LocalPlayer);
             if (role.FrameButton == null)
@@ -37,7 +32,7 @@ namespace TownOfUs.Patches.ImpostorRoles.FramerMod
 
             if (role.Framed != null)
             {
-                // TODO: This will kind of lie to them about how long the frame lasts, can we change the experience?
+                // TODO: Not entirely accurate?
                 role.FrameButton.SetCoolDown(role.TimeBeforeFramed + role.FrameTimeRemaining, CustomGameOptions.FrameDuration);
                 return;
             }

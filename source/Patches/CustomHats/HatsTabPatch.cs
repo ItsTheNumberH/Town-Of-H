@@ -19,6 +19,5 @@ namespace TownOfUs.CustomHats
                 }
             }
         }
-        
     }
 }

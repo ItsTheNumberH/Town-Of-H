@@ -12,10 +12,10 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
         
         public static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return;
             var role = Role.GetRole<Arsonist>(PlayerControl.LocalPlayer);
 
             foreach (var playerId in role.DousedPlayers)

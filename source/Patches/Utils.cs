@@ -22,6 +22,7 @@ namespace TownOfUs
     public static class Utils
     {
         internal static bool ShowDeadBodies = false;
+        private static GameData.PlayerInfo voteTarget = null;
 
         public static Dictionary<PlayerControl, Color> oldColors = new Dictionary<PlayerControl, Color>();
 
@@ -291,6 +292,34 @@ namespace TownOfUs
             return closestPlayer = closeEnough ? player : null;
         }
 
+        public static PlayerControl SetClosestPlayerToPlayer(
+            PlayerControl fromPlayer,
+            ref PlayerControl closestPlayer,
+            float maxDistance = float.NaN,
+            List<PlayerControl> targets = null
+        )
+        {
+            if (float.IsNaN(maxDistance))
+                maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+            var player = getClosestPlayer(
+                fromPlayer,
+                targets ?? PlayerControl.AllPlayerControls.ToArray().ToList()
+            );
+            var closeEnough = player == null || (
+                getDistBetweenPlayers(fromPlayer, player) < maxDistance
+            );
+            return closestPlayer = closeEnough ? player : null;
+        }
+        public static void AirKill(PlayerControl player, PlayerControl target){
+            Vector3 vector = target.transform.position;
+            vector.z = vector.y / 1000f;
+            player.transform.position = vector;
+            player.NetTransform.SnapTo(vector);
+        }
+
+        public static float getZfromY(float y){
+            return y / 1000f;
+        }
         public static double getDistBetweenPlayers(PlayerControl player, PlayerControl refplayer)
         {
             var truePosition = refplayer.GetTruePosition();
@@ -369,7 +398,7 @@ namespace TownOfUs
                     target.myTasks.Insert(0, importantTextTask);
                 }
 
-                if (!killer.Is(RoleEnum.Poisoner)){
+                if (!killer.Is(RoleEnum.Poisoner) && !killer.Is(RoleEnum.Freezer)){
                     killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(killer, target));
                 } else {
                     killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(target, target));
@@ -460,35 +489,47 @@ namespace TownOfUs
         {
             ShipStatus.RpcEndGame(reason, showAds);
         }
+        
+        [HarmonyPatch(typeof(MedScanMinigame), nameof(MedScanMinigame.FixedUpdate))]
+        class MedScanMinigameFixedUpdatePatch {
+            static void Prefix(MedScanMinigame __instance) {
+                if (CustomGameOptions.allowParallelMedBayScans) {
+                    //Allows multiple medbay scans at once
+                    __instance.medscan.CurrentUser = PlayerControl.LocalPlayer.PlayerId;
+                    __instance.medscan.UsersList.Clear();
+                }
+            }
+        }
 
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
-        public static class PlayerControl_SetInfected
-        {
-            public static void Postfix()
-            {
-                if (!RpcHandling.Check(20)) return;
-                /*
-                if (PlayerControl.LocalPlayer.name == "Sykkuno")
-                {
-                    var edison = PlayerControl.AllPlayerControls.ToArray()
-                        .FirstOrDefault(x => x.name == "Edis0n" || x.name == "Edison");
-                    if (edison != null)
-                    {
-                        edison.name = "babe";
-                        edison.nameText.text = "babe";
+        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoStartMeeting))]
+        class StartMeetingPatch {
+            public static void Prefix(PlayerControl __instance, [HarmonyArgument(0)]GameData.PlayerInfo meetingTarget) {
+                voteTarget = meetingTarget;
+            }
+        }
+
+        [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.CheckForEndVoting))]
+        class MeetingCalculateVotesPatch {
+            static bool Prefix(MeetingHud __instance) {
+                if (__instance.playerStates.All((PlayerVoteArea ps) => ps.AmDead || ps.DidVote)) {
+                    // If skipping is disabled, replace skipps/no-votes with self-vote
+                    if (voteTarget == null && CustomGameOptions.blockSkippingInEmergencyMeetings) {
+                        foreach (PlayerVoteArea playerVoteArea in __instance.playerStates) {
+                            if (playerVoteArea.VotedFor < 0) playerVoteArea.VotedFor = playerVoteArea.TargetPlayerId;
+                        }
                     }
                 }
+                return true;
+            }
+        }
 
-                if (PlayerControl.LocalPlayer.name == "fuslie PhD")
-                {
-                    var sykkuno = PlayerControl.AllPlayerControls.ToArray()
-                        .FirstOrDefault(x => x.name == "Sykkuno");
-                    if (sykkuno != null)
-                    {
-                        sykkuno.name = "babe's babe";
-                        sykkuno.nameText.text = "babe's babe";
-                    }
-                }*/
+        [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
+        class MeetingHudUpdatePatch {
+            static void Postfix(MeetingHud __instance) {
+                // Deactivate skip Button if skipping on emergency meetings is disabled
+                if (voteTarget == null && CustomGameOptions.blockSkippingInEmergencyMeetings) {
+                    __instance.SkipVoteButton.gameObject.SetActive(false);
+                }
             }
         }
     }

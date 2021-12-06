@@ -10,11 +10,11 @@ namespace TownOfUs.Roles
             ImpostorText = () =>
                 CustomGameOptions.UnderdogPlayers
                     ? "The fewer crewmates alive, the faster you kill"
-                    : "You kill faster solo";
+                    : "You kill faster if you're the only impostor";
             TaskText = () =>
                 CustomGameOptions.UnderdogPlayers
                     ? "Kill cooldown gets faster the fewer crewmates are alive"
-                    : "Faster kill cooldown when solo, but longer with other impostors alive";
+                    : "You kill faster if you're the only impostor, but slower otherwise";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Underdog;
             Faction = Faction.Impostors;

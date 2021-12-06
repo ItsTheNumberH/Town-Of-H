@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Linq;
 using HarmonyLib;
 using TownOfUs.CrewmateRoles.MedicMod;
@@ -23,4 +23,4 @@ namespace TownOfUs.CrewmateRoles.SpyMod
             }
         }
     }
-}
+}*/

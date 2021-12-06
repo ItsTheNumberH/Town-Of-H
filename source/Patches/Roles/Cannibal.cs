@@ -6,6 +6,7 @@ namespace TownOfUs.Roles
 {
     public class Cannibal : Role
     {
+        public KillButtonManager _eatButton;
         public DeadBody CurrentTarget { get; set; }
         public DateTime LE { get; set; }
         public int EatNeed;
@@ -13,16 +14,25 @@ namespace TownOfUs.Roles
         
         public Cannibal(PlayerControl player) : base(player)
         {
+            EatNeed = CustomGameOptions.CannibalBodyCount >= PlayerControl.AllPlayerControls._size / 2 ? PlayerControl.AllPlayerControls._size / 2 : CustomGameOptions.CannibalBodyCount; // Limit max bodies to 1/2 of lobby
+            var body = EatNeed == 1 ? "Body" : "Bodies";
             Name = "Cannibal";
-            ImpostorText = () => "Eat Bodies";
+            ImpostorText = () => $"Eat {EatNeed} {body}";
             Color = Palette.Brown;
             RoleType = RoleEnum.Cannibal;
             Faction = Faction.Neutral;
-            EatNeed = CustomGameOptions.CannibalBodyCount >= PlayerControl.AllPlayerControls._size / 2 ? PlayerControl.AllPlayerControls._size / 2 : CustomGameOptions.CannibalBodyCount; // Limit max bodies to 1/2 of lobby
-            var body = EatNeed == 1 ? "Body" : "Bodies";
             TaskText = () => $"Eat {EatNeed} {body} to Win\nFake Tasks:";
         }
-        
+        public KillButtonManager eatButton
+        {
+            get => _eatButton;
+            set
+            {
+                _eatButton = value;
+                ExtraButtons.Clear();
+                ExtraButtons.Add(value);
+            }
+        }
         internal override bool EABBNOODFGL(ShipStatus __instance)
         {
             if (EatNeed == 0)

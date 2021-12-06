@@ -23,10 +23,10 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
 
         private static void Postfix(HudManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Executioner)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Executioner)) return;
             var role = Role.GetRole<Executioner>(PlayerControl.LocalPlayer);
 
             if (role.target == null)

@@ -17,8 +17,11 @@ namespace TownOfUs.Roles
         public Framer(PlayerControl player) : base(player)
         {
             Name = "Framer";
-            ImpostorText = () => "Frame the crewmates";
-            TaskText = () => "Frame crewmates to look like you";
+            ImpostorText = () => "Frame the crewmates";            
+            TaskText = () =>
+                CustomGameOptions.FrameTarget == FrameTarget.Self
+                    ? "Frame crewmates to look like you."
+                    : "Frame crewmates to look like another player.";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Framer;
             Faction = Faction.Impostors;

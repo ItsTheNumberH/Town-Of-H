@@ -40,7 +40,6 @@ namespace TownOfUs
                     win.IsDead = false;
                     TempData.winners.Add(win);
                 }
-
                 return;
             }
 
@@ -102,6 +101,7 @@ namespace TownOfUs
                 var winners = Utils.potentialWinners.Where(x => x.Name == phantom.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
+                return;
             }
         }
     }

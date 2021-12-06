@@ -45,12 +45,12 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                         if (CustomGameOptions.SeerInfo == SeerInfo.Roles) {
                             var role = Role.GetRole(player);
                             state.NameText.color = Color.white;
-                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter" || role.Name == "Cannibal") {
-                                state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
+                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter") {
+                                state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 state.NameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
-                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling" || role.Name == "Framer") {
-                                state.NameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>/<color=#FF0000FF>Fra</color>", true);
+                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
+                                state.NameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>", true);
                             } else if (role.Name == "Engineer" || role.Name == "Miner" || role.Name == "Arsonist") {
                                 state.NameText.text = NameText(player, " <color=#FFA60AFF>Eng</color>/<color=#FF0000FF>Min</color>/<color=#FF4D00FF>Ars</color>", true);
                             } else if (role.Name == "Altruist" || role.Name == "Time Lord" || role.Name == "Undertaker") {
@@ -65,6 +65,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 state.NameText.text = NameText(player, " <color=#FFFF00FF>Vig</color>/<color=#FF0000FF>Ass</color>/<color=#FF0000FF>Swo</color>", true);
                             } else if (role.Name == "Camouflager" || role.Name == "Chameleon" || role.Name == "Grenadier") {
                                 state.NameText.text = NameText(player, " <color=#FF0000FF>Cam</color>/<color=#00FF00FF>Cha</color>/<color=#FF0000FF>Gre</color>", true);
+                            } else if (role.Name == "Cannibal" || role.Name == "Framer" || role.Name == "Puppeteer") {
+                                state.NameText.text = NameText(player, " <color=#AC8A00FF>Can</color>/<color=#FF0000FF>Fra</color>/<color=#FF0000FF>Pup</color>", true);
                             } else {
                                 state.NameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>", true);
                             }
@@ -148,12 +150,12 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                         if (CustomGameOptions.SeerInfo == SeerInfo.Roles) {
                             var role = Role.GetRole(player);
                             player.nameText.color = Color.white;
-                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter" || role.Name == "Cannibal") {
-                                player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>/<color=#AC8A00FF>Can</color>", true);
+                            if (role.Name == "Crewmate" || role.Name == "Impostor" || role.Name == "Shifter") {
+                                player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>/<color=#999999FF>Shi</color>", true);
                             } else if (role.Name == "Mayor" || role.Name == "Jester" || role.Name == "Swapper") {
                                 player.nameText.text = NameText(player, " <color=#704FA8FF>Myr</color>/<color=#FFBFCCFF>Jes</color>/<color=#66E666FF>Swp</color>", true);
-                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling" || role.Name == "Framer") {
-                                player.nameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>/<color=#FF0000FF>Fra</color>", true);
+                            } else if (role.Name == "Sheriff" || role.Name == "The Glitch" || role.Name == "Morphling") {
+                                player.nameText.text = NameText(player, " <color=#FFFF00FF>Shr</color>/<color=#00FF00FF>Gli</color>/<color=#FF0000FF>Mor</color>", true);
                             } else if (role.Name == "Engineer" || role.Name == "Miner" || role.Name == "Arsonist") {
                                 player.nameText.text = NameText(player, " <color=#FFA60AFF>Eng</color>/<color=#FF0000FF>Min</color>/<color=#FF4D00FF>Ars</color>", true);
                             } else if (role.Name == "Altruist" || role.Name == "Time Lord" || role.Name == "Undertaker") {
@@ -168,6 +170,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                                 player.nameText.text = NameText(player, " <color=#FFFF00FF>Vig</color>/<color=#FF0000FF>Ass</color>/<color=#FF0000FF>Swo</color>", true);
                             } else if (role.Name == "Camouflager" || role.Name == "Chameleon" || role.Name == "Grenadier") {
                                 player.nameText.text = NameText(player, " <color=#FF0000FF>Cam</color>/<color=#00FF00FF>Cha</color>/<color=#FF0000FF>Gre</color>", true);
+                            } else if (role.Name == "Cannibal" || role.Name == "Framer" || role.Name == "Puppeteer") {
+                                player.nameText.text = NameText(player, " <color=#AC8A00FF>Can</color>/<color=#FF0000FF>Fra</color>/<color=#FF0000FF>Pup</color>", true);
                             } else {
                                 player.nameText.text = NameText(player, " <color=#FFFFFFFF>Crw</color>/<color=#FF0000FF>Imp</color>", true);
                             }

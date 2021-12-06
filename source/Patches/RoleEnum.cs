@@ -36,8 +36,8 @@ namespace TownOfUs
         Poisoner,
         Cannibal,
         Framer,
-
-
+        Puppeteer,
+        Freezer,
         Glitch,
 
         Crewmate,
@@ -54,7 +54,7 @@ namespace TownOfUs
         Flash,
         Tiebreaker,
         Drunk,
-        BigBoi,
+        Giant,
         Child,
         ButtonBarry,
         Volatile
