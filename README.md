@@ -1238,11 +1238,12 @@ The volatile player could see a fake sabotage, hear a fake death sound, see a fa
 
 -----------------------
 # Extras
-## New Colors!
-New colors are added for crewmates to pick from: watermelon, chocolate, sky blue, beige, hot pink, turquoise and lilac.
-## Rainbow Color!
+## Parallel Medbay scans
+Multiple people can now, optionally, medbay scan at once.
+## New Colors
+New colors are added for crewmates to pick from: watermelon, chocolate, sky blue, beige, hot pink, turquoise and lilac.\
 A rainbow color has also been added. Anyone who equips this color will constantly switch between the colors of the rainbow.
-## Custom Hats!
+## Custom Hats
 Custom hats have been added, made by some very talented artists. These are mostly hats for streamers.
 
 -----------------------
