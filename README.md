@@ -69,6 +69,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.4/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.3/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.2/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.1 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.1/TownOfUs.dll) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.0 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.0/TownOfUs.dll) |
@@ -107,7 +109,20 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 <details>
   <summary> Changelog </summary>
-    <details>
+  <details>
+  <summary> v4.1.4 </summary>
+   <ul> <li> Another attempt at fixing the Cannibals Eat button </li> </ul>
+  </details>
+   <details>
+  <summary> v4.1.3 </summary>
+   <ul> <li> New Crewmate role: Medium added </li> </ul>
+   <ul> <li> Ghosts give random bits of info at the start of meetings </li> </ul>
+   <ul> <li> Medic reports disabled by default due to the medium taking on this role </li> </ul>
+   <ul> <li> Poisoned crewmates now die when a meeting is called, same as frozen crewmates, to make sure they appear correctly as dead when the meeting starts. Rather than being dead seconds into the meeting but not showing. </li> </ul>
+   <ul> <li> Fix: Bodies that appear after meetings are now immediately removed (Lover still dies after meeting when other lover is voted out) </li> </ul>
+   <ul> <li> There might still be a bug with cannibal button not showing. I don't know why! </li> </ul>    
+  </details>
+ <details>
   <summary> v4.1.2 </summary>
    <ul> <li> Bug fix for Cannibal button not appearing </li> </ul>
    <ul> <li> Minor code tidying </li> </ul>
