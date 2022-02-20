@@ -11,6 +11,7 @@ namespace TownOfUs.Patches
             {
                 __result = __instance.moveable
                            && !Minigame.Instance
+                           && !__instance.shapeshifting
                            && (!DestroyableSingleton<HudManager>.InstanceExists
                                || !DestroyableSingleton<HudManager>.Instance.Chat.IsOpen
                                && !DestroyableSingleton<HudManager>.Instance.KillOverlay.IsOpen
@@ -18,7 +19,7 @@ namespace TownOfUs.Patches
                            /*&& (!ControllerManager.Instance || !ControllerManager.Instance.IsUiControllerActive)*/
                            && (!MapBehaviour.Instance || !MapBehaviour.Instance.IsOpenStopped)
                            && !MeetingHud.Instance
-                           && !CustomPlayerMenu.Instance
+                           && !PlayerCustomizationMenu.Instance 
                            && !ExileController.Instance
                            && !IntroCutscene.Instance;
 

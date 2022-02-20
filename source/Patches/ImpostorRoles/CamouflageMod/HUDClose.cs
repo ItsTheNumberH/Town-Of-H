@@ -15,7 +15,6 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             {
                 var camouflager = (Camouflager) role;
                 camouflager.LastCamouflaged = DateTime.UtcNow;
-                camouflager.LastCamouflaged = camouflager.LastCamouflaged.AddSeconds(-10f);
             }
         }
     }

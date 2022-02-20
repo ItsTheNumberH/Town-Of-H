@@ -50,7 +50,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {12, "darker"},// maroon
                 {13, "lighter"},// rose
                 {14, "lighter"},// banana
-                {15, "lighter"},// gray
+                {15, "darker"},// gray
                 {16, "darker"},// tan
                 {17, "lighter"},// coral
                 {18, "darker"},// watermelon
@@ -63,7 +63,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {25, "lighter"},// rainbow
                 {26, "lighter"},// azure
             };
-            var typeOfColor = colors[br.Killer.Data.ColorId];
+            var typeOfColor = colors[br.Killer.CurrentOutfit.ColorId];
             return
                 $"Body Report: The killer appears to be a {typeOfColor} color. (Killed {Math.Round(br.KillAge / 1000)}s ago)";
         }

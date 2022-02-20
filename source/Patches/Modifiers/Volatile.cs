@@ -18,13 +18,13 @@ namespace TownOfUs.Modifiers
                     _time += Time.deltaTime;
                     if (_time >= 45f)
                     {
-                        randomNumber = Random.RandomRangeInt(0, 7);
+                        randomNumber = Random.RandomRangeInt(0, 6);
                         _time -= 45f;
                         try {
-                            if (randomNumber == 0 || randomNumber == 4)
+                            if (randomNumber == 0)
                             {
                                 //Press kill button
-                                __instance.KillButton.PerformKill();
+                                __instance.KillButton.DoClick();
                             } else if (randomNumber == 1)
                             {
                                 //Fake sabotage flash

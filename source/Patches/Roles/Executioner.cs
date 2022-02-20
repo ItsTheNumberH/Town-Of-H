@@ -1,4 +1,5 @@
 using Il2CppSystem.Collections.Generic;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -17,13 +18,14 @@ namespace TownOfUs.Roles
                 target == null
                     ? "You don't have a target for some reason... weird..."
                     : $"Vote {target.name} out\nFake Tasks:";
-            Color = new Color(0.55f, 0.25f, 0.02f, 1f);
+            Color = Patches.Colors.Executioner;
             RoleType = RoleEnum.Executioner;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Neutral;
             Scale = 1.4f;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var executionerteam = new List<PlayerControl>();
             executionerteam.Add(PlayerControl.LocalPlayer);
@@ -46,7 +48,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            LostByRPC = true;
         }
     }
 }

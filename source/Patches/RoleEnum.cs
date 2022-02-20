@@ -5,22 +5,26 @@ namespace TownOfUs
         Sheriff,
         Jester,
         Engineer,
-        LoverImpostor,
-        Lover,
         Mayor,
         Swapper,
         Investigator,
         TimeLord,
-        Shifter,
         Medic,
+        Medium,
         Seer,
         Executioner,
         Spy,
         Snitch,
-        Tracker,
         Arsonist,
         Altruist,
         Phantom,
+        Vigilante,
+        Haunter,
+        Veteran,
+        Amnesiac,
+        Juggernaut,
+        Tracker,
+        Transporter,
 
         Miner,
         Swooper,
@@ -28,16 +32,12 @@ namespace TownOfUs
         Camouflager,
         Janitor,
         Undertaker,
-        Assassin,
-        Vigilante,
-        Chameleon,
         Underdog,
         Grenadier,
         Poisoner,
-        Cannibal,
-        Framer,
-        Puppeteer,
-        Freezer,
+        Traitor,
+
+
         Glitch,
 
         Crewmate,
@@ -47,16 +47,23 @@ namespace TownOfUs
 
     public enum ModifierEnum
     {
+        Lover,
         Torch,
         Diseased,
-        Bait,
-        Blind,
         Flash,
         Tiebreaker,
         Drunk,
         Giant,
-        Child,
         ButtonBarry,
+        Bait,
+        Sleuth,
+        Blind,
+        Child,
         Volatile
+    }
+
+    public enum AbilityEnum
+    {
+        Assassin
     }
 }

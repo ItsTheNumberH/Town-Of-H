@@ -9,33 +9,32 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
     {
         public static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Undertaker)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Undertaker)) return;
 
             var role = Role.GetRole<Undertaker>(PlayerControl.LocalPlayer);
             if (role.DragDropButton == null)
             {
-                role.DragDropButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.DragDropButton.renderer.enabled = true;
-                role.DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                role.DragDropButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                role.DragDropButton.graphic.enabled = true;
+                role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
+                role.DragDropButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.DragDropButton.gameObject.SetActive(false);
             }
+            role.DragDropButton.GetComponent<AspectPosition>().Update();
+            if (role.DragDropButton.graphic.sprite != TownOfUs.DragSprite &&
+                role.DragDropButton.graphic.sprite != TownOfUs.DropSprite)
+                role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
 
-            if (role.DragDropButton.renderer.sprite != TownOfUs.DragSprite &&
-                role.DragDropButton.renderer.sprite != TownOfUs.DropSprite)
-                role.DragDropButton.renderer.sprite = TownOfUs.DragSprite;
-
-            if (role.DragDropButton.renderer.sprite == TownOfUs.DropSprite && role.CurrentlyDragging == null)
-                role.DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+            if (role.DragDropButton.graphic.sprite == TownOfUs.DropSprite && role.CurrentlyDragging == null)
+                role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
 
             role.DragDropButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.DragDropButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
 
 
-            if (role.DragDropButton.renderer.sprite == TownOfUs.DragSprite)
+            if (role.DragDropButton.graphic.sprite == TownOfUs.DragSprite)
             {
                 var data = PlayerControl.LocalPlayer.Data;
                 var isDead = data.IsDead;
@@ -67,15 +66,15 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                 KillButtonTarget.SetTarget(killButton, closestBody, role);
             }
 
-            if (role.DragDropButton.renderer.sprite == TownOfUs.DragSprite)
+            if (role.DragDropButton.graphic.sprite == TownOfUs.DragSprite)
             {
                 role.DragDropButton.SetCoolDown(role.DragTimer(), CustomGameOptions.DragCd);
             }
             else
             {
                 role.DragDropButton.SetCoolDown(0f, 1f);
-                role.DragDropButton.renderer.color = Palette.EnabledColor;
-                role.DragDropButton.renderer.material.SetFloat("_Desat", 0f);
+                role.DragDropButton.graphic.color = Palette.EnabledColor;
+                role.DragDropButton.graphic.material.SetFloat("_Desat", 0f);
             }
         }
     }

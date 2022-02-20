@@ -27,5 +27,11 @@ namespace TownOfUs
             list.RemoveAt(0);
             return item;
         }
+
+        public static T Ability<T>(this List<T> list)
+        {
+            var item = list[0];
+            return item;
+        }
     }
 }

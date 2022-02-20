@@ -11,7 +11,7 @@ namespace TownOfUs
         {
             var array = (
                 from h in __instance.AllHats.ToArray()
-                where !HatManager.IsMapStuff(h.ProdId) || SaveManager.GetPurchase(h.ProductId)
+                where h.Free || SaveManager.GetPurchase(h.ProductId, h.BundleId)
                 select h
                 into o
                 orderby o.Order descending, o.name

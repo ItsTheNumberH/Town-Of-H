@@ -1,44 +1,64 @@
-using System.Linq;
 using HarmonyLib;
-using Reactor.Extensions;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
+using TownOfUs.ImpostorRoles.CamouflageMod;
+using TownOfUs.Extensions;
+using System;
 
 namespace TownOfUs.CrewmateRoles.TrackerMod
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public class UpdateTrackerArrows
     {
-        private static float _time = 0f;
-        private static float Interval => CustomGameOptions.TrackerInterval;
+        public static Sprite Sprite => TownOfUs.Arrow;
+        private static DateTime _time = DateTime.UnixEpoch;
+        private static float Interval => CustomGameOptions.UpdateInterval;
         public static void Postfix(PlayerControl __instance)
         {
-            foreach (var role in Role.GetRoles(RoleEnum.Tracker))
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (PlayerControl.LocalPlayer == null) return;
+            if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Tracker)) return;
+
+            var role = Role.GetRole<Tracker>(PlayerControl.LocalPlayer);
+
+            if (PlayerControl.LocalPlayer.Data.IsDead)
             {
                 var tracker = (Tracker) role;
                 if (PlayerControl.LocalPlayer.Data.IsDead || tracker.Player.Data.IsDead)
                 {
-                    tracker.TrackerArrows.DestroyAll();
-                    tracker.TrackerArrows.Clear();
+                    role.TrackerArrows.Values.DestroyAll();
+                    role.TrackerArrows.Clear();
                     return;
-                } else {
-                    _time += Time.deltaTime;
-                    if (_time >= Interval)
-                    {
-                        _time -= Interval;
-                        foreach (var (arrow, target) in Utils.Zip(tracker.TrackerArrows, tracker.TrackerTargets))
-                        {
-                            if (target.Data.IsDead)
-                            {
-                                arrow.Destroy();
-                                if (arrow.gameObject != null) arrow.gameObject.Destroy();
-                            } else {
-                                arrow.target = target.transform.position;
-                            }
-                        }
-                    }
                 }
+
+                foreach (var arrow in role.TrackerArrows)
+                {
+                    var player = Utils.PlayerById(arrow.Key);
+                    if (player == null || player.Data == null || player.Data.IsDead || player.Data.Disconnected)
+                    {
+                        role.DestroyArrow(arrow.Key);
+                        continue;
+                    }
+                    if (!CamouflageUnCamouflage.IsCamoed)
+                        if (RainbowUtils.IsRainbow(player.GetDefaultOutfit().ColorId))
+                        {
+                            arrow.Value.image.color = RainbowUtils.Rainbow;
+                        }
+                        else
+                        {
+                            arrow.Value.image.color = Palette.PlayerColors[player.GetDefaultOutfit().ColorId];
+                        }
+                    else
+                    {
+                        arrow.Value.image.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+                    }
+
+                    if (_time <= DateTime.UtcNow.AddSeconds(-Interval))
+                        arrow.Value.target = player.transform.position;
+                }
+                if (_time <= DateTime.UtcNow.AddSeconds(-Interval))
+                    _time = DateTime.UtcNow;
             }
         }
     }

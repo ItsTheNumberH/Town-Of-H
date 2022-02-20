@@ -44,38 +44,81 @@ namespace TownOfUs.Extensions
 
         public static VisualAppearance GetDefaultAppearance(this PlayerControl player)
         {
-            return new VisualAppearance()
-            {
-                ColorId = player.Data.ColorId,
-                HatId = player.Data.HatId,
-                SkinId = player.Data.SkinId,
-                PetId = player.Data.PetId
-            };
+            return new VisualAppearance();
         }
 
         public static bool TryGetAppearance(this PlayerControl player, IVisualAlteration modifier, out VisualAppearance appearance)
         {
             if (modifier != null)
-                try {
-                    return modifier.TryGetModifiedAppearance(out appearance);
-                } catch {
-                }
+                return modifier.TryGetModifiedAppearance(out appearance);
+
             appearance = player.GetDefaultAppearance();
             return false;
         }
 
         public static VisualAppearance GetAppearance(this PlayerControl player)
         {
-            try {
-                if (player.TryGetAppearance(Role.GetRole(player) as IVisualAlteration, out var appearance))
-                    return appearance;
-                else if (player.TryGetAppearance(Modifier.GetModifier(player) as IVisualAlteration, out appearance))
-                    return appearance;
-                else
-                    return player.GetDefaultAppearance();
-            } catch {
+            if (player.TryGetAppearance(Role.GetRole(player) as IVisualAlteration, out var appearance))
+                return appearance;
+            else if (player.TryGetAppearance(Modifier.GetModifier(player) as IVisualAlteration, out appearance))
+                return appearance;
+            else
                 return player.GetDefaultAppearance();
+        }
+        public static bool IsImpostor(this GameData.PlayerInfo playerinfo)
+        {
+            return playerinfo?.Role?.TeamType == RoleTeamTypes.Impostor;
+        }
+
+        public static void SetImpostor(this GameData.PlayerInfo playerinfo, bool impostor)
+        {
+            if (playerinfo.Role != null)
+                playerinfo.Role.TeamType = impostor ? RoleTeamTypes.Impostor : RoleTeamTypes.Crewmate;
+        }
+
+        public static GameData.PlayerOutfit GetDefaultOutfit(this PlayerControl playerControl)
+        {
+            return playerControl.Data.DefaultOutfit;
+        }
+
+        public static void SetOutfit(this PlayerControl playerControl, CustomPlayerOutfitType CustomOutfitType, GameData.PlayerOutfit outfit)
+        {
+            playerControl.Data.SetOutfit((PlayerOutfitType)CustomOutfitType, outfit);
+            playerControl.SetOutfit(CustomOutfitType);
+        }
+        public static void SetOutfit(this PlayerControl playerControl, CustomPlayerOutfitType CustomOutfitType)
+        {
+            var outfitType = (PlayerOutfitType)CustomOutfitType;
+            if (!playerControl.Data.Outfits.ContainsKey(outfitType))
+            {
+                return;
             }
+            var newOutfit = playerControl.Data.Outfits[outfitType];
+            playerControl.CurrentOutfitType = outfitType;
+            playerControl.RawSetName(newOutfit.PlayerName);
+            playerControl.RawSetColor(newOutfit.ColorId);
+            playerControl.RawSetHat(newOutfit.HatId, newOutfit.ColorId);
+            playerControl.RawSetVisor(newOutfit.VisorId);
+            playerControl.RawSetPet(newOutfit.PetId, newOutfit.ColorId);
+            if (playerControl?.MyPhysics?.Skin?.skin?.ProdId != newOutfit.SkinId)
+                playerControl.RawSetSkin(newOutfit.SkinId);
+
+        }
+
+
+        public static CustomPlayerOutfitType GetCustomOutfitType(this PlayerControl playerControl)
+        {
+            return (CustomPlayerOutfitType)playerControl.CurrentOutfitType;
+        }
+
+        public static bool IsNullOrDestroyed(this System.Object obj)
+        {
+
+            if (object.ReferenceEquals(obj, null)) return true;
+
+            if (obj is UnityEngine.Object) return (obj as UnityEngine.Object) == null;
+
+            return false;
         }
     }
 }

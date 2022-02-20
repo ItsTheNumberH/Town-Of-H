@@ -14,9 +14,9 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         public static void UpdateProtectButton(PlayerControl __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) return;
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var protectButton = DestroyableSingleton<HudManager>.Instance.KillButton;
@@ -27,12 +27,12 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (isDead)
             {
                 protectButton.gameObject.SetActive(false);
-                protectButton.isActive = false;
+             //   protectButton.isActive = false;
             }
             else
             {
                 protectButton.gameObject.SetActive(!MeetingHud.Instance);
-                protectButton.isActive = !MeetingHud.Instance;
+                //protectButton.isActive = !MeetingHud.Instance;
                 protectButton.SetCoolDown(0f, 1f);
                 if (role.UsedAbility) return;
                 Utils.SetTarget(ref role.ClosestPlayer, protectButton);

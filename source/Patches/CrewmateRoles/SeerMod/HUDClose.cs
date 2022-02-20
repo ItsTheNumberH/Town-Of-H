@@ -20,7 +20,6 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             {
                 var seer = (Seer) role;
                 seer.LastInvestigated = DateTime.UtcNow;
-                seer.LastInvestigated = seer.LastInvestigated.AddSeconds(-10.0);
                 if (CustomGameOptions.SeerFixPer == SeerFixPer.Round) seer.UsedThisRound = false;
             }
         }

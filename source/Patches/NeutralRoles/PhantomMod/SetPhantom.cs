@@ -34,6 +34,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                 Role.RoleDictionary.Remove(PlayerControl.LocalPlayer.PlayerId);
                 var role = new Phantom(PlayerControl.LocalPlayer);
                 role.RegenTask();
+                Lights.SetLights();
 
                 RemoveTasks(PlayerControl.LocalPlayer);
                 PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
@@ -50,17 +51,8 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
             var startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
-            if (PlayerControl.GameOptions.MapId == 2)
-            {
-                while (startingVent == ShipStatus.Instance.AllVents[5])
-                {
-                    startingVent = ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
-                }
-            }
-            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
-            if (CustomGameOptions.PhantomSpawnInVent) {
-                PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
-            }
+            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(new Vector2(startingVent.transform.position.x, startingVent.transform.position.y + 0.3636f));
+            PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
         }
 
         public static void Postfix(ExileController __instance) => ExileControllerPostfix(__instance);
@@ -72,7 +64,6 @@ namespace TownOfUs.NeutralRoles.PhantomMod
 
 
             foreach (var task in player.myTasks)
-            {
                 if (task.TryCast<NormalPlayerTask>() != null)
                 {
                     var normalPlayerTask = task.Cast<NormalPlayerTask>();
@@ -94,31 +85,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                     var taskInfo = player.Data.FindTaskById(task.Id);
                     taskInfo.Complete = false;
                 }
-            }
         }
-
-        /*public static void ResetTowels(NormalPlayerTask task)
-        {
-            var towelTask = task.Cast<TowelTask>();
-            var data = new byte[8];
-            var array = Enumerable.Range(0, 14).ToList();
-            array.Shuffle();
-            var b3 = 0;
-            while (b3 < data.Length)
-            {
-                data[b3] = (byte)array[b3];
-                b3++;
-            }
-
-            towelTask.Data = data;
-            return;
-        }
-
-        public static void ResetRecords(NormalPlayerTask task)
-        {
-            task.Data = new 
-        }*/
-
         public static void AddCollider(Phantom role)
         {
             var player = role.Player;
@@ -133,11 +100,16 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             {
                 if (MeetingHud.Instance) return;
                 if (PlayerControl.LocalPlayer.Data.IsDead) return;
-                role.Caught = true;
-                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.CatchPhantom, SendOption.Reliable, -1);
-                writer.Write(role.Player.PlayerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer);
+                var taskinfos = player.Data.Tasks.ToArray();
+                var tasksLeft = taskinfos.Count(x => !x.Complete);
+                if (tasksLeft <= CustomGameOptions.PhantomTasksRemaining)
+                {
+                    role.Caught = true;
+                    var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.CatchPhantom, SendOption.Reliable, -1);
+                    writer.Write(role.Player.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+                }
             }));
         }
     }

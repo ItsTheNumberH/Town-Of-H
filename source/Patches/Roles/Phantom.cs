@@ -1,3 +1,4 @@
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -13,14 +14,15 @@ namespace TownOfUs.Roles
             Name = "Phantom";
             ImpostorText = () => "";
             TaskText = () => "Complete all your tasks without being caught!";
-            Color = new Color(0.4f, 0.16f, 0.38f, 1f);
+            Color = Patches.Colors.Phantom;
             RoleType = RoleEnum.Phantom;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Neutral;
         }
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            LostByRPC = true;
         }
 
         public void Fade()
@@ -40,23 +42,24 @@ namespace TownOfUs.Roles
             distPercent = Mathf.Max(0, distPercent - 1);
 
             var velocity = Player.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
-            color.a = 0.07f + velocity / Player.MyPhysics.TrueGhostSpeed * 0.1f;
+            color.a = 0.07f + velocity / Player.MyPhysics.TrueGhostSpeed * 0.13f;
             color.a = Mathf.Lerp(color.a, 0, distPercent);
 
-            Player.MyRend.color = color;
+            if (Player.GetCustomOutfitType() != CustomPlayerOutfitType.PlayerNameOnly)
+            {
+                Player.SetOutfit(CustomPlayerOutfitType.PlayerNameOnly, new GameData.PlayerOutfit()
+                {
+                    ColorId = Player.GetDefaultOutfit().ColorId,
+                    HatId = "",
+                    SkinId = "",
+                    VisorId = "",
+                    _playerName = ""
+                });
+            }
 
-            Player.HatRenderer.SetHat(0, 0);
-            Player.nameText.text = "";
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[0].ProdId)
-                Player.MyPhysics.SetSkin(0);
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
+            Player.MyRend.color = color;
+            Player.nameText.color = Color.clear;
+
         }
     }
 }

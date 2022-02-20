@@ -7,10 +7,11 @@ namespace TownOfUs.Roles
         public Engineer(PlayerControl player) : base(player)
         {
             Name = "Engineer";
-            ImpostorText = () => "Instantly fix a sabotage and use vents";
-            TaskText = () => "You can use vents and fix a sabotage from anywhere.";
-            Color = new Color(1f, 0.65f, 0.04f, 1f);
+            ImpostorText = () => "Use vents and remotely fix sabotages";
+            TaskText = () => "Vent and fix a sabotage from anywhere!";
+            Color = Patches.Colors.Engineer;
             RoleType = RoleEnum.Engineer;
+            AddToRoleHistory(RoleType);
         }
 
         public bool UsedThisRound { get; set; } = false;

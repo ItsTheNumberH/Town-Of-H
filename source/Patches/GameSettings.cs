@@ -13,8 +13,58 @@ namespace TownOfUs
     [HarmonyPatch]
     public static class GameSettings
     {
+        public static bool AllOptions;
+        public static bool LastTab;
 
-        [HarmonyPatch]
+        /*public static string StringBuild()
+        {
+            var builder = new StringBuilder("Roles:\n");
+            foreach (var option in TownOfUs.Roles)
+            {
+                builder.AppendLine($"     {option.Name}: {option}");
+            }
+
+            builder.AppendLine("Modifiers:");
+            foreach (var option in TownOfUs.Modifiers)
+            {
+                builder.AppendLine($"     {option.Name}: {option}");
+            }
+            
+            
+            foreach (var option in TownOfUs.AllOptions)
+            {
+                builder.AppendLine($"{option.Name}: {option}");
+            }
+            
+
+            return builder.ToString();
+        }
+
+        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.FixedUpdate))]
+        public static class LobbyFix
+        {
+
+            public static bool Prefix()
+            {
+                
+                DestroyableSingleton<HudManager>.Instance.GameSettings.text = StringBuild();
+                DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(true);
+                return false;
+            }
+        }
+
+
+        [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
+        [HarmonyAfter("com.comando.essentials")]
+        public static class FixScale
+        {
+            public static void Prefix(HudManager __instance)
+            {
+//                __instance.GameSettings.scale = 0.3f;
+            }
+        }*/
+
+        [HarmonyPatch] //ToHudString
         private static class GameOptionsDataPatch
         {
             public static IEnumerable<MethodBase> TargetMethods()
@@ -24,7 +74,7 @@ namespace TownOfUs
 
             private static void Postfix(ref string __result)
             {
-                var builder = new StringBuilder("");
+                var builder = new StringBuilder(AllOptions ? __result : "");
 
                 foreach (var option in CustomOption.CustomOption.AllOptions)
                 {
@@ -39,6 +89,7 @@ namespace TownOfUs
                     else if (option.Indent) builder.AppendLine($"     {option.Name}: {option}");
                     else builder.AppendLine($"{option.Name}: {option}");
                 }
+
                 __result = builder.ToString();
                 __result = $"<size=1.25>{__result}</size>";
             }
@@ -49,7 +100,7 @@ namespace TownOfUs
         {
             public static void Postfix(ref GameOptionsMenu __instance)
             {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 105f;
+                __instance.GetComponentInParent<Scroller>().ContentYBounds.max = (__instance.Children.Length - 6.5f) / 2;
             }
         }
     }

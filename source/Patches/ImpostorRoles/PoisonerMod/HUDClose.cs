@@ -14,7 +14,7 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Poisoner))
             {
                 var role = Role.GetRole<Poisoner>(PlayerControl.LocalPlayer);
-                role.PoisonButton.renderer.sprite = TownOfUs.PoisonSprite;
+                role.PoisonButton.graphic.sprite = TownOfUs.PoisonSprite;
                 role.LastPoisoned = DateTime.UtcNow;
             }
         }

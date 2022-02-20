@@ -7,33 +7,19 @@ namespace TownOfUs.Roles
         public Underdog(PlayerControl player) : base(player)
         {
             Name = "Underdog";
-            ImpostorText = () =>
-                CustomGameOptions.UnderdogPlayers
-                    ? "The fewer crewmates alive, the faster you kill"
-                    : "You kill faster if you're the only impostor";
-            TaskText = () =>
-                CustomGameOptions.UnderdogPlayers
-                    ? "Kill cooldown gets faster the fewer crewmates are alive"
-                    : "You kill faster if you're the only impostor, but slower otherwise";
-            Color = Palette.ImpostorRed;
+            ImpostorText = () => "Kill faster when the you're the lone impostor";
+            TaskText = () => "Longer kill cooldown unless you're the last impostor. Then kill fast!";
+            Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Underdog;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
         }
 
-        public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * (
-            PerformKill.LastImp() ? 0.5f : 1.5f
-        );
-        public float MaxTimerRemainingPlayers() => PlayerControl.GameOptions.KillCooldown * (
-            PerformKill.LastImpRemainingPlayers()
-        );
+        public float MaxTimer() => PerformKill.LastImp() ? PlayerControl.GameOptions.KillCooldown - (CustomGameOptions.UnderdogKillBonus) : (PerformKill.IncreasedKC() ? PlayerControl.GameOptions.KillCooldown : PlayerControl.GameOptions.KillCooldown + (CustomGameOptions.UnderdogKillBonus));
 
         public void SetKillTimer()
         {
-            if (CustomGameOptions.UnderdogPlayers) {
-                Player.SetKillTimer(MaxTimerRemainingPlayers());
-            } else {
-                Player.SetKillTimer(MaxTimer());
-            }
+            Player.SetKillTimer(MaxTimer());
         }
     }
 }

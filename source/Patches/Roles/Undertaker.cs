@@ -4,15 +4,16 @@ namespace TownOfUs.Roles
 {
     public class Undertaker : Role
     {
-        public KillButtonManager _dragDropButton;
+        public KillButton _dragDropButton;
 
         public Undertaker(PlayerControl player) : base(player)
         {
             Name = "Undertaker";
             ImpostorText = () => "Drag bodies and hide them";
             TaskText = () => "Drag bodies around to hide them from being reported";
-            Color = Palette.ImpostorRed;
+            Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Undertaker;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
         }
 
@@ -20,7 +21,7 @@ namespace TownOfUs.Roles
         public DeadBody CurrentTarget { get; set; }
         public DeadBody CurrentlyDragging { get; set; }
 
-        public KillButtonManager DragDropButton
+        public KillButton DragDropButton
         {
             get => _dragDropButton;
             set

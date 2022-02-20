@@ -2,21 +2,22 @@ namespace TownOfUs.Roles
 {
     public class Janitor : Role
     {
-        public KillButtonManager _cleanButton;
+        public KillButton _cleanButton;
 
         public Janitor(PlayerControl player) : base(player)
         {
             Name = "Janitor";
-            ImpostorText = () => "Kill and clean up bodies";
+            ImpostorText = () => "Clean up bodies";
             TaskText = () => "Clean bodies to prevent Crewmates from discovering them.";
-            Color = Palette.ImpostorRed;
+            Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Janitor;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
         }
 
         public DeadBody CurrentTarget { get; set; }
 
-        public KillButtonManager CleanButton
+        public KillButton CleanButton
         {
             get => _cleanButton;
             set

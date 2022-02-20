@@ -3,16 +3,18 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
 using UnityEngine;
+using TownOfUs.CrewmateRoles.MedicMod;
 
 namespace TownOfUs.CrewmateRoles.SeerMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKill
     {
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return true;
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
+            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Seer);
+            if (!flag) return true;
             var role = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
             role.randomSeerAccuracy = UnityEngine.Random.RandomRangeInt(0, 100);
             if (role.UsedThisRound) return false;
@@ -26,7 +28,28 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             if (role.ClosestPlayer == null) return false;
             var playerId = role.ClosestPlayer.PlayerId;
             role.UsedThisRound = true;
+            if (role.ClosestPlayer.IsOnAlert())
+            {
+                if (role.Player.IsShielded())
+                {
+                    var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                    writer2.Write(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId);
+                    writer2.Write(PlayerControl.LocalPlayer.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer2);
 
+                    System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
+                    if (CustomGameOptions.ShieldBreaks)
+                        role.LastInvestigated = DateTime.UtcNow;
+                    StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                }
+                else
+                {
+                    Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                }
+
+                return false;
+            }
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.Investigate, SendOption.Reliable, -1);

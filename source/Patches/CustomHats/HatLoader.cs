@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -19,29 +20,40 @@ namespace TownOfUs.Patches.CustomHats
         private static ManualLogSource Log => PluginSingleton<TownOfUs>.Instance.Log;
         private static Assembly Assembly => typeof(TownOfUs).Assembly;
 
-        internal static void LoadHats()
+        private static bool LoadedHats = false;
+
+        internal static void LoadHatsRoutine()
         {
-            Log.LogMessage($"Generating Hats from namespace {HAT_RESOURCE_NAMESPACE}");
+            if (LoadedHats || !DestroyableSingleton<HatManager>.InstanceExists || DestroyableSingleton<HatManager>.Instance.AllHats.Count == 0)
+                return;
+            LoadedHats = true;
+            Coroutines.Start(LoadHats());
+        }
+
+        internal static IEnumerator LoadHats()
+        {
+          
             try
             {
                 var hatJson = LoadJson();
-                
                 var hatBehaviours = DiscoverHatBehaviours(hatJson);
 
                 DestroyableSingleton<HatManager>.Instance.AllHats.ForEach(
                     (Action<HatBehaviour>)(x => x.StoreName = "Vanilla")
                 );
+                var originalCount = DestroyableSingleton<HatManager>.Instance.AllHats.Count;
                 for (var i = 0; i < hatBehaviours.Count; i++)
                 {
-                    hatBehaviours[i].Order = HAT_ORDER_BASELINE + i;
+                    hatBehaviours[i].Order = originalCount + i;
                     HatManager.Instance.AllHats.Add(hatBehaviours[i]);
                 }
-            
+
             }
             catch (Exception e)
             {
                 Log.LogError($"Error while loading hats: {e.Message}\nStack: {e.StackTrace}");
             }
+            yield return null;
         }
 
         private static HatMetadataJson LoadJson()
@@ -63,15 +75,17 @@ namespace TownOfUs.Patches.CustomHats
                     {
                         var hatBehaviour = GenerateHatBehaviour(stream.ReadFully());
                         hatBehaviour.StoreName = hatCredit.Artist;
-                        hatBehaviour.ProductId = hatCredit.Name;
+                        hatBehaviour.ProductId = hatCredit.Id;
+                        hatBehaviour.name = hatCredit.Name;
+                        hatBehaviour.Free = true;
                         hatBehaviours.Add(hatBehaviour);
                     }
                 }
                 catch (Exception e)
                 {
-                    // Log.LogError(
-                    //     $"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
-                    // Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
+                   Log.LogError(
+                        $"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
+                     Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
 

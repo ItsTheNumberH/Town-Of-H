@@ -8,14 +8,14 @@ namespace TownOfUs.Roles
     {
         public readonly List<Footprint> AllPrints = new List<Footprint>();
 
-
         public Investigator(PlayerControl player) : base(player)
         {
             Name = "Investigator";
             ImpostorText = () => "You can see footprints";
-            TaskText = () => "You can see everyone's footprints.";
-            Color = new Color(0f, 0.7f, 0.7f, 1f);
+            TaskText = () => "You can see footprints.";
+            Color = Patches.Colors.Investigator;
             RoleType = RoleEnum.Investigator;
+            AddToRoleHistory(RoleType);
             Scale = 1.4f;
         }
     }

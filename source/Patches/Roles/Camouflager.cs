@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
     public class Camouflager : Role
 
     {
-        public KillButtonManager _camouflageButton;
+        public KillButton _camouflageButton;
         public bool Enabled;
         public DateTime LastCamouflaged;
         public float TimeRemaining;
@@ -16,14 +16,15 @@ namespace TownOfUs.Roles
             Name = "Camouflager";
             ImpostorText = () => "Camouflage and turn everyone grey";
             TaskText = () => "Camouflage and get secret kills";
-            Color = Palette.ImpostorRed;
+            Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Camouflager;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
         }
 
         public bool Camouflaged => TimeRemaining > 0f;
 
-        public KillButtonManager CamouflageButton
+        public KillButton CamouflageButton
         {
             get => _camouflageButton;
             set

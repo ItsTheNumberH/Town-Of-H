@@ -5,60 +5,57 @@ namespace TownOfUs.CustomOption
     public class Generate
     {
         public static CustomHeaderOption CrewmateRoles;
-        public static CustomNumberOption MayorOn;
-        public static CustomNumberOption LoversOn;
-        public static CustomNumberOption SheriffOn;
-        public static CustomNumberOption EngineerOn;
-        public static CustomNumberOption SwapperOn;
-        public static CustomNumberOption InvestigatorOn;
-        public static CustomNumberOption TimeLordOn;
-        public static CustomNumberOption MedicOn;
-        public static CustomNumberOption SeerOn;
-        public static CustomNumberOption SpyOn;
-        public static CustomNumberOption SnitchOn;
-        public static CustomNumberOption TrackerOn;
         public static CustomNumberOption AltruistOn;
-        public static CustomNumberOption ButtonBarryOn;
-
+        public static CustomNumberOption EngineerOn;
+        public static CustomNumberOption HaunterOn;
+        public static CustomNumberOption InvestigatorOn;
+        public static CustomNumberOption MayorOn;
+        public static CustomNumberOption MedicOn;
+        public static CustomNumberOption MediumOn;
+        public static CustomNumberOption SeerOn;
+        public static CustomNumberOption SheriffOn;
+        public static CustomNumberOption SnitchOn;
+        public static CustomNumberOption SpyOn;
+        public static CustomNumberOption SwapperOn;
+        public static CustomNumberOption TimeLordOn;
+        public static CustomNumberOption TrackerOn;
+        public static CustomNumberOption VeteranOn;
+        public static CustomNumberOption VigilanteOn;
+        public static CustomNumberOption TransporterOn;
 
         public static CustomHeaderOption NeutralRoles;
+        public static CustomNumberOption AmnesiacOn;
         public static CustomNumberOption ArsonistOn;
-        public static CustomNumberOption CannibalOn;
         public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption GlitchOn;
+        public static CustomNumberOption JuggernautOn;
         public static CustomNumberOption JesterOn;
-        public static CustomNumberOption ShifterOn;
-
-        public static CustomHeaderOption GhostRoles;
         public static CustomNumberOption PhantomOn;
 
         public static CustomHeaderOption ImpostorRoles;
-        public static CustomNumberOption JanitorOn;
-        public static CustomNumberOption MorphlingOn;
-        public static CustomNumberOption PoisonerOn;
-        public static CustomNumberOption PuppeteerOn;
         public static CustomNumberOption CamouflagerOn;
-        public static CustomNumberOption MinerOn;
-        public static CustomNumberOption SwooperOn;
-        public static CustomNumberOption UndertakerOn;
-        public static CustomNumberOption AssassinOn;
-        public static CustomNumberOption VigilanteOn;
-        public static CustomNumberOption ChameleonOn;
-        public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption GrenadierOn;
-        public static CustomNumberOption FramerOn;
-        public static CustomNumberOption FreezerOn;
-
+        public static CustomNumberOption MorphlingOn;
+        public static CustomNumberOption JanitorOn;
+        public static CustomNumberOption MinerOn;
+        public static CustomNumberOption PoisonerOn;
+        public static CustomNumberOption SwooperOn;
+        public static CustomNumberOption TraitorOn;
+        public static CustomNumberOption UnderdogOn;
+        public static CustomNumberOption UndertakerOn;
         public static CustomHeaderOption Modifiers;
         public static CustomNumberOption BaitOn;
-        public static CustomNumberOption BlindOn;
-        public static CustomNumberOption ChildOn;
+        public static CustomNumberOption ButtonBarryOn;
         public static CustomNumberOption DiseasedOn;
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption FlashOn;
         public static CustomNumberOption GiantOn;
+        public static CustomNumberOption LoversOn;
+        public static CustomNumberOption SleuthOn;
         public static CustomNumberOption TiebreakerOn;
         public static CustomNumberOption TorchOn;
+        public static CustomNumberOption ChildOn;
+        public static CustomNumberOption BlindOn;
         public static CustomNumberOption VolatileOn;
 
         public static CustomHeaderOption CustomGameSettings;
@@ -66,43 +63,38 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption MeetingColourblind;
         public static CustomToggleOption ImpostorSeeRoles;
         public static CustomToggleOption DeadSeeRoles;
-        public static CustomNumberOption MaxImpostorRoles;
+        public static CustomToggleOption WhiteNameplates;
         public static CustomNumberOption MaxNeutralRoles;
-        public static CustomToggleOption allowParallelMedBayScans;
-        public static CustomToggleOption blockSkippingInEmergencyMeetings;
-        public static CustomToggleOption BetterPolus;
-        public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption InitialCooldowns;
-        public static CustomToggleOption ShowKillAnimation;
-        public static CustomToggleOption ShowEndgameSummary;
+        public static CustomToggleOption ParallelMedScans;
+        public static CustomToggleOption blockSkippingInEmergencyMeetings;
+        public static CustomToggleOption BetterSkeld;
+        public static CustomToggleOption BetterPolus;
+        public static CustomToggleOption BetterAirship;
+
+        public static CustomHeaderOption TaskTrackingSettings;
+        public static CustomToggleOption SeeTasksDuringRound;
+        public static CustomToggleOption SeeTasksDuringMeeting;
+        public static CustomToggleOption SeeTasksWhenDead;
 
         public static CustomHeaderOption Mayor;
         public static CustomNumberOption MayorVoteBank;
         public static CustomToggleOption MayorAnonymous;
-
-        public static CustomHeaderOption Lovers;
-        public static CustomToggleOption BothLoversDie;
+        public static CustomToggleOption MayorButton;
 
         public static CustomHeaderOption Sheriff;
-        public static CustomToggleOption ShowSheriff;
         public static CustomToggleOption SheriffKillOther;
         public static CustomToggleOption SheriffKillsJester;
         public static CustomToggleOption SheriffKillsGlitch;
-        public static CustomToggleOption SheriffKillsArsonist;
-        public static CustomToggleOption SheriffKillsShifter;
-        public static CustomToggleOption SheriffKillsCannibal;
         public static CustomToggleOption SheriffKillsExecutioner;
+        public static CustomToggleOption SheriffKillsArsonist;
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
 
-        public static CustomHeaderOption Shifter;
-        public static CustomNumberOption ShifterCd;
-        public static CustomStringOption WhoShifts;
-        public static CustomToggleOption ShiftGlitch;
-        public static CustomToggleOption ShifterCrewmate;
-        public static CustomToggleOption ShowShift;
 
+        public static CustomToggleOption AmnesiacCrewmate;
+        public static CustomStringOption AmnesiacNeutralBecomes;
         public static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
 
@@ -113,32 +105,41 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption AnonymousFootPrint;
         public static CustomToggleOption VentFootprintVisible;
 
-        public static CustomHeaderOption Tracker;
-        public static CustomNumberOption TrackerCooldown;
-        public static CustomStringOption TrackPer;
-        public static CustomNumberOption TrackerInterval;
-
         public static CustomHeaderOption TimeLord;
         public static CustomToggleOption RewindRevive;
         public static CustomNumberOption RewindDuration;
         public static CustomNumberOption RewindCooldown;
+        public static CustomNumberOption RewindMaxUses;
         public static CustomToggleOption TimeLordVitals;
 
         public static CustomHeaderOption Medic;
         public static CustomStringOption ShowShielded;
+        public static CustomStringOption WhoGetsNotification;
+        public static CustomToggleOption ShieldBreaks;
         public static CustomToggleOption MedicReportSwitch;
         public static CustomNumberOption MedicReportNameDuration;
         public static CustomNumberOption MedicReportColorDuration;
-        public static CustomStringOption WhoGetsNotification;
-        public static CustomToggleOption ShieldBreaks;
 
         public static CustomHeaderOption Seer;
         public static CustomNumberOption SeerCooldown;
-        public static CustomStringOption SeerInfo;
+        public static CustomToggleOption CrewKillingRed;
+        public static CustomToggleOption NeutBenignRed;
+        public static CustomToggleOption NeutEvilRed;
+        public static CustomToggleOption NeutKillingRed;
         public static CustomNumberOption SeerAccuracy;
-        public static CustomStringOption SeeReveal;
-        public static CustomToggleOption NeutralRed;
         public static CustomStringOption SeerPer;
+
+        public static CustomHeaderOption Swapper;
+        public static CustomToggleOption SwapperButton;
+
+        public static CustomHeaderOption Transporter;
+        public static CustomNumberOption TransportCooldown;
+        public static CustomNumberOption TransportMaxUses;
+        public static CustomToggleOption TransporterVitals;
+
+        public static CustomHeaderOption Jester;
+        public static CustomToggleOption JesterButton;
+        public static CustomToggleOption JesterVent;
 
         public static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
@@ -146,26 +147,13 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption HackCooldownOption;
         public static CustomNumberOption HackDurationOption;
         public static CustomNumberOption GlitchKillCooldownOption;
-        public static CustomNumberOption InitialGlitchKillCooldownOption;
         public static CustomStringOption GlitchHackDistanceOption;
-
+        public static CustomToggleOption GlitchVent;
 
         public static CustomHeaderOption Morphling;
         public static CustomNumberOption MorphlingCooldown;
         public static CustomNumberOption MorphlingDuration;
-
-        public static CustomHeaderOption Poisoner;
-        public static CustomNumberOption PoisonerCooldown;
-        public static CustomNumberOption InitialPoisonerCooldown;
-        public static CustomNumberOption PoisonerDuration;
-        public static CustomNumberOption PoisonAlertDelay;
-        public static CustomStringOption WhoGetsPoisonAlert;
-
-        public static CustomHeaderOption Puppeteer;
-
-        public static CustomHeaderOption Freezer;
-        public static CustomNumberOption FreezeBreakTime;
-        public static CustomNumberOption FreezerCooldown;
+        public static CustomToggleOption MorphlingVent;
 
         public static CustomHeaderOption Camouflager;
         public static CustomNumberOption CamouflagerCooldown;
@@ -173,10 +161,18 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Executioner;
         public static CustomStringOption OnTargetDead;
+        public static CustomToggleOption ExecutionerButton;
+
+        public static CustomHeaderOption Amnesiac;
+        public static CustomHeaderOption Phantom;
+        public static CustomNumberOption PhantomTasksRemaining;
+        public static CustomToggleOption RevealPhantom;
 
         public static CustomHeaderOption Snitch;
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
+        public static CustomNumberOption SnitchTasksRemaining;
+        public static CustomToggleOption SnitchSeesImpInMeeting;
 
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
@@ -188,65 +184,79 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Swooper;
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
+        public static CustomToggleOption SwooperVent;
 
         public static CustomHeaderOption Arsonist;
         public static CustomNumberOption DouseCooldown;
         public static CustomToggleOption ArsonistGameEnd;
-
-        public static CustomHeaderOption Cannibal;
-        public static CustomNumberOption CannibalCd;
-        public static CustomNumberOption NumberCannibalBodies;
-        public static CustomNumberOption CannibalBodyCount;
-
-        public static CustomHeaderOption Phantom;
-        public static CustomToggleOption PhantomSpawnInVent;
+        public static CustomToggleOption ArsonistButton;
 
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
+        public static CustomToggleOption UndertakerVent;
+        public static CustomToggleOption UndertakerVentWithBody;
+
+        public static CustomHeaderOption Assassin;
+        public static CustomNumberOption NumberOfAssassins;
+        public static CustomToggleOption AmneTurnAssassin;
+        public static CustomToggleOption TraitorCanAssassin;
+        public static CustomNumberOption AssassinKills;
+        public static CustomToggleOption AssassinGuessNeutrals;
+        public static CustomToggleOption AssassinCrewmateGuess;
+        public static CustomToggleOption AssassinMultiKill;
+        public static CustomToggleOption AssassinSnitchViaCrewmate;
 
         public static CustomHeaderOption Underdog;
-        public static CustomToggleOption UnderdogPlayers;
+        public static CustomNumberOption UnderdogKillBonus;
+        public static CustomToggleOption UnderdogIncreasedKC;
+
+        public static CustomHeaderOption Vigilante;
+        public static CustomNumberOption VigilanteKills;
+        public static CustomToggleOption VigilanteGuessNeutrals;
+        public static CustomToggleOption VigilanteMultiKill;
+
+        public static CustomHeaderOption Haunter;
+        public static CustomNumberOption HaunterTasksRemainingClicked;
+        public static CustomNumberOption HaunterTasksRemainingAlert;
+        public static CustomToggleOption HaunterRevealsNeutrals;
+        public static CustomStringOption HaunterCanBeClickedBy;
 
         public static CustomHeaderOption Grenadier;
         public static CustomNumberOption GrenadeCooldown;
         public static CustomNumberOption GrenadeDuration;
         public static CustomToggleOption GrenadierVent;
+        public static CustomNumberOption FlashRadius;
 
-        private static CustomHeaderOption Framer;
-        public static CustomNumberOption FrameCooldown;
-        public static CustomNumberOption TimeToFrame;
-        public static CustomNumberOption FrameDuration;
-        public static CustomStringOption FrameTarget;
+        public static CustomHeaderOption Veteran;
+        public static CustomToggleOption KilledOnAlert;
+        public static CustomNumberOption AlertCooldown;
+        public static CustomNumberOption AlertDuration;
+        public static CustomNumberOption MaxAlerts;
 
-        public static CustomHeaderOption Assassin;
-        public static CustomNumberOption AssassinKills;
-        public static CustomToggleOption AssassinGuessNeutrals;
-        public static CustomToggleOption AssassinGuessChameleon;
-        public static CustomToggleOption AssassinCrewmateGuess;
-        public static CustomToggleOption AssassinMultiKill;
-        public static CustomToggleOption AssassinShowKill;
+        public static CustomHeaderOption Tracker;
+        public static CustomNumberOption UpdateInterval;
+        public static CustomNumberOption TrackCooldown;
+        public static CustomToggleOption ResetOnNewRound;
+        public static CustomNumberOption MaxTracks;
 
-        public static CustomHeaderOption Vigilante;
-        public static CustomNumberOption VigilanteKills;
-        public static CustomToggleOption VigilanteGuessNeutrals;
-        public static CustomToggleOption VigilanteImpostorGuess;
-        public static CustomToggleOption VigilanteMultiKill;
-        public static CustomToggleOption VigilanteShowKill;
+        public static CustomHeaderOption Poisoner;
+        public static CustomNumberOption PoisonCooldown;
+        public static CustomNumberOption PoisonDuration;
+        public static CustomToggleOption PoisonAlertSwitch;
+        public static CustomToggleOption PoisonerVent;
 
-        public static CustomHeaderOption Chameleon;
-        public static CustomNumberOption ChameleonCooldown;
-        public static CustomNumberOption ChameleonDuration;
+        public static CustomHeaderOption Traitor;
+        public static CustomNumberOption LatestSpawn;
 
-        public static CustomNumberOption PossessTime;
-        public static CustomNumberOption PossessCd;
-        public static CustomNumberOption PossessMaxTime;
-        public static CustomNumberOption ReleaseWaitTime;
-
-        public static CustomNumberOption FlashSpeed;
+        public static CustomHeaderOption Lovers;
+        public static CustomToggleOption BothLoversDie;
+        public static CustomNumberOption LovingImpPercent;
+        public static CustomToggleOption NeutralLovers;
 
         public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
-        private static Func<object, string> PlusFormat { get; } = value => $"+{value:0.0#}";
+        private static Func<object, string> MultiplierFormat { get; } = value => $"{value:0.0#}x";
+        public static CustomStringOption WhoCanVent;
 
 
         public static void GenerateAll()
@@ -256,21 +266,20 @@ namespace TownOfUs.CustomOption
             Patches.ExportButton = new Export(num++);
             Patches.ImportButton = new Import(num++);
 
-            /* CREWMATE ROLES */
             CrewmateRoles = new CustomHeaderOption(num++, "Crewmate Roles");
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ChameleonOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Chameleon</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
             EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            HaunterOn = new CustomNumberOption(true, num++, "<color=#D3D3D3FF>Haunter</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             InvestigatorOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Investigator</color>", 0f, 0f, 100f,
                 10f, PercentFormat);
-            LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
             MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);                
+            MediumOn = new CustomNumberOption(true, num++, "<color=#ABABFFFF>Medium</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -284,40 +293,33 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             TimeLordOn = new CustomNumberOption(true, num++, "<color=#0000FFFF>Time Lord</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            TrackerOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Tracker</color>", 0f, 0f, 100f, 10f,
+            TrackerOn = new CustomNumberOption(true, num++, "<color=#009900FF>Tracker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            VigilanteOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Vigilante</color>", 0f, 0f, 100f, 10f,
+            TransporterOn = new CustomNumberOption(true, num++, "<color=#00EEFFFF>Transporter</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            VeteranOn = new CustomNumberOption(true, num++, "<color=#998040FF>Veteran</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            VigilanteOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Vigilante</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            /*NEUTRAL ROLES */
             NeutralRoles = new CustomHeaderOption(num++, "Neutral Roles");
+            AmnesiacOn = new CustomNumberOption(true, num++, "<color=#7FDFFFFF>Amnesiac</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            CannibalOn = new CustomNumberOption(true, num++, "<color=#AC8A00FF>Cannibal</color>", 0f, 0f, 100f, 10f,
+            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 0f, 0f, 100f,
-                10f, PercentFormat);
-            GlitchOn = new CustomNumberOption(true, num++, "<color=#00FF00FF>Glitch</color>", 0f, 0f, 100f, 10f,
+            GlitchOn = new CustomNumberOption(true, num++, "<color=#00FF00FF>The Glitch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>Jester</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ShifterOn = new CustomNumberOption(true, num++, "<color=#999999FF>Shifter</color>", 0f, 0f, 100f, 10f,
+            JuggernautOn = new CustomNumberOption(true, num++, "<color=#8C004DFF>Juggernaut</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            PhantomOn = new CustomNumberOption(true, num++, "<color=#662962FF>Phantom</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            /* GHOST ROLES */
-            GhostRoles = new CustomHeaderOption(num++, "Ghost Roles");
-            PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-
-            /* IMPOSTOR ROLES */
             ImpostorRoles = new CustomHeaderOption(num++, "Impostor Roles");
-            AssassinOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Assassin</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            CamouflagerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Camouflager</color>", 0f, 0f, 100f,
-                10f, PercentFormat);
-            FramerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Framer</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            FreezerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Freezer</color>", 0f, 0f, 100f, 10f,
+            CamouflagerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Camouflager</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             GrenadierOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Grenadier</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -329,264 +331,276 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             PoisonerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Poisoner</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            PuppeteerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Puppeteer</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
             SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Swooper</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            TraitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Traitor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            /* MODIFIERS */
+
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
-            BaitOn =
-                new CustomNumberOption(true, num++, "<color=#00B3B3FF>Bait</color>", 0f, 0f, 100f, 10f,
-                    PercentFormat);
-            BlindOn =
-                new CustomNumberOption(true, num++, "<color=#AAAAAAFF>Blind</color>", 0f, 0f, 100f, 10f,
-                    PercentFormat);
-            ButtonBarryOn =
-                new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
-                    PercentFormat);
-            ChildOn = new CustomNumberOption(true, num++, "<color=#FFFFFFFF>Child</color>", 0f, 0f, 100f, 10f,
+            BaitOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Bait</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            DiseasedOn =
-                new CustomNumberOption(true, num++, "<color=#808080FF>Diseased</color>", 0f, 0f, 100f, 10f,
+            BlindOn = new CustomNumberOption(true, num++, "<color=#AAAAAAFF>Blind</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            ButtonBarryOn = new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            ChildOn = new CustomNumberOption(true, num++, "<color=#FFFFFFFF>Child</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
+            DiseasedOn = new CustomNumberOption(true, num++, "<color=#808080FF>Diseased</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             DrunkOn = new CustomNumberOption(true, num++, "<color=#758000FF>Drunk</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Lagger</color>", 0f, 0f, 100f, 10f,
+            FlashOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Flash</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            FlashSpeed =
-                new CustomNumberOption(true, num++, "<color=#FF8080FF>Lagger speed</color>", 1f, 1f, 3f, 0.1f,
-                PlusFormat);
-            GiantOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Giant</color>", 0f, 0f, 100f, 10f,
+            GiantOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Giant</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            SleuthOn = new CustomNumberOption(true, num++, "<color=#803333FF>Sleuth</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>Tiebreaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            VolatileOn =
-                new CustomNumberOption(true, num++, "<color=#FFA60AFF>Volatile</color>", 0f, 0f, 100f, 10f,
+            VolatileOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Volatile</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
 
-            /* CUSTOM GAMES SETTINGS */
             CustomGameSettings =
                 new CustomHeaderOption(num++, "Custom Game Settings");
             ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", false);
             MeetingColourblind = new CustomToggleOption(num++, "Camouflaged Meetings", false);
-            ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors can see the roles of their team", false);
+            ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors Can See The Roles Of Their Team", false);
             DeadSeeRoles =
-                new CustomToggleOption(num++, "Dead can see everyone's roles", false);
-            MaxImpostorRoles =
-                new CustomNumberOption(num++, "Max Impostor Roles", 1f, 1f, 3f, 1f);
+                new CustomToggleOption(num++, "Dead Can See Everyone's Roles/Votes", false);
             MaxNeutralRoles =
                 new CustomNumberOption(num++, "Max Neutral Roles", 1f, 1f, 5f, 1f);
-            RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
-            VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
+            VanillaGame = new CustomNumberOption(num++, "Probability Of A Completely Vanilla Game", 0f, 0f, 100f, 5f,
                 PercentFormat);
             InitialCooldowns =
                 new CustomNumberOption(num++, "Game Start Cooldowns", 10, 10, 30, 2.5f, CooldownFormat);
-            ShowKillAnimation = new CustomToggleOption(num++, "Show Kill Animation", true);
-            allowParallelMedBayScans = new CustomToggleOption(num++, "Allow parallel Med Bay Scans");
-            blockSkippingInEmergencyMeetings = new CustomToggleOption(num++, "No skipping in emergency meetings");
-            BetterPolus = new CustomToggleOption(num++, "Better Polus MOD", true);
-            ShowEndgameSummary = new CustomToggleOption(num++, "Show End game Summary", true);
+            ParallelMedScans = new CustomToggleOption(num++, "Parallel Medbay Scans", false);
+            WhiteNameplates = new CustomToggleOption(num++, "Classic Meeting Nameplates", false);
+            blockSkippingInEmergencyMeetings = new CustomToggleOption(num++, "No skipping in emergency meetings", true);
+            BetterSkeld = new CustomToggleOption(num++, "Better Skeld", false);
+            BetterPolus = new CustomToggleOption(num++, "Better Polus", true);
+            BetterAirship = new CustomToggleOption(num++, "Better Airship", true);
+            WhoCanVent =
+                new CustomStringOption(num++, "Gamemode: Who Can Vent",
+                    new[] { "Default", "Everyone", "No One" });
 
-            /* ROLE SETTINGS */
-            /* ALTRUIST */
+
+            TaskTrackingSettings =
+                new CustomHeaderOption(num++, "Task Tracking Settings");
+            SeeTasksDuringRound = new CustomToggleOption(num++, "See Tasks During Round", false);
+            SeeTasksDuringMeeting = new CustomToggleOption(num++, "See Tasks During Meetings", false);
+            SeeTasksWhenDead = new CustomToggleOption(num++, "See Tasks When Dead", true);
+
+            Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin Ability</color>");
+            NumberOfAssassins = new CustomNumberOption(num++, "Number Of Assassins", 1, 0, 3, 1);
+            AmneTurnAssassin = new CustomToggleOption(num++, "Amnesiac Turned Impostor Gets Ability", false);
+            TraitorCanAssassin = new CustomToggleOption(num++, "Traitor Gets Ability", false);
+            AssassinKills = new CustomNumberOption(num++, "Number Of Assassin Kills", 1, 1, 15, 1);
+            AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin Can Guess \"Crewmate\"", true);
+            AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin Can Guess Neutral Roles", true);
+            AssassinMultiKill = new CustomToggleOption(num++, "Assassin Can Kill More Than Once Per Meeting", true);
+            AssassinSnitchViaCrewmate = new CustomToggleOption(num++, "Assassinate Snitch Via \"Crewmate\" Guess", true);
+
+            /* CREWMATE ROLES */
             Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
             ReviveDuration =
                 new CustomNumberOption(num++, "Altruist Revive Duration", 10, 1, 30, 1f, CooldownFormat);
             AltruistTargetBody =
-                new CustomToggleOption(num++, "Target's body disappears on beginning of revive", false);
+                new CustomToggleOption(num++, "Target's Body Disappears On Beginning Of Revive", false);
 
-            /* CHAMELEON */
-            Chameleon =
-                new CustomHeaderOption(num++, "<color=#66E666FF>Chameleon</color>");
-            ChameleonCooldown =
-                new CustomNumberOption(num++, "Chameleon Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
-            ChameleonDuration =
-                new CustomNumberOption(num++, "Chameleon Duration", 10, 5, 15, 1f, CooldownFormat);
-
-            /* ENGINEER */
             Engineer =
                 new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
             EngineerPer =
-                new CustomStringOption(num++, "Engineer Fix Per", new[] {"Round", "Game"});
+                new CustomStringOption(num++, "Engineer Fix Per", new[] { "Round", "Game" });
 
-            /* INVESTIGATOR */
+            Haunter =
+                new CustomHeaderOption(num++, "<color=#d3d3d3FF>Haunter</color>");
+            HaunterTasksRemainingClicked =
+                 new CustomNumberOption(num++, "Tasks Remaining When Haunter Can Be Clicked", 5, 1, 10, 1);
+            HaunterTasksRemainingAlert =
+                 new CustomNumberOption(num++, "Tasks Remaining When Alert Is Sent", 1, 1, 5, 1);
+            HaunterRevealsNeutrals = new CustomToggleOption(num++, "Haunter Reveals Neutral Roles", false);
+            HaunterCanBeClickedBy = new CustomStringOption(num++, "Who Can Click Haunter", new[] { "All", "Non-Crew", "Imps Only" });
+
             Investigator =
                 new CustomHeaderOption(num++, "<color=#00B3B3FF>Investigator</color>");
             FootprintSize = new CustomNumberOption(num++, "Footprint Size", 4f, 1f, 10f, 1f);
             FootprintInterval =
-                new CustomNumberOption(num++, "Footprint Interval", 1f, 0.25f, 5f, 0.25f, CooldownFormat);
+                new CustomNumberOption(num++, "Footprint Interval", 0.1f, 0.05f, 1f, 0.05f, CooldownFormat);
             FootprintDuration = new CustomNumberOption(num++, "Footprint Duration", 10f, 1f, 10f, 0.5f, CooldownFormat);
             AnonymousFootPrint = new CustomToggleOption(num++, "Anonymous Footprint", false);
             VentFootprintVisible = new CustomToggleOption(num++, "Footprint Vent Visible", false);
 
-            /* LOVERS */
-            Lovers =
-                new CustomHeaderOption(num++, "<color=#FF66CCFF>Lovers</color>");
-            BothLoversDie = new CustomToggleOption(num++, "Both Lovers Die");
-
-            /* MAYOR */
             Mayor =
                 new CustomHeaderOption(num++, "<color=#704FA8FF>Mayor</color>");
             MayorVoteBank =
                 new CustomNumberOption(num++, "Initial Mayor Vote Bank", 1, 1, 5, 1);
             MayorAnonymous =
                 new CustomToggleOption(num++, "Mayor Votes Show Anonymous", false);
+            MayorButton =
+                new CustomToggleOption(num++, "Mayor Can Button", true);
 
-            /* MEDIC */
             Medic =
                 new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
             ShowShielded =
                 new CustomStringOption(num++, "Show Shielded Player",
-                    new[] {"Self", "Medic", "Self+Medic", "Everyone"});
+                    new[] { "Self", "Medic", "Self+Medic", "Everyone" });
+            WhoGetsNotification =
+                new CustomStringOption(num++, "Who Gets Murder Attempt Indicator",
+                    new[] { "Medic", "Shielded", "Everyone", "Nobody" });
+            ShieldBreaks = new CustomToggleOption(num++, "Shield Breaks On Murder Attempt", true);
             MedicReportSwitch = new CustomToggleOption(num++, "Show Medic Reports");
             MedicReportNameDuration =
-                new CustomNumberOption(num++, "Time Where Medic Reports Will Have Name", 0, 0, 60, 2.5f,
+                new CustomNumberOption(num++, "Time Where Medic Will Have Name", 0, 0, 60, 2.5f,
                     CooldownFormat);
             MedicReportColorDuration =
-                new CustomNumberOption(num++, "Time Where Medic Reports Will Have Color Type", 15, 0, 120, 2.5f,
+                new CustomNumberOption(num++, "Time Where Medic Will Have Color Type", 0, 0, 120, 2.5f,
                     CooldownFormat);
-            WhoGetsNotification =
-                new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
-            ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", false);
 
-            /* SHERIFF */
-            Sheriff =
-                new CustomHeaderOption(num++, "<color=#FFFF00FF>Sheriff</color>");
-            ShowSheriff = new CustomToggleOption(num++, "Show Sheriff", false);
-            SheriffKillOther =
-                new CustomToggleOption(num++, "Sheriff Miskill Kills Crewmate", false);
-            SheriffKillsArsonist =
-                new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
-            SheriffKillsCannibal =
-                new CustomToggleOption(num++, "Sheriff Kills Cannibal", false);
-            SheriffKillsExecutioner =
-                new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
-            SheriffKillsGlitch =
-                new CustomToggleOption(num++, "Sheriff Kills The Glitch", true);
-            SheriffKillsJester =
-                new CustomToggleOption(num++, "Sheriff Kills Jester", false);
-            SheriffKillsShifter =
-                new CustomToggleOption(num++, "Sheriff Kills Shifter", false);
-            SheriffKillCd =
-                new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
-            SheriffBodyReport = new CustomToggleOption(num++, "Sheriff can report who they've killed");
-
-            /* SEER */
             Seer =
                 new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
             SeerCooldown =
-                new CustomNumberOption(num++, "Seer Cooldown", 25f, 10f, 100f, 2.5f, CooldownFormat);
-            SeerInfo =
-                new CustomStringOption(num++, "Info that Seer sees", new[] {"Role", "Team", "Roles"});
+                new CustomNumberOption(num++, "Seer Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            CrewKillingRed =
+                new CustomToggleOption(num++, "Crewmate Killing Roles Show Evil", false);
+            NeutBenignRed =
+                new CustomToggleOption(num++, "Neutral Benign Roles Show Evil", false);
+            NeutEvilRed =
+                new CustomToggleOption(num++, "Neutral Evil Roles Show Evil", false);
+            NeutKillingRed =
+                new CustomToggleOption(num++, "Neutral Killing Roles Show Evil", false);
             SeerAccuracy = new CustomNumberOption(num++, "Seer Accuracy", 100f, 0f, 100f, 5f,
                 PercentFormat);
-            SeeReveal =
-                new CustomStringOption(num++, "Who Sees That They Are Revealed",
-                    new[] {"Crew", "Imps+Neut", "All", "Nobody"});
-            NeutralRed =
-                new CustomToggleOption(num++, "Neutrals show up as Impostors", false);
             SeerPer =
                 new CustomStringOption(num++, "Seer Reveal Per", new[] {"Round", "Game"});
 
-            /* SNITCH */
+            Sheriff =
+                new CustomHeaderOption(num++, "<color=#FFFF00FF>Sheriff</color>");
+            SheriffKillOther =
+                new CustomToggleOption(num++, "Sheriff Miskill Kills Crewmate", false);
+            SheriffKillsJester =
+                new CustomToggleOption(num++, "Sheriff Kills Jester", false);
+            SheriffKillsGlitch =
+                new CustomToggleOption(num++, "Sheriff Kills The Glitch", false);
+            SheriffKillsExecutioner =
+                new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
+            SheriffKillsArsonist =
+                new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
+            SheriffKillCd =
+                new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            SheriffBodyReport = new CustomToggleOption(num++, "Sheriff Can Report Who They've Killed");
+
             Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
             SnitchOnLaunch =
-                new CustomToggleOption(num++, "Snitch knows who they are on Game Start", false);
-            SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch sees neutral roles", false);
+                new CustomToggleOption(num++, "Snitch Knows Who They Are On Game Start", false);
+            SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch Sees Neutral Roles", false);
+            SnitchTasksRemaining =
+                 new CustomNumberOption(num++, "Tasks Remaining When Revealed", 1, 1, 5, 1);
+            SnitchSeesImpInMeeting = new CustomToggleOption(num++, "Snitch Sees Impostors In Meetings", true);
 
-            /* TIMELORD */
+            Swapper =
+                new CustomHeaderOption(num++, "<color=#66E666FF>Swapper</color>");
+            SwapperButton =
+                new CustomToggleOption(num++, "Swapper Can Button", true);
+
             TimeLord =
                 new CustomHeaderOption(num++, "<color=#0000FFFF>Time Lord</color>");
             RewindRevive = new CustomToggleOption(num++, "Revive During Rewind", false);
-            RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 3f, 2f, 10f, 0.5f, CooldownFormat);
+            RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 2f, 2f, 5f, 0.5f, CooldownFormat);
             RewindCooldown = new CustomNumberOption(num++, "Rewind Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            RewindMaxUses =
+                 new CustomNumberOption(num++, "Maximum Number Of Rewinds", 5, 1, 15, 1);
             TimeLordVitals =
-                new CustomToggleOption(num++, "Time Lord can use Vitals", false);
+                new CustomToggleOption(num++, "Time Lord Can Use Vitals", false);
 
-            /* TRACKER */
+            Transporter =
+                new CustomHeaderOption(num++, "<color=#00EEFFFF>Transporter</color>");
+            TransportCooldown =
+                new CustomNumberOption(num++, "Transport Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            TransportMaxUses =
+                new CustomNumberOption(num++, "Maximum Number Of Transports", 5, 1, 15, 1);
+            TransporterVitals =
+                new CustomToggleOption(num++, "Transporter Can Use Vitals", false);
+
             Tracker =
-                new CustomHeaderOption(num++, "<color=#00B3B3FF>Tracker</color>");
-            TrackerCooldown =
-                new CustomNumberOption(num++, "Tracker Cooldown", 25f, 10f, 100f, 2.5f, CooldownFormat);
-            TrackPer =
-                new CustomStringOption(num++, "Track Per", new[] {"Round", "Game"});
-            TrackerInterval =
-                new CustomNumberOption(num++, "Tracker Interval", 25f, 0f, 50f, 5f, CooldownFormat);
+                new CustomHeaderOption(num++, "<color=#009900FF>Tracker</color>");
+            UpdateInterval =
+                new CustomNumberOption(num++, "Arrow Update Interval", 5f, 0.5f, 15f, 0.5f, CooldownFormat);
+            TrackCooldown =
+                new CustomNumberOption(num++, "Track Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            ResetOnNewRound = new CustomToggleOption(num++, "Tracker Arrows Reset After Each Round", false);
+            MaxTracks = new CustomNumberOption(num++, "Maximum Number Of Tracks Per Round", 3, 1, 15, 1);
 
-            /* VIGILANTE */
-            Vigilante = new CustomHeaderOption(num++, "<color=#FFFF00FF>Vigilante</color>");
-            VigilanteKills = new CustomNumberOption(num++, "Number of Vigilante Kills", 1, 1, 15, 1);
-            VigilanteImpostorGuess = new CustomToggleOption(num++, "Vigilante can Guess \"Impostor\"", false);
-            VigilanteGuessNeutrals = new CustomToggleOption(num++, "Vigilante can Guess Neutral roles", false);
-            VigilanteMultiKill = new CustomToggleOption(num++, "Vigilante can kill more than once per meeting");
-            VigilanteShowKill = new CustomToggleOption(num++, "Show vigilante kill animation");
+            Veteran =
+                new CustomHeaderOption(num++, "<color=#998040FF>Veteran</color>");
+            KilledOnAlert =
+                new CustomToggleOption(num++, "Can Be Killed On Alert", false);
+            AlertCooldown =
+                new CustomNumberOption(num++, "Alert Cooldown", 25, 10, 60, 2.5f, CooldownFormat);
+            AlertDuration =
+                new CustomNumberOption(num++, "Alert Duration", 10, 5, 15, 1f, CooldownFormat);
+            MaxAlerts = new CustomNumberOption(num++, "Maximum Number Of Alerts", 5, 1, 15, 1);
 
-            /* ARSONIST */
+            Vigilante = new CustomHeaderOption(num++, "<color=#FFFF99FF>Vigilante</color>");
+            VigilanteKills = new CustomNumberOption(num++, "Number Of Vigilante Kills", 1, 1, 15, 1);
+            VigilanteGuessNeutrals = new CustomToggleOption(num++, "Vigilante Can Guess Neutral Roles", false);
+            VigilanteMultiKill = new CustomToggleOption(num++, "Vigilante Can Kill More Than Once Per Meeting", false);
+
+            /*NEUTRAL ROLES*/
+            Amnesiac =
+                new CustomHeaderOption(num++, "<color=#&FDFFFFF>Amnesiac</color>");
+            AmnesiacCrewmate = new CustomToggleOption(num++, "Amnesiac Wins With Crew", true);
+            AmnesiacNeutralBecomes = new CustomStringOption(num++, "Neutral body becomes", new[] {"Jester", "Crewmate" });
+
             Arsonist = new CustomHeaderOption(num++, "<color=#FF4D00FF>Arsonist</color>");
             DouseCooldown =
-                new CustomNumberOption(num++, "Douse Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
-            ArsonistGameEnd = new CustomToggleOption(num++, "Game keeps going so long as Arsonist is alive", false);
+                new CustomNumberOption(num++, "Douse Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            ArsonistGameEnd = new CustomToggleOption(num++, "Game Continues As Long As Arsonist Is Alive", false);
+            ArsonistButton =
+                new CustomToggleOption(num++, "Arsonist Can Button", true);
 
-            /* CANNIBAL */
-            Cannibal = new CustomHeaderOption(num++, "<color=#AC8A00FF>Cannibal</color>");
-            CannibalCd =
-                new CustomNumberOption(num++, "Cannibal Cooldown", 0f, 0f, 60f, 2.5f, CooldownFormat);
-            CannibalBodyCount = new CustomNumberOption(num++, "Number of bodies to eat", 1, 1, 5, 1);
-
-            /* EXECUTIONER */
             Executioner =
                 new CustomHeaderOption(num++, "<color=#8C4005FF>Executioner</color>");
-            OnTargetDead = new CustomStringOption(num++, "Executioner becomes on Target Dead",
-                new[] {"Crew", "Jester"});
+            OnTargetDead = new CustomStringOption(num++, "Executioner Becomes On Target Dead",
+                new[] { "Crew", "Jester", "Amnesiac" });
+            ExecutionerButton =
+                new CustomToggleOption(num++, "Executioner Can Button", true);
 
-            /* THE GLITCH */
             TheGlitch =
                 new CustomHeaderOption(num++, "<color=#00FF00FF>The Glitch</color>");
-            MimicCooldownOption = new CustomNumberOption(num++, "Mimic Cooldown", 30, 10, 120, 2.5f, CooldownFormat);
-            MimicDurationOption = new CustomNumberOption(num++, "Mimic Duration", 10, 1, 30, 1f, CooldownFormat);
-            HackCooldownOption = new CustomNumberOption(num++, "Hack Cooldown", 30, 10, 120, 2.5f, CooldownFormat);
-            HackDurationOption = new CustomNumberOption(num++, "Hack Duration", 10, 1, 30, 1f, CooldownFormat);
+            MimicCooldownOption = new CustomNumberOption(num++, "Mimic Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
+            MimicDurationOption = new CustomNumberOption(num++, "Mimic Duration", 10f, 1f, 30f, 1f, CooldownFormat);
+            HackCooldownOption = new CustomNumberOption(num++, "Hack Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
+            HackDurationOption = new CustomNumberOption(num++, "Hack Duration", 10f, 1f, 30f, 1f, CooldownFormat);
             GlitchKillCooldownOption =
-                new CustomNumberOption(num++, "Glitch Kill Cooldown", 30, 10, 120, 2.5f, CooldownFormat);
-            InitialGlitchKillCooldownOption =
-                new CustomNumberOption(num++, "Initial Glitch Kill Cooldown", 10, 10, 120, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Glitch Kill Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
             GlitchHackDistanceOption =
-                new CustomStringOption(num++, "Glitch Hack Distance", new[] {"Short", "Normal", "Long"});
+                new CustomStringOption(num++, "Glitch Hack Distance", new[] { "Short", "Normal", "Long" });
+            GlitchVent =
+                new CustomToggleOption(num++, "Glitch Can Vent", false);
 
-            /* SHIFTER */
-            Shifter =
-                new CustomHeaderOption(num++, "<color=#999999FF>Shifter</color>");
-            ShifterCd =
-                new CustomNumberOption(num++, "Shifter Cooldown", 30f, 10f, 60f, 2.5f, CooldownFormat);
-            WhoShifts = new CustomStringOption(num++,
-                "Who gets the Shifter role on Shift", new[] {"Non-Impostors", "Crewmates only", "Nobody"});
-            ShowShift = new CustomToggleOption(num++, "Show Shift", true);
-            ShiftGlitch = new CustomToggleOption(num++, "Shift Glitch", false);
-            ShifterCrewmate =
-                new CustomToggleOption(num++, "Shifter Wins With Crew", true);
+            Jester =
+                new CustomHeaderOption(num++, "<color=#FFBFCCFF>Jester</color>");
+            JesterButton =
+                new CustomToggleOption(num++, "Jester Can Button", true);
+            JesterVent =
+                new CustomToggleOption(num++, "Jester Can Hide In Vents", false);
 
-            /* PHANTOM */
-            Phantom = new CustomHeaderOption(num++, "<color=#662962>Phantom</color>");
-            PhantomSpawnInVent = new CustomToggleOption(num++, "Phantom spawns in vent", false);
+            Phantom =
+                new CustomHeaderOption(num++, "<color=#662962FF>Phantom</color>");
+            PhantomTasksRemaining =
+                 new CustomNumberOption(num++, "Tasks Remaining When Phantom Can Be Clicked", 5, 1, 10, 1);
+            RevealPhantom = new CustomToggleOption(num++, "Phantom Knows Who They Are On Game Start", true);
 
-            /* ASSASSIN */
-            Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin</color>");
-            AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 5, 1, 15, 1);
-            AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
-            AssassinGuessChameleon = new CustomToggleOption(num++, "Assassin can Guess \"Chameleon\"", false);
-            AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
-            AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
-            AssassinShowKill = new CustomToggleOption(num++, "Show Assassination animation");
-
-            /* CAMOUFLAGER */
+            /* IMPOSTOR ROLES */
             Camouflager =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Camouflager</color>");
             CamouflagerCooldown =
@@ -594,78 +608,70 @@ namespace TownOfUs.CustomOption
             CamouflagerDuration =
                 new CustomNumberOption(num++, "Camouflager Duration", 10, 5, 15, 1f, CooldownFormat);
 
-            /*FRAMER*/
-            Framer = new CustomHeaderOption(num++, "<color=#FF0000FF>Framer</color>");
-            FrameCooldown = new CustomNumberOption(num++, "Frame Cooldown", 30, 10, 60, 2.5f, CooldownFormat);
-            TimeToFrame = new CustomNumberOption(num++, "Delay Before Framing", 5, 2.5f, 15, 2.5f, CooldownFormat);
-            FrameDuration = new CustomNumberOption(num++, "Frame Duration", 10, 2.5f, 20f, 2.5f, CooldownFormat);
-            FrameTarget =
-                new CustomStringOption(num++, "Frame target as", new[] {"Self", "Random"});
-
-            /* FREEZER */
-            Freezer = new CustomHeaderOption(num++, "<color=#FF0000FF>Freezer</color>");
-            FreezerCooldown =
-                new CustomNumberOption(num++, "Freezer Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
-            FreezeBreakTime = new CustomNumberOption(num++, "Defrost Time", 20.0f, 5f, 60f, 5f, CooldownFormat);
-
-            /* GRENADIER */
             Grenadier =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Grenadier</color>");
             GrenadeCooldown =
-                new CustomNumberOption(num++, "Flash Grenade Cooldown", 30, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Flash Grenade Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             GrenadeDuration =
                 new CustomNumberOption(num++, "Flash Grenade Duration", 10, 5, 15, 1f, CooldownFormat);
+            FlashRadius =
+                new CustomNumberOption(num++, "Flash Radius", 1f, 0.25f, 5f, 0.25f, MultiplierFormat);
             GrenadierVent =
                 new CustomToggleOption(num++, "Grenadier Can Vent", false);
 
-            /* MINER */
             Miner = new CustomHeaderOption(num++, "<color=#FF0000FF>Miner</color>");
             MineCooldown =
                 new CustomNumberOption(num++, "Mine Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
 
-            /* MORPHLING */
             Morphling =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");
             MorphlingCooldown =
                 new CustomNumberOption(num++, "Morphling Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             MorphlingDuration =
                 new CustomNumberOption(num++, "Morphling Duration", 10, 5, 15, 1f, CooldownFormat);
+            MorphlingVent =
+                new CustomToggleOption(num++, "Morphling Can Vent", false);
 
-            /* POISONER */
             Poisoner =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Poisoner</color>");
-            PoisonerCooldown =
-                new CustomNumberOption(num++, "Poisoner Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
-            InitialPoisonerCooldown =
-                new CustomNumberOption(num++, "Game Start Poisoner Cooldown", 10, 10, 40, 2.5f, CooldownFormat);
-            PoisonerDuration =
-                new CustomNumberOption(num++, "Poisoner Duration", 10, 1, 10, 1f, CooldownFormat);
-            PoisonAlertDelay =
-                new CustomNumberOption(num++, "Poison alert delay", 5, 0, 5, 1f, CooldownFormat);
-            WhoGetsPoisonAlert =
-                new CustomStringOption(num++, "Who gets poison alert",
-                    new[] {"Poisoned", "Everyone", "Nobody"});
-
-            /* PUPPETEER */
-            Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
-            PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);
-            PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
-            ReleaseWaitTime = new CustomNumberOption(num++, "Wait Time After Release", 3.0f, 1f, 10f, 0.5f, CooldownFormat);
-
-            /* SWOOPER */
+            PoisonCooldown =
+                new CustomNumberOption(num++, "Poison Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            PoisonDuration =
+                new CustomNumberOption(num++, "Poison Kill Delay", 5, 1, 15, 1f, CooldownFormat);
+            PoisonAlertSwitch =
+                new CustomToggleOption(num++, "Poison Alert", true);
+            PoisonerVent =
+                new CustomToggleOption(num++, "Poisoner Can Vent", false);
             Swooper = new CustomHeaderOption(num++, "<color=#FF0000FF>Swooper</color>");
             SwoopCooldown =
                 new CustomNumberOption(num++, "Swoop Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             SwoopDuration =
                 new CustomNumberOption(num++, "Swoop Duration", 10, 5, 15, 1f, CooldownFormat);
+            SwooperVent =
+                new CustomToggleOption(num++, "Swooper Can Vent", false);
 
-            /* UNDERDOG */
+
+            Traitor = new CustomHeaderOption(num++, "<color=#FF0000FF>Traitor</color>");
+            LatestSpawn = new CustomNumberOption(num++, "Minimum People Alive When Traitor Can Spawn", 5, 2, 15, 1);
+
             Underdog = new CustomHeaderOption(num++, "<color=#FF0000FF>Underdog</color>");
-            UnderdogPlayers = new CustomToggleOption(num++, "Underdog cooldown based on players dead");
+            UnderdogKillBonus = new CustomNumberOption(num++, "Kill Cooldown Bonus", 5, 2.5f, 30, 2.5f, CooldownFormat);
+            UnderdogIncreasedKC = new CustomToggleOption(num++, "Increased Kill Cooldown When 2+ Imps", true);
 
-            /* UNDERTAKER */
             Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>Undertaker</color>");
             DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            UndertakerVent =
+                new CustomToggleOption(num++, "Undertaker Can Vent", false);
+            UndertakerVentWithBody =
+                new CustomToggleOption(num++, "Undertaker Can Vent While Dragging", false);
+
+            /* MODIFIERS */
+            Lovers =
+                new CustomHeaderOption(num++, "<color=#FF66CCFF>Lovers</color>");
+            BothLoversDie = new CustomToggleOption(num++, "Both Lovers Die");
+            LovingImpPercent = new CustomNumberOption(num++, "Loving Impostor Probability", 20f, 0f, 100f, 10f,
+                PercentFormat);
+            NeutralLovers = new CustomToggleOption(num++, "Neutral Roles Can Be Lovers");
         }
     }
 }

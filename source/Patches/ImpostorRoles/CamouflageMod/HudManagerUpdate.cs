@@ -18,17 +18,16 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             var role = Role.GetRole<Camouflager>(PlayerControl.LocalPlayer);
             if (role.CamouflageButton == null)
             {
-                role.CamouflageButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CamouflageButton.renderer.enabled = true;
-                role.CamouflageButton.renderer.sprite = Camouflage;
+                role.CamouflageButton = Object.Instantiate(__instance.KillButton, __instance.UseButton.transform.parent);
+                role.CamouflageButton.name = "CamouflageButton";
+                role.CamouflageButton.graphic.enabled = true;
+                role.CamouflageButton.graphic.sprite = Camouflage;
+                role.CamouflageButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.CamouflageButton.gameObject.SetActive(false);
             }
-
-            role.CamouflageButton.renderer.sprite = Camouflage;
-
+            role.CamouflageButton.GetComponent<AspectPosition>().Update();
             role.CamouflageButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.CamouflageButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
+
 
             if (role.Enabled)
             {
@@ -37,8 +36,8 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             }
 
             role.CamouflageButton.SetCoolDown(role.CamouflageTimer(), CustomGameOptions.CamouflagerCd);
-            role.CamouflageButton.renderer.color = Palette.EnabledColor;
-            role.CamouflageButton.renderer.material.SetFloat("_Desat", 0f);
+            role.CamouflageButton.graphic.color = Palette.EnabledColor;
+            role.CamouflageButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

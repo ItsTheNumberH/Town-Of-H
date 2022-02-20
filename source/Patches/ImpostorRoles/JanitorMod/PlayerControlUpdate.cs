@@ -17,16 +17,15 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             var role = Role.GetRole<Janitor>(PlayerControl.LocalPlayer);
             if (role.CleanButton == null)
             {
-                role.CleanButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CleanButton.renderer.enabled = true;
+                role.CleanButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                role.CleanButton.graphic.enabled = true;
+                role.CleanButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.CleanButton.gameObject.SetActive(false);
             }
 
+            role.CleanButton.GetComponent<AspectPosition>().Update();
             role.CleanButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.CleanButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
-
-            role.CleanButton.renderer.sprite = TownOfUs.JanitorClean;
+            role.CleanButton.graphic.sprite = TownOfUs.JanitorClean;
 
 
             var data = PlayerControl.LocalPlayer.Data;
@@ -37,7 +36,7 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
                        (!AmongUsClient.Instance || !AmongUsClient.Instance.IsGameOver) &&
                        PlayerControl.LocalPlayer.CanMove;
             var allocs = Physics2D.OverlapCircleAll(truePosition, maxDistance,
-                LayerMask.GetMask(new[] {"Players", "Ghost"}));
+                LayerMask.GetMask(new[] { "Players", "Ghost" }));
             var killButton = role.CleanButton;
             DeadBody closestBody = null;
             var closestDistance = float.MaxValue;

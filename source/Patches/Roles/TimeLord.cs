@@ -1,19 +1,26 @@
 using System;
 using TownOfUs.CrewmateRoles.TimeLordMod;
 using UnityEngine;
+using TMPro;
 
 namespace TownOfUs.Roles
 {
     public class TimeLord : Role
     {
+        public int UsesLeft;
+        public TextMeshPro UsesText;
+
+        public bool ButtonUsable => UsesLeft != 0;
         public TimeLord(PlayerControl player) : base(player)
         {
             Name = "Time Lord";
             ImpostorText = () => "Rewind Time";
             TaskText = () => "Rewind Time!";
-            Color = new Color(0f, 0f, 1f, 1f);
+            Color = Patches.Colors.TimeLord;
             RoleType = RoleEnum.TimeLord;
+            AddToRoleHistory(RoleType);
             Scale = 1.4f;
+            UsesLeft = CustomGameOptions.RewindMaxUses;
         }
 
         public DateTime StartRewind { get; set; }
@@ -43,7 +50,6 @@ namespace TownOfUs.Roles
             if (flag2) return 0;
             return (num - (float) timespan.TotalMilliseconds) / 1000f;
         }
-
 
         public float GetCooldown()
         {

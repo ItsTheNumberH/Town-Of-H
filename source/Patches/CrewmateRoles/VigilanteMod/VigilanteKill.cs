@@ -2,15 +2,18 @@
 using Hazel;
 using Reactor;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.Modifiers.AssassinMod;
 
 namespace TownOfUs.CrewmateRoles.VigilanteMod
 {
     public class VigilanteKill
     {
         public static void RpcMurderPlayer(PlayerControl player)
+
         {
             PlayerVoteArea voteArea = MeetingHud.Instance.playerStates.First(
                 x => x.TargetPlayerId == player.PlayerId
@@ -43,9 +46,7 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
             if (checkLover)
             {
                 SoundManager.Instance.PlaySound(player.KillSfx, false, 0.8f);
-                if (CustomGameOptions.VigilanteShowKill) {
-                    hudManager.KillOverlay.ShowKillAnimation(player.Data, player.Data);
-                }
+                hudManager.KillOverlay.ShowKillAnimation(player.Data, player.Data);
             }
             var amOwner = player.AmOwner;
             if (amOwner)
@@ -79,19 +80,15 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
 
                 player.myTasks.Insert(0, importantTextTask);
 
-                if (player.Is(RoleEnum.Swapper))
+                if (player.Is(AbilityEnum.Assassin))
                 {
-                    var buttons = Role.GetRole<Swapper>(player).Buttons;
-                    foreach (var button in buttons)
-                    {
-                        button.SetActive(false);
-                        button.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
-                    }
+                    var assassin = Ability.GetAbility<Assassin>(PlayerControl.LocalPlayer);
+                    ShowHideButtons.HideButtons(assassin);
                 }
             }
             player.Die(DeathReason.Kill);
-            if (checkLover && player.isLover() && CustomGameOptions.BothLoversDie)
-                MurderPlayer(Role.GetRole<Lover>(player).OtherLover.Player, false);
+            if (checkLover && player.IsLover() && CustomGameOptions.BothLoversDie)
+                MurderPlayer(Modifier.GetModifier<Lover>(player).OtherLover.Player, false);
 
             var meetingHud = MeetingHud.Instance;
             if (amOwner)
@@ -113,6 +110,7 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
             voteArea.Overlay.color = Color.white;
             voteArea.XMark.gameObject.SetActive(true);
             voteArea.XMark.transform.localScale = Vector3.one;
+
             foreach (var playerVoteArea in meetingHud.playerStates)
             {
                 if (playerVoteArea.VotedFor != player.PlayerId) continue;
@@ -140,7 +138,7 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
                                 mayor.VoteBank += votesRegained;
 
                             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                                (byte) CustomRPC.AddMayorVoteBank, SendOption.Reliable, -1);
+                                (byte)CustomRPC.AddMayorVoteBank, SendOption.Reliable, -1);
                             writer.Write(mayor.Player.PlayerId);
                             writer.Write(votesRegained);
                             AmongUsClient.Instance.FinishRpcImmediately(writer);

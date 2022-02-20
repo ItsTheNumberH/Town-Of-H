@@ -1,5 +1,7 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SnitchMod
 {
@@ -8,13 +10,17 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
     {
         private static void UpdateMeeting(MeetingHud __instance)
         {
-            foreach (var state in __instance.playerStates)
+            foreach (var player in PlayerControl.AllPlayerControls)
             {
-                var role = Role.GetRole(state);
-                if (role.Faction == Faction.Impostors || role.RoleType == RoleEnum.Impostor)
-                    state.NameText.color = Palette.ImpostorRed;
-                if (role.Faction == Faction.Neutral && CustomGameOptions.SnitchSeesNeutrals)
-                    state.NameText.color = role.Color;
+                foreach (var state in __instance.playerStates)
+                {
+                    if (player.PlayerId != state.TargetPlayerId) continue;
+                    var role = Role.GetRole(player);
+                    if (player.Is(Faction.Impostors))
+                        state.NameText.color = Palette.ImpostorRed;
+                    if (player.Is(Faction.Neutral) && CustomGameOptions.SnitchSeesNeutrals)
+                        state.NameText.color = role.Color;
+                }
             }
         }
 
@@ -23,14 +29,14 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Snitch)) return;
             var role = Role.GetRole<Snitch>(PlayerControl.LocalPlayer);
             if (!role.TasksDone) return;
-            if (MeetingHud.Instance) UpdateMeeting(MeetingHud.Instance);
+            if (MeetingHud.Instance && CustomGameOptions.SnitchSeesImpInMeeting) UpdateMeeting(MeetingHud.Instance);
 
             foreach (var player in PlayerControl.AllPlayerControls)
             {
-                if (player.Data.IsImpostor) player.nameText.color = Palette.ImpostorRed;
+                if (player.Data.IsImpostor()) player.nameText.color = Palette.ImpostorRed;
                 var playerRole = Role.GetRole(player);
                 if (playerRole.Faction == Faction.Neutral && CustomGameOptions.SnitchSeesNeutrals)
-                    player.nameText.color = role.Color;
+                    player.nameText.color = playerRole.Color;
             }
         }
     }

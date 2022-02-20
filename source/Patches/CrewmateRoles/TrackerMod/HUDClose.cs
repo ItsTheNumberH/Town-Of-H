@@ -5,11 +5,6 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.TrackerMod
 {
-    public enum TrackPer
-    {
-        Round,
-        Game
-    }
     [HarmonyPatch(typeof(Object), nameof(Object.Destroy), typeof(Object))]
     public static class HUDClose
     {
@@ -20,8 +15,11 @@ namespace TownOfUs.CrewmateRoles.TrackerMod
             {
                 var tracker = (Tracker) role;
                 tracker.LastTracked = DateTime.UtcNow;
-                tracker.LastTracked = tracker.LastTracked.AddSeconds(-10.0);
-                if (CustomGameOptions.TrackPer == TrackPer.Round) tracker.UsedTrack = false;
+                tracker.UsesLeft = CustomGameOptions.MaxTracks;
+                if (CustomGameOptions.ResetOnNewRound)
+                {
+                    tracker.DestroyAllArrows();
+                }
             }
         }
     }

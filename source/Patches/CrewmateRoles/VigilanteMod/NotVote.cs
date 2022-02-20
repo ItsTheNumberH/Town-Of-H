@@ -10,8 +10,8 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
         {
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Vigilante))
             {
-                var vigilante = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
-                ShowHideButtons.HideButtons(vigilante);
+                var retributionist = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
+                ShowHideButtonsVigi.HideButtonsVigi(retributionist);
             }
         }
     }

@@ -8,7 +8,8 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
     public enum OnTargetDead
     {
         Crew,
-        Jester
+        Jester,
+        Amnesiac
     }
 
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
@@ -23,10 +24,12 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
 
         private static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Executioner)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Executioner)) return;
+            if (PlayerControl.LocalPlayer.Data.IsDead) return;
+            
             var role = Role.GetRole<Executioner>(PlayerControl.LocalPlayer);
 
             if (role.target == null)
@@ -67,7 +70,16 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
                 var task = new GameObject("JesterTask").AddComponent<ImportantTextTask>();
                 task.transform.SetParent(player.transform, false);
                 task.Text =
-                    $"{jester.ColorString}Role: {jester.Name}\nYour target was killed. Now you get voted out!\nFake Tasks:[]";
+                    $"{jester.ColorString}Role: {jester.Name}\nYour target was killed. Now you get voted out!\nFake Tasks:";
+                player.myTasks.Insert(0, task);
+            }
+            else if (CustomGameOptions.OnTargetDead == OnTargetDead.Amnesiac)
+            {
+                var amnesiac = new Amnesiac(player);
+                var task = new GameObject("ShifterTask").AddComponent<ImportantTextTask>();
+                task.transform.SetParent(player.transform, false);
+                task.Text =
+                    $"{amnesiac.ColorString}Role: {amnesiac.Name}\nYour target was killed. Now remember a new role!\nFake Tasks:";
                 player.myTasks.Insert(0, task);
             }
             else

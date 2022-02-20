@@ -6,8 +6,8 @@ namespace TownOfUs
     [HarmonyPatch(typeof(KeyboardJoystick), nameof(KeyboardJoystick.Update))]
     public class ResetAnim
     {
-        //private static bool resetAnim;
-        //private static bool isHeldDown;
+        private static bool resetAnim;
+        private static bool isHeldDown;
 
         public static void Postfix()
         {

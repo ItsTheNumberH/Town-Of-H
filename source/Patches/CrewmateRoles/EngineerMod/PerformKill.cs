@@ -5,10 +5,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.EngineerMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKill
     {
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Engineer)) return true;
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;

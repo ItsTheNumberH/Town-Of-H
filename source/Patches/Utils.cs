@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.CustomHats;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles;
@@ -15,6 +14,7 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using PerformKill = TownOfUs.ImpostorRoles.UnderdogMod.PerformKill;
+using Reactor;
 
 namespace TownOfUs
 {
@@ -28,117 +28,35 @@ namespace TownOfUs
 
         public static List<WinningPlayerData> potentialWinners = new List<WinningPlayerData>();
 
-        public static void SetSkin(PlayerControl Player, uint skin)
-        {
-            Player.MyPhysics.SetSkin(skin);
-        }
-
-        public static void Frame(PlayerControl player, PlayerControl framer)
-        {
-            Morph(player, framer); 
-        }
-        public static void Unframe(PlayerControl player)
-        {
-            Unmorph(player);
-            player.MyRend.color = Color.white;
-        }
-        public static void Morph(PlayerControl Player, PlayerControl MorphedPlayer, bool resetAnim = false)
+        public static void Morph(PlayerControl player, PlayerControl MorphedPlayer, bool resetAnim = false)
         {
             if (CamouflageUnCamouflage.IsCamoed) return;
-
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer))
-            {
-                Player.nameText.text = MorphedPlayer.Data.PlayerName;
-            }
-
-            var targetAppearance = MorphedPlayer.GetDefaultAppearance();
-
-            PlayerControl.SetPlayerMaterialColors(targetAppearance.ColorId, Player.myRend);
-            Player.HatRenderer.SetHat(targetAppearance.HatId, targetAppearance.ColorId);
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                Player.Data.HatId == 0U ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
-                -0.5f
-            );
-
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[(int)targetAppearance.SkinId].ProdId)
-                SetSkin(Player, targetAppearance.SkinId);
-
-            if (Player.CurrentPet == null || Player.CurrentPet.ProdId !=
-                DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)targetAppearance.PetId].ProdId)
-            {
-                if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-
-                Player.CurrentPet =
-                    Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)targetAppearance.PetId]);
-                Player.CurrentPet.transform.position = Player.transform.position;
-                Player.CurrentPet.Source = Player;
-                Player.CurrentPet.Visible = Player.Visible;
-            }
-
-            PlayerControl.SetPlayerMaterialColors(targetAppearance.ColorId, Player.CurrentPet.rend);
-            /*if (resetAnim && !Player.inVent)
-            {
-                Player.MyPhysics.ResetAnim();
-            }*/
+            if (player.GetCustomOutfitType() != CustomPlayerOutfitType.Morph)
+                player.SetOutfit(CustomPlayerOutfitType.Morph, MorphedPlayer.Data.DefaultOutfit);
         }
 
-        public static void Unmorph(PlayerControl Player)
+        public static void Unmorph(PlayerControl player)
         {
-            var appearance = Player.GetDefaultAppearance();
-
-            Player.nameText.text = Player.Data.PlayerName;
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.myRend);
-            Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                appearance.HatId == 0U ? 1.5f :
-                HatCreation.TallIds.Contains(appearance.HatId) ? 2.2f : 2.0f,
-                -0.5f
-            );
-
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[(int)appearance.SkinId].ProdId)
-                SetSkin(Player, appearance.SkinId);
-
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)appearance.PetId]);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
-
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.CurrentPet.rend);
-
-            /*if (!Player.inVent)
-            {
-                Player.MyPhysics.ResetAnim();
-            }*/
+           player.SetOutfit(CustomPlayerOutfitType.Default);
         }
 
         public static void Camouflage()
         {
             foreach (var player in PlayerControl.AllPlayerControls)
             {
-                player.nameText.text = "";
-                PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
-                player.HatRenderer.SetHat(0, 0);
-                if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                    .AllSkins.ToArray()[0].ProdId)
-                    SetSkin(player, 0);
-
-                if (player.CurrentPet != null) Object.Destroy(player.CurrentPet.gameObject);
-                player.CurrentPet =
-                    Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]);
-                player.CurrentPet.transform.position = player.transform.position;
-                player.CurrentPet.Source = player;
-                player.CurrentPet.Visible = player.Visible;
+                if (player.GetCustomOutfitType() != CustomPlayerOutfitType.Camouflage)
+                {
+                    player.SetOutfit(CustomPlayerOutfitType.Camouflage, new GameData.PlayerOutfit()
+                    {
+                        ColorId = player.GetDefaultOutfit().ColorId,
+                        HatId = "",
+                        SkinId = "",
+                        VisorId = "",
+                        _playerName = " "
+                    });
+                    //player.nameText.text = "";
+                    PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
+                }
             }
         }
 
@@ -158,9 +76,9 @@ namespace TownOfUs
             if (!self.Contains(item)) self.Add(item);
         }
 
-        public static bool isLover(this PlayerControl player)
+        public static bool IsLover(this PlayerControl player)
         {
-            return player.Is(RoleEnum.Lover) || player.Is(RoleEnum.LoverImpostor);
+            return player.Is(ModifierEnum.Lover);
         }
 
         public static bool Is(this PlayerControl player, RoleEnum roleType)
@@ -173,6 +91,11 @@ namespace TownOfUs
             return Modifier.GetModifier(player)?.ModifierType == modifierType;
         }
 
+        public static bool Is(this PlayerControl player, AbilityEnum abilityType)
+        {
+            return Ability.GetAbility(player)?.AbilityType == abilityType;
+        }
+
         public static bool Is(this PlayerControl player, Faction faction)
         {
             return Role.GetRole(player)?.Faction == faction;
@@ -180,9 +103,13 @@ namespace TownOfUs
 
         public static List<PlayerControl> GetCrewmates(List<PlayerControl> impostors)
         {
-            return PlayerControl.AllPlayerControls.ToArray().Where(
-                player => !impostors.Any(imp => imp.PlayerId == player.PlayerId)
-            ).ToList();
+            try {
+                return PlayerControl.AllPlayerControls.ToArray().Where(
+                    player => !impostors.Any(imp => imp.PlayerId == player.PlayerId)
+                ).ToList();
+            } catch {
+                return null;
+            }
         }
 
         public static List<PlayerControl> GetImpostors(
@@ -203,7 +130,7 @@ namespace TownOfUs
             var role = Role.GetRole(player);
             if (role != null) return role.RoleType;
 
-            return player.Data.IsImpostor ? RoleEnum.Impostor : RoleEnum.Crewmate;
+            return player.Data.IsImpostor() ? RoleEnum.Impostor : RoleEnum.Crewmate;
         }
 
         public static PlayerControl PlayerById(byte id)
@@ -215,7 +142,7 @@ namespace TownOfUs
             return null;
         }
 
-        public static bool isShielded(this PlayerControl player)
+        public static bool IsShielded(this PlayerControl player)
         {
             return Role.GetRoles(RoleEnum.Medic).Any(role =>
             {
@@ -224,7 +151,7 @@ namespace TownOfUs
             });
         }
 
-        public static Medic getMedic(this PlayerControl player)
+        public static Medic GetMedic(this PlayerControl player)
         {
             return Role.GetRoles(RoleEnum.Medic).FirstOrDefault(role =>
             {
@@ -233,7 +160,16 @@ namespace TownOfUs
             }) as Medic;
         }
 
-        public static PlayerControl getClosestPlayer(PlayerControl refPlayer, List<PlayerControl> AllPlayers)
+        public static bool IsOnAlert(this PlayerControl player)
+        {
+            return Role.GetRoles(RoleEnum.Veteran).Any(role =>
+            {
+                var veteran = (Veteran)role;
+                return veteran != null && veteran.OnAlert && player.PlayerId == veteran.Player.PlayerId;
+            });
+        }
+
+        public static PlayerControl GetClosestPlayer(PlayerControl refPlayer, List<PlayerControl> AllPlayers)
         {
             var num = double.MaxValue;
             var refPosition = refPlayer.GetTruePosition();
@@ -256,13 +192,13 @@ namespace TownOfUs
             return result;
         }
 
-        public static PlayerControl getClosestPlayer(PlayerControl refplayer)
+        public static PlayerControl GetClosestPlayer(PlayerControl refplayer)
         {
-            return getClosestPlayer(refplayer, PlayerControl.AllPlayerControls.ToArray().ToList());
+            return GetClosestPlayer(refplayer, PlayerControl.AllPlayerControls.ToArray().ToList());
         }
         public static void SetTarget(
             ref PlayerControl closestPlayer,
-            KillButtonManager button,
+            KillButton button,
             float maxDistance = float.NaN,
             List<PlayerControl> targets = null
         )
@@ -282,45 +218,17 @@ namespace TownOfUs
         {
             if (float.IsNaN(maxDistance))
                 maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
-            var player = getClosestPlayer(
+            var player = GetClosestPlayer(
                 PlayerControl.LocalPlayer,
                 targets ?? PlayerControl.AllPlayerControls.ToArray().ToList()
             );
             var closeEnough = player == null || (
-                getDistBetweenPlayers(PlayerControl.LocalPlayer, player) < maxDistance
+                GetDistBetweenPlayers(PlayerControl.LocalPlayer, player) < maxDistance
             );
             return closestPlayer = closeEnough ? player : null;
         }
 
-        public static PlayerControl SetClosestPlayerToPlayer(
-            PlayerControl fromPlayer,
-            ref PlayerControl closestPlayer,
-            float maxDistance = float.NaN,
-            List<PlayerControl> targets = null
-        )
-        {
-            if (float.IsNaN(maxDistance))
-                maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
-            var player = getClosestPlayer(
-                fromPlayer,
-                targets ?? PlayerControl.AllPlayerControls.ToArray().ToList()
-            );
-            var closeEnough = player == null || (
-                getDistBetweenPlayers(fromPlayer, player) < maxDistance
-            );
-            return closestPlayer = closeEnough ? player : null;
-        }
-        public static void AirKill(PlayerControl player, PlayerControl target){
-            Vector3 vector = target.transform.position;
-            vector.z = vector.y / 1000f;
-            player.transform.position = vector;
-            player.NetTransform.SnapTo(vector);
-        }
-
-        public static float getZfromY(float y){
-            return y / 1000f;
-        }
-        public static double getDistBetweenPlayers(PlayerControl player, PlayerControl refplayer)
+        public static double GetDistBetweenPlayers(PlayerControl player, PlayerControl refplayer)
         {
             var truePosition = refplayer.GetTruePosition();
             var truePosition2 = player.GetTruePosition();
@@ -366,9 +274,7 @@ namespace TownOfUs
                     {
                     }
 
-                    if (CustomGameOptions.ShowKillAnimation) {
-                        DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killer.Data, data);
-                    }
+                    DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killer.Data, data);
                     DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(false);
                     target.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
                     target.RpcSetScanner(false);
@@ -398,9 +304,12 @@ namespace TownOfUs
                     target.myTasks.Insert(0, importantTextTask);
                 }
 
-                if (!killer.Is(RoleEnum.Poisoner) && !killer.Is(RoleEnum.Freezer)){
+                if (!killer.Is(RoleEnum.Poisoner))
+                {
                     killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(killer, target));
-                } else {
+                }
+                else
+                {
                     killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(target, target));
                 }
                 var deadBody = new DeadPlayer
@@ -422,40 +331,71 @@ namespace TownOfUs
                     return;
                 }
 
-                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor)
+                if (target.Is(ModifierEnum.Diseased) && killer.Is(RoleEnum.Juggernaut))
+                {
+                    var juggernaut = Role.GetRole<Juggernaut>(killer);
+                    juggernaut.LastKill = DateTime.UtcNow.AddSeconds(2 * (CustomGameOptions.GlitchKillCooldown + 5.0f - 5.0f * juggernaut.JuggKills));
+                    juggernaut.Player.SetKillTimer((CustomGameOptions.GlitchKillCooldown + 5.0f - 5.0f * juggernaut.JuggKills) * 3);
+                    return;
+                }
+
+                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
                 }
+
                 if (target.Is(ModifierEnum.Bait))
                 {
-                    killer.CmdReportDeadBody(GameData.Instance.GetPlayerById(target.PlayerId));
+                    Coroutines.Start(BaitReport(killer, GameData.Instance.GetPlayerById(target.PlayerId)));
                 }
 
                 if (killer.Is(RoleEnum.Underdog))
                 {
-                    if (CustomGameOptions.UnderdogPlayers) {
-                        killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImpRemainingPlayers()));
-                    } else {
-                        killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImp() ? 0.5f : 1.5f));
-                    }            
+                    var lowerKC = PlayerControl.GameOptions.KillCooldown - CustomGameOptions.UnderdogKillBonus;
+                    var normalKC = PlayerControl.GameOptions.KillCooldown;
+                    var upperKC = PlayerControl.GameOptions.KillCooldown + CustomGameOptions.UnderdogKillBonus;
+                    killer.SetKillTimer(PerformKill.LastImp() ? lowerKC : (PerformKill.IncreasedKC() ? normalKC : upperKC));
                     return;
                 }
 
-                if (killer.Data.IsImpostor)
+                if (killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }
             }
         }
+        public static IEnumerator BaitReport(PlayerControl killer, GameData.PlayerInfo target)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
 
+            if (AmongUsClient.Instance.AmHost)
+            {
+                MeetingRoomManager.Instance.reporter = killer;
+                MeetingRoomManager.Instance.target = target;
+                AmongUsClient.Instance.DisconnectHandlers.AddUnique(MeetingRoomManager.Instance
+                    .Cast<IDisconnectHandler>());
+                if (!ShipStatus.Instance.CheckTaskCompletion())
+                {
+                    DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(killer);
+                    killer.RpcStartMeeting(target);
+                }
+            }
+            else
+            {
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte)CustomRPC.BaitReport, SendOption.Reliable, -1);
+                writer.Write(killer.PlayerId);
+                writer.Write(target.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+            }
+        }
         public static IEnumerator FlashCoroutine(Color color, float waitfor = 1f, float alpha = 0.3f)
         {
             color.a = alpha;
             if (HudManager.InstanceExists && HudManager.Instance.FullScreen)
             {
                 var fullscreen = DestroyableSingleton<HudManager>.Instance.FullScreen;
-                var oldcolour = fullscreen.color;
                 fullscreen.enabled = true;
                 fullscreen.color = color;
             }
@@ -465,7 +405,11 @@ namespace TownOfUs
             if (HudManager.InstanceExists && HudManager.Instance.FullScreen)
             {
                 var fullscreen = DestroyableSingleton<HudManager>.Instance.FullScreen;
-                fullscreen.enabled = false;
+                if (fullscreen.color.Equals(color))
+                {
+                    fullscreen.color = new Color(1f, 0f, 0f, 0.37254903f);
+                    fullscreen.enabled = false;
+                }
             }
         }
 
@@ -489,18 +433,20 @@ namespace TownOfUs
         {
             ShipStatus.RpcEndGame(reason, showAds);
         }
-        
+
         [HarmonyPatch(typeof(MedScanMinigame), nameof(MedScanMinigame.FixedUpdate))]
-        class MedScanMinigameFixedUpdatePatch {
-            static void Prefix(MedScanMinigame __instance) {
-                if (CustomGameOptions.allowParallelMedBayScans) {
+        class MedScanMinigameFixedUpdatePatch
+        {
+            static void Prefix(MedScanMinigame __instance)
+            {
+                if (CustomGameOptions.ParallelMedScans)
+                {
                     //Allows multiple medbay scans at once
                     __instance.medscan.CurrentUser = PlayerControl.LocalPlayer.PlayerId;
                     __instance.medscan.UsersList.Clear();
                 }
             }
         }
-
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoStartMeeting))]
         class StartMeetingPatch {
             public static void Prefix(PlayerControl __instance, [HarmonyArgument(0)]GameData.PlayerInfo meetingTarget) {

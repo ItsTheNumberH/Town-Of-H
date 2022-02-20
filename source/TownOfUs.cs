@@ -9,14 +9,12 @@ using BepInEx.IL2CPP;
 using HarmonyLib;
 using Reactor;
 using Reactor.Extensions;
-using TownOfUs.CustomHats;
 using TownOfUs.CustomOption;
-using TownOfUs.Extensions;
+using TownOfUs.Patches.CustomHats;
 using TownOfUs.RainbowMod;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
@@ -25,9 +23,9 @@ namespace TownOfUs
     public class TownOfUs : BasePlugin
     {
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "4.1.2";
-        public static System.Version Version = System.Version.Parse(VersionString);
         
+        public const string VersionString = "5.0.4";
+        public static System.Version Version = System.Version.Parse(VersionString);
         public static Sprite LogoBanner;
         public static Sprite LogoLobbyBanner;
         public static Sprite BirthdayCampFreddy;
@@ -37,46 +35,48 @@ namespace TownOfUs
         public static Sprite BirthdayChaos;
         public static Sprite ChristmasLobby;
         public static Sprite JanitorClean;
-        public static Sprite CannibalEat;
         public static Sprite EngineerFix;
         public static Sprite SwapperSwitch;
         public static Sprite SwapperSwitchDisabled;
-        public static Sprite Shift;
         public static Sprite Footprint;
         public static Sprite Rewind;
         public static Sprite NormalKill;
-        public static Sprite ShiftKill;
         public static Sprite MedicSprite;
-        public static Sprite TrackerSprite;
         public static Sprite SeerSprite;
         public static Sprite SampleSprite;
         public static Sprite MorphSprite;
-        public static Sprite FrameSprite;
-        public static Sprite PoisonSprite;
-        public static Sprite PoisonedSprite;
         public static Sprite Camouflage;
         public static Sprite Arrow;
         public static Sprite Abstain;
         public static Sprite MineSprite;
         public static Sprite SwoopSprite;
-        public static Sprite HideSprite;
-
         public static Sprite DouseSprite;
         public static Sprite IgniteSprite;
         public static Sprite ReviveSprite;
         public static Sprite ButtonSprite;
         public static Sprite CycleSprite;
         public static Sprite GuessSprite;
-
-
         public static Sprite DragSprite;
         public static Sprite DropSprite;
         public static Sprite FlashSprite;
-        public static Sprite ControlSprite;
-        public static Sprite FreezeSprite;
+        public static Sprite SettingsButtonSprite;
+        public static Sprite LighterSprite;
+        public static Sprite DarkerSprite;
+        public static Vector3 ButtonPosition { get; private set; } = new Vector3(2.6f, 0.7f, -9f);
+        public static Sprite AlertSprite;
+        public static Sprite RememberSprite;
+        public static Sprite TrackSprite;
+        public static Sprite PoisonSprite;
+        public static Sprite PoisonedSprite;
+        public static Sprite TransportSprite;
+        public static Sprite ToUBanner;
 
         private static DLoadImage _iCallLoadImage;
 
+        public static bool activatedSensei = false;
+
+        public static bool updatedSenseiMinimap = false;
+        public static bool updatedSenseiAdminmap = false;
 
         private Harmony _harmony;
 
@@ -84,16 +84,44 @@ namespace TownOfUs
 
         public ConfigEntry<ushort> Port { get; set; }
 
+        public static class AssetLoader
+        {
+            private static readonly Assembly allulCustomBundle = Assembly.GetExecutingAssembly();
+            private static readonly Assembly allulCustomLobby = Assembly.GetExecutingAssembly();
+            private static readonly Assembly allulCustomMusic = Assembly.GetExecutingAssembly();
+            private static readonly Assembly allulCustomMap = Assembly.GetExecutingAssembly();
+
+            public static void LoadAssets() {
+
+                // Custom Lobby Assets
+                var resourceStreamLobby = allulCustomLobby.GetManifestResourceStream("TownOfUs.Resources.allulcustomlobby");
+                var assetBundleLobby = AssetBundle.LoadFromMemory(resourceStreamLobby.ReadFully());
+
+                CustomMain.customAssets.customLobby = assetBundleLobby.LoadAsset<GameObject>("allul_customLobby.prefab").DontDestroy();
+
+                // Custom Map Assets
+                var resourceStreamMap = allulCustomMap.GetManifestResourceStream("TownOfUs.Resources.allulcustommap");
+                var assetBundleMap = AssetBundle.LoadFromMemory(resourceStreamMap.ReadFully());
+
+                CustomMain.customAssets.customMap = assetBundleMap.LoadAsset<GameObject>("HalconUI.prefab").DontUnload();
+                CustomMain.customAssets.customMinimap = assetBundleMap.LoadAsset<GameObject>("Minimap.prefab").DontUnload();
+                CustomMain.customAssets.customComms = assetBundleMap.LoadAsset<GameObject>("new_comms.prefab").DontUnload();
+
+                //assetBundleBundle.Unload(false);
+                assetBundleLobby.Unload(false);
+                assetBundleMap.Unload(false);
+
+            }
+        }
         public override void Load()
         {
+            AssetLoader.LoadAssets();
             System.Console.WriteLine("000.000.000.000/000000000000000000");
 
             _harmony = new Harmony("com.slushiegoose.townofus");
 
             Generate.GenerateAll();
-
             //Custom Logo and Lobby baners
-            LogoBanner = CreateSprite("TownOfUs.Resources.TownOfH.png");
             LogoLobbyBanner = CreateSprite("TownOfUs.Resources.TownOfHLobbyBanner.png");
             BirthdayCampFreddy = CreateSprite("TownOfUs.Resources.BirthdayCampFreddy.png");
             BirthdayBal = CreateSprite("TownOfUs.Resources.BirthdayBal.png");
@@ -102,30 +130,22 @@ namespace TownOfUs
             BirthdayH = CreateSprite("TownOfUs.Resources.BirthdayH.png");
             ChristmasLobby = CreateSprite("TownOfUs.Resources.ChristmasLobby.png");
 
-            //Custom buttons
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
-            CannibalEat = CreateSprite("TownOfUs.Resources.Eat.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
             SwapperSwitch = CreateSprite("TownOfUs.Resources.SwapperSwitch.png");
             SwapperSwitchDisabled = CreateSprite("TownOfUs.Resources.SwapperSwitchDisabled.png");
-            Shift = CreateSprite("TownOfUs.Resources.Shift.png");
             Footprint = CreateSprite("TownOfUs.Resources.Footprint.png");
             Rewind = CreateSprite("TownOfUs.Resources.Rewind.png");
             NormalKill = CreateSprite("TownOfUs.Resources.NormalKill.png");
-            ShiftKill = CreateSprite("TownOfUs.Resources.ShiftKill.png");
             MedicSprite = CreateSprite("TownOfUs.Resources.Medic.png");
             SeerSprite = CreateSprite("TownOfUs.Resources.Seer.png");
             SampleSprite = CreateSprite("TownOfUs.Resources.Sample.png");
             MorphSprite = CreateSprite("TownOfUs.Resources.Morph.png");
-            FrameSprite = CreateSprite("TownOfUs.Resources.Frame.png");
-            PoisonSprite = CreateSprite("TownOfUs.Resources.Poison.png");
-            PoisonedSprite = CreateSprite("TownOfUs.Resources.Poisoned.png");
             Camouflage = CreateSprite("TownOfUs.Resources.Camouflage.png");
             Arrow = CreateSprite("TownOfUs.Resources.Arrow.png");
             Abstain = CreateSprite("TownOfUs.Resources.Abstain.png");
             MineSprite = CreateSprite("TownOfUs.Resources.Mine.png");
             SwoopSprite = CreateSprite("TownOfUs.Resources.Swoop.png");
-            HideSprite = CreateSprite("TownOfUs.Resources.Hide.png");
             DouseSprite = CreateSprite("TownOfUs.Resources.Douse.png");
             IgniteSprite = CreateSprite("TownOfUs.Resources.Ignite.png");
             ReviveSprite = CreateSprite("TownOfUs.Resources.Revive.png");
@@ -135,12 +155,24 @@ namespace TownOfUs
             CycleSprite = CreateSprite("TownOfUs.Resources.Cycle.png");
             GuessSprite = CreateSprite("TownOfUs.Resources.Guess.png");
             FlashSprite = CreateSprite("TownOfUs.Resources.Flash.png");
-            TrackerSprite = CreateSprite("TownOfUs.Resources.Track.png");
-            ControlSprite = CreateSprite("TownOfUs.Resources.Control.png");
-            FreezeSprite = CreateSprite("TownOfUs.Resources.Freeze.png");
+            SettingsButtonSprite = CreateSprite("TownOfUs.Resources.SettingsButton.png");
+            AlertSprite = CreateSprite("TownOfUs.Resources.Alert.png");
+            RememberSprite = CreateSprite("TownOfUs.Resources.Remember.png");
+            TrackSprite = CreateSprite("TownOfUs.Resources.Track.png");
+            PoisonSprite = CreateSprite("TownOfUs.Resources.Poison.png");
+            PoisonedSprite = CreateSprite("TownOfUs.Resources.Poisoned.png");
+            TransportSprite = CreateSprite("TownOfUs.Resources.Transport.png");
+            LighterSprite = CreateSprite("TownOfUs.Resources.Lighter.png");
+            DarkerSprite = CreateSprite("TownOfUs.Resources.Darker.png");
+            ToUBanner = CreateSprite("TownOfUs.Resources.TownOfUsH.png");
+            activatedSensei = false;
+            updatedSenseiMinimap = false;
+            updatedSenseiAdminmap = false;
 
             PalettePatch.Load();
             ClassInjector.RegisterTypeInIl2Cpp<RainbowBehaviour>();
+
+            // RegisterInIl2CppAttribute.Register();
 
             Ip = Config.Bind("Custom", "Ipv4 or Hostname", "127.0.0.1");
             Port = Config.Bind("Custom", "Port", (ushort) 22023);
@@ -157,19 +189,14 @@ namespace TownOfUs
 
             ServerManager.DefaultRegions = defaultRegions.ToArray();
 
-            SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>) ((scene, loadSceneMode) =>
-            {
-                ModManager.Instance.ShowModStamp();
-            }));
-
             _harmony.PatchAll();
             DirtyPatches.Initialize(_harmony);
         }
 
-        public static Sprite CreateSprite(string name, bool hat = false)
+        public static Sprite CreateSprite(string name)
         {
-            var pixelsPerUnit = hat ? 225f : 100f;
-            var pivot = hat ? new Vector2(0.5f, 0.8f) : new Vector2(0.5f, 0.5f);
+            var pixelsPerUnit = 100f;
+            var pivot = new Vector2(0.5f, 0.5f);
 
             var assembly = Assembly.GetExecutingAssembly();
             var tex = GUIExtensions.CreateEmptyTexture();
@@ -182,21 +209,7 @@ namespace TownOfUs
             return sprite;
         }
 
-        public static Sprite CreatePolusHat(string name)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var imageStream = assembly.GetManifestResourceStream(name);
-            var img = imageStream.ReadFully();
-
-            var tex = new Texture2D(128, 128, (TextureFormat) 1, false);
-            LoadImage(tex, img, false);
-            tex.DontDestroy();
-            var sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-            sprite.DontDestroy();
-            return sprite;
-        }
-
-        private static void LoadImage(Texture2D tex, byte[] data, bool markNonReadable)
+        public static void LoadImage(Texture2D tex, byte[] data, bool markNonReadable)
         {
             _iCallLoadImage ??= IL2CPP.ResolveICall<DLoadImage>("UnityEngine.ImageConversion::LoadImage");
             var il2CPPArray = (Il2CppStructArray<byte>) data;
@@ -204,5 +217,20 @@ namespace TownOfUs
         }
 
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);
+    }
+    public static class CustomMain
+    {
+        public static CustomAssets customAssets = new CustomAssets();
+    }
+
+    public class CustomAssets
+    {
+        // Custom Map
+        public GameObject customMap;
+        public GameObject customMinimap;
+        public GameObject customComms;
+
+        // Custom Lobby
+        public GameObject customLobby;
     }
 }

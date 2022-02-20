@@ -5,16 +5,17 @@ namespace TownOfUs.RainbowMod
     // {
     //     public static bool Prefix(PlayerTab __instance)
     //     {
-    //         PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, __instance.DemoImage);
-    //         __instance.HatImage.SetHat(SaveManager.LastHat, PlayerControl.LocalPlayer.Data.ColorId);
+    //         PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.DefaultOutfit.ColorId, __instance.DemoImage);
+    //         __instance.HatImage.SetHat(SaveManager.LastHat, PlayerControl.LocalPlayer.DefaultOutfit.ColorId);
     //         PlayerControl.SetSkinImage(SaveManager.LastSkin, __instance.SkinImage);
-    //         PlayerControl.SetPetImage(SaveManager.LastPet, PlayerControl.LocalPlayer.Data.ColorId, __instance.PetImage);
+    //         PlayerControl.SetPetImage(SaveManager.LastPet, PlayerControl.LocalPlayer.DefaultOutfit.ColorId, __instance.PetImage);
     //         var num = (float)Palette.PlayerColors.Length / 4f;
     //         for (var i = 0; i < Palette.PlayerColors.Length; i++)
     //         {
     //             var xCoord = __instance.XRange.Lerp((float)(i % 4) / 3f);
     //             float yCoord = __instance.YStart - (float)(i / 4) * 0.55f;
-    //             var colorChip = Object.Instantiate<ColorChip>(__instance.ColorTabPrefab, __instance.ColorTabArea);
+    //             var colorChip = Object.Instantiate<ColorChip>(__instance.
+    //             Prefab, __instance.ColorTabArea);
     //             colorChip.transform.localPosition = new Vector3(xCoord, yCoord, -1f);
     //             var j = i;
     //             colorChip.Button.OnClick.AddListener((Action)delegate()

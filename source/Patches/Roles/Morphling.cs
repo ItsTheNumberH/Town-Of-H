@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
     public class Morphling : Role, IVisualAlteration
 
     {
-        public KillButtonManager _morphButton;
+        public KillButton _morphButton;
         public PlayerControl ClosestPlayer;
         public DateTime LastMorphed;
         public PlayerControl MorphedPlayer;
@@ -21,12 +21,13 @@ namespace TownOfUs.Roles
             Name = "Morphling";
             ImpostorText = () => "Transform into crewmates";
             TaskText = () => "Morph into crewmates to be disguised";
-            Color = Palette.ImpostorRed;
+            Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Morphling;
+            AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
         }
 
-        public KillButtonManager MorphButton
+        public KillButton MorphButton
         {
             get => _morphButton;
             set
@@ -43,6 +44,10 @@ namespace TownOfUs.Roles
         {
             TimeRemaining -= Time.deltaTime;
             Utils.Morph(Player, MorphedPlayer);
+            if (Player.Data.IsDead)
+            {
+                TimeRemaining = 0f;
+            }
         }
 
         public void Unmorph()

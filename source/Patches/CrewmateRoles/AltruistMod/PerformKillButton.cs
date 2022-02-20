@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.AltruistMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKillButton
     {
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)) return true;
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;

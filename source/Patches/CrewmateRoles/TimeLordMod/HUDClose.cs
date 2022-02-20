@@ -15,8 +15,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 var TimeLord = (TimeLord) role;
                 TimeLord.FinishRewind = DateTime.UtcNow;
                 TimeLord.StartRewind = DateTime.UtcNow;
-                TimeLord.FinishRewind = TimeLord.FinishRewind.AddSeconds(-10.0);
-                TimeLord.StartRewind = TimeLord.StartRewind.AddSeconds(-20.0);
+                TimeLord.StartRewind = TimeLord.StartRewind.AddSeconds(-10.0f);
             }
         }
     }

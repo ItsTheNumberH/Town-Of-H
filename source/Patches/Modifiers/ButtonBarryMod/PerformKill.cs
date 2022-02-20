@@ -4,13 +4,12 @@ using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.Modifiers.ButtonBarryMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKill
     {
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return true;
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) return true;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) return true;
 
             var role = Modifier.GetModifier<ButtonBarry>(PlayerControl.LocalPlayer);
@@ -20,6 +19,9 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
             if (role.ButtonUsed) return false;
             if (PlayerControl.LocalPlayer.RemainingEmergencies <= 0) return false;
             if (!__instance.enabled) return false;
+
+            System.Console.WriteLine("Reached here!");
+
             role.ButtonUsed = true;
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.BarryButton, SendOption.Reliable, -1);
@@ -35,6 +37,7 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
                 DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(PlayerControl.LocalPlayer);
                 PlayerControl.LocalPlayer.RpcStartMeeting(null);
             }
+
             return false;
         }
     }

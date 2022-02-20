@@ -1,14 +1,9 @@
-using System;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.IL2CPP;
-using Il2CppSystem;
-using Hazel;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnhollowerBaseLib;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Collections;
@@ -55,11 +50,12 @@ namespace TownOfUs {
             running = true;
             checkForUpdate().GetAwaiter().GetResult();
             clearOldVersions();
+            updateRegions().GetAwaiter().GetResult();;
         }
 
         public static void ExecuteUpdate() {
             string info = "Updating Town Of Us -H\nPlease wait...";
-            ModUpdater.InfoPopup.Show(info); // Show originally
+            ModUpdater.InfoPopup.Show(info);
             if (updateTask == null) {
                 if (updateURI != null) {
                     updateTask = downloadUpdate();
@@ -75,11 +71,38 @@ namespace TownOfUs {
         public static void clearOldVersions() {
             try {
                 DirectoryInfo d = new DirectoryInfo(Path.GetDirectoryName(Application.dataPath) + @"\BepInEx\plugins");
-                string[] files = d.GetFiles("*.old").Select(x => x.FullName).ToArray(); // Getting old versions
+                string[] files = d.GetFiles("*.old").Select(x => x.FullName).ToArray();
                 foreach (string f in files)
                     File.Delete(f);
             } catch (System.Exception e) {
                 System.Console.WriteLine("Exception occured when clearing old versions:\n" + e);
+            }
+        }
+
+        public static async Task<bool> updateRegions() {
+            try{
+                HttpClient http = new HttpClient();
+                http.DefaultRequestHeaders.Add("User-Agent", "TownOfUs Updater");
+                var response = await http.GetAsync(new System.Uri("https://www.dropbox.com/s/egmssmvqnev2ul9/regionInfo.json?dl=1"), HttpCompletionOption.ResponseContentRead);
+                if (response.StatusCode != HttpStatusCode.OK || response.Content == null) {
+                    return false;
+                }
+                string LocalLowPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming","LocalLow");
+                string fullname = LocalLowPath + "\\Innersloth\\Among Us\\regionInfo.json";
+                if (File.Exists(fullname + ".old")) // Clear old file in case it wasnt;
+                    File.Delete(fullname + ".old");
+
+                File.Move(fullname, fullname + ".old"); // rename current region file to old
+
+                using (var responseStream = await response.Content.ReadAsStreamAsync()) {
+                    using (var fileStream = File.Create(fullname)) {
+                        responseStream.CopyTo(fileStream);
+                        return true;
+                    }
+                }
+            } catch (System.Exception e) {
+                System.Console.WriteLine("Exception occured when updating regions:\n" + e);
+                return false;
             }
         }
 
@@ -143,10 +166,10 @@ namespace TownOfUs {
 
                 using (var responseStream = await response.Content.ReadAsStreamAsync()) {
                     using (var fileStream = File.Create(fullname)) { // probably want to have proper name here
-                        responseStream.CopyTo(fileStream); 
+                        responseStream.CopyTo(fileStream);
                     }
                 }
-                showPopup("Town Of Us -H\nupdated successfully.\nPlease restart the game.");
+                showPopup("Town Of Us -H\nupdated successfully.\nPlease RESTART the game.");
                 return true;
             } catch (System.Exception ex) {
                 System.Console.WriteLine(ex);

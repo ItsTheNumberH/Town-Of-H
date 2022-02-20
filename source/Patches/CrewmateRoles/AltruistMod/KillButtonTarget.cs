@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.AltruistMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.SetTarget))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class KillButtonTarget
     {
         public static byte DontRevive = byte.MaxValue;
 
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             return !PlayerControl.LocalPlayer.Is(RoleEnum.Altruist);
         }
 
-        public static void SetTarget(KillButtonManager __instance, DeadBody target, Altruist role)
+        public static void SetTarget(KillButton __instance, DeadBody target, Altruist role)
         {
             if (role.CurrentTarget && role.CurrentTarget != target)
                 role.CurrentTarget.bodyRenderer.material.SetFloat("_Outline", 0f);
@@ -27,13 +27,13 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
                 var component = role.CurrentTarget.bodyRenderer;
                 component.material.SetFloat("_Outline", 1f);
                 component.material.SetColor("_OutlineColor", Color.red);
-                __instance.renderer.color = Palette.EnabledColor;
-                __instance.renderer.material.SetFloat("_Desat", 0f);
+                __instance.graphic.color = Palette.EnabledColor;
+                __instance.graphic.material.SetFloat("_Desat", 0f);
                 return;
             }
 
-            __instance.renderer.color = Palette.DisabledClear;
-            __instance.renderer.material.SetFloat("_Desat", 1f);
+            __instance.graphic.color = Palette.DisabledClear;
+            __instance.graphic.material.SetFloat("_Desat", 1f);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             appearance = Player.GetDefaultAppearance();
             appearance.SpeedFactor = 1f;
-            appearance.SizeFactor = new Vector3(0.3f, 0.3f, 0.3f);
+            appearance.SizeFactor = new Vector3(0.45f, 0.45f, 0.45f);
             return true;
         }
     }

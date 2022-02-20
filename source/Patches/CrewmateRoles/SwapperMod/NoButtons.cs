@@ -2,12 +2,13 @@ using HarmonyLib;
 
 namespace TownOfUs.CrewmateRoles.SwapperMod
 {
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
     public class NoButtons
     {
         public static void Postfix()
         {
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) PlayerControl.LocalPlayer.RemainingEmergencies = 0;
+            if (!CustomGameOptions.SwapperButton)
+                if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) PlayerControl.LocalPlayer.RemainingEmergencies = 0;
         }
     }
 
@@ -16,7 +17,8 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
     {
         public static void Postfix()
         {
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) PlayerControl.LocalPlayer.RemainingEmergencies = 0;
+            if (!CustomGameOptions.SwapperButton)
+                if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) PlayerControl.LocalPlayer.RemainingEmergencies = 0;
         }
     }
 }

@@ -4,10 +4,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.TimeLordMod
 {
-    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
     public static class Start
     {
-        public static void Postfix(IntroCutscene._CoBegin_d__14 __instance)
+        public static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
         {
             foreach (var role in Role.GetRoles(RoleEnum.TimeLord))
             {
@@ -16,7 +16,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 TimeLord.StartRewind = DateTime.UtcNow;
                 TimeLord.FinishRewind = TimeLord.FinishRewind.AddSeconds(CustomGameOptions.InitialCooldowns - CustomGameOptions.RewindCooldown);
                 TimeLord.StartRewind = TimeLord.StartRewind.AddSeconds(CustomGameOptions.InitialCooldowns - CustomGameOptions.RewindCooldown);
-                TimeLord.StartRewind = TimeLord.StartRewind.AddSeconds(-10.0);
+                TimeLord.StartRewind = TimeLord.StartRewind.AddSeconds(-10.0f);
             }
         }
     }

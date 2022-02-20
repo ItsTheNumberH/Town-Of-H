@@ -2,14 +2,12 @@ using HarmonyLib;
 
 namespace TownOfUs.CrewmateRoles.InvestigatorMod
 {
-    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
+    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
     public static class StartGame
     {
-        public static void Postfix(IntroCutscene._CoBegin_d__14 __instance)
+        public static void Postfix(ShipStatus __instance)
         {
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) {
-                AddPrints.GameStarted = true;
-            }
+            AddPrints.GameStarted = true;
         }
     }
 }

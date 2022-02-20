@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TownOfUs.CustomHats;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -13,48 +13,75 @@ namespace TownOfUs.Roles
 
         public List<PlayerControl> SnitchTargets = new List<PlayerControl>();
 
-        public int TasksLeft = 20; //int.MaxValue;
-
         public Snitch(PlayerControl player) : base(player)
         {
             Name = "Snitch";
             ImpostorText = () => "Complete all your tasks to discover the Impostors";
             TaskText = () =>
                 TasksDone
-                    ? "Follow the arrows pointing to the Impostors!"
-                    : "Complete all your tasks to discover the Impostors.";
-            Color = new Color(0.83f, 0.69f, 0.22f, 1f);
+                    ? "Find the arrows pointing to the Impostors!"
+                    : "Complete all your tasks to discover the Impostors!";
+            Color = Patches.Colors.Snitch;
             Hidden = !CustomGameOptions.SnitchOnLaunch;
             RoleType = RoleEnum.Snitch;
+            AddToRoleHistory(RoleType);
         }
 
-        public bool OneTaskLeft => TasksLeft <= 1;
+        public bool Revealed => TasksLeft <= CustomGameOptions.SnitchTasksRemaining;
         public bool TasksDone => TasksLeft <= 0;
-
 
         internal override bool Criteria()
         {
-            return OneTaskLeft && PlayerControl.LocalPlayer.Data.IsImpostor ||
+            return Revealed && PlayerControl.LocalPlayer.Data.IsImpostor() && !Player.Data.IsDead ||
                    base.Criteria();
         }
 
-        protected override string NameText(PlayerVoteArea player = null)
+        internal override bool SelfCriteria()
+        {
+            if (Local)
+            {
+                if (CustomGameOptions.SnitchOnLaunch) return base.SelfCriteria();
+                return Revealed || base.SelfCriteria();
+            }
+            return base.SelfCriteria();
+        }
+
+        internal override bool RoleCriteria()
+        {
+            var localPlayer = PlayerControl.LocalPlayer;
+            if (localPlayer.Data.IsImpostor() && !Player.Data.IsDead)
+            {
+                return Revealed || base.RoleCriteria();
+            }
+            else if (Role.GetRole(localPlayer).Faction == Faction.Neutral && !Player.Data.IsDead)
+            {
+                return Revealed && CustomGameOptions.SnitchSeesNeutrals || base.RoleCriteria();
+            }
+            return false || base.RoleCriteria();
+        }
+
+        
+        protected override string NameText(bool revealTasks, bool revealRole, bool revealModifier, bool revealLover, PlayerVoteArea player = null)
         {
             if (CamouflageUnCamouflage.IsCamoed && player == null) return "";
-            if (PlayerControl.LocalPlayer.Data.IsDead) return base.NameText(player);
-            if (OneTaskLeft || !Hidden) return base.NameText(player);
+            if (PlayerControl.LocalPlayer.Data.IsDead) return base.NameText(revealTasks, revealRole, revealModifier, revealLover, player);
+            if (Revealed || !Hidden) return base.NameText(revealTasks, revealRole, revealModifier, revealLover, player);
+            
+            // Shows snitch as crewmate
+            var PlayerName = base.NameText(revealTasks, false, revealModifier, revealLover, player);
+
             Player.nameText.color = Color.white;
             if (player != null) player.NameText.color = Color.white;
             if (player != null && (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
-                                   MeetingHud.Instance.state == MeetingHud.VoteStates.Results)) return Player.name;
-            if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
+                                   MeetingHud.Instance.state == MeetingHud.VoteStates.Results)) return PlayerName;
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
+                Player.Data.DefaultOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
                 -0.5f
             );
-            return Player.name + "\n" + "Crewmate";
+            if(Local)
+                return PlayerName + "\n" + "Crewmate";
+            return PlayerName;
         }
     }
 }

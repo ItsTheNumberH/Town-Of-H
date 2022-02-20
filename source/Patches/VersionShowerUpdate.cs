@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace TownOfUs
 {
-    [HarmonyPriority(Priority.VeryHigh)]
+    [HarmonyPriority(Priority.VeryHigh)] // to show this message first, or be overrided if any plugins do
     [HarmonyPatch(typeof(VersionShower), nameof(VersionShower.Start))]
     public static class VersionShowerUpdate
     {

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.UnderdogMod
 {
@@ -17,29 +19,15 @@ namespace TownOfUs.ImpostorRoles.UnderdogMod
         internal static bool LastImp()
         {
             return PlayerControl.AllPlayerControls.ToArray()
-                .Count(x => x.Data.IsImpostor && !x.Data.IsDead) == 1;
+                .Count(x => x.Data.IsImpostor() && !x.Data.IsDead) == 1;
         }
-        internal static float LastImpRemainingPlayers()
+
+        internal static bool IncreasedKC()
         {
-            var totalalive = PlayerControl.AllPlayerControls.ToArray()
-                .Count(x => !x.Data.IsImpostor && !x.Data.IsDead);
-            try {
-                if (totalalive > 5) {
-                    return 1.5f;
-                } else if (totalalive == 5) {
-                    return 1.2f;
-                } else if (totalalive == 4) {
-                    return 1f;
-                } else if (totalalive == 3) {
-                    return 0.75f;
-                } else if (totalalive == 2) {
-                    return 0.5f;
-                } else {
-                    return 0.25f;
-                }
-            } catch {
-                return 1f;
-            }
+            if (CustomGameOptions.UnderdogIncreasedKC)
+                return false;
+            else
+                return true;
         }
     }
 }

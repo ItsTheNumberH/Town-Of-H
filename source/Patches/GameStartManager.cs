@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Linq;
 using HarmonyLib;
 using Reactor;
@@ -41,11 +41,11 @@ namespace TownOfUs.Patches {
                 else if (DateTime.Today.Month == 5 && DateTime.Today.Day == 26) {panelRenderer.sprite = TownOfUs.BirthdayChaos;}
                 else if (DateTime.Today.Month == 10 && DateTime.Today.Day == 9) {panelRenderer.sprite = TownOfUs.BirthdayBal;}
                 else if (DateTime.Today.Month == 6 && DateTime.Today.Day == 22) {panelRenderer.sprite = TownOfUs.BirthdayH;}
-                else if (DateTime.Today.Month == 12 && DateTime.Today.Day > 20 && DateTime.Today.Day < 28) {panelRenderer.sprite = TownOfUs.ChristmasLobby;}
+                else if (DateTime.Today.Month == 12 && DateTime.Today.Day > 15 && DateTime.Today.Day < 31) {panelRenderer.sprite = TownOfUs.ChristmasLobby;}
                 else {panelRenderer.sprite = TownOfUs.LogoLobbyBanner;}
 
                 TownOfHLobbyBanner.gameObject.transform.SetParent(__instance.transform);
             }
         }
     }
-}
+}*/

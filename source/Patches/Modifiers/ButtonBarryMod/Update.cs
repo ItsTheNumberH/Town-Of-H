@@ -16,11 +16,10 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
 
         private static void UpdateButtonButton(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) return;
+            if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) return;
 
             var data = PlayerControl.LocalPlayer.Data;
@@ -31,18 +30,18 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
 
             if (role.ButtonButton == null)
             {
-                role.ButtonButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.ButtonButton.renderer.enabled = true;
-                role.ButtonButton.renderer.sprite = Button;
+                role.ButtonButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                role.ButtonButton.graphic.enabled = true;
+                role.ButtonButton.graphic.sprite = Button;
             }
 
-            role.ButtonButton.renderer.sprite = Button;
+            role.ButtonButton.graphic.sprite = Button;
 
 
             role.ButtonButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
 
             role.ButtonButton.SetCoolDown(0f, 1f);
-            var renderer = role.ButtonButton.renderer;
+            var renderer = role.ButtonButton.graphic;
 
             var position1 = __instance.UseButton.transform.position;
             role.ButtonButton.transform.position = new Vector3(

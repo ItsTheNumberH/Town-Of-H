@@ -8,13 +8,13 @@ using TownOfUs.CrewmateRoles.MedicMod;
 
 namespace TownOfUs.ImpostorRoles.PoisonerMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformPoisonKill
     {
         public static Sprite PoisonSprite => TownOfUs.PoisonSprite;
         public static Sprite PoisonedSprite => TownOfUs.PoisonedSprite;
 
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Poisoner);
             if (!flag) return true;
@@ -25,27 +25,86 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             if (target == null) return false;
             if (!__instance.isActiveAndEnabled) return false;
             if (role.PoisonTimer() > 0) return false;
-            if (role.ClosestPlayer.isShielded())
+            if (role.Enabled == true) return false;
+            if (role.ClosestPlayer.IsOnAlert())
             {
-                var medic = role.ClosestPlayer.getMedic().Player.PlayerId;
-                var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                writer1.Write(medic);
-                writer1.Write(role.ClosestPlayer.PlayerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer1);
+                if (role.ClosestPlayer.IsShielded())
+                {
+                    var medic = role.ClosestPlayer.GetMedic().Player.PlayerId;
+                    var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                    writer.Write(medic);
+                    writer.Write(role.ClosestPlayer.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+
+                    if (CustomGameOptions.ShieldBreaks) role.LastPoisoned = DateTime.UtcNow;
+
+                    StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId,
+                        CustomGameOptions.ShieldBreaks);
+                    Utils.RpcMurderPlayer(role.ClosestPlayer, role.Player);
+                }
+                else if (role.Player.IsShielded())
+                {
+                    var medic = role.Player.GetMedic().Player.PlayerId;
+                    var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                    writer.Write(medic);
+                    writer.Write(role.Player.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+
+                    if (CustomGameOptions.ShieldBreaks) role.LastPoisoned = DateTime.UtcNow;
+
+                    StopKill.BreakShield(medic, role.Player.PlayerId,
+                        CustomGameOptions.ShieldBreaks);
+                    if (CustomGameOptions.KilledOnAlert)
+                    {
+                        role.PoisonedPlayer = target;
+                        role.PoisonButton.SetTarget(null);
+                        DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
+
+                        role.TimeRemaining = CustomGameOptions.PoisonDuration;
+                        role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
+                        role.Player.SetKillTimer(0);
+                    }
+                }
+                else
+                {
+                    Utils.RpcMurderPlayer(role.ClosestPlayer, role.Player);
+                    if (CustomGameOptions.KilledOnAlert)
+                    {
+                        role.PoisonedPlayer = target;
+                        role.PoisonButton.SetTarget(null);
+                        DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
+
+                        role.TimeRemaining = CustomGameOptions.PoisonDuration;
+                        role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
+                        role.Player.SetKillTimer(0);
+                    }
+                }
+
+                return false;
+            }
+            else if (role.ClosestPlayer.IsShielded())
+            {
+                var medic = role.ClosestPlayer.GetMedic().Player.PlayerId;
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                writer.Write(medic);
+                writer.Write(role.ClosestPlayer.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                 if (CustomGameOptions.ShieldBreaks) role.LastPoisoned = DateTime.UtcNow;
 
-                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId,
+                    CustomGameOptions.ShieldBreaks);
 
                 return false;
             }
             role.PoisonedPlayer = target;
             role.PoisonButton.SetTarget(null);
             DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
-
-            role.TimeRemaining = CustomGameOptions.PoisonerDuration;
-            role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonerDuration);
+            role.TimeRemaining = CustomGameOptions.PoisonDuration;
+            role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
             role.Player.SetKillTimer(0);
             return false;
         }

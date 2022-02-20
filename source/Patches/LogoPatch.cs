@@ -5,7 +5,7 @@ namespace TownOfUs {
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class LogoPatch
     {
-        private static Sprite Sprite => TownOfUs.LogoBanner;
+        private static Sprite Sprite => TownOfUs.ToUBanner;
         static void Postfix(PingTracker __instance) {
             var amongUsLogo = GameObject.Find("bannerLogo_AmongUs");
             if (amongUsLogo != null) {
@@ -13,10 +13,10 @@ namespace TownOfUs {
                 amongUsLogo.transform.position += Vector3.up * 0.25f;
             }
 
-            var torLogo = new GameObject("bannerLogo_TownOfH");
-            torLogo.transform.position = Vector3.up;
-            var renderer = torLogo.AddComponent<SpriteRenderer>();
-            renderer.sprite = Sprite;
+            var hLogo = new GameObject("bannerLogo_TownOfH");
+            hLogo.transform.position = Vector3.up;
+            var renderer = hLogo.AddComponent<SpriteRenderer>();
+            renderer.sprite = Sprite;                                
         }
     }
 }

@@ -1,26 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>TownOfUs</RootNamespace>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>4.1.2</Version>
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Version>5.0.4</Version>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <GameProvider>Github</GameProvider>
-    <GameVersion>2021.6.30s</GameVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<GameProvider>Static</GameProvider>
+		<GameVersion>D:/Applications/Among Us Dev/Among Us Modded</GameVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Reactor" Version="1.0.0-rc.1" />
-    <PackageReference Include="Reactor.MSBuild" Version="0.1.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Reactor" Version="1.0.0-rc.1" />
+		<PackageReference Include="Reactor.MSBuild" Version="0.1.5" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\*" />
-    <EmbeddedResource Include="Resources\Hats\**\*.png" />
-  </ItemGroup>
+	<Target Name="Copy" AfterTargets="Build">
+		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(GameVersion)/BepInEx/plugins/" />
+	</Target>
 
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\*" />
+		<EmbeddedResource Include="Resources\Hats\**" />
+	</ItemGroup>
   <Target Name="Copy" AfterTargets="Build">
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="D:/Applications/Among Us Dev/Among Us Modded/BepInEx/plugins" />
   </Target>

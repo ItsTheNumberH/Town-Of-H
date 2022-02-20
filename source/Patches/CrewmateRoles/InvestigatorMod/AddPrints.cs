@@ -12,7 +12,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
         private static float _time;
 
         public static bool GameStarted = false;
-        private static float Interval => CustomGameOptions.FootprintInterval;
+        private static float Interval => CustomGameOptions.FootprintInterval*10;
         private static bool Vent => CustomGameOptions.VentFootprintVisible;
 
         private static Vector2 Position(PlayerControl player)
@@ -46,6 +46,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
 
                     if (canPlace) new Footprint(player, investigator);
                 }
+
                 for (var i = 0; i < investigator.AllPrints.Count; i++)
                 {
                     var footprint = investigator.AllPrints[i];

@@ -2,6 +2,7 @@
 using HarmonyLib;
 using UnityEngine;
 using TownOfUs;
+using System.Collections.Generic;
 
 namespace BetterPolus
 {
@@ -58,6 +59,7 @@ namespace BetterPolus
             {
                 if (CustomGameOptions.BetterPolus) {
                     ApplyChanges(__instance);
+                    RemoveAirshipDoors();
                 }
             }
         }
@@ -297,6 +299,59 @@ namespace BetterPolus
                     new Vector3(DvdScreenNewScale, localScale.y,
                         localScale.z);
                 dvdScreenTransform.localScale = localScale;
+            }
+        }
+        
+        public static void RemoveAirshipDoors() {
+            List<GameObject> doors = new List<GameObject>();
+            if (CustomGameOptions.BetterAirship && PlayerControl.GameOptions.MapId == 4) {
+                try {
+                    GameObject celldoor01 = GameObject.Find("doorsideOpen (2)");
+                    doors.Add(celldoor01);
+                    GameObject celldoor02 = GameObject.Find("door_vault");
+                    doors.Add(celldoor02);
+                    GameObject celldoor04 = GameObject.Find("door_gap");
+                    doors.Add(celldoor04);
+
+                    GameObject bighallwaydoor01 = GameObject.Find("Door_VertOpen");
+                    doors.Add(bighallwaydoor01);
+                    GameObject bighallwaydoor02 = GameObject.Find("Door_VertOpen (4)");
+                    doors.Add(bighallwaydoor02);
+                    GameObject bighallwaydoor03 = GameObject.Find("Door_HortOpen");
+                    doors.Add(bighallwaydoor03);
+                    GameObject bighallwaydoor04 = GameObject.Find("Door_HortOpen (1)");
+                    doors.Add(bighallwaydoor04);
+
+                    GameObject kitchendoor01 = GameObject.Find("Door_VertOpen (1)");
+                    doors.Add(kitchendoor01);
+                    GameObject kitchendoor02 = GameObject.Find("Door_VertOpen (2)");
+                    doors.Add(kitchendoor02);
+                    GameObject kitchendoor03 = GameObject.Find("Door_VertOpen (3)");
+                    doors.Add(kitchendoor03);
+
+                    GameObject medbeydoor01 = GameObject.Find("Door_VertOpen (10)");
+                    doors.Add(medbeydoor01);
+                    GameObject medbeydoor02 = GameObject.Find("Door_HortOpen (3)");
+                    doors.Add(medbeydoor02);
+
+                    GameObject recorddoor01 = GameObject.Find("Door_VertOpen (11)");
+                    doors.Add(recorddoor01);
+                    GameObject recorddoor02 = GameObject.Find("Door_VertOpen (12)");
+                    doors.Add(recorddoor02);
+                    GameObject recorddoor03 = GameObject.Find("Door_HortOpen (2)");
+                    doors.Add(recorddoor03);
+
+                    GameObject hallway01 = GameObject.Find("Door_VertOpen (5)");
+                    doors.Add(hallway01);
+                    GameObject hallway02 = GameObject.Find("Door_VertOpen (6)");
+                    doors.Add(hallway02);
+
+                    foreach (GameObject door in doors) {
+                        door.GetComponent<BoxCollider2D>().enabled = false;
+                        door.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                } catch {
+                }
             }
         }
     }

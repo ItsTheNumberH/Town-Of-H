@@ -1,50 +1,69 @@
 using System;
 using System.Collections.Generic;
-using TownOfUs.CustomHats;
-using TownOfUs.ImpostorRoles.CamouflageMod;
-using UnityEngine;
+using System.Linq;
+using Object = UnityEngine.Object;
+using TMPro;
 
 namespace TownOfUs.Roles
 {
     public class Tracker : Role
     {
-        public List<ArrowBehaviour> TrackerArrows = new List<ArrowBehaviour>();
-        public List<PlayerControl> TrackerTargets = new List<PlayerControl>();
+        public Dictionary<byte, ArrowBehaviour> TrackerArrows = new Dictionary<byte, ArrowBehaviour>();
         public PlayerControl ClosestPlayer;
-        public bool UsedTrack { get; set; } = false;
-        public List<byte> Tracked = new List<byte>();
         public DateTime LastTracked { get; set; }
 
-        public KillButtonManager _trackButton;
+        public int UsesLeft;
+        public TextMeshPro UsesText;
+
+        public bool ButtonUsable => UsesLeft != 0;
 
         public Tracker(PlayerControl player) : base(player)
         {
             Name = "Tracker";
-            ImpostorText = () => "Track a players movement";
-            TaskText = () => "Track a players movement";
-            Color = new Color(0f, 0.7f, 0.7f, 1f);
+            ImpostorText = () => "Track everyone's movement";
+            TaskText = () => "Track suspicious players";
+            Color = Patches.Colors.Tracker;
             RoleType = RoleEnum.Tracker;
+            AddToRoleHistory(RoleType);
+
+            UsesLeft = CustomGameOptions.MaxTracks;
         }
+
         public float TrackerTimer()
         {
             var utcNow = DateTime.UtcNow;
             var timeSpan = utcNow - LastTracked;
-            var num = CustomGameOptions.TrackerCd * 1000f;
+            var num = CustomGameOptions.TrackCd * 1000f;
             var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
             if (flag2) return 0;
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
 
-
-        public KillButtonManager TrackButton
+        public bool IsTracking(PlayerControl player)
         {
-            get => _trackButton;
-            set
+            return TrackerArrows.ContainsKey(player.PlayerId);
+        }
+
+        public void DestroyArrow(byte targetPlayerId)
+        {
+            var arrow = TrackerArrows.FirstOrDefault(x => x.Key == targetPlayerId);
+            if (arrow.Value != null)
+                Object.Destroy(arrow.Value);
+            if (arrow.Value.gameObject != null)
+                Object.Destroy(arrow.Value.gameObject);
+            TrackerArrows.Remove(arrow.Key);
+        }
+
+        public void DestroyAllArrows()
+        {
+            foreach (var arrow in TrackerArrows)
             {
-                _trackButton = value;
-                ExtraButtons.Clear();
-                ExtraButtons.Add(value);
+                if (arrow.Value != null)
+                    Object.Destroy(arrow.Value);
+                if (arrow.Value.gameObject != null)
+                    Object.Destroy(arrow.Value.gameObject);
             }
+            TrackerArrows.Clear();
         }
     }
 }

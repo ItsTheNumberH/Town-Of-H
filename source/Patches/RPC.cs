@@ -5,7 +5,7 @@ namespace TownOfUs
         PlayAnimation, //0
         CompleteTask, //1
         SyncSettings, //2
-        SetInfected, //3
+        SetRole, //3
         Exiled, //4
         CheckName, //5
         SetName, //6

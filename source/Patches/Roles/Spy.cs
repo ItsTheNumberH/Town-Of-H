@@ -7,10 +7,11 @@ namespace TownOfUs.Roles
         public Spy(PlayerControl player) : base(player)
         {
             Name = "Spy";
-            ImpostorText = () => "Get more info from the admin table";
-            TaskText = () => "The Admin table is colour coded";
-            Color = new Color(0.8f, 0.64f, 0.8f, 1f);
+            ImpostorText = () => "Admin table is colour coded";
+            TaskText = () => "Admin table is colour coded";
+            Color = Patches.Colors.Spy;
             RoleType = RoleEnum.Spy;
+            AddToRoleHistory(RoleType);
         }
     }
 }

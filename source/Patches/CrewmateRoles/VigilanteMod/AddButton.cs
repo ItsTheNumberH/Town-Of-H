@@ -4,6 +4,7 @@ using Reactor.Extensions;
 using TMPro;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -17,7 +18,8 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
 
         private static Sprite GuessSprite => TownOfUs.GuessSprite;
 
-        private static bool IsExempt(PlayerVoteArea voteArea) {
+        private static bool IsExempt(PlayerVoteArea voteArea)
+        {
             if (voteArea.AmDead) return true;
             var player = Utils.PlayerById(voteArea.TargetPlayerId);
             if (
@@ -41,12 +43,12 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
 
             var confirmButton = voteArea.Buttons.transform.GetChild(0).gameObject;
             var parent = confirmButton.transform.parent.parent;
-            
+
             var nameText = Object.Instantiate(voteArea.NameText, voteArea.transform);
             voteArea.NameText.transform.localPosition = new Vector3(0.55f, 0.12f, -0.1f);
             nameText.transform.localPosition = new Vector3(0.55f, -0.12f, -0.1f);
             nameText.text = "Guess";
-            
+
             var cycle = Object.Instantiate(confirmButton, voteArea.transform);
             var cycleRenderer = cycle.GetComponent<SpriteRenderer>();
             cycleRenderer.sprite = CycleSprite;
@@ -80,6 +82,7 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
             guessCollider.offset = Vector2.zero;
             guess.transform.GetChild(0).gameObject.Destroy();
 
+
             role.Guesses.Add(targetId, "None");
             role.Buttons[targetId] = (cycle, guess, nameText);
         }
@@ -100,8 +103,9 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
 
                 nameText.text = newGuess == "None"
                     ? "Guess"
-                    : $"<color=#{role.ColorMapping[newGuess].ToHtmlStringRGBA()}>{newGuess}</color>";
+                    : $"<color=#{role.SortedColorMapping[newGuess].ToHtmlStringRGBA()}>{newGuess}</color>";
             }
+
             return Listener;
         }
 
@@ -118,18 +122,20 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
                 if (currentGuess == "None") return;
 
                 var playerRole = Role.GetRole(voteArea);
+                var playerModifier = Modifier.GetModifier(voteArea);
 
                 var toDie = playerRole.Name == currentGuess ? playerRole.Player : role.Player;
 
                 VigilanteKill.RpcMurderPlayer(toDie);
                 role.RemainingKills--;
-                ShowHideButtons.HideSingle(role, targetId, toDie == role.Player);
-                if (toDie.isLover() && CustomGameOptions.BothLoversDie)
+                ShowHideButtonsVigi.HideSingle(role, targetId, toDie == role.Player);
+                if (toDie.IsLover() && CustomGameOptions.BothLoversDie)
                 {
-                    var lover = ((Lover)playerRole).OtherLover.Player;
-                    ShowHideButtons.HideSingle(role, lover.PlayerId, false);
+                    var lover = ((Lover)playerModifier).OtherLover.Player;
+                    ShowHideButtonsVigi.HideSingle(role, lover.PlayerId, false);
                 }
             }
+
             return Listener;
         }
 
@@ -137,20 +143,20 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
         {
             foreach (var role in Role.GetRoles(RoleEnum.Vigilante))
             {
-                var vigilante = (Vigilante) role;
-                vigilante.Guesses.Clear();
-                vigilante.Buttons.Clear();
-                vigilante.GuessedThisMeeting = false;
+                var retributionist = (Vigilante)role;
+                retributionist.Guesses.Clear();
+                retributionist.Buttons.Clear();
+                retributionist.GuessedThisMeeting = false;
             }
 
             if (PlayerControl.LocalPlayer.Data.IsDead) return;
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Vigilante)) return;
 
-            var vigilanteRole = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
-            if (vigilanteRole.RemainingKills <= 0) return;
+            var retributionistRole = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
+            if (retributionistRole.RemainingKills <= 0) return;
             foreach (var voteArea in __instance.playerStates)
             {
-                GenButton(vigilanteRole, voteArea);
+                GenButton(retributionistRole, voteArea);
             }
         }
     }

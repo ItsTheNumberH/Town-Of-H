@@ -12,8 +12,9 @@ namespace TownOfUs.Roles
             Name = "Mayor";
             ImpostorText = () => "Save your votes to vote multiple times";
             TaskText = () => "Save your votes to vote multiple times";
-            Color = new Color(0.44f, 0.31f, 0.66f, 1f);
+            Color = Patches.Colors.Mayor;
             RoleType = RoleEnum.Mayor;
+            AddToRoleHistory(RoleType);
             VoteBank = CustomGameOptions.MayorVoteBank;
         }
 
