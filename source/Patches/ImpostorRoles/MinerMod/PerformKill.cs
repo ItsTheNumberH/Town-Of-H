@@ -3,7 +3,7 @@ using System.Linq;
 using HarmonyLib;
 using Hazel;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -26,7 +26,7 @@ namespace TownOfUs.ImpostorRoles.MinerMod
                 if (!__instance.isActiveAndEnabled) return false;
                 if (!role.CanPlace) return false;
                 if (role.MineTimer() != 0) return false;
-
+                if (SubmergedCompatibility.GetPlayerElevator(PlayerControl.LocalPlayer).Item1) return false;
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Mine, SendOption.Reliable, -1);
                 var position = PlayerControl.LocalPlayer.transform.position;
@@ -37,6 +37,11 @@ namespace TownOfUs.ImpostorRoles.MinerMod
                 writer.Write(0.01f);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 SpawnVent(id, role, position, 0.01f);
+                try {
+                    AudioClip MineSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Mine.raw");
+                    SoundManager.Instance.PlaySound(MineSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 
@@ -71,6 +76,18 @@ namespace TownOfUs.ImpostorRoles.MinerMod
 
             role.Vents.Add(vent);
             role.LastMined = DateTime.UtcNow;
+
+            if (SubmergedCompatibility.isSubmerged())
+            {
+                vent.gameObject.layer = 12;
+                vent.gameObject.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover); // just in case elevator vent is not blocked
+                if (vent.gameObject.transform.position.y > -7) vent.gameObject.transform.position = new Vector3(vent.gameObject.transform.position.x, vent.gameObject.transform.position.y, 0.03f);
+                else
+                {
+                    vent.gameObject.transform.position = new Vector3(vent.gameObject.transform.position.x, vent.gameObject.transform.position.y, 0.0009f);
+                    vent.gameObject.transform.localPosition = new Vector3(vent.gameObject.transform.localPosition.x, vent.gameObject.transform.localPosition.y, -0.003f);
+                }
+            }
         }
 
         public static int GetAvailableId()

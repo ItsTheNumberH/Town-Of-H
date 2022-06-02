@@ -14,8 +14,7 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
 
         public static bool Prefix(KillButton __instance)
         {
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Morphling);
-            if (!flag) return true;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Morphling)) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Morphling>(PlayerControl.LocalPlayer);
@@ -32,6 +31,11 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
                     DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
                     if (role.MorphTimer() < 5f)
                         role.LastMorphed = DateTime.UtcNow.AddSeconds(5 - CustomGameOptions.MorphlingCd);
+                    try {
+                        AudioClip SampleSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Sample.raw");
+                        SoundManager.Instance.PlaySound(SampleSFX, false, 0.4f);
+                    } catch {
+                    }
                 }
                 else
                 {
@@ -46,11 +50,14 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
                     role.TimeRemaining = CustomGameOptions.MorphlingDuration;
                     role.MorphedPlayer = role.SampledPlayer;
                     Utils.Morph(role.Player, role.SampledPlayer, true);
+                    try {
+                        AudioClip MorphSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Morph.raw");
+                        SoundManager.Instance.PlaySound(MorphSFX, false, 0.4f);
+                    } catch {
+                    }
                 }
-
                 return false;
             }
-
             return true;
         }
     }

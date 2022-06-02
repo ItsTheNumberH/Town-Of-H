@@ -11,12 +11,10 @@ namespace TownOfUs
 
         public static void Postfix()
         {
-            /*
             if (Input.GetKeyDown(KeyCode.F5) && PlayerControl.LocalPlayer && PlayerControl.LocalPlayer.Collider)
             {
                 PlayerControl.LocalPlayer.Collider.enabled = !PlayerControl.LocalPlayer.Collider.enabled;
             }
-            */
         }
     }
 }

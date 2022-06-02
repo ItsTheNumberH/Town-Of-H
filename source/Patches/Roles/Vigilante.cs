@@ -21,7 +21,7 @@ namespace TownOfUs.Roles
         public Vigilante(PlayerControl player) : base(player)
         {
             Name = "Vigilante";
-            ImpostorText = () => "Kill impostors during meetings if you can guess their roles";
+            ImpostorText = () => "Guess <color=#FF0000FF>Bad</color> roles to kill them during meetings";
             TaskText = () => "Guess the roles of impostors mid-meeting to kill them!";
             Color = Patches.Colors.Vigilante;
             RoleType = RoleEnum.Vigilante;

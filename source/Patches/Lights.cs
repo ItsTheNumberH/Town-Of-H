@@ -2,7 +2,6 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -24,9 +23,8 @@ namespace TownOfUs
                     request.GetResponse();
                 });
             }
-            catch (Exception e)
+            catch
             {
-                System.Console.WriteLine(e.ToString());
             }
         }
 

@@ -11,6 +11,7 @@ namespace TownOfUs
         SetInvestigator,
         SetTimeLord,
         SetMedic,
+        SetPsychic,
         SetSeer,
         SetMorphling,
         SetCamouflager,
@@ -117,9 +118,10 @@ namespace TownOfUs
         Vest,
         GAProtect,
         Blackmail,
+        Poison,
 
         SetGlitch,
-        BypassKill,
+        BypassKill = 220,
         SetMimic,
         RpcResetAnim,
         SetHacked,
@@ -130,9 +132,16 @@ namespace TownOfUs
         Start,
         SyncCustomSettings,
         FixAnimation,
+        SetPos,
         
         AddMayorVoteBank,
         RemoveAllBodies,
-        CheckMurder
+        SetChild,
+        SetBlind,
+        SetVolatile,
+        PoisonAlert,
+        CheckMurder,
+
+        SubmergedFixOxygen
     }
 }

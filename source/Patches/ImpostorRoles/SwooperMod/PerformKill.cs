@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.SwooperMod
 {
@@ -27,6 +28,11 @@ namespace TownOfUs.ImpostorRoles.SwooperMod
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 role.TimeRemaining = CustomGameOptions.SwoopDuration;
                 role.Swoop();
+                try {
+                    AudioClip SwoopSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Morph.raw");
+                    SoundManager.Instance.PlaySound(SwoopSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

@@ -6,7 +6,6 @@ using TownOfUs.Roles;
 using UnityEngine;
 using System;
 using Il2CppSystem.Collections.Generic;
-using Object = UnityEngine.Object;
 using TownOfUs.Extensions;
 
 namespace TownOfUs.NeutralRoles.AmnesiacMod
@@ -18,14 +17,12 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
         public static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Amnesiac);
-            if (!flag) return true;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Amnesiac)) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Amnesiac>(PlayerControl.LocalPlayer);
 
-            var flag2 = __instance.isCoolingDown;
-            if (flag2) return false;
+            if (__instance.isCoolingDown) return false;
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (role == null)
@@ -43,6 +40,11 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
             writer.Write(playerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
+            try {
+                AudioClip RememberSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Remember.raw");
+                SoundManager.Instance.PlaySound(RememberSFX, false, 0.4f);
+            } catch {
+            }
             Remember(role, player);
             return false;
         }
@@ -76,6 +78,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
                 case RoleEnum.Investigator:
                 case RoleEnum.TimeLord:
                 case RoleEnum.Medic:
+                case RoleEnum.Psychic:
                 case RoleEnum.Seer:
                 case RoleEnum.Spy:
                 case RoleEnum.Snitch:
@@ -137,7 +140,11 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
                 }
                 else
                 {
-                    new Survivor(other);
+                    if (CustomGameOptions.AmnesiacNeutralBecomes == AmnesiacNeutralBecomes.Survivor) {
+                        new Survivor(other);
+                    } else {
+                        new Crewmate(other);
+                    }
                 }
             }
             else if (rememberImp == true)

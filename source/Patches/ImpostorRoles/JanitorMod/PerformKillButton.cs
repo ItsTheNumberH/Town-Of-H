@@ -12,16 +12,14 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
     {
         public static bool Prefix(KillButton __instance)
         {
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Janitor);
-            if (!flag) return true;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Janitor)) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Janitor>(PlayerControl.LocalPlayer);
 
             if (__instance == role.CleanButton)
             {
-                var flag2 = __instance.isCoolingDown;
-                if (flag2) return false;
+                if (__instance.isCoolingDown) return false;
                 if (!__instance.enabled) return false;
                 var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
                 if (Vector2.Distance(role.CurrentTarget.TruePosition,
@@ -35,6 +33,11 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                 Coroutines.Start(Coroutine.CleanCoroutine(role.CurrentTarget, role));
+                try {
+                    AudioClip CleanSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Clean.raw");
+                    SoundManager.Instance.PlaySound(CleanSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

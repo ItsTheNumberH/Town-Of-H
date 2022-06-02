@@ -2,6 +2,7 @@ using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
 using System.Linq;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.ImpostorRoles.GrenadierMod
 {
@@ -23,6 +24,25 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 role.FlashButton.graphic.enabled = true;
                 role.FlashButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
                 role.FlashButton.gameObject.SetActive(false);
+            }
+
+            if (CustomGameOptions.GrenadierIndicators) {
+                foreach (var player in PlayerControl.AllPlayerControls)
+                {
+                    if (player != PlayerControl.LocalPlayer && !player.Data.IsImpostor()) {
+                        var tempColour = player.nameText.color;
+                        var data = player?.Data;
+                        if (data == null || data.Disconnected || data.IsDead || PlayerControl.LocalPlayer.Data.IsDead)
+                            continue;
+                        if (role.flashedPlayers.Contains(player)) {
+                            player.MyRend.material.SetColor("_VisorColor", Color.black);
+                            player.nameText.color = Color.black;
+                        } else {
+                            player.MyRend.material.SetColor("_VisorColor", Palette.VisorColor);
+                            player.nameText.color = tempColour;
+                        }
+                    }
+                }
             }
 
             role.FlashButton.GetComponent<AspectPosition>().Update();

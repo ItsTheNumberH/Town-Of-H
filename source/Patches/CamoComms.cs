@@ -20,6 +20,7 @@ namespace TownOfUs
                         case 2:
                         case 3:
                         case 4:
+                        case 5:
                             var comms1 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HudOverrideSystemType>();
                             if (comms1.IsActive)
                             {

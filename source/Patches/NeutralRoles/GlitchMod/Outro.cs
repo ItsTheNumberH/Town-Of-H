@@ -23,6 +23,11 @@ namespace TownOfUs.NeutralRoles.GlitchMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip GlitchWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.GlitchWin.raw");
+                SoundManager.Instance.PlaySound(GlitchWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

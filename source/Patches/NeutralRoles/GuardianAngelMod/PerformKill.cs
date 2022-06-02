@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.GuardianAngelMod
 {
@@ -28,6 +29,11 @@ namespace TownOfUs.NeutralRoles.GuardianAngelMod
                     (byte)CustomRPC.GAProtect, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
+                try {
+                    AudioClip GASFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Guardian Angel.raw");
+                    SoundManager.Instance.PlaySound(GASFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

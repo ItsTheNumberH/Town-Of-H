@@ -2,7 +2,6 @@
 using System.Linq;
 using Hazel;
 using TownOfUs.Patches;
-using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 
 namespace TownOfUs.Roles.Modifiers
@@ -90,7 +89,6 @@ namespace TownOfUs.Roles.Modifiers
 
             if (CheckLoversWin())
             {
-                //System.Console.WriteLine("LOVERS WIN");
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.LoveWin, SendOption.Reliable, -1);
                 writer.Write(Player.PlayerId);
@@ -117,7 +115,6 @@ namespace TownOfUs.Roles.Modifiers
 
         private bool CheckLoversWin()
         {
-            //System.Console.WriteLine("CHECKWIN");
             var players = PlayerControl.AllPlayerControls.ToArray();
             var alives = players.Where(x => !x.Data.IsDead).ToList();
             var lover1 = Player;

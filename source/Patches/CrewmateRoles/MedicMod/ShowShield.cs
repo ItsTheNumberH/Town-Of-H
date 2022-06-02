@@ -34,7 +34,6 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 var exPlayer = medic.exShielded;
                 if (exPlayer != null)
                 {
-                    System.Console.WriteLine(exPlayer.name + " is ex-Shielded and unvisored");
                     exPlayer.MyRend.material.SetColor("_VisorColor", Palette.VisorColor);
                     exPlayer.MyRend.material.SetFloat("_Outline", 0f);
                     medic.exShielded = null;
@@ -61,7 +60,6 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 else if (PlayerControl.LocalPlayer.PlayerId == player.PlayerId && (showShielded == ShieldOptions.Self ||
                     showShielded == ShieldOptions.SelfAndMedic))
                 {
-                    //System.Console.WriteLine("Setting " + PlayerControl.LocalPlayer.name + "'s shield");
                     player.MyRend.material.SetColor("_VisorColor", ProtectedColor);
                     player.MyRend.material.SetFloat("_Outline", 1f);
                     player.MyRend.material.SetColor("_OutlineColor", ProtectedColor);

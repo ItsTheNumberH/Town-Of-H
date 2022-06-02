@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using Reactor;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -19,7 +18,7 @@ namespace TownOfUs.CustomOption
 
         public List<CustomButtonOption> SlotButtons = new List<CustomButtonOption>();
 
-        protected internal Import(int id) : base(id, "Load Custom Settings")
+        protected internal Import(int id) : base(id, MultiMenu.main, "Load Custom Settings")
         {
             Do = ToDo;
         }
@@ -87,10 +86,10 @@ namespace TownOfUs.CustomOption
         protected internal void ToDo()
         {
             SlotButtons.Clear();
-            SlotButtons.Add(new CustomButtonOption(1, "Slot 1", delegate { ImportSlot(1); }));
-            SlotButtons.Add(new CustomButtonOption(1, "Slot 2", delegate { ImportSlot(2); }));
-            SlotButtons.Add(new CustomButtonOption(1, "Slot 3", delegate { ImportSlot(3); }));
-            SlotButtons.Add(new CustomButtonOption(1, "Cancel", delegate { Cancel(FlashWhite); }));
+            SlotButtons.Add(new CustomButtonOption(1, MultiMenu.external, "Slot 1", delegate { ImportSlot(1); }));
+            SlotButtons.Add(new CustomButtonOption(1, MultiMenu.external, "Slot 2", delegate { ImportSlot(2); }));
+            SlotButtons.Add(new CustomButtonOption(1, MultiMenu.external, "Slot 3", delegate { ImportSlot(3); }));
+            SlotButtons.Add(new CustomButtonOption(1, MultiMenu.external, "Cancel", delegate { Cancel(FlashWhite); }));
 
             var options = CreateOptions();
 
@@ -112,8 +111,6 @@ namespace TownOfUs.CustomOption
 
         private void ImportSlot(int slotId)
         {
-            System.Console.WriteLine(slotId);
-
             string text;
 
             try

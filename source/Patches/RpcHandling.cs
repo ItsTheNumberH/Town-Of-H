@@ -21,7 +21,6 @@ using TownOfUs.CrewmateRoles.HaunterMod;
 using TownOfUs.ImpostorRoles.TraitorMod;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
-using UnhollowerBaseLib;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
 using Object = UnityEngine.Object;
@@ -50,12 +49,6 @@ namespace TownOfUs
             var num = Random.RandomRangeInt(1, 101);
             return num <= probability;
         }
-        internal static bool CheckJugg()
-        {
-            var num = Random.RandomRangeInt(1, 101);
-            return num <= 90;
-        }
-
         private static void SortRoles(List<(Type, CustomRPC, int)> roles, int max = int.MaxValue)
         {
             roles.Shuffle();
@@ -278,7 +271,6 @@ namespace TownOfUs
         {
             public static void Postfix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
             {
-                //if (callId >= 43) //System.Console.WriteLine("Received " + callId);
                 byte readByte, readByte1, readByte2;
                 sbyte readSByte, readSByte2;
                 switch ((CustomRPC) callId)
@@ -345,10 +337,13 @@ namespace TownOfUs
                         readByte = reader.ReadByte();
                         new Flash(Utils.PlayerById(readByte));
                         break;
-
                     case CustomRPC.SetMedic:
                         readByte = reader.ReadByte();
                         new Medic(Utils.PlayerById(readByte));
+                        break;
+                    case CustomRPC.SetPsychic:
+                        readByte = reader.ReadByte();
+                        new Psychic(Utils.PlayerById(readByte));
                         break;
                     case CustomRPC.SetMorphling:
                         readByte = reader.ReadByte();
@@ -394,16 +389,9 @@ namespace TownOfUs
 
                         break;
 
-                    /*case CustomRPC.ShifterLose:
-                        foreach (var role in Role.AllRoles)
-                            if (role.RoleType == RoleEnum.Shifter)
-                                ((Shifter) role).Loses();
-
-                        break;*/
-
                     case CustomRPC.AmnesiacLose:
                         foreach (var role in Role.AllRoles)
-                            if (role.RoleType == RoleEnum.Amnesiac)
+                            if (role.RoleType == RoleEnum.Amnesiac && !CustomGameOptions.AmnesiacCrewmate)
                                 ((Amnesiac)role).Loses();
 
                         break;
@@ -434,10 +422,6 @@ namespace TownOfUs
                         break;
 
                     case CustomRPC.Start:
-                        /*
-                        EngineerMod.PerformKill.UsedThisRound = false;
-                        EngineerMod.PerformKill.SabotageTime = DateTime.UtcNow.AddSeconds(-100);
-                        */
                         Utils.ShowDeadBodies = false;
                         Murder.KilledPlayers.Clear();
                         Role.NobodyWins = false;
@@ -461,6 +445,13 @@ namespace TownOfUs
                         Role.GetRole<Engineer>(engineer).UsedThisRound = true;
                         break;
 
+                    case CustomRPC.PoisonAlert:
+                        var poisonerPlayer = Utils.PlayerById(reader.ReadByte());
+                        var poisonedPlayer = Utils.PlayerById(reader.ReadByte());
+                        if (poisonedPlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId && !poisonedPlayer.Data.IsDead) {
+                            Coroutines.Start(Utils.FlashCoroutine(Palette.Purple, CustomGameOptions.PoisonDuration / 2));
+                        }
+                        break;
 
                     case CustomRPC.FixLights:
                         var lights = ShipStatus.Instance.Systems[SystemTypes.Electrical].Cast<SwitchSystem>();
@@ -483,8 +474,6 @@ namespace TownOfUs
                         readSByte2 = reader.ReadSByte();
                         SwapVotes.Swap2 =
                             MeetingHud.Instance.playerStates.FirstOrDefault(x => x.TargetPlayerId == readSByte2);
-                        PluginSingleton<TownOfUs>.Instance.Log.LogMessage("Bytes received - " + readSByte + " - " +
-                                                                          readSByte2);
                         break;
                     case CustomRPC.Remember:
                         readByte1 = reader.ReadByte();
@@ -578,6 +567,7 @@ namespace TownOfUs
                         var otherPlayer = Utils.PlayerById(reader.ReadByte());
                         Role.GetRole<Seer>(seer).Investigated.Add(otherPlayer.PlayerId);
                         Role.GetRole<Seer>(seer).LastInvestigated = DateTime.UtcNow;
+                        Role.GetRole<Seer>(seer).UsedThisRound = true;
                         break;
                     case CustomRPC.SetSeer:
                         new Seer(Utils.PlayerById(reader.ReadByte()));
@@ -588,6 +578,12 @@ namespace TownOfUs
                         var morphRole = Role.GetRole<Morphling>(morphling);
                         morphRole.TimeRemaining = CustomGameOptions.MorphlingDuration;
                         morphRole.MorphedPlayer = morphTarget;
+                        break;
+                    case CustomRPC.Poison:
+                        var poisoner = Utils.PlayerById(reader.ReadByte());
+                        var poisoned = Utils.PlayerById(reader.ReadByte());
+                        var poisonerRole = Role.GetRole<Poisoner>(poisoner);
+                        poisonerRole.PoisonedPlayer = poisoned;
                         break;
                     case CustomRPC.SetExecutioner:
                         new Executioner(Utils.PlayerById(reader.ReadByte()));
@@ -671,7 +667,7 @@ namespace TownOfUs
                         ga2Role.Protect();
                         break;
                     case CustomRPC.Transport:
-                        Transporter.TransportPlayers(reader.ReadByte(), reader.ReadByte());
+                        Coroutines.Start(Transporter.TransportPlayers(reader.ReadByte(), reader.ReadByte()));
                         break;
                     case CustomRPC.SetUntransportable:
                         if (PlayerControl.LocalPlayer.Is(RoleEnum.Transporter))
@@ -772,6 +768,15 @@ namespace TownOfUs
                         break;
                     case CustomRPC.SetGiant:
                         new Giant(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetChild:
+                        new Child(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetBlind:
+                        new Blind(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetVolatile:
+                        new Volatile(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.AltruistRevive:
                         readByte1 = reader.ReadByte();
@@ -891,7 +896,6 @@ namespace TownOfUs
                         {
                             PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
                         }
-                        System.Console.WriteLine("Become Phantom - Users");
                         break;
                     case CustomRPC.CatchPhantom:
                         var phantomPlayer = Utils.PlayerById(reader.ReadByte());
@@ -916,7 +920,6 @@ namespace TownOfUs
                         {
                             PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
                         }
-                        System.Console.WriteLine("Become Haunter - Users");
                         break;
                     case CustomRPC.CatchHaunter:
                         var haunterPlayer = Utils.PlayerById(reader.ReadByte());
@@ -944,6 +947,13 @@ namespace TownOfUs
                         foreach (var body in buggedBodies)
                             body.gameObject.Destroy();
                         break;
+                    case CustomRPC.SubmergedFixOxygen:
+                        Patches.SubmergedCompatibility.RepairOxygen();
+                        break;
+                    case CustomRPC.SetPos:
+                        var setplayer = Utils.PlayerById(reader.ReadByte());
+                        setplayer.transform.position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), setplayer.transform.position.z);
+                        break;
                 }
             }
         }
@@ -953,7 +963,6 @@ namespace TownOfUs
         {
             public static void Postfix()
             {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage("RPC SET ROLE");
                 var infected = GameData.Instance.AllPlayers.ToArray().Where(o => o.IsImpostor());
 
                 Utils.ShowDeadBodies = false;
@@ -1001,6 +1010,9 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.MedicOn))
                     CrewmateRoles.Add((typeof(Medic), CustomRPC.SetMedic, CustomGameOptions.MedicOn));
 
+                if (Check(CustomGameOptions.PsychicOn))
+                    CrewmateRoles.Add((typeof(Psychic), CustomRPC.SetPsychic, CustomGameOptions.PsychicOn));
+
                 if (Check(CustomGameOptions.SeerOn))
                     CrewmateRoles.Add((typeof(Seer), CustomRPC.SetSeer, CustomGameOptions.SeerOn));
 
@@ -1039,9 +1051,9 @@ namespace TownOfUs
                     NeutralRoles.Add((typeof(Amnesiac), CustomRPC.SetAmnesiac, CustomGameOptions.AmnesiacOn));
 
                 if (Check(CustomGameOptions.GlitchOn))
-                    if (CheckJugg())
                         NeutralRoles.Add((typeof(Glitch), CustomRPC.SetGlitch, CustomGameOptions.GlitchOn));
-                    else
+
+                else if (Check(CustomGameOptions.JuggernautOn))
                         NeutralRoles.Add((typeof(Juggernaut), CustomRPC.SetJuggernaut, CustomGameOptions.GlitchOn));
 
                 if (Check(CustomGameOptions.ArsonistOn))
@@ -1089,10 +1101,10 @@ namespace TownOfUs
                     CrewmateModifiers.Add((typeof(Torch), CustomRPC.SetTorch, CustomGameOptions.TorchOn));
 
                 if (Check(CustomGameOptions.DiseasedOn))
-                    CrewmateModifiers.Add((typeof(Diseased), CustomRPC.SetDiseased, CustomGameOptions.DiseasedOn));
+                    GlobalModifiers.Add((typeof(Diseased), CustomRPC.SetDiseased, CustomGameOptions.DiseasedOn));
 
                 if (Check(CustomGameOptions.BaitOn))
-                    CrewmateModifiers.Add((typeof(Bait), CustomRPC.SetBait, CustomGameOptions.BaitOn));
+                    GlobalModifiers.Add((typeof(Bait), CustomRPC.SetBait, CustomGameOptions.BaitOn));
                 #endregion
                 #region Global Modifiers
                 if (Check(CustomGameOptions.TiebreakerOn))
@@ -1115,6 +1127,14 @@ namespace TownOfUs
                     
                 if (Check(CustomGameOptions.SleuthOn))
                     GlobalModifiers.Add((typeof(Sleuth), CustomRPC.SetSleuth, CustomGameOptions.SleuthOn));
+                    
+                if (Check(CustomGameOptions.ChildOn) && PlayerControl.GameOptions.MapId != 2 && PlayerControl.GameOptions.MapId != 4)
+                    GlobalModifiers.Add((typeof(Child), CustomRPC.SetChild, CustomGameOptions.ChildOn));
+                if (Check(CustomGameOptions.BlindOn))
+                    GlobalModifiers.Add((typeof(Blind), CustomRPC.SetBlind, CustomGameOptions.BlindOn));
+                if (Check(CustomGameOptions.VolatileOn))
+                    GlobalModifiers.Add((typeof(Volatile), CustomRPC.SetVolatile, CustomGameOptions.VolatileOn));
+
                 #endregion
                 #region Assassin Modifier
                 AssassinModifier.Add((typeof(Assassin), CustomRPC.SetAssassin, 100));

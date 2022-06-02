@@ -10,33 +10,43 @@ using HarmonyLib;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CustomOption;
-using TownOfUs.Patches.CustomHats;
+using TownOfUs.Patches;
 using TownOfUs.RainbowMod;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.IO;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", "3.0.1")]
+    [BepInPlugin(Id, "Town Of Us", VersionString)]
     [BepInDependency(ReactorPlugin.Id)]
+    [BepInDependency(SubmergedCompatibility.SUBMERGED_GUID, BepInDependency.DependencyFlags.SoftDependency)]
     public class TownOfUs : BasePlugin
     {
         public const string Id = "com.slushiegoose.townofus";
-        
+        public const string VersionString = "6.1.1";
+        public static System.Version Version = System.Version.Parse(VersionString);
+        public static Sprite LogoBanner;
+        public static Sprite LogoLobbyBanner;
+        public static Sprite BirthdayCampFreddy;
+        public static Sprite BirthdayBal;
+        public static Sprite BirthdayH;
+        public static Sprite BirthdayCtri;
+        public static Sprite BirthdayChaos;
+        public static Sprite ChristmasLobby;
         public static Sprite JanitorClean;
         public static Sprite EngineerFix;
         public static Sprite SwapperSwitch;
         public static Sprite SwapperSwitchDisabled;
         public static Sprite Footprint;
         public static Sprite Rewind;
-        public static Sprite NormalKill;
         public static Sprite MedicSprite;
         public static Sprite SeerSprite;
         public static Sprite SampleSprite;
         public static Sprite MorphSprite;
         public static Sprite Arrow;
+        public static Sprite Abstain;
         public static Sprite MineSprite;
         public static Sprite SwoopSprite;
         public static Sprite DouseSprite;
@@ -61,10 +71,20 @@ namespace TownOfUs
         public static Sprite BlackmailSprite;
         public static Sprite BlackmailLetterSprite;
         public static Sprite BlackmailOverlaySprite;
+        public static Sprite LighterSprite;
+        public static Sprite DarkerSprite;
 
         public static Sprite SettingsButtonSprite;
+        public static Sprite CrewSettingsButtonSprite;
+        public static Sprite NeutralSettingsButtonSprite;
+        public static Sprite ImposterSettingsButtonSprite;
+        public static Sprite ModifierSettingsButtonSprite;
         public static Sprite ToUBanner;
+        public static Sprite UpdateTOUButton;
+        public static Sprite UpdateSubmergedButton;
 
+        public static Sprite HorseEnabledImage;
+        public static Sprite HorseDisabledImage;
         public static Vector3 ButtonPosition { get; private set; } = new Vector3(2.6f, 0.7f, -9f);
 
         private static DLoadImage _iCallLoadImage;
@@ -75,14 +95,36 @@ namespace TownOfUs
         public ConfigEntry<string> Ip { get; set; }
 
         public ConfigEntry<ushort> Port { get; set; }
+        public static class AssetLoader
+        {
+            private static readonly Assembly allulCustomLobby = Assembly.GetExecutingAssembly();
 
+            public static void LoadAssets() {
+
+                var resourceStreamLobby = allulCustomLobby.GetManifestResourceStream("TownOfUs.Resources.allulcustomlobby");
+                var assetBundleLobby = AssetBundle.LoadFromMemory(resourceStreamLobby.ReadFully());
+
+                CustomMain.customAssets.customLobby = assetBundleLobby.LoadAsset<GameObject>("allul_customLobby.prefab").DontDestroy();
+
+                assetBundleLobby.Unload(false);
+
+            }
+        }
         public override void Load()
         {
-            System.Console.WriteLine("000.000.000.000/000000000000000000");
+            AssetLoader.LoadAssets();
 
             _harmony = new Harmony("com.slushiegoose.townofus");
 
             Generate.GenerateAll();
+            //Custom Logo and Lobby baners
+            LogoLobbyBanner = CreateSprite("TownOfUs.Resources.TownOfHLobbyBanner.png");
+            BirthdayCampFreddy = CreateSprite("TownOfUs.Resources.BirthdayCampFreddy.png");
+            BirthdayBal = CreateSprite("TownOfUs.Resources.BirthdayBal.png");
+            BirthdayCtri = CreateSprite("TownOfUs.Resources.BirthdayCtri.png");
+            BirthdayChaos = CreateSprite("TownOfUs.Resources.BirthdayChaos.png");
+            BirthdayH = CreateSprite("TownOfUs.Resources.BirthdayH.png");
+            ChristmasLobby = CreateSprite("TownOfUs.Resources.ChristmasLobby.png");
 
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
@@ -90,12 +132,12 @@ namespace TownOfUs
             SwapperSwitchDisabled = CreateSprite("TownOfUs.Resources.SwapperSwitchDisabled.png");
             Footprint = CreateSprite("TownOfUs.Resources.Footprint.png");
             Rewind = CreateSprite("TownOfUs.Resources.Rewind.png");
-            NormalKill = CreateSprite("TownOfUs.Resources.NormalKill.png");
             MedicSprite = CreateSprite("TownOfUs.Resources.Medic.png");
             SeerSprite = CreateSprite("TownOfUs.Resources.Seer.png");
             SampleSprite = CreateSprite("TownOfUs.Resources.Sample.png");
             MorphSprite = CreateSprite("TownOfUs.Resources.Morph.png");
             Arrow = CreateSprite("TownOfUs.Resources.Arrow.png");
+            Abstain = CreateSprite("TownOfUs.Resources.Abstain.png");
             MineSprite = CreateSprite("TownOfUs.Resources.Mine.png");
             SwoopSprite = CreateSprite("TownOfUs.Resources.Swoop.png");
             DouseSprite = CreateSprite("TownOfUs.Resources.Douse.png");
@@ -120,14 +162,24 @@ namespace TownOfUs
             BlackmailSprite = CreateSprite("TownOfUs.Resources.Blackmail.png");
             BlackmailLetterSprite = CreateSprite("TownOfUs.Resources.BlackmailLetter.png");
             BlackmailOverlaySprite = CreateSprite("TownOfUs.Resources.BlackmailOverlay.png");
+            LighterSprite = CreateSprite("TownOfUs.Resources.Lighter.png");
+            DarkerSprite = CreateSprite("TownOfUs.Resources.Darker.png");
 
             SettingsButtonSprite = CreateSprite("TownOfUs.Resources.SettingsButton.png");
-            ToUBanner = CreateSprite("TownOfUs.Resources.TownOfUsBanner.png");
+            ToUBanner = CreateSprite("TownOfUs.Resources.TownOfH.png");
+            UpdateTOUButton = CreateSprite("TownOfUs.Resources.UpdateToUButton.png");
+            UpdateSubmergedButton = CreateSprite("TownOfUs.Resources.UpdateSubmergedButton.png");
+
+            CrewSettingsButtonSprite = CreateSprite("TownOfUs.Resources.CrewmateSettings.png");
+            NeutralSettingsButtonSprite = CreateSprite("TownOfUs.Resources.NeutralSettings.png");
+            ImposterSettingsButtonSprite = CreateSprite("TownOfUs.Resources.ImpostorSettings.png");
+            ModifierSettingsButtonSprite = CreateSprite("TownOfUs.Resources.ModifierSettings.png");
+
+            HorseEnabledImage = CreateSprite("TownOfUs.Resources.HorseOn.png");
+            HorseDisabledImage = CreateSprite("TownOfUs.Resources.HorseOff.png");
 
             PalettePatch.Load();
             ClassInjector.RegisterTypeInIl2Cpp<RainbowBehaviour>();
-
-            // RegisterInIl2CppAttribute.Register();
 
             Ip = Config.Bind("Custom", "Ipv4 or Hostname", "127.0.0.1");
             Port = Config.Bind("Custom", "Port", (ushort) 22023);
@@ -144,12 +196,8 @@ namespace TownOfUs
 
             ServerManager.DefaultRegions = defaultRegions.ToArray();
 
-            SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>) ((scene, loadSceneMode) =>
-            {
-                ModManager.Instance.ShowModStamp();
-            }));
-
             _harmony.PatchAll();
+            SubmergedCompatibility.Initialize();
         }
 
         public static Sprite CreateSprite(string name)
@@ -176,5 +224,40 @@ namespace TownOfUs
         }
 
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);
+
+        public static AudioClip loadAudioClipFromResources(string path, string sfxName = "")
+        {
+            if (CustomGameOptions.SFXOn) {
+                try {
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    Stream stream = assembly.GetManifestResourceStream(path);
+                    var byteAudio = new byte[stream.Length];
+                    _ = stream.Read(byteAudio, 0, (int)stream.Length);
+                    float[] samples = new float[byteAudio.Length / 4];
+                    int offset;
+                    for (int i = 0; i < samples.Length; i++)
+                    {
+                        offset = i * 4;
+                        samples[i] = (float)BitConverter.ToInt32(byteAudio, offset) / Int32.MaxValue;
+                    }
+                    int channels = 2;
+                    int sampleRate = 48000;
+                    AudioClip audioClip = AudioClip.Create(sfxName, samples.Length, channels, sampleRate, false);
+                    audioClip.SetData(samples, 0);
+                    return audioClip;
+                } catch {
+                }
+            }
+            return null;
+        }
+    }
+    public static class CustomMain
+    {
+        public static CustomAssets customAssets = new CustomAssets();
+    }
+
+    public class CustomAssets
+    {
+        public GameObject customLobby;
     }
 }

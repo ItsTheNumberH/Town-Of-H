@@ -18,9 +18,12 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
     {
         private static void UpdateMeeting(MeetingHud __instance, Executioner role)
         {
-            foreach (var player in __instance.playerStates)
-                if (player.TargetPlayerId == role.target.PlayerId)
+            foreach (var player in __instance.playerStates) {
+                if (player.TargetPlayerId == role.target.PlayerId) {
                     player.NameText.color = Color.black;
+                    player.NameText.text += " ⓔ";
+                }
+            }
         }
 
         private static void Postfix(HudManager __instance)
@@ -36,6 +39,7 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, role);
 
             role.target.nameText.color = Color.black;
+            role.target.nameText.text += " ⓔ";
 
             if (!role.target.Data.IsDead && !role.target.Data.Disconnected) return;
             if (role.TargetVotedOut) return;

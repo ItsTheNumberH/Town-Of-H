@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using InnerNet;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
@@ -57,15 +56,22 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
 
             var player = Utils.PlayerById(parentId);
 
-            // if (player == null || AmongUsClient.Instance.GameState != InnerNetClient.GameStates.Started)
-            //     yield break;
-
             player.Revive();
             Murder.KilledPlayers.Remove(
                 Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == player.PlayerId));
             revived.Add(player);
             player.NetTransform.SnapTo(new Vector2(position.x, position.y + 0.3636f));
-
+            if (PlayerControl.LocalPlayer == player) {
+                try {
+                    AudioClip ReviveSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Revive.raw");
+                    SoundManager.Instance.PlaySound(ReviveSFX, false, 0.2f);
+                } catch {
+                }
+            }
+            if (Patches.SubmergedCompatibility.isSubmerged() && PlayerControl.LocalPlayer.PlayerId == player.PlayerId)
+            {
+                Patches.SubmergedCompatibility.ChangeFloor(player.transform.position.y > -7);
+            }
             if (target != null) Object.Destroy(target.gameObject);
 
             if (player.IsLover() && CustomGameOptions.BothLoversDie)

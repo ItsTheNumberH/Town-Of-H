@@ -1,6 +1,4 @@
 using Il2CppSystem.Collections.Generic;
-using TownOfUs.Extensions;
-using UnityEngine;
 
 namespace TownOfUs.Roles
 {
@@ -36,7 +34,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Jester edition");
             VotedOut = true;
         }
 

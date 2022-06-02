@@ -59,7 +59,7 @@ namespace TownOfUs.Modifiers.AssassinMod
         {
             if (!PlayerControl.LocalPlayer.Is(AbilityEnum.Assassin)) return;
             var assassin = Ability.GetAbility<Assassin>(PlayerControl.LocalPlayer);
-            HideButtons(assassin);
+            if (!CustomGameOptions.AssassinateAfterVoting) HideButtons(assassin);
         }
     }
 }

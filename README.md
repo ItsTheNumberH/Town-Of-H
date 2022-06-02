@@ -1,74 +1,80 @@
-## *Note: This repository is an unofficial continuation of Town of Us due to the original repository being discontinued.*
+ ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixes and many more options. Source code is added to each release
+ ## **UPDATE This work has had it's important changes merged into Town Of Us R as I have joined the development team there.
 
 ![LOGO](./Images/TOU-logo.png)
-![Roles](./Images/Roles.png)
+![Roles](./Images/Roles3.png)
 
-An Among Us mod that adds a bunch of roles, modifiers and game settings
-
-Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or want to find people to play with!
+An Among Us mod that adds a bunch of roles, modifiers and game settings.
 
 **Crewmate Roles**
+- [Altruist](#altruist)
 - [Haunter](#haunter)
+- [Engineer](#engineer)
 - [Investigator](#investigator)
+- [Mayor](#mayor)
+- [Medic](#medic)
+- [Medium](#medium)
 - [Mystic](#mystic)
 - [Seer](#seer)
+- [Sheriff](#sheriff)
 - [Snitch](#snitch)
 - [Spy](#spy)
-- [Tracker](#tracker)
-- [Sheriff](#sheriff)
-- [Veteran](#veteran)
-- [Vigilante](#vigilante)
-- [Altruist](#altruist)
-- [Medic](#medic)
-- [Engineer](#engineer)
-- [Mayor](#mayor)
-- [Medium](#medium)
 - [Swapper](#swapper)
 - [Time Lord](#time-lord)
+- [Tracker](#tracker)
 - [Transporter](#transporter)
+- [Veteran](#veteran)
+- [Vigilante](#vigilante)
 
 **Neutral Roles**
 - [Amnesiac](#amnesiac)
-- [Guardian Angel](#guardian-angel)
-- [Survivor](#survivor)
+- [Arsonist](#arsonist)
 - [Executioner](#executioner)
+- [The Glitch](#the-glitch)
+- [Guardian Angel](#guardian-angel)
 - [Jester](#jester)
 - [Phantom](#phantom)
-- [Arsonist](#arsonist)
-- [The Glitch](#the-glitch)
+- [Survivor](#survivor)
 
 **Impostor Roles**
-- [Grenadier](#grenadier)
-- [Morphling](#morphling)
-- [Swooper](#swooper)
-- [Poisoner](#poisoner)
-- [Traitor](#traitor)
-- [Underdog](#underdog)
 - [Blackmailer](#blackmailer)
+- [Grenadier](#grenadier)
 - [Janitor](#janitor)
 - [Miner](#miner)
+- [Morphling](#morphling)
+- [Poisoner](#poisoner)
+- [Swooper](#swooper)
+- [Traitor](#traitor)
+- [Underdog](#underdog)
 - [Undertaker](#undertaker)
 
 **Modifiers**
 - [Bait](#bait)
-- [Diseased](#diseased)
-- [Torch](#torch)
+- [Blind](#blind)
 - [Button Barry](#button-barry)
+- [Child](#child)
+- [Diseased](#diseased)
 - [Drunk](#drunk)
 - [Flash](#flash)
 - [Giant](#giant)
 - [Lovers](#lovers)
 - [Sleuth](#sleuth)
 - [Tiebreaker](#tiebreaker)
+- [Torch](#torch)
+- [Volatile](#volatile)
 
 
 
 -----------------------
 # Releases
+## Note that 'inbetween' versions exists, so the version numbers are a bit off. These have been separated.
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2022.3.29s & 2022.3.29e | v3.0.1 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v3.0.1/ToU.v3.0.1.zip) |
-| 2022.3.29s & 2022.3.29e | v3.0.0 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v3.0.0/ToU.v3.0.0.zip) |
+| 2022.3.29s & 2022.3.29e & 2022.4.19e | v6.1.0 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v6.1.0/TownOfUs.dll) |
+---
+| 2022.3.29s & 2022.3.29e & 2022.4.19e | v3.1.0 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v3.1.0/ToU.v3.1.0.zip) |
+| 2022.3.29s & 2022.3.29e & 2022.4.19e | v3.0.1 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v3.0.1/ToU.v3.0.1.zip) |
+| 2022.3.29s & 2022.3.29e & 2022.4.19e | v3.0.0 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v3.0.0/ToU.v3.0.0.zip) |
 | 2021.12.15s & 2021.12.15e Until 2022.2.24s & 2022.2.24e | v2.6.5 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.6.5/ToU.v2.6.5.zip) |
 | 2021.12.15s & 2021.12.15e Until 2022.2.24s & 2022.2.24e | v2.6.4 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.6.4/ToU.v2.6.4.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.6.4 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.6.4/ToU.v2.6.4-2021.6.30.zip) |
@@ -91,6 +97,27 @@ Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or wa
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.3.2/ToU.v2.3.2.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.3.1/ToU.v2.3.1.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.0 | [Download](https://github.com/eDonnes124/Town-Of-Us/releases/download/v2.3.0/ToU.v2.3.0.zip) |
+---
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.4/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.3/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.2/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.1 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.1/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.1.0 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.1.0/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.15 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.15/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.14 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.14/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.13 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.13/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.12 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.12/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.11 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.11/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.10 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.10/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.9 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.9/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.8 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.8/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.7 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.7/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.6 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.6/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.5 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.5/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.4 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.4/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.3 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.3/TownOfUs.dll) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v4.0.2 | [Download](https://github.com/ItsTheNumberH/Town-Of-H/releases/download/v4.0.2/TownOfUs.dll) |
+---
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
 | 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
@@ -112,6 +139,26 @@ Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or wa
 
 <details>
   <summary> Changelog </summary>
+  <details>
+  <summary> v6.1.0 </summary>
+  <ul> <li>Rebased on 3.1.0</li> </ul>
+  <ul> <li>All important changes ported across to Town Of Us R as I joined the development team.</li> </ul>
+  </details>
+  <details>
+  <summary> v3.1.0 </summary>
+  <ul> <li>Submerged Compatibility mostly thanks to MyDragonBreath</li> </ul>
+  <ul> <li>New Setting: Assassins can guess Crewmate Modifiers</li> </ul>
+  <ul> <li>New Setting: Assassins and Vigilante can guess after voting</li> </ul>
+  <ul> <li>New Settings: Guardian Angel knows their target's role and Guardian Angel's target knows they have a Guardian Angel</li> </ul>
+  <ul> <li>New Settings: Bait minimum and maximum delay</li> </ul>
+  <ul> <li>New Setting: Diseased Kill Multiplier</li> </ul>
+  <ul> <li>New Setting: Flash Speed</li> </ul>
+  <ul> <li>New Setting: Giant Speed</li> </ul>
+  <ul> <li>New Setting: Disable meeting skip button</li> </ul>
+  <ul> <li>Bug Fix: Kill buttons should have the correct text and sprite now</li> </ul>
+  <ul> <li>Bug Fix: Glitch kills no longer bypass Survivor Vests and GA Protects</li> </ul>
+  <ul> <li>Lighter and Darker indicators for Medic</li> </ul>
+  </details>
   <details>
   <summary> v3.0.1 </summary>
   <ul> <li>Bug Fix: All the flashes on screen now work again</li> </ul>
@@ -310,6 +357,146 @@ Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or wa
   <ul> <li>Bug Fix: Made it so the Phantom only has to upload data and not download it</li> </ul>
   <ul> <li>Bug Fix: Phantom no longer spawns in the admin vent</li> </ul>
   </details>
+  ---
+    <details>
+  <summary> v4.1.4 </summary>
+   <ul> <li> Another attempt at fixing the Cannibals Eat button </li> </ul>
+  </details>
+   <details>
+  <summary> v4.1.3 </summary>
+   <ul> <li> New Crewmate role: Medium added </li> </ul>
+   <ul> <li> Ghosts give random bits of info at the start of meetings </li> </ul>
+   <ul> <li> Medic reports disabled by default due to the medium taking on this role </li> </ul>
+   <ul> <li> Poisoned crewmates now die when a meeting is called, same as frozen crewmates, to make sure they appear correctly as dead when the meeting starts. Rather than being dead seconds into the meeting but not showing. </li> </ul>
+   <ul> <li> Fix: Bodies that appear after meetings are now immediately removed (Lover still dies after meeting when other lover is voted out) </li> </ul>
+   <ul> <li> There might still be a bug with cannibal button not showing. I don't know why! </li> </ul>    
+  </details>
+ <details>
+  <summary> v4.1.2 </summary>
+   <ul> <li> Bug fix for Cannibal button not appearing </li> </ul>
+   <ul> <li> Minor code tidying </li> </ul>
+  </details>
+ <details>
+  <summary> v4.1.1 </summary>
+   <ul> <li> Minor edit to lobby banner(s) </li> </ul>
+   <ul> <li> Commented out Vitals for Spy as it currently doesn't work </li> </ul>
+  </details>
+  <details>
+  <summary> v4.1.0 </summary>
+   <ul> <li> 4.1.0 release as roles ready for use, most bugs squashed </li> </ul>
+   <ul> <li> New option: No skipping in button meetings </li> </ul>
+   <ul> <li> New option: Parallel Medbay Scans </li> </ul>
+   <ul> <li> Added banners/default Town Of Us -H banner in lobby </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.15 </summary>
+   <ul> <li> Finished alphabetising and cleaning up roles code </li> </ul>
+   <ul> <li> New role 'Freezer' added </li> </ul>
+   <ul> <li> Once frozen, you cannot move and will die if: </li> </ul>
+   <ul> <li> Touched by another player </li> </ul>
+   <ul> <li> A meeting is called/body reported </li> </ul>
+   <ul> <li> After 20 seconds (configurable) </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.14 </summary>
+   <ul> <li> New role 'Puppeteer' added </li> </ul>
+   <ul> <li> Control nearby crewmate to make them kill </li> </ul>
+   <ul> <li> Must stay close to them for a few seconds for successful puppeteering </li> </ul>
+   <ul> <li> Assassin can now only guess enabled roles </li> </ul>
+   <ul> <li> Flash renamed to Lagger (As it's still laggy. Will revert if/when Flash is fixed) </li> </ul>
+   <ul> <li> Few text changes </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.13 </summary>
+   <ul> <li> New Role 'Framer' added </li> </ul>
+   <ul> <li> Frame the crewmates to look like other players </li> </ul>
+   <ul> <li> Minor optimisations to role generation </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.12 </summary>
+   <ul> <li> Cannibal bug fix for end game </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.11 </summary>
+   <ul> <li> New role - Cannibal </li> </ul>
+   <ul> <li> Minor optimisations on role/modifier generation</li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.10 </summary>
+   <ul> <li> Chameleon colour lightened to look less like The Glitch </li> </ul>
+   <ul> <li> Giant colour changed to look less like Flash</li> </ul>
+   <ul> <li> Modifiers added to end game summary</li> </ul>
+   <ul> <li> New Modifier: Blind</li> </ul>
+   <ul> <li> New Modifier: Volatile</li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.9 </summary>
+   <ul> <li> Poisoner kill animation now shows poisoner killing </li> </ul>
+   <ul> <li> Option for poisoner start game cooldown</li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.8 </summary>
+   <ul> <li> Vigilante can now select Poisoner </li> </ul>
+   <ul> <li> Silly Snitch glitch fixed</li> </ul>
+   <ul> <li> Poisoner now has alert delay </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.7 </summary>
+   <ul> <li> Automatic updater added </li> </ul>
+  </details>
+ <details>
+  <summary> v4.0.6 </summary>
+   <ul> <li> End game summary added </li> </ul>
+   <ul> <li> Option to show end game summary</li> </ul>
+   <ul> <li> Vigilante now able to kill Loving Impostor </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.5 </summary>
+   <ul> <li> Tracker new button sprite </li> </ul>
+   <ul> <li> Arsonist new ignite sprite from The Other Roles </li> </ul>
+   <ul> <li> Maybe fixed Sheriff autoban from Town Of Us R</li> </ul>
+   <ul> <li> Timelord cooldown fix </li> </ul>
+   <ul> <li> Poisoner is now in a playable state </li> </ul>
+   <ul> <li> Chameleon is now completely invisible (So no red outline for impostors to see!) but this includes being invisible to yourself </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.4 </summary>
+   <ul> <li>Poisoner given notification (Purple flash) and option for who gets it (Poisoned crewmate/Everyone/No one) </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.3 </summary>
+   <ul> <li> Fixed potential tracker issue </li> </ul>
+   <ul> <li> Added Poisoner (BETA). It works, but the kill button is non-functional so should really be hidden. </li> </ul>
+   <ul> <li> Added background to main menu </li> </ul>
+  </details>
+  <details>
+  <summary> v4.0.2 </summary>
+   <ul> <li> A big update to Town of Us (Hence the number jump). </li> </ul>
+   <ul> <li> Investigator lag potentially fixed </li > </ul>
+   <ul> <li> Tons of new hats </li > </ul>
+   <ul> <li> Role intro texts changed to be more descriptive/helpful </li > </ul>
+   <ul> <li> Tracker added </li > </ul>
+   <ul> <li> Vigilante added </li > </ul>
+   <ul> <li> Chameleon added </li > </ul>
+   <ul> <li> In game updater added </li > </ul>
+   <ul> <li> Seer accuracy option </li > </ul>
+   <ul> <li> Seer reveals 'roles' option (reveals player as one of 3-ish roles) </li > </ul>
+   <ul> <li> Seer reveals per round/game option </li > </ul>
+   <ul> <li> Fix for standard impostor role instantly ending game </ul>
+   <ul> <li> Fix for Phantom spawning in polus admin vent </li > </ul>
+   <ul> <li> Option for Phantom to spawn ON vent rather than IN vent </li > </ul>
+   <ul> <li> Option to not show kill animations for normal kills </li > </ul>
+   <ul> <li> Option to not show kill animations for assassin kills </li > </ul>
+   <ul> <li> Option to not show kill animations for vigilante kills </li > </ul>
+   <ul> <li> Option for Shifter to shift with glitch </li > </ul>
+   <ul> <li> Option for sheriff to kill each neutral role</li > </ul>
+   <ul> <li> Assassin can kill after voting before meeting ends </li > </ul>
+   <ul> <li> Option for Underdog to get faster cooldown the fewer non-impostors are alive </li > </ul>
+   <ul> <li> Fix for Undertaker not dropping body on hosts screen </li > </ul>
+   <ul> <li> More changes that I may have missed! </li > </ul>
+   <ul> <li> Polus nonsense removed.</li></ul>
+  </details>
+  ---
   <details>
   <summary> v2.2.1 </summary>
   <ul> <li>Fix for the credits removed in v2.0.3 </li> </ul>
@@ -706,6 +893,7 @@ During meetings, the Vigilante can choose to kill someone by guessing their role
 | Vigilante Guess Neutral Benign  | Whether the Vigilante can Guess Neutral Benign roles | Toggle | False |
 | Vigilante Guess Neutral Evil  | Whether the Vigilante can Guess Neutral Evil roles | Toggle | False |
 | Vigilante Guess Neutral Killing  | Whether the Vigilante can Guess Neutral Killing roles | Toggle | False |
+| Vigilante Guess After Voting  | Whether the Vigilante can Guess after they have voted | Toggle | False |
 
 -----------------------
 ## Altruist
@@ -767,8 +955,8 @@ A report can contain the name of the killer or the color type (Darker/Lighter)
 | Show Medic Reports | Whether the Medic should get information when reporting a body | Toggle | True |
 | Time Where Medic Reports Will Have Name | If a body has been dead for shorter than this amount, the Medic's report will contain the killer's name | Time | 0s |
 | Time Where Medic Reports Will Have Color Type | If a body has been dead for shorter than this amount, the Medic's report will have the type of color | Time | 15s |
-| Who gets murder attempt indicator | Who will receive an indicator when someone tries to Shift into, Hack or Kill them | Medic / Shielded / Everyone / Nobody | Medic |
-| Shield breaks on murder attempt | Whether the Shield breaks when someone attempts to Shift into, Hack or Kill them | Toggle | False |
+| Who gets murder attempt indicator | Who will receive an indicator when someone tries to Kill them | Medic / Shielded / Everyone / Nobody | Medic |
+| Shield breaks on murder attempt | Whether the Shield breaks when someone attempts to Kill them | Toggle | False |
 
 -----------------------
 ## Engineer
@@ -813,6 +1001,18 @@ However, if someone is dead, the Medium and the dead player will be able to see 
 | Reveal Appearance of Mediate Target | Whether the Ghosts will show as themselves, or camouflaged | Toggle | True |
 | Reveal the Medium to the Mediate Target | Whether the ghosts can see that the Medium is the Medium | Toggle | True |
 | Who is Revealed | Which players are revealed to the Medium | Oldest Dead / Newest Dead / All Dead | Oldest Dead |
+
+-----------------------
+## Psychic
+### **Team: Crewmates**
+The Psychic is a Crewmate that gets hints from ghosts at the start of meetings.\
+For every dead player, their 'ghost' sends them a hint to how they died. This could be:
+ - How long ago they died
+ - What colour [Lighter/Darker] killed them
+ - What role they were
+ - What role their killer was
+Only one hint per dead player per meeting
+Each player is anonymised in the chat.
 
 -----------------------
 ## Swapper
@@ -891,6 +1091,8 @@ If their target loses, they lose.
 | Max Uses | The amount of times the Protect ability can be used | Number | 5 |
 | Show Protected Player | Who should be able to see who is Protected | Self / GA / Self + GA / Everyone | Self |
 | Guardian Angel becomes on Target Dead | Which role the Guardian Angel becomes when their target dies | Crewmate / Amnesiac / Survivor / Jester | Crewmate |
+| Target Knows GA Exists | Whether the GA's Target knows they have a GA | Toggle | False |
+| GA Knows Targets Role | Whether the GA knows their target's role | Toggle | False |
 
 -----------------------
 ## Survivor
@@ -986,20 +1188,6 @@ The Glitch can Mimic someone, which results in them looking exactly like the oth
 
 -----------------------
 # Impostor Roles
-## Camouflager
-### **Team: Impostors**
-
-The Camouflager is an Impostor that can turn everyone into colorless characters.\
-Everyone then goes grey for a certain period of time, along with their names disappearing, making them become unrecognizable.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Camouflager | The percentage probability of the Camouflager appearing | Percentage | 0% |
-| Camouflage Cooldown | The cooldown of the Camouflager's Camouflage button | Time | 25s |
-| Camouflage Duration | How long the Camouflage lasts for | Time | 10s |
-
------------------------
 ## Grenadier
 ### **Team: Impostors**
 
@@ -1013,6 +1201,8 @@ However, a sabotage and a smoke grenade can not be active at the same time.
 | Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
 | Flash Grenade Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
 | Flash Grenade Duration | How long the Flash Grenade lasts for | Time | 10s |
+| Flash Radius | How wide the flash radius is | Time | 1x |
+| Indicate Flashed Crewmates | Whether the Grenadier can see who has been flashed | Toggle | False |
 | Grenadier can Vent | Whether the Grenadier can Vent | Toggle | False |
 -----------------------
 ## Morphling
@@ -1149,6 +1339,17 @@ Killing the Bait makes the killer auto self-report.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Bait | The percentage probability of the Bait appearing | Percentage | 0% |
+| Bait Minimum Delay | The minimum time the killer of the Bait reports the body | Time | 0s |
+| Bait Maximum Delay | The maximum time the killer of the Bait reports the body | Time | 1s |
+
+-----------------------
+## Blind
+### **Applied to: All**
+The report button never lights up.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Blind | The percentage probability of the Blind modifier appearing | Percentage | 0% |
 
 -----------------------
 ## Diseased
@@ -1158,6 +1359,7 @@ Killing the Diseased triples the killer's Kill cooldown.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Diseased | The percentage probability of the Diseased appearing | Percentage | 0% |
+| Kill Multiplier | How much the Kill Cooldown of the Impostor is increased by | Time | 3x |
 
 -----------------------
 ## Torch
@@ -1179,6 +1381,17 @@ They have the same amount of meetings as a regular player.
 | Button Barry | The percentage probability of Button Barry appearing | Percentage | 0% |
 
 -----------------------
+## Child
+### **Applied to: All**
+
+The Child is a tiny Crewmate.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Child | The percentage probability of the Child appearing | Percentage | 0% |
+
+-----------------------
 ## Drunk
 ### **Applied to: All**
 The Drunk's controls are inverted.
@@ -1195,6 +1408,7 @@ The Flash travels at twice the speed of a normal player.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Flash | The percentage probability of the Flash appearing | Percentage | 0% |
+| Speed | How fast the Flash moves in comparison to normal | Time | 1.25x |
 
 -----------------------
 ## Giant
@@ -1204,6 +1418,7 @@ The Giant is a gigantic Crewmate, that has a decreased walk speed.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Giant | The percentage probability of the Giant appearing | Percentage | 0% |
+| Speed | How fast the Giant moves in comparison to normal | Time | 0.75x |
 
 -----------------------
 ## Lovers
@@ -1215,6 +1430,17 @@ If they are both among the last 3 players, they win.\
 In order to so, they gain access to a private chat, only visible by them in between meetings.\
 However, they can also win with their respective team, hence why the Lovers do not know the role of the other lover.
 
+-----------------------
+## Volatile
+### **Applied to: All**
+
+Every 45 seconds, one of several things could happen.\
+The volatile player could see a fake sabotage, hear a fake death sound, see a fake death animation, or even press their kill/action button.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Volatile | The percentage probability of Volatile appearing | Percentage | 0% |
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
@@ -1255,6 +1481,7 @@ If the Tiebreaker is the Mayor, it applies to the Mayor's __first__ vote.
 | Probability of a completely vanilla game | The percentage probability of a vanilla Among Us game happening | Percentage | 0% |
 | Game Start Cooldowns | The cooldown for all roles at the start of the game (excluding Impostor's Kill Cooldown) | Time | 10s |
 | Parallel Medbay Scans | Whether players have to wait for others to scan | Toggle | False |
+| Disable Meeting Skip Button | Whether the meeting button is disabled | No / Emergency / Always | No |
 | Disable Level Icons | Whether all level icons are removed in meetings | Toggle | False |
 | Disable Player Nameplates | Whether all decorative nameplates are disabled in meetings | Toggle | False |
 
@@ -1287,6 +1514,8 @@ If they guessed wrong, they die instead.
 | Assassin Guess Neutral Benign  | Whether the Assassin can Guess Neutral Benign roles | Toggle | False |
 | Assassin Guess Neutral Evil  | Whether the Assassin can Guess Neutral Evil roles | Toggle | False |
 | Assassin Guess Neutral Killing  | Whether the Assassin can Guess Neutral Killing roles | Toggle | False |
+| Assassin Guess Crewmate Modifiers  | Whether the Assassin can Guess Crewmate Modifiers | Toggle | False |
+| Assassin Can Guess After Voting  | Whether the Assassin can Guess after voting | Toggle | False |
 
 -----------------------
 # Extras
@@ -1315,6 +1544,7 @@ If you have any bugs or any need to contact me, join the [Discord Server](https:
 [TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Vigilante, Tracker and Spy roles, as well as the Bait modifier.\
 [5up](https://www.twitch.tv/5uppp) and the Submarine Team - For the inspiration of the Grenadier role.\
 [Guus](https://github.com/OhMyGuus) - For support for the new Among Us versions (v2021.11.9.5 and v2021.12.15).\
+[MyDragonBreath](https://github.com/MyDragonBreath) - For Submerged Compatibility.\
 [ItsTheNumberH](https://github.com/itsTheNumberH/Town-Of-H) - For the code used for Bait, Poisoner and partially for Tracker.\
 [Ruiner](https://github.com/ruiner189/Town-Of-Us-Redux) - For lovers changed into a modifier and Task Tracking.\
 [Term](https://www.twitch.tv/termboii) - For creating Transporter, Sleuth, and porting v2.5.0 to the new Among Us version (v2021.12.15).

@@ -3,7 +3,6 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
 using UnityEngine;
-using Reactor;
 using TownOfUs.CrewmateRoles.MedicMod;
 
 namespace TownOfUs.ImpostorRoles.PoisonerMod
@@ -26,6 +25,11 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             if (!__instance.isActiveAndEnabled) return false;
             if (role.PoisonTimer() > 0) return false;
             if (role.Enabled == true) return false;
+            if (role.Player.inVent)
+            {
+                role.PoisonButton.SetCoolDown(0.01f, 1f);
+                return false;
+            }
             if (role.ClosestPlayer.IsOnAlert())
             {
                 if (role.ClosestPlayer.IsShielded())
@@ -70,7 +74,12 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
 
                         role.TimeRemaining = CustomGameOptions.PoisonDuration;
                         role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
-                        // role.Player.SetKillTimer(0);
+                        var writer4 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                            (byte)CustomRPC.Poison,
+                        SendOption.Reliable, -1);
+                        writer4.Write(PlayerControl.LocalPlayer.PlayerId);
+                        writer4.Write(role.PoisonedPlayer.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer4);
                     }
                 }
                 else
@@ -88,7 +97,18 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
 
                         role.TimeRemaining = CustomGameOptions.PoisonDuration;
                         role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
+                        var writer3 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                            (byte)CustomRPC.Poison,
+                        SendOption.Reliable, -1);
+                        writer3.Write(PlayerControl.LocalPlayer.PlayerId);
+                        writer3.Write(role.PoisonedPlayer.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer3);
                         // role.Player.SetKillTimer(0);
+                    }
+                    else
+                    {
+                        role.LastPoisoned.AddSeconds(CustomGameOptions.ProtectKCReset + 0.01f);
+                        role.PoisonButton.SetCoolDown(0.01f, 1f);
                     }
                 }
                 return false;
@@ -113,13 +133,13 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             else if (role.ClosestPlayer.IsVesting())
             {
                 role.LastPoisoned.AddSeconds(CustomGameOptions.VestKCReset + 0.01f);
-
+                role.PoisonButton.SetCoolDown(0.01f, 1f);
                 return false;
             }
             else if (role.ClosestPlayer.IsProtected())
             {
                 role.LastPoisoned.AddSeconds(CustomGameOptions.ProtectKCReset + 0.01f);
-
+                role.PoisonButton.SetCoolDown(0.01f, 1f);
                 return false;
             }
             role.PoisonedPlayer = target;
@@ -127,7 +147,17 @@ namespace TownOfUs.ImpostorRoles.PoisonerMod
             DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
             role.TimeRemaining = CustomGameOptions.PoisonDuration;
             role.PoisonButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.PoisonDuration);
-            // role.Player.SetKillTimer(0);
+            var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                (byte)CustomRPC.Poison,
+            SendOption.Reliable, -1);
+            writer2.Write(PlayerControl.LocalPlayer.PlayerId);
+            writer2.Write(role.PoisonedPlayer.PlayerId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer2);
+            try {
+                AudioClip PoisonSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Poison.raw");
+                SoundManager.Instance.PlaySound(PoisonSFX, false, 0.4f);
+            } catch {
+            }
             return false;
         }
     }

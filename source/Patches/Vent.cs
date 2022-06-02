@@ -1,6 +1,4 @@
 using HarmonyLib;
-using Reactor;
-using System.Linq;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -39,6 +37,13 @@ namespace TownOfUs
             if (playerInfo.IsDead)
                 return false;
 
+            if (CustomGameOptions.WhoCanVent == WhoCanVentOptions.Noone) {
+                return false;
+            }
+            if (CustomGameOptions.WhoCanVent == WhoCanVentOptions.Everyone) {
+                return true;
+            }
+
             if (player.Is(RoleEnum.Morphling) && !CustomGameOptions.MorphlingVent
                 || player.Is(RoleEnum.Swooper) && !CustomGameOptions.SwooperVent
                 || player.Is(RoleEnum.Grenadier) && !CustomGameOptions.GrenadierVent
@@ -64,7 +69,6 @@ namespace TownOfUs
             float num = float.MaxValue;
             PlayerControl playerControl = playerInfo.Object;
             couldUse = CanVent(playerControl, playerInfo) && !playerControl.MustCleanVent(__instance.Id) && (!playerInfo.IsDead || playerControl.inVent) && (playerControl.CanMove || playerControl.inVent);
-
             var ventitaltionSystem = ShipStatus.Instance.Systems[SystemTypes.Ventilation].Cast<VentilationSystem>();
             if (ventitaltionSystem != null && ventitaltionSystem.PlayersCleaningVents != null)
             {
@@ -76,6 +80,33 @@ namespace TownOfUs
 
             }
             canUse = couldUse;
+
+            if (Patches.SubmergedCompatibility.isSubmerged())
+            {
+                if (Patches.SubmergedCompatibility.getInTransition())
+                {
+                    __result = float.MaxValue;
+                    return;
+                }
+                switch (__instance.Id)
+                {
+                    case 9:  //Engine Room Exit Only Vent
+                        if (PlayerControl.LocalPlayer.inVent) break;
+                        __result = float.MaxValue;
+                        return;
+                    case 14: // Lower Central
+                        __result = float.MaxValue;
+                        if (canUse)
+                        {
+                            Vector3 center = playerControl.Collider.bounds.center;
+                            Vector3 position = __instance.transform.position;
+                            __result = Vector2.Distance(center, position);
+                            canUse &= __result <= __instance.UsableDistance;
+                        }
+                        return;
+                }
+            }
+
             if (canUse)
             {
                 Vector3 center = playerControl.Collider.bounds.center;
@@ -83,6 +114,7 @@ namespace TownOfUs
                 num = Vector2.Distance((Vector2)center, (Vector2)position);
                 canUse = ((canUse ? 1 : 0) & ((double)num > (double)__instance.UsableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
             }
+
             __result = num;
 
         }

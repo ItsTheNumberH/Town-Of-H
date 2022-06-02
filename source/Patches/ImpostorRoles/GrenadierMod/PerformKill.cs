@@ -2,6 +2,7 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
 using System.Linq;
+using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.GrenadierMod
 {
@@ -31,6 +32,11 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 role.TimeRemaining = CustomGameOptions.GrenadeDuration;
+                try {
+                    AudioClip FlashSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Flash.raw");
+                    SoundManager.Instance.PlaySound(FlashSFX, false, 0.4f);
+                } catch {
+                }
                 role.Flash();
                 return false;
             }

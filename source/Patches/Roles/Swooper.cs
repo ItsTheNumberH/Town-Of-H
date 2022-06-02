@@ -1,7 +1,6 @@
 using System;
 using TownOfUs.Extensions;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -52,6 +51,10 @@ namespace TownOfUs.Roles
         {
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
+            if (Player.Data.IsDead)
+            {
+                TimeRemaining = 0f;
+            }
             var color = Color.clear;
             if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
 

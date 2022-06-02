@@ -2,7 +2,6 @@ using HarmonyLib;
 using TownOfUs.Roles;
 using System;
 using Hazel;
-using Reactor.Extensions;
 
 namespace TownOfUs.CrewmateRoles.TransporterMod
 {
@@ -25,7 +24,6 @@ namespace TownOfUs.CrewmateRoles.TransporterMod
                 foreach (var entry in role.UntransportablePlayers)
                 {
                     var player = Utils.PlayerById(entry.Key);
-                    // System.Console.WriteLine(entry.Key+" is out of bounds");
                     if (player == null || player.Data == null || player.Data.IsDead || player.Data.Disconnected) continue;
 
                     if (role.UntransportablePlayers.ContainsKey(player.PlayerId) && player.moveable == true &&
@@ -52,7 +50,6 @@ namespace TownOfUs.CrewmateRoles.TransporterMod
         {
             public static void Prefix(MovingPlatformBehaviour __instance)
             {
-                // System.Console.WriteLine(PlayerControl.LocalPlayer.PlayerId+" used the platform.");
                 if (PlayerControl.LocalPlayer.Is(RoleEnum.Transporter))
                 {
                     Role.GetRole<Transporter>(PlayerControl.LocalPlayer).UntransportablePlayers.Add(PlayerControl.LocalPlayer.PlayerId, DateTime.UtcNow);

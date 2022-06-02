@@ -24,6 +24,11 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip ArsonistWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.ArsonistWin.raw");
+                SoundManager.Instance.PlaySound(ArsonistWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

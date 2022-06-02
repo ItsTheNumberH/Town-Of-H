@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections.Generic;
 
 namespace TownOfUs.Roles.Modifiers
@@ -9,7 +8,7 @@ namespace TownOfUs.Roles.Modifiers
         public Sleuth(PlayerControl player) : base(player)
         {
             Name = "Sleuth";
-            TaskText = () => "Know the roles of bodies you report";
+            TaskText = () => "Discover the roles of bodies you report";
             Color = Patches.Colors.Sleuth;
             ModifierType = ModifierEnum.Sleuth;
         }

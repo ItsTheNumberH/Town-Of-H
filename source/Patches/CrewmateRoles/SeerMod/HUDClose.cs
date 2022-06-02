@@ -5,6 +5,11 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.SeerMod
 {
+    public enum SeerFixPer
+    {
+        Round,
+        Game
+    }
     [HarmonyPatch(typeof(Object), nameof(Object.Destroy), typeof(Object))]
     public static class HUDClose
     {
@@ -15,6 +20,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             {
                 var seer = (Seer) role;
                 seer.LastInvestigated = DateTime.UtcNow;
+                if (CustomGameOptions.SeerFixPer == SeerFixPer.Round) seer.UsedThisRound = false;
             }
         }
     }

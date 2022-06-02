@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.TimeLordMod
 {
@@ -28,6 +29,11 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 (byte) CustomRPC.Rewind, SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
+            try {
+                AudioClip RewindSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Rewind.raw");
+                SoundManager.Instance.PlaySound(RewindSFX, false, 0.4f);
+            } catch {
+            }
             return false;
         }
     }

@@ -16,6 +16,7 @@ namespace TownOfUs.Roles
         static readonly Color normalVision = new Color(0.83f, 0.83f, 0.83f, 0f);
         static readonly Color dimVision = new Color(0.83f, 0.83f, 0.83f, 0.2f);
         static readonly Color blindVision = new Color(0.83f, 0.83f, 0.83f, 1f);
+        public Il2CppSystem.Collections.Generic.List<PlayerControl> flashedPlayers = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
 
         public Grenadier(PlayerControl player) : base(player)
         {
@@ -58,6 +59,7 @@ namespace TownOfUs.Roles
             if (Enabled != true)
             {
                 closestPlayers = FindClosestPlayers(Player);
+                flashedPlayers = closestPlayers;
             }
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
@@ -182,6 +184,7 @@ namespace TownOfUs.Roles
             LastFlashed = DateTime.UtcNow;
             ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = normalVision;
+            flashedPlayers.Clear();
         }
 
         public static Il2CppSystem.Collections.Generic.List<PlayerControl> FindClosestPlayers(PlayerControl player)

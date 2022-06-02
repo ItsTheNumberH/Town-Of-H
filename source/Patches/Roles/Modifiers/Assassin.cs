@@ -3,7 +3,6 @@ using System.Linq;
 using TMPro;
 using TownOfUs.Patches;
 using UnityEngine;
-using Hazel;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.GuardianAngelMod;
 
@@ -24,7 +23,7 @@ namespace TownOfUs.Roles.Modifiers
         public Assassin(PlayerControl player) : base(player)
         {
             Name = "Assassin";
-            TaskText = () => "Guess the roles of the people and kill them mid-meeting";
+            TaskText = () => "Guess roles of crewmates to kill them mid-meeting";
             Color = Patches.Colors.Impostor;
             AbilityType = AbilityEnum.Assassin;
 
@@ -48,6 +47,7 @@ namespace TownOfUs.Roles.Modifiers
             if (CustomGameOptions.TransporterOn > 0) ColorMapping.Add("Transporter", Colors.Transporter);
             if (CustomGameOptions.MediumOn > 0) ColorMapping.Add("Medium", Colors.Medium);
             if (CustomGameOptions.MysticOn > 0) ColorMapping.Add("Mystic", Colors.Mystic);
+            if (CustomGameOptions.PsychicOn > 0) ColorMapping.Add("Psychic", Colors.Psychic);
 
             // Add Neutral roles if enabled
             if (CustomGameOptions.AssassinGuessNeutralBenign)
@@ -70,6 +70,10 @@ namespace TownOfUs.Roles.Modifiers
 
             // Add vanilla crewmate if enabled
             if (CustomGameOptions.AssassinCrewmateGuess) ColorMapping.Add("Crewmate", Colors.Crewmate);
+            //Add modifiers if enabled
+            if (CustomGameOptions.AssassinGuessModifiers && CustomGameOptions.BaitOn > 0) ColorMapping.Add("Bait", Colors.Bait);
+            if (CustomGameOptions.AssassinGuessModifiers && CustomGameOptions.DiseasedOn > 0) ColorMapping.Add("Diseased", Colors.Diseased);
+            if (CustomGameOptions.AssassinGuessModifiers && CustomGameOptions.TorchOn > 0) ColorMapping.Add("Torch", Colors.Torch);
 
             // Sorts the list alphabetically. 
             SortedColorMapping = ColorMapping.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);

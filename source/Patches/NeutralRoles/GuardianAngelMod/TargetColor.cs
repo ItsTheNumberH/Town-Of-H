@@ -18,6 +18,7 @@ namespace TownOfUs.NeutralRoles.GuardianAngelMod
     {
         private static void UpdateMeeting(MeetingHud __instance, GuardianAngel role)
         {
+            if (CustomGameOptions.GAKnowsTargetRole) return;
             foreach (var player in __instance.playerStates)
                 if (player.TargetPlayerId == role.target.PlayerId)
                     player.NameText.color = new Color(1f, 0.85f, 0f, 1f);
@@ -35,7 +36,7 @@ namespace TownOfUs.NeutralRoles.GuardianAngelMod
 
             if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, role);
 
-            role.target.nameText.color = new Color(1f, 0.85f, 0f, 1f);
+            if (!CustomGameOptions.GAKnowsTargetRole) role.target.nameText.color = new Color(1f, 0.85f, 0f, 1f);
 
             if (!role.target.Data.IsDead && !role.target.Data.Disconnected) return;
 
@@ -44,14 +45,14 @@ namespace TownOfUs.NeutralRoles.GuardianAngelMod
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
+            GAToSurv(PlayerControl.LocalPlayer);
+
             if (PlayerControl.LocalPlayer.Is(RoleEnum.GuardianAngel))
             {
                 var gaRole = Role.GetRole<GuardianAngel>(PlayerControl.LocalPlayer);
                 Object.Destroy(gaRole.UsesText);
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
             }
-
-            GAToSurv(PlayerControl.LocalPlayer);
         }
 
         public static void GAToSurv(PlayerControl player)

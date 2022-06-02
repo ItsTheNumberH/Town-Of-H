@@ -23,6 +23,11 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip PhantomWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.PhantomWin.raw");
+                SoundManager.Instance.PlaySound(PhantomWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

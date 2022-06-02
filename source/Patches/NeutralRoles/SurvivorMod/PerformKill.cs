@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.SurvivorMod
 {
@@ -28,6 +29,11 @@ namespace TownOfUs.NeutralRoles.SurvivorMod
                     (byte)CustomRPC.Vest, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
+                try {
+                    AudioClip AlertSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Survivor.raw");
+                    SoundManager.Instance.PlaySound(AlertSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

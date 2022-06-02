@@ -12,7 +12,6 @@ using TownOfUs.Extensions;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using HarmonyLib;
 
 namespace TownOfUs.Roles
 {
@@ -41,7 +40,7 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Glitch;
             AddToRoleHistory(RoleType);
             ImpostorText = () => "You are the glitch";
-            TaskText = () => "Murder players as the Glitch:";
+            TaskText = () => "Murder everyone. Be the last one alive.";
             Faction = Faction.Neutral;
         }
 
@@ -91,7 +90,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
             GlitchWins = true;
         }
 
@@ -395,6 +393,11 @@ namespace TownOfUs.Roles
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                 Utils.Morph(__instance.Player, mimicPlayer, true);
+                try {
+                    AudioClip MorphSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Morph.raw");
+                    SoundManager.Instance.PlaySound(MorphSFX, false, 0.4f);
+                } catch {
+                }
 
                 var mimicActivation = DateTime.UtcNow;
                 var mimicText = new GameObject("_Player").AddComponent<ImportantTextTask>();
@@ -419,11 +422,15 @@ namespace TownOfUs.Roles
                         AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Ended)
                     {
                         PlayerControl.LocalPlayer.myTasks.Remove(mimicText);
-                        //System.Console.WriteLine("Unsetting mimic");
                         __instance.LastMimic = DateTime.UtcNow;
                         __instance.IsUsingMimic = false;
                         __instance.MimicTarget = null;
                         Utils.Unmorph(__instance.Player);
+                        try {
+                            AudioClip MorphSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Morph.raw");
+                            SoundManager.Instance.PlaySound(MorphSFX, false, 0.4f);
+                        } catch {
+                        }
 
                         var writer2 = AmongUsClient.Instance.StartRpcImmediately(
                             PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.RpcResetAnim, SendOption.Reliable,
@@ -474,6 +481,7 @@ namespace TownOfUs.Roles
             {
                 if (__gInstance.KillTarget != null)
                 {
+                    if (__gInstance.Player.inVent) return;
                     if (__gInstance.KillTarget.IsOnAlert())
                     {
                         if (__gInstance.KillTarget.IsShielded())
@@ -489,7 +497,8 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                            if (!__gInstance.Player.IsProtected())
+                                Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
                         }
                         else if (__gInstance.Player.IsShielded())
                         {
@@ -504,10 +513,24 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.Player.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            if (CustomGameOptions.KilledOnAlert)
+                            if (CustomGameOptions.KilledOnAlert && !__gInstance.ClosestPlayer.IsProtected())
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
                             }
+                        }
+                        else if (__gInstance.KillTarget.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                        }
+                        else if (CustomGameOptions.KilledOnAlert && __gInstance.Player.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                            __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
+                        }
+                        else if (!CustomGameOptions.KilledOnAlert && __gInstance.Player.IsProtected())
+                        {
+                            __gInstance.Player.SetKillTimer(CustomGameOptions.ProtectKCReset);
                         }
                         else
                         {
@@ -515,6 +538,7 @@ namespace TownOfUs.Roles
                             if (CustomGameOptions.KilledOnAlert)
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
                             }
                         }
 
@@ -528,10 +552,23 @@ namespace TownOfUs.Roles
                         writer.Write(medic);
                         writer.Write(__gInstance.KillTarget.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
+
                         if (CustomGameOptions.ShieldBreaks) __gInstance.LastKill = DateTime.UtcNow;
 
                         StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                             CustomGameOptions.ShieldBreaks);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsVesting())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.VestKCReset);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsProtected())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.ProtectKCReset);
 
                         return;
                     }
@@ -596,7 +633,6 @@ namespace TownOfUs.Roles
                             writer2.Write(PlayerControl.LocalPlayer.PlayerId);
                             AmongUsClient.Instance.FinishRpcImmediately(writer2);
 
-                            System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                             if (CustomGameOptions.ShieldBreaks)
                                 __gInstance.LastHack = DateTime.UtcNow;
                             StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
@@ -609,8 +645,12 @@ namespace TownOfUs.Roles
                     }
 
                     __gInstance.LastHack = DateTime.UtcNow;
-                    //System.Console.WriteLine("Hacking " + __gInstance.HackTarget.Data.PlayerName + "...");
                     __gInstance.RpcSetHacked(__gInstance.HackTarget);
+                    try {
+                        AudioClip MorphSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Hack.raw");
+                        SoundManager.Instance.PlaySound(MorphSFX, false, 0.4f);
+                    } catch {
+                    }
                 }
             }
         }

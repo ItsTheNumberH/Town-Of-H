@@ -1,6 +1,5 @@
 using HarmonyLib;
 using TownOfUs.CrewmateRoles.AltruistMod;
-using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.Modifiers.LoversMod

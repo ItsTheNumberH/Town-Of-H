@@ -7,8 +7,8 @@ namespace TownOfUs.Roles
         public Underdog(PlayerControl player) : base(player)
         {
             Name = "Underdog";
-            ImpostorText = () => "Use your comeback power to win";
-            TaskText = () => "long kill cooldown when 2 imps, short when 1 imp";
+            ImpostorText = () => "Kill faster when the you're the lone impostor";
+            TaskText = () => "Long kill cooldown while 2+ impostors alive\nShort cooldown when you're the only impostor alive.";
             Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Underdog;
             AddToRoleHistory(RoleType);

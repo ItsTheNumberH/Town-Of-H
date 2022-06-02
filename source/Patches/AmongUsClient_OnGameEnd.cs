@@ -1,7 +1,6 @@
 using System.Linq;
 using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
-using Reactor;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 

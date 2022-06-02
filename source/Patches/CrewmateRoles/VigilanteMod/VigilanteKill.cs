@@ -1,10 +1,8 @@
 ﻿using System.Linq;
 using Hazel;
-using Reactor;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
-using UnityEngine.UI;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Modifiers.AssassinMod;
 using TownOfUs.ImpostorRoles.BlackmailerMod;

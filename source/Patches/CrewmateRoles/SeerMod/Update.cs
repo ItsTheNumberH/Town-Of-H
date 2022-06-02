@@ -1,4 +1,3 @@
-using System.Linq;
 using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -38,11 +37,19 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                             ((player.Is(RoleEnum.Executioner) || player.Is(RoleEnum.Jester) || player.Is(RoleEnum.Phantom)) && !CustomGameOptions.NeutEvilRed) ||
                             ((player.Is(RoleEnum.Arsonist) || player.Is(RoleEnum.Glitch) || player.Is(RoleEnum.Juggernaut)) && !CustomGameOptions.NeutKillingRed))
                             {
-                                state.NameText.color = Color.green;
+                                if (CustomGameOptions.SeerAccuracy == 100 || seer.randomSeerAccuracy <= CustomGameOptions.SeerAccuracy) {
+                                    state.NameText.color = Color.green;
+                                } else {
+                                    state.NameText.color = Color.red;
+                                }
                             }
                             else
                             {
-                                state.NameText.color = Color.red;
+                                if (CustomGameOptions.SeerAccuracy == 100 || seer.randomSeerAccuracy <= CustomGameOptions.SeerAccuracy) {
+                                    state.NameText.color = Color.red;
+                                } else {
+                                    state.NameText.color = Color.green;
+                                }
                             }
                             break;
                     }
@@ -78,11 +85,19 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                             ((player.Is(RoleEnum.Executioner) || player.Is(RoleEnum.Jester) || player.Is(RoleEnum.Phantom)) && !CustomGameOptions.NeutEvilRed) ||
                             ((player.Is(RoleEnum.Arsonist) || player.Is(RoleEnum.Glitch) || player.Is(RoleEnum.Juggernaut)) && !CustomGameOptions.NeutKillingRed))
                         {
-                            player.nameText.color = Color.green;
+                            if (CustomGameOptions.SeerAccuracy == 100 || seer.randomSeerAccuracy <= CustomGameOptions.SeerAccuracy) {
+                                player.nameText.color = Color.green;
+                            } else {
+                                player.nameText.color = Color.red;
+                            }
                         }
                         else
                         {
-                            player.nameText.color = Color.red;
+                            if (CustomGameOptions.SeerAccuracy == 100 || seer.randomSeerAccuracy <= CustomGameOptions.SeerAccuracy) {
+                                player.nameText.color = Color.red;
+                            } else {
+                                player.nameText.color = Color.green;  
+                            }
                         }
                         break;
                 }

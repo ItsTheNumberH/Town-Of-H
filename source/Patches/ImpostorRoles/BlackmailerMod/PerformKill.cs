@@ -1,7 +1,6 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
-using System;
 using TownOfUs.CrewmateRoles.MedicMod;
 
 namespace TownOfUs.ImpostorRoles.BlackmailerMod
@@ -30,7 +29,6 @@ namespace TownOfUs.ImpostorRoles.BlackmailerMod
                         writer2.Write(PlayerControl.LocalPlayer.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(writer2);
 
-                        System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                         StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
                     }
                     else

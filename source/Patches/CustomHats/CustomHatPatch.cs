@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
-using Reactor;
 using Reactor.Extensions;
 using TMPro;
 using UnityEngine;
@@ -59,6 +58,10 @@ namespace TownOfUs.Patches.CustomHats
                     colorChip.Button.OnClick.AddListener((Action)(() => __instance.SelectHat(hat)));
                     colorChip.Inner.SetHat(hat, __instance.HasLocalPlayer() ? PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId : (int)SaveManager.BodyColor);
                     colorChip.Inner.transform.localPosition = hat.ChipOffset + new Vector2(0f, -0.3f);
+                    if (SubmergedCompatibility.Loaded)
+                    {
+                        colorChip.gameObject.transform.Find("HatParent").transform.localPosition = new Vector3(-0.1f, 0.05f, -2);
+                    }
                     colorChip.Tag = hat;
                     __instance.ColorChips.Add(colorChip);
                     hatIdx += 1;

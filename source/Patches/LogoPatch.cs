@@ -1,5 +1,7 @@
 using HarmonyLib;
+using System;
 using UnityEngine;
+using static UnityEngine.UI.Button;
 
 namespace TownOfUs {
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
@@ -13,10 +15,34 @@ namespace TownOfUs {
                 amongUsLogo.transform.position += Vector3.up * 0.25f;
             }
 
-            var torLogo = new GameObject("bannerLogo_TownOfH");
-            torLogo.transform.position = Vector3.up;
-            var renderer = torLogo.AddComponent<SpriteRenderer>();
-            renderer.sprite = Sprite;                                
+            var hLogo = new GameObject("bannerLogo_TownOfH");
+            hLogo.transform.position = Vector3.up;
+            var renderer = hLogo.AddComponent<SpriteRenderer>();
+            renderer.sprite = Sprite;
+
+
+            var InvButton = GameObject.Find("InventoryButton");
+            if (InvButton == null) return;
+            var horseObj = GameObject.Instantiate(InvButton, InvButton.transform.parent);
+
+            var iconrenderer = horseObj.GetComponent<SpriteRenderer>();
+            iconrenderer.sprite = Patches.ClientOptions.HorseEnabled ? TownOfUs.HorseEnabledImage : TownOfUs.HorseDisabledImage;
+
+
+            var button = horseObj.GetComponent<PassiveButton>();
+            button.OnClick = new ButtonClickedEvent();
+            button.OnClick.AddListener((Action)(() =>
+            {
+                Patches.ClientOptions.HorseEnabled = !Patches.ClientOptions.HorseEnabled;
+                iconrenderer.sprite = Patches.ClientOptions.HorseEnabled ? TownOfUs.HorseEnabledImage : TownOfUs.HorseDisabledImage;
+                var particles = GameObject.FindObjectOfType<PlayerParticles>();
+                if (particles != null)
+                {
+                    particles.pool.ReclaimAll();
+                    particles.Start();
+                }
+            }));
+            
         }
     }
 }

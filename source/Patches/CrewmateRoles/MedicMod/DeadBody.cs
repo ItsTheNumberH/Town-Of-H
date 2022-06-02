@@ -21,7 +21,6 @@ namespace TownOfUs.CrewmateRoles.MedicMod
 
         public static string ParseBodyReport(BodyReport br)
         {
-            //System.Console.WriteLine(br.KillAge);
             if (br.KillAge > CustomGameOptions.MedicReportColorDuration * 1000)
                 return
                     $"Body Report: The corpse is too old to gain information from. (Killed {Math.Round(br.KillAge / 1000)}s ago)";

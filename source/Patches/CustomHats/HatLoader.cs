@@ -17,7 +17,6 @@ namespace TownOfUs.Patches.CustomHats
         private const string HAT_METADATA_JSON = "metadata.json";
         private const int HAT_ORDER_BASELINE = 99;
 
-        private static ManualLogSource Log => PluginSingleton<TownOfUs>.Instance.Log;
         private static Assembly Assembly => typeof(TownOfUs).Assembly;
 
         private static bool LoadedHats = false;
@@ -49,9 +48,8 @@ namespace TownOfUs.Patches.CustomHats
                 }
 
             }
-            catch (Exception e)
+            catch
             {
-                Log.LogError($"Error while loading hats: {e.Message}\nStack: {e.StackTrace}");
             }
             yield return null;
         }
@@ -81,11 +79,8 @@ namespace TownOfUs.Patches.CustomHats
                         hatBehaviours.Add(hatBehaviour);
                     }
                 }
-                catch (Exception e)
+                catch
                 {
-                   Log.LogError(
-                        $"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
-                     Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
 

@@ -1,6 +1,7 @@
 using TownOfUs.Roles;
 using UnityEngine;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 
 namespace TownOfUs.CrewmateRoles.InvestigatorMod
 {
@@ -44,6 +45,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
         private void Start()
         {
             _gameObject = new GameObject("Footprint");
+            _gameObject.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
             _gameObject.transform.position = Position;
             _gameObject.transform.Rotate(Vector3.forward * Vector2.SignedAngle(Vector2.up, _velocity));
             _gameObject.transform.SetParent(Player.transform.parent);
@@ -52,7 +54,6 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
             _spriteRenderer.sprite = TownOfUs.Footprint;
             _spriteRenderer.color = Color;
             _gameObject.transform.localScale *= new Vector2(1.2f, 1f) * (CustomGameOptions.FootprintSize / 10);
-
 
             _gameObject.SetActive(true);
         }

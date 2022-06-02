@@ -2,7 +2,6 @@
 using TownOfUs.Roles;
 using UnityEngine;
 using System.Linq;
-using Hazel;
 
 namespace TownOfUs.ImpostorRoles.PoisonerMod
 {

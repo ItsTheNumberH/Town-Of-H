@@ -1,13 +1,12 @@
 using HarmonyLib;
 using TownOfUs.Roles;
-using UnityEngine;
 using Object = UnityEngine.Object;
 using System.Collections.Generic;
 using System.Linq;
 using TownOfUs.CrewmateRoles.MedicMod;
-using Reactor;
 using System;
 using Hazel;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MediumMod
 {
@@ -39,6 +38,11 @@ namespace TownOfUs.CrewmateRoles.MediumMod
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
                     if (CustomGameOptions.DeadRevealed != DeadRevealed.All) return false;
                 }
+            }
+            try {
+                AudioClip MediumSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Seer.raw");
+                SoundManager.Instance.PlaySound(MediumSFX, false, 0.4f);
+            } catch {
             }
 
             return false;

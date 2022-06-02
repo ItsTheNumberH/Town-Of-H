@@ -46,8 +46,6 @@ namespace TownOfUs.CrewmateRoles.HaunterMod
                 RemoveTasks(PlayerControl.LocalPlayer);
                 PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
 
-                System.Console.WriteLine("Become Haunter - Haunter");
-
                 PlayerControl.LocalPlayer.gameObject.layer = LayerMask.NameToLayer("Players");
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
@@ -58,6 +56,14 @@ namespace TownOfUs.CrewmateRoles.HaunterMod
             if (Role.GetRole<Haunter>(PlayerControl.LocalPlayer).Caught) return;
             var startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
+
+            var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte)CustomRPC.SetPos, SendOption.Reliable, -1);
+            writer2.Write(PlayerControl.LocalPlayer.PlayerId);
+            writer2.Write(startingVent.transform.position.x);
+            writer2.Write(startingVent.transform.position.y);
+            AmongUsClient.Instance.FinishRpcImmediately(writer2);
+
             PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(new Vector2(startingVent.transform.position.x, startingVent.transform.position.y + 0.3636f));
             PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
         }
@@ -92,29 +98,6 @@ namespace TownOfUs.CrewmateRoles.HaunterMod
                     taskInfo.Complete = false;
                 }
         }
-
-        /*public static void ResetTowels(NormalPlayerTask task)
-        {
-            var towelTask = task.Cast<TowelTask>();
-            var data = new byte[8];
-            var array = Enumerable.Range(0, 14).ToList();
-            array.Shuffle();
-            var b3 = 0;
-            while (b3 < data.Length)
-            {
-                data[b3] = (byte)array[b3];
-                b3++;
-            }
-
-            towelTask.Data = data;
-            return;
-        }
-
-        public static void ResetRecords(NormalPlayerTask task)
-        {
-            task.Data = new 
-        }*/
-
         public static void AddCollider(Haunter role)
         {
             var player = role.Player;

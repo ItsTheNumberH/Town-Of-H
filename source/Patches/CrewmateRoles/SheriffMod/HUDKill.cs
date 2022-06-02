@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SheriffMod
 {
@@ -21,10 +20,8 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            var flag7 = PlayerControl.AllPlayerControls.Count > 1;
-            if (!flag7) return;
-            var flag8 = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);
-            if (flag8)
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff))
             {
                 var role = Role.GetRole<Sheriff>(PlayerControl.LocalPlayer);
                 var isDead = PlayerControl.LocalPlayer.Data.IsDead;

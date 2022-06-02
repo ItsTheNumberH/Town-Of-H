@@ -10,6 +10,7 @@ namespace TownOfUs
         Investigator,
         TimeLord,
         Medic,
+        Psychic,
         Seer,
         Executioner,
         Spy,
@@ -59,7 +60,10 @@ namespace TownOfUs
         Giant,
         ButtonBarry,
         Bait,
-        Sleuth
+        Sleuth,
+        Blind,
+        Child,
+        Volatile
     }
 
     public enum AbilityEnum

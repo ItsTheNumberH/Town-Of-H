@@ -12,7 +12,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
             if (reason != GameOverReason.HumansByVote && reason != GameOverReason.HumansByTask) return true;
 
             foreach (var role in Role.AllRoles)
-                if (role.RoleType == RoleEnum.Amnesiac)
+                if (role.RoleType == RoleEnum.Amnesiac && !CustomGameOptions.AmnesiacCrewmate)
                     ((Amnesiac) role).Loses();
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.AmnesiacLose,

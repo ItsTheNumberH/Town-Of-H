@@ -59,7 +59,7 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Vigilante)) return;
             var retributionist = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
-            HideButtonsVigi(retributionist);
+            if (!CustomGameOptions.VigilanteAfterVoting) HideButtonsVigi(retributionist);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Juggernaut;
             AddToRoleHistory(RoleType);
             ImpostorText = () => "With each kill your kill cooldown decreases";
-            TaskText = () => "Your power grows with every kill!";
+            TaskText = () => "Be the last one alive\nWith each kill your cooldown decreases";
             Faction = Faction.Neutral;
         }
 
@@ -52,7 +52,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
             JuggernautWins = true;
         }
 
@@ -130,6 +129,7 @@ namespace TownOfUs.Roles
             {
                 if (__gInstance.KillTarget != null)
                 {
+                    if (__gInstance.Player.inVent) return;
                     if (__gInstance.KillTarget.IsOnAlert())
                     {
                         if (__gInstance.KillTarget.IsShielded())
@@ -145,7 +145,8 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                            if (!__gInstance.Player.IsProtected())
+                                Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
                         }
                         else if (__gInstance.Player.IsShielded())
                         {
@@ -160,10 +161,26 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.Player.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            if (CustomGameOptions.KilledOnAlert)
+                            if (CustomGameOptions.KilledOnAlert && !__gInstance.ClosestPlayer.IsProtected())
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.JuggKills = __gInstance.JuggKills + 1;
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown + 5.0f - 5.0f * __gInstance.JuggKills);
                             }
+                        }
+                        else if (__gInstance.KillTarget.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                        }
+                        else if (CustomGameOptions.KilledOnAlert && __gInstance.Player.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                            __gInstance.JuggKills = __gInstance.JuggKills + 1;
+                            __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown + 5.0f - 5.0f * __gInstance.JuggKills);
+                        }
+                        else if (!CustomGameOptions.KilledOnAlert && __gInstance.Player.IsProtected())
+                        {
+                            __gInstance.Player.SetKillTimer(CustomGameOptions.ProtectKCReset);
                         }
                         else
                         {
@@ -171,9 +188,10 @@ namespace TownOfUs.Roles
                             if (CustomGameOptions.KilledOnAlert)
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.JuggKills = __gInstance.JuggKills + 1;
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown + 5.0f - 5.0f * __gInstance.JuggKills);
                             }
                         }
-
                         return;
                     }
                     else if (__gInstance.KillTarget.IsShielded())
@@ -189,6 +207,18 @@ namespace TownOfUs.Roles
 
                         StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                             CustomGameOptions.ShieldBreaks);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsVesting())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.VestKCReset);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsProtected())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.ProtectKCReset);
 
                         return;
                     }
