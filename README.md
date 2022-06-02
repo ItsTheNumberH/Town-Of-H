@@ -1,5 +1,5 @@
  ## *Note. This repository is a continuation of Town Of Us, updated by -H to add in a few more roles, loads of bug fixes and many more options. Source code is added to each release
- ## **UPDATE This work has had it's important changes merged into Town Of Us R as I have joined the development team there.
+ ## **UPDATE This work has had it's important changes merged into Town Of Us R as I have joined the development team there: [https://github.com/eDonnes124/Town-Of-Us-R].
 
 ![LOGO](./Images/TOU-logo.png)
 ![Roles](./Images/Roles3.png)
