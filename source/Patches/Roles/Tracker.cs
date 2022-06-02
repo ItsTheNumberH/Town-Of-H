@@ -23,6 +23,7 @@ namespace TownOfUs.Roles
             ImpostorText = () => "Track everyone's movement";
             TaskText = () => "Track suspicious players";
             Color = Patches.Colors.Tracker;
+            LastTracked = DateTime.UtcNow;
             RoleType = RoleEnum.Tracker;
             AddToRoleHistory(RoleType);
 
@@ -52,18 +53,6 @@ namespace TownOfUs.Roles
             if (arrow.Value.gameObject != null)
                 Object.Destroy(arrow.Value.gameObject);
             TrackerArrows.Remove(arrow.Key);
-        }
-
-        public void DestroyAllArrows()
-        {
-            foreach (var arrow in TrackerArrows)
-            {
-                if (arrow.Value != null)
-                    Object.Destroy(arrow.Value);
-                if (arrow.Value.gameObject != null)
-                    Object.Destroy(arrow.Value.gameObject);
-            }
-            TrackerArrows.Clear();
         }
     }
 }

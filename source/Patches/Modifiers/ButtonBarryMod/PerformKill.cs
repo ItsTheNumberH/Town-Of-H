@@ -20,13 +20,13 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
             if (PlayerControl.LocalPlayer.RemainingEmergencies <= 0) return false;
             if (!__instance.enabled) return false;
 
-            System.Console.WriteLine("Reached here!");
-
             role.ButtonUsed = true;
+
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.BarryButton, SendOption.Reliable, -1);
+                (byte)CustomRPC.BarryButton, SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
+
             if (AmongUsClient.Instance.AmHost)
             {
                 MeetingRoomManager.Instance.reporter = PlayerControl.LocalPlayer;
@@ -37,7 +37,6 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
                 DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(PlayerControl.LocalPlayer);
                 PlayerControl.LocalPlayer.RpcStartMeeting(null);
             }
-
             return false;
         }
     }

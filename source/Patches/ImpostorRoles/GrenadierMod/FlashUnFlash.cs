@@ -12,10 +12,13 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
         {
             foreach (var role in Role.GetRoles(RoleEnum.Grenadier))
             {
-                var grenadier = (Grenadier) role;
-                if (grenadier.Flashed)
-                    grenadier.Flash();
-                else if (grenadier.Enabled) grenadier.UnFlash();
+                try {
+                    var grenadier = (Grenadier) role;
+                    if (grenadier.Flashed)
+                        grenadier.Flash();
+                    else if (grenadier.Enabled) grenadier.UnFlash();
+                } catch {
+                }
             }
         }
     }

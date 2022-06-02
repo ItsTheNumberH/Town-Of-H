@@ -5,10 +5,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.JuggernautMod
 {
-    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__19), nameof(IntroCutscene._CoBegin_d__19.MoveNext))]
     internal class Start
     {
-        private static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
+        private static void Postfix(IntroCutscene._CoBegin_d__19 __instance)
         {
             var juggernaut = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Juggernaut);
             if (juggernaut != null)

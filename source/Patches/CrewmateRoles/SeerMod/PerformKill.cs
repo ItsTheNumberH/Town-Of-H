@@ -38,15 +38,17 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                     writer2.Write(PlayerControl.LocalPlayer.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer2);
 
-                    System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                     if (CustomGameOptions.ShieldBreaks)
                         role.LastInvestigated = DateTime.UtcNow;
                     StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                    return false;
                 }
-                else
+                else if (!role.Player.IsProtected())
                 {
                     Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                    return false;
                 }
+                role.LastInvestigated = DateTime.UtcNow;
 
                 return false;
             }
@@ -59,6 +61,11 @@ namespace TownOfUs.CrewmateRoles.SeerMod
 
             role.Investigated.Add(role.ClosestPlayer.PlayerId);
             role.LastInvestigated = DateTime.UtcNow;
+            try {
+                AudioClip SeerSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Seer.raw");
+                SoundManager.Instance.PlaySound(SeerSFX, false, 0.4f);
+            } catch {
+            }
             return false;
         }
     }

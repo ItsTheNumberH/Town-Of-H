@@ -22,6 +22,11 @@ namespace TownOfUs.NeutralRoles.JesterMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip JesterWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.JesterWin.raw");
+                SoundManager.Instance.PlaySound(JesterWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

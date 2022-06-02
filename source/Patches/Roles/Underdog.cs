@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
         {
             Name = "Underdog";
             ImpostorText = () => "Kill faster when the you're the lone impostor";
-            TaskText = () => "Longer kill cooldown unless you're the last impostor. Then kill fast!";
+            TaskText = () => "Long kill cooldown while 2+ impostors alive\nShort cooldown when you're the only impostor alive.";
             Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Underdog;
             AddToRoleHistory(RoleType);

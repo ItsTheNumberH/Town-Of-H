@@ -14,10 +14,10 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
         public static void UpdateRewindButton(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.TimeLord)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.TimeLord)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var rewindButton = DestroyableSingleton<HudManager>.Instance.KillButton;
@@ -46,7 +46,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                     role.UsesText.transform.localPosition.x + 0.26f,
                     role.UsesText.transform.localPosition.y + 0.29f,
                     role.UsesText.transform.localPosition.z);
-                role.UsesText.transform.localScale = role.UsesText.transform.localScale * 0.6f;
+                role.UsesText.transform.localScale = role.UsesText.transform.localScale * 0.65f;
                 role.UsesText.alignment = TMPro.TextAlignmentOptions.Right;
                 role.UsesText.fontStyle = TMPro.FontStyles.Bold;
             }

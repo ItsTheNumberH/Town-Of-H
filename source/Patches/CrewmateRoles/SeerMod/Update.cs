@@ -1,6 +1,4 @@
-using System.Linq;
 using HarmonyLib;
-using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
         {
             if (CamouflageUnCamouflage.IsCamoed)
             {
-                if (meeting && !CustomGameOptions.MeetingColourblind) return player.name + str;
+                if (meeting) return player.name + str;
 
                 return "";
             }
@@ -35,7 +33,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                         default:
                             if ((player.Is(Faction.Crewmates) && !(player.Is(RoleEnum.Sheriff) || player.Is(RoleEnum.Veteran) || player.Is(RoleEnum.Vigilante))) ||
                             ((player.Is(RoleEnum.Sheriff) || player.Is(RoleEnum.Veteran) || player.Is(RoleEnum.Vigilante)) && !CustomGameOptions.CrewKillingRed) ||
-                            (player.Is(RoleEnum.Amnesiac) && !CustomGameOptions.NeutBenignRed) ||
+                            ((player.Is(RoleEnum.Amnesiac) || player.Is(RoleEnum.Survivor) || player.Is(RoleEnum.GuardianAngel)) && !CustomGameOptions.NeutBenignRed) ||
                             ((player.Is(RoleEnum.Executioner) || player.Is(RoleEnum.Jester) || player.Is(RoleEnum.Phantom)) && !CustomGameOptions.NeutEvilRed) ||
                             ((player.Is(RoleEnum.Arsonist) || player.Is(RoleEnum.Glitch) || player.Is(RoleEnum.Juggernaut)) && !CustomGameOptions.NeutKillingRed))
                             {
@@ -61,13 +59,14 @@ namespace TownOfUs.CrewmateRoles.SeerMod
 
         [HarmonyPriority(Priority.Last)]
         private static void Postfix(HudManager __instance)
+
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
             if (PlayerControl.LocalPlayer.Data.IsDead) return;
 
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return;
             var seer = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
             if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, seer);
 
@@ -82,7 +81,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                     default:
                         if ((player.Is(Faction.Crewmates) && !(player.Is(RoleEnum.Sheriff) || player.Is(RoleEnum.Veteran) || player.Is(RoleEnum.Vigilante))) ||
                             ((player.Is(RoleEnum.Sheriff) || player.Is(RoleEnum.Veteran) || player.Is(RoleEnum.Vigilante)) && !CustomGameOptions.CrewKillingRed) ||
-                            (player.Is(RoleEnum.Amnesiac) && !CustomGameOptions.NeutBenignRed) ||
+                            ((player.Is(RoleEnum.Amnesiac) || player.Is(RoleEnum.Survivor) || player.Is(RoleEnum.GuardianAngel)) && !CustomGameOptions.NeutBenignRed) ||
                             ((player.Is(RoleEnum.Executioner) || player.Is(RoleEnum.Jester) || player.Is(RoleEnum.Phantom)) && !CustomGameOptions.NeutEvilRed) ||
                             ((player.Is(RoleEnum.Arsonist) || player.Is(RoleEnum.Glitch) || player.Is(RoleEnum.Juggernaut)) && !CustomGameOptions.NeutKillingRed))
                         {

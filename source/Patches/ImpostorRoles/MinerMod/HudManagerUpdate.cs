@@ -12,10 +12,10 @@ namespace TownOfUs.ImpostorRoles.MinerMod
 
         public static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Miner)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Miner)) return;
             var role = Role.GetRole<Miner>(PlayerControl.LocalPlayer);
             if (role.MineButton == null)
             {
@@ -34,7 +34,7 @@ namespace TownOfUs.ImpostorRoles.MinerMod
             hits = hits.ToArray().Where(c =>
                     (c.name.Contains("Vent") || !c.isTrigger) && c.gameObject.layer != 8 && c.gameObject.layer != 5)
                 .ToArray();
-            if (hits.Count == 0)
+            if (hits.Count == 0 && PlayerControl.LocalPlayer.moveable == true)
             {
                 role.MineButton.graphic.color = Palette.EnabledColor;
                 role.MineButton.graphic.material.SetFloat("_Desat", 0f);

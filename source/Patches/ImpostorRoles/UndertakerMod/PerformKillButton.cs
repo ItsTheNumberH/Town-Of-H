@@ -1,7 +1,6 @@
 using System;
 using HarmonyLib;
 using Hazel;
-using TownOfUs.Extensions;
 using Reactor.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -48,6 +47,20 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                         (byte) CustomRPC.Drop, SendOption.Reliable, -1);
                     writer.Write(PlayerControl.LocalPlayer.PlayerId);
                     Vector3 position = PlayerControl.LocalPlayer.GetTruePosition();
+
+
+                    if (Patches.SubmergedCompatibility.isSubmerged())
+                    {
+                        if (position.y > -7f)
+                        {
+                            position.z = 0.0208f;
+                        }
+                        else
+                        {
+                            position.z = -0.0273f;
+                        }
+                    }
+
                     writer.Write(position);
                     writer.Write(position.z);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);

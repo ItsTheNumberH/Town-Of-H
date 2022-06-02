@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles.Modifiers
 {
     public class Drunk : Modifier
@@ -8,7 +6,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Drunk";
             TaskText = () => "Inverted controls";
-            Color = new Color(0.46f, 0.5f, 0f, 1f);
+            Color = Patches.Colors.Drunk;
             ModifierType = ModifierEnum.Drunk;
         }
     }

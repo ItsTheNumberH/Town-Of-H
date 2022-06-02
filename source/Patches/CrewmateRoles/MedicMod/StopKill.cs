@@ -1,7 +1,5 @@
 using HarmonyLib;
-using Hazel;
 using Reactor;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -15,14 +13,26 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (PlayerControl.LocalPlayer.PlayerId == playerId &&
                 CustomGameOptions.NotificationShield == NotificationOptions.Shielded)
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
-
+                try {
+                    AudioClip AttemptSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Attempt.raw");
+                    SoundManager.Instance.PlaySound(AttemptSFX, false, 0.2f);
+                } catch {
+                }
             if (PlayerControl.LocalPlayer.PlayerId == medicId &&
                 CustomGameOptions.NotificationShield == NotificationOptions.Medic)
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
-
+                try {
+                    AudioClip AttemptSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Attempt.raw");
+                    SoundManager.Instance.PlaySound(AttemptSFX, false, 0.2f);
+                } catch {
+                }
             if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone)
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
-
+                try {
+                    AudioClip AttemptSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Attempt.raw");
+                    SoundManager.Instance.PlaySound(AttemptSFX, false, 0.2f);
+                } catch {
+                }
             if (!flag)
                 return;
 
@@ -32,11 +42,10 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {
                     ((Medic) role).ShieldedPlayer = null;
                     ((Medic) role).exShielded = player;
-                    System.Console.WriteLine(player.name + " Is Ex-Shielded");
                 }
 
-            player.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
-            player.myRend.material.SetFloat("_Outline", 0f);
+            player.MyRend.material.SetColor("_VisorColor", Palette.VisorColor);
+            player.MyRend.material.SetFloat("_Outline", 0f);
         }
     }
 }

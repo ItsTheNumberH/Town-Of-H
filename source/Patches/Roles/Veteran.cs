@@ -19,8 +19,9 @@ namespace TownOfUs.Roles
         {
             Name = "Veteran";
             ImpostorText = () => "Alert to kill whoever interacts with you";
-            TaskText = () => "You have " + UsesLeft + " alerts left";
+            TaskText = () => "Alert to kill whoever interacts with you";
             Color = Patches.Colors.Veteran;
+            LastAlerted = DateTime.UtcNow;
             RoleType = RoleEnum.Veteran;
             AddToRoleHistory(RoleType);
 

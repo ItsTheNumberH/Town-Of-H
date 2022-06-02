@@ -3,6 +3,7 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
 using TownOfUs.CrewmateRoles.MedicMod;
+using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.ArsonistMod
 {
@@ -48,16 +49,17 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
                     writer3.Write(PlayerControl.LocalPlayer.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer3);
 
-                    System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                     if (CustomGameOptions.ShieldBreaks)
                         role.LastDoused = DateTime.UtcNow;
                     StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                    return false;
                 }
-                else
+                else if (!role.Player.IsProtected())
                 {
                     Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                    return false;
                 }
-
+                role.LastDoused = DateTime.UtcNow;
                 return false;
             }
             var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
@@ -67,7 +69,11 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             AmongUsClient.Instance.FinishRpcImmediately(writer2);
             role.DousedPlayers.Add(role.ClosestPlayer.PlayerId);
             role.LastDoused = DateTime.UtcNow;
-
+            try {
+                AudioClip douseSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Douse.raw");
+                SoundManager.Instance.PlaySound(douseSFX, false, 0.4f);
+            } catch {
+            }
             __instance.SetTarget(null);
             return false;
         }

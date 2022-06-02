@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
-using Reactor;
 using Reactor.Extensions;
 using TMPro;
 using UnityEngine;
@@ -18,13 +17,13 @@ namespace TownOfUs.Patches.CustomHats
         {
             __instance.currentHat = DestroyableSingleton<HatManager>.Instance.GetHatById(SaveManager.LastHat);
             var allHats = DestroyableSingleton<HatManager>.Instance.GetUnlockedHats();
-            var hatGroups = new SortedList<string, List<HatBehaviour>>(
+            var hatGroups = new SortedList<string, List<HatData>>(
                 new PaddedComparer<string>("Vanilla", "")
             );
             foreach (var hat in allHats)
             {
                 if (!hatGroups.ContainsKey(hat.StoreName))
-                    hatGroups[hat.StoreName] = new List<HatBehaviour>();
+                    hatGroups[hat.StoreName] = new List<HatData>();
                 hatGroups[hat.StoreName].Add(hat);
             }
 
@@ -33,7 +32,7 @@ namespace TownOfUs.Patches.CustomHats
             __instance.ColorChips.Clear();
             var groupNameText = __instance.GetComponentInChildren<TextMeshPro>(false);
             int hatIdx = 0;
-            foreach ((string groupName, List<HatBehaviour> hats) in hatGroups)
+            foreach ((string groupName, List<HatData> hats) in hatGroups)
             {
                 var text = Object.Instantiate(groupNameText, __instance.scroller.Inner);
                 text.gameObject.transform.localScale = Vector3.one;
@@ -50,7 +49,7 @@ namespace TownOfUs.Patches.CustomHats
                 float yLerp = __instance.YStart - (hatIdx / __instance.NumPerRow) * __instance.YOffset;
                 text.transform.localPosition = new Vector3(xLerp, yLerp, -1f);
                 hatIdx += 5;
-                foreach (var hat in hats.OrderBy(HatManager.Instance.AllHats.IndexOf))
+                foreach (var hat in hats.OrderBy(HatManager.Instance.allHats.IndexOf))
                 {
                     float num = __instance.XRange.Lerp(hatIdx % __instance.NumPerRow / (__instance.NumPerRow - 1f));
                     float num2 = __instance.YStart - hatIdx / __instance.NumPerRow * __instance.YOffset;
@@ -59,6 +58,10 @@ namespace TownOfUs.Patches.CustomHats
                     colorChip.Button.OnClick.AddListener((Action)(() => __instance.SelectHat(hat)));
                     colorChip.Inner.SetHat(hat, __instance.HasLocalPlayer() ? PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId : (int)SaveManager.BodyColor);
                     colorChip.Inner.transform.localPosition = hat.ChipOffset + new Vector2(0f, -0.3f);
+                    if (SubmergedCompatibility.Loaded)
+                    {
+                        colorChip.gameObject.transform.Find("HatParent").transform.localPosition = new Vector3(-0.1f, 0.05f, -2);
+                    }
                     colorChip.Tag = hat;
                     __instance.ColorChips.Add(colorChip);
                     hatIdx += 1;

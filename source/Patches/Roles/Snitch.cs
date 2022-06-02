@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TownOfUs.Extensions;
-using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
+using System.Linq;
 
 namespace TownOfUs.Roles
 {
@@ -9,9 +9,7 @@ namespace TownOfUs.Roles
     {
         public List<ArrowBehaviour> ImpArrows = new List<ArrowBehaviour>();
 
-        public List<ArrowBehaviour> SnitchArrows = new List<ArrowBehaviour>();
-
-        public List<PlayerControl> SnitchTargets = new List<PlayerControl>();
+        public Dictionary<byte, ArrowBehaviour> SnitchArrows = new Dictionary<byte, ArrowBehaviour>();
 
         public Snitch(PlayerControl player) : base(player)
         {
@@ -41,7 +39,7 @@ namespace TownOfUs.Roles
             if (Local)
             {
                 if (CustomGameOptions.SnitchOnLaunch) return base.SelfCriteria();
-                return Revealed || base.SelfCriteria();
+                return Revealed;
             }
             return base.SelfCriteria();
         }
@@ -82,6 +80,15 @@ namespace TownOfUs.Roles
             if(Local)
                 return PlayerName + "\n" + "Crewmate";
             return PlayerName;
+        }
+        public void DestroyArrow(byte targetPlayerId)
+        {
+            var arrow = SnitchArrows.FirstOrDefault(x => x.Key == targetPlayerId);
+            if (arrow.Value != null)
+                Object.Destroy(arrow.Value);
+            if (arrow.Value.gameObject != null)
+                Object.Destroy(arrow.Value.gameObject);
+            SnitchArrows.Remove(arrow.Key);
         }
     }
 }

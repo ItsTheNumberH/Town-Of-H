@@ -15,9 +15,10 @@ namespace TownOfUs.Roles
         public Miner(PlayerControl player) : base(player)
         {
             Name = "Miner";
-            ImpostorText = () => "Place your own vents";
+            ImpostorText = () => "You can place vents";
             TaskText = () => "Place your own vents";
             Color = Patches.Colors.Impostor;
+            LastMined = DateTime.UtcNow;
             RoleType = RoleEnum.Miner;
             AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;

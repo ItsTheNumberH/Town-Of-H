@@ -24,12 +24,18 @@ namespace TownOfUs
         private static Sprite Remember => TownOfUs.RememberSprite;
         private static Sprite Track => TownOfUs.TrackSprite;
         private static Sprite Transport => TownOfUs.TransportSprite;
+        private static Sprite Mediate => TownOfUs.MediateSprite;
+        private static Sprite Vest => TownOfUs.VestSprite;
+        private static Sprite Protect => TownOfUs.ProtectSprite;
         private static Sprite Button => TownOfUs.ButtonSprite;
+        private static Sprite Kill;
 
 
         public static void Postfix(HudManager __instance)
         {
             if (__instance.KillButton == null) return;
+
+            if (!Kill) Kill = __instance.KillButton.graphic.sprite;
 
             var flag = false;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.TimeLord))
@@ -77,9 +83,29 @@ namespace TownOfUs
                 __instance.KillButton.graphic.sprite = Transport;
                 flag = true;
             }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Medium))
+            {
+                __instance.KillButton.graphic.sprite = Mediate;
+                flag = true;
+            }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Survivor))
+            {
+                __instance.KillButton.graphic.sprite = Vest;
+                flag = true;
+            }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.GuardianAngel))
+            {
+                __instance.KillButton.graphic.sprite = Protect;
+                flag = true;
+            } else if (PlayerControl.LocalPlayer.Is(RoleEnum.Engineer))
+            {
+                flag = true;
+            }
             else
             {
-                __instance.KillButton.graphic.sprite = TranslationController.Instance.GetImage(ImageNames.KillButton);
+                __instance.KillButton.graphic.sprite = Kill;
+                __instance.KillButton.buttonLabelText.gameObject.SetActive(true);
+                __instance.KillButton.buttonLabelText.text = "Kill";
                 flag = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);
             }
 

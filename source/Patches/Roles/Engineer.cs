@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles
 {
     public class Engineer : Role
@@ -8,7 +6,7 @@ namespace TownOfUs.Roles
         {
             Name = "Engineer";
             ImpostorText = () => "Use vents and remotely fix sabotages";
-            TaskText = () => "Vent and fix a sabotage from anywhere!";
+            TaskText = () => "Use vents and remotely fix sabotages!";
             Color = Patches.Colors.Engineer;
             RoleType = RoleEnum.Engineer;
             AddToRoleHistory(RoleType);

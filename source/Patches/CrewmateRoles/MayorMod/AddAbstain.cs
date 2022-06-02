@@ -8,7 +8,6 @@ namespace TownOfUs.CrewmateRoles.MayorMod
     public class AddAbstain
     {
         private static Sprite Abstain => TownOfUs.Abstain;
-
         public static void UpdateButton(Mayor role, MeetingHud __instance)
         {
             var skip = __instance.SkipVoteButton;

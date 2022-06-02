@@ -71,8 +71,6 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 catch
                 {
                 }
-            //System.Console.WriteLine("Rewinding...");
-            //System.Console.Write(points.Count);
 
             if (points.Count > 2)
             {
@@ -103,6 +101,10 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                     var currentPoint = points[0];
 
                     PlayerControl.LocalPlayer.transform.position = currentPoint.position;
+                    if (Patches.SubmergedCompatibility.isSubmerged())
+                    {
+                        Patches.SubmergedCompatibility.ChangeFloor(currentPoint.position.y > -7);
+                    }
                     PlayerControl.LocalPlayer.gameObject.GetComponent<Rigidbody2D>().velocity =
                         currentPoint.velocity * 3;
 

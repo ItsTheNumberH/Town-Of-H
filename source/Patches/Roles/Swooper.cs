@@ -1,7 +1,6 @@
 using System;
 using TownOfUs.Extensions;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -18,6 +17,7 @@ namespace TownOfUs.Roles
             ImpostorText = () => "Turn invisible temporarily";
             TaskText = () => "Turn invisible and sneakily kill";
             Color = Patches.Colors.Impostor;
+            LastSwooped = DateTime.UtcNow;
             RoleType = RoleEnum.Swooper;
             AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
@@ -51,6 +51,10 @@ namespace TownOfUs.Roles
         {
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
+            if (Player.Data.IsDead)
+            {
+                TimeRemaining = 0f;
+            }
             var color = Color.clear;
             if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
 

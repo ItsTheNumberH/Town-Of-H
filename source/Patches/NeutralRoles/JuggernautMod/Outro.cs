@@ -23,6 +23,11 @@ namespace TownOfUs.NeutralRoles.JuggernautMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip JuggernautWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.GlitchWin.raw");
+                SoundManager.Instance.PlaySound(JuggernautWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

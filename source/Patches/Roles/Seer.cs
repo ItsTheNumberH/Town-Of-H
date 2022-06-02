@@ -11,8 +11,9 @@ namespace TownOfUs.Roles
         {
             Name = "Seer";
             ImpostorText = () => "Investigate roles";
-            TaskText = () => "Investigate roles and find the Impostor";
+            TaskText = () => "Investigate players to find their allegience";
             Color = Patches.Colors.Seer;
+            LastInvestigated = DateTime.UtcNow;
             RoleType = RoleEnum.Seer;
             AddToRoleHistory(RoleType);
         }

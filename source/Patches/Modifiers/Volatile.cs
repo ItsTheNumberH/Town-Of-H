@@ -37,6 +37,14 @@ namespace TownOfUs.Modifiers
                             {
                                 //Fake you killed you
                                 DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(PlayerControl.LocalPlayer.Data, PlayerControl.LocalPlayer.Data);
+                            } else if (randomNumber == 4)
+                            {
+                                //Fake morphling sample sound
+                                try {
+                                    AudioClip EngineerSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Sample.raw");
+                                    SoundManager.Instance.PlaySound(EngineerSFX, false, 0.4f);
+                                } catch {
+                                }
                             }
                         } catch {
 

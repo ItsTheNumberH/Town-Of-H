@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles.Modifiers
 {
     public class Bait : Modifier
@@ -8,7 +6,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Bait";
             TaskText = () => "Killing you causes an instant self-report";
-            Color = new Color(0f, 0.7f, 0.7f, 1f);
+            Color = Patches.Colors.Bait;
             ModifierType = ModifierEnum.Bait;
         }
     }

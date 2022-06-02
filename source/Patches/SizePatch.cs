@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
+using System.Linq;
 using TownOfUs.Extensions;
 using UnityEngine;
-using System.Linq;
 
 namespace TownOfUs.Patches
 {

@@ -13,10 +13,10 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
 
         public static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Morphling)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Morphling)) return;
             var role = Role.GetRole<Morphling>(PlayerControl.LocalPlayer);
             if (role.MorphButton == null)
             {

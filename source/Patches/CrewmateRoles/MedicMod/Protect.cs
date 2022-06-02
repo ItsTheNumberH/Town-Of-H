@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
@@ -18,7 +19,10 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (role.UsedAbility || role.ClosestPlayer == null) return false;
             if (role.ClosestPlayer.IsOnAlert())
             {
-                Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                if (!PlayerControl.LocalPlayer.IsProtected())
+                {
+                    Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                }
 
                 return false;
             }
@@ -31,6 +35,11 @@ namespace TownOfUs.CrewmateRoles.MedicMod
 
             role.ShieldedPlayer = role.ClosestPlayer;
             role.UsedAbility = true;
+            try {
+                AudioClip shieldSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Shield.raw");
+                SoundManager.Instance.PlaySound(shieldSFX, false, 1f);
+            } catch {
+            }
             return false;
         }
     }

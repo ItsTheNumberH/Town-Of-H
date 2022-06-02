@@ -29,10 +29,14 @@ namespace TownOfUs
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                         if (CustomGameOptions.ShieldBreaks) PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                        else PlayerControl.LocalPlayer.SetKillTimer(0.01f);
 
                         StopKill.BreakShield(medic, target.PlayerId,
                             CustomGameOptions.ShieldBreaks);
-                        Utils.RpcMurderPlayer(target, PlayerControl.LocalPlayer);
+                        if (!PlayerControl.LocalPlayer.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(target, PlayerControl.LocalPlayer);
+                        }
                     }
                     else if (PlayerControl.LocalPlayer.IsShielded())
                     {
@@ -44,20 +48,29 @@ namespace TownOfUs
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                         if (CustomGameOptions.ShieldBreaks) PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                        else PlayerControl.LocalPlayer.SetKillTimer(0.01f);
 
-                        StopKill.BreakShield(medic, PlayerControl.LocalPlayer.PlayerId,
-                            CustomGameOptions.ShieldBreaks);
-                        if (CustomGameOptions.KilledOnAlert)
+                        StopKill.BreakShield(medic, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                        if (CustomGameOptions.KilledOnAlert && !target.IsProtected())
                         {
                             Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, target);
+                            PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                         }
                     }
                     else
                     {
-                        Utils.RpcMurderPlayer(target, PlayerControl.LocalPlayer);
-                        if (CustomGameOptions.KilledOnAlert)
+                        if (!PlayerControl.LocalPlayer.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(target, PlayerControl.LocalPlayer);
+                        }
+                        if (CustomGameOptions.KilledOnAlert && !target.IsProtected())
                         {
                             Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, target);
+                            PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                        }
+                        else
+                        {
+                            PlayerControl.LocalPlayer.SetKillTimer(CustomGameOptions.ProtectKCReset + 0.01f);
                         }
                     }
                 }
@@ -73,10 +86,25 @@ namespace TownOfUs
                     writer.Write(target.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-                    System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
-                    if (CustomGameOptions.ShieldBreaks)
-                        PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                    if (CustomGameOptions.ShieldBreaks) PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                    else PlayerControl.LocalPlayer.SetKillTimer(0.01f);
                     StopKill.BreakShield(target.GetMedic().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);
+                }
+                return false;
+            }
+            else if (target.IsVesting())
+            {
+                if (__instance.isActiveAndEnabled && !__instance.isCoolingDown)
+                {
+                    PlayerControl.LocalPlayer.SetKillTimer(CustomGameOptions.VestKCReset + 0.01f);
+                }
+                return false;
+            }
+            else if (target.IsProtected())
+            {
+                if (__instance.isActiveAndEnabled && !__instance.isCoolingDown)
+                {
+                    PlayerControl.LocalPlayer.SetKillTimer(CustomGameOptions.ProtectKCReset + 0.01f);
                 }
                 return false;
             }

@@ -14,10 +14,10 @@ namespace TownOfUs.CrewmateRoles.SeerMod
 
         public static void UpdateInvButton(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var investigateButton = DestroyableSingleton<HudManager>.Instance.KillButton;
@@ -28,12 +28,10 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             if (isDead || role.UsedThisRound)
             {
                 investigateButton.gameObject.SetActive(false);
-             //   investigateButton.isActive = false;
             }
             else
             {
                 investigateButton.gameObject.SetActive(!MeetingHud.Instance);
-               // investigateButton.isActive = !MeetingHud.Instance;
                 investigateButton.SetCoolDown(role.SeerTimer(), CustomGameOptions.SeerCd);
 
                 var notInvestigated = PlayerControl.AllPlayerControls

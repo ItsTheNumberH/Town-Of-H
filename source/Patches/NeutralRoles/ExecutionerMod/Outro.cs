@@ -23,6 +23,11 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             pos.y = 1.5f;
             text.transform.position = pos;
             text.text = $"<size=4>{text.text}</size>";
+            try {
+                AudioClip ExecutionerWinSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.ExecutionerWin.raw");
+                SoundManager.Instance.PlaySound(ExecutionerWinSFX, false, 0.3f);
+            } catch {
+            }
         }
     }
 }

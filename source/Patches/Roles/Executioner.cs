@@ -1,7 +1,4 @@
 using Il2CppSystem.Collections.Generic;
-using TownOfUs.Extensions;
-using UnityEngine;
-
 namespace TownOfUs.Roles
 {
     public class Executioner : Role
@@ -25,11 +22,11 @@ namespace TownOfUs.Roles
             Scale = 1.4f;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__21 __instance)
         {
-            var executionerteam = new List<PlayerControl>();
-            executionerteam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = executionerteam;
+            var exeTeam = new List<PlayerControl>();
+            exeTeam.Add(PlayerControl.LocalPlayer);
+            __instance.teamToShow = exeTeam;
         }
 
         internal override bool EABBNOODFGL(ShipStatus __instance)

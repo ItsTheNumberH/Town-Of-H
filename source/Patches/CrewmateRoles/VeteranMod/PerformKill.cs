@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.VeteranMod
 {
@@ -29,6 +30,11 @@ namespace TownOfUs.CrewmateRoles.VeteranMod
                     (byte)CustomRPC.Alert, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
+                try {
+                    AudioClip AlertSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Alert.raw");
+                    SoundManager.Instance.PlaySound(AlertSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

@@ -12,10 +12,10 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
         
         public static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return;
             var role = Role.GetRole<Arsonist>(PlayerControl.LocalPlayer);
 
             foreach (var playerId in role.DousedPlayers)
@@ -25,7 +25,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
                 if (data == null || data.Disconnected || data.IsDead || PlayerControl.LocalPlayer.Data.IsDead)
                     continue;
 
-                player.myRend.material.SetColor("_VisorColor", role.Color);
+                player.MyRend.material.SetColor("_VisorColor", role.Color);
                 player.nameText.color = Color.black;
             }
 

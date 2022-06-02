@@ -1,4 +1,3 @@
-using System;
 using HarmonyLib;
 
 namespace TownOfUs.Tasks
@@ -23,4 +22,4 @@ namespace TownOfUs.Tasks
 			}
 		}
 	}
-} 
+}

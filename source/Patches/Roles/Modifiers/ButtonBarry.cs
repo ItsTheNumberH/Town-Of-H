@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles.Modifiers
 {
     public class ButtonBarry : Modifier
@@ -12,7 +10,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Button Barry";
             TaskText = () => "Call a button from anywhere!";
-            Color = new Color(0.9f, 0f, 1f, 1f);
+            Color = Patches.Colors.ButtonBarry;
             ModifierType = ModifierEnum.ButtonBarry;
         }
     }

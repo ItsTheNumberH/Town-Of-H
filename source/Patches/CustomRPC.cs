@@ -11,7 +11,7 @@ namespace TownOfUs
         SetInvestigator,
         SetTimeLord,
         SetMedic,
-        SetMedium,
+        SetPsychic,
         SetSeer,
         SetMorphling,
         SetCamouflager,
@@ -34,6 +34,12 @@ namespace TownOfUs
         SetTracker,
         SetPoisoner,
         SetTransporter,
+        SetMedium,
+        SetSurvivor,
+        SetGuardianAngel,
+        SetGATarget,
+        SetMystic,
+        SetBlackmailer,
 
         SetTorch,
         SetDiseased,
@@ -74,6 +80,10 @@ namespace TownOfUs
         ArsonistLose,
         NobodyWins,
         PhantomLose,
+        SurvivorImpWin,
+        SurvivorCrewWin,
+        GAImpWin,
+        GAImpLose,
 
         JanitorClean,
         FixLights,
@@ -103,24 +113,35 @@ namespace TownOfUs
         Remember,
         BaitReport,
         Transport,
+        SetUntransportable,
+        Mediate,
+        Vest,
+        GAProtect,
+        Blackmail,
+        Poison,
 
         SetGlitch,
-        BypassKill,
+        BypassKill = 220,
         SetMimic,
         RpcResetAnim,
         SetHacked,
 
         ExecutionerToJester,
-
+        GAToSurv,
 
         Start,
         SyncCustomSettings,
         FixAnimation,
+        SetPos,
         
         AddMayorVoteBank,
+        RemoveAllBodies,
         SetChild,
         SetBlind,
         SetVolatile,
-        PoisonAlert
+        PoisonAlert,
+        CheckMurder,
+
+        SubmergedFixOxygen
     }
 }

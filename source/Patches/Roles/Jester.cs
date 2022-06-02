@@ -1,6 +1,4 @@
 using Il2CppSystem.Collections.Generic;
-using TownOfUs.Extensions;
-using UnityEngine;
 
 namespace TownOfUs.Roles
 {
@@ -20,11 +18,11 @@ namespace TownOfUs.Roles
             Faction = Faction.Neutral;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__21 __instance)
         {
-            var jesterTeam = new List<PlayerControl>();
-            jesterTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = jesterTeam;
+            var jestTeam = new List<PlayerControl>();
+            jestTeam.Add(PlayerControl.LocalPlayer);
+            __instance.teamToShow = jestTeam;
         }
 
         internal override bool EABBNOODFGL(ShipStatus __instance)
@@ -36,7 +34,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Jester edition");
             VotedOut = true;
         }
 

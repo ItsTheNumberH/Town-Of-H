@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
@@ -20,7 +21,6 @@ namespace TownOfUs.CrewmateRoles.MedicMod
 
         public static string ParseBodyReport(BodyReport br)
         {
-            //System.Console.WriteLine(br.KillAge);
             if (br.KillAge > CustomGameOptions.MedicReportColorDuration * 1000)
                 return
                     $"Body Report: The corpse is too old to gain information from. (Killed {Math.Round(br.KillAge / 1000)}s ago)";
@@ -60,10 +60,11 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {22, "lighter"},// hot pink
                 {23, "lighter"},// turquoise
                 {24, "lighter"},// lilac
-                {25, "lighter"},// rainbow
+                {25, "darker"},// olive
                 {26, "lighter"},// azure
+                {27, "lighter"},// rainbow
             };
-            var typeOfColor = colors[br.Killer.CurrentOutfit.ColorId];
+            var typeOfColor = colors[br.Killer.GetDefaultOutfit().ColorId];
             return
                 $"Body Report: The killer appears to be a {typeOfColor} color. (Killed {Math.Round(br.KillAge / 1000)}s ago)";
         }

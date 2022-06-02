@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles.Modifiers
 {
     public class Blind : Modifier
@@ -8,7 +6,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Blind";
             TaskText = () => "Your report button does not light up";
-            Color = new Color(1f, 1f, 1f, 1f);
+            Color = Patches.Colors.Blind;
             ModifierType = ModifierEnum.Blind;
         }
     }

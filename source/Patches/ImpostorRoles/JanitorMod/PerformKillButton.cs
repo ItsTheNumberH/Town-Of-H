@@ -33,6 +33,11 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                 Coroutines.Start(Coroutine.CleanCoroutine(role.CurrentTarget, role));
+                try {
+                    AudioClip CleanSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Clean.raw");
+                    SoundManager.Instance.PlaySound(CleanSFX, false, 0.4f);
+                } catch {
+                }
                 return false;
             }
 

@@ -1,7 +1,6 @@
 using System.Linq;
 using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
-using Reactor;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 
@@ -29,7 +28,7 @@ namespace TownOfUs
             {
                 TempData.winners.Remove(toRemoveWinners[i]);
             }
-            
+
             if (Role.NobodyWins)
             {
                 TempData.winners = new List<WinningPlayerData>();

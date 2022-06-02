@@ -1,48 +1,61 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Reactor;
+using System.Collections.Generic;
 
 namespace TownOfUs.Roles
 {
     public class Medium : Role
     {
-        public readonly List<GameObject> Buttons = new List<GameObject>();
-        public Dictionary<int, string> LightDarkColors = new Dictionary<int, string>();
+        public DateTime LastMediated { get; set; }
+
+        public Dictionary<byte, ArrowBehaviour> MediatedPlayers = new Dictionary<byte, ArrowBehaviour>();
+        
+        public static Sprite Arrow => TownOfUs.Arrow;
+        
         public Medium(PlayerControl player) : base(player)
         {
             Name = "Medium";
-            ImpostorText = () => "The dead speak to you";
-            TaskText = () => "Ghosts tell you info at the start of meetings";
-            Color = new Color(0.67f, 0.67f, 1f, 1f);
+            ImpostorText = () => "Gain info from dead players";
+            TaskText = () => "Gain info from dead players";
+            Color = Patches.Colors.Medium;
+            LastMediated = DateTime.UtcNow;
             RoleType = RoleEnum.Medium;
             AddToRoleHistory(RoleType);
-            
-            LightDarkColors.Add(0, "darker");
-            LightDarkColors.Add(1, "darker");
-            LightDarkColors.Add(2, "darker");
-            LightDarkColors.Add(3, "lighter");
-            LightDarkColors.Add(4, "lighter");
-            LightDarkColors.Add(5, "lighter");
-            LightDarkColors.Add(6, "darker");
-            LightDarkColors.Add(7, "lighter");
-            LightDarkColors.Add(8, "darker");
-            LightDarkColors.Add(9, "darker");
-            LightDarkColors.Add(10, "lighter");
-            LightDarkColors.Add(11, "lighter");
-            LightDarkColors.Add(12, "darker");
-            LightDarkColors.Add(13, "lighter");
-            LightDarkColors.Add(14, "lighter");
-            LightDarkColors.Add(15, "darker");
-            LightDarkColors.Add(16, "darker");
-            LightDarkColors.Add(17, "lighter");
-            LightDarkColors.Add(18, "darker");
-            LightDarkColors.Add(19, "darker");
-            LightDarkColors.Add(20, "lighter");
-            LightDarkColors.Add(21, "darker");
-            LightDarkColors.Add(22, "lighter");
-            LightDarkColors.Add(23, "lighter");
-            LightDarkColors.Add(24, "lighter");
-            LightDarkColors.Add(25, "lighter");
-            LightDarkColors.Add(26, "lighter");
+            Scale = 1.4f;
+            MediatedPlayers = new Dictionary<byte, ArrowBehaviour>();
+        }
+
+        internal override bool RoleCriteria()
+        {
+            return (MediatedPlayers.ContainsKey(PlayerControl.LocalPlayer.PlayerId) && CustomGameOptions.ShowMediumToDead) || base.RoleCriteria();
+        }
+
+        public float MediateTimer()
+        {
+            var utcNow = DateTime.UtcNow;
+            var timeSpan = utcNow - LastMediated;
+            var num = CustomGameOptions.MediateCooldown * 1000f;
+            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
+            if (flag2) return 0;
+            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
+        }
+
+        public void AddMediatePlayer(byte playerId)
+        {
+            var gameObj = new GameObject();
+            var arrow = gameObj.AddComponent<ArrowBehaviour>();
+            if (Player.PlayerId == PlayerControl.LocalPlayer.PlayerId || CustomGameOptions.ShowMediumToDead)
+            {
+                gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;
+                var renderer = gameObj.AddComponent<SpriteRenderer>();
+                renderer.sprite = Arrow;
+                arrow.image = renderer;
+                gameObj.layer = 5;
+                arrow.target = Utils.PlayerById(playerId).transform.position;
+            }
+            MediatedPlayers.Add(playerId, arrow);
+            Coroutines.Start(Utils.FlashCoroutine(Color));
         }
     }
 }

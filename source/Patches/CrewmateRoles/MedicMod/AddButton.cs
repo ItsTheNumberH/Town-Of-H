@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
 using HarmonyLib;
-using Hazel;
-using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using System.Collections.Generic;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
@@ -17,15 +15,31 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         private static Sprite LighterSprite => TownOfUs.LighterSprite;
         public static Sprite DarkerSprite => TownOfUs.DarkerSprite;
 
-        public static void GenButton(Medic role, int index)
+        private static bool IsExempt(PlayerVoteArea voteArea)
         {
-            var colorButton = MeetingHud.Instance.playerStates[index].Buttons.transform.GetChild(0).gameObject;
-            var newButton = Object.Instantiate(colorButton, MeetingHud.Instance.playerStates[index].transform);
+            var player = Utils.PlayerById(voteArea.TargetPlayerId);
+            if (player == null || player.Data.Disconnected) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public static void GenButton(Medic role, PlayerVoteArea voteArea)
+        {
+            
+            var targetId = voteArea.TargetPlayerId;
+            if (IsExempt(voteArea))
+            {
+                return;
+            }
+            var colorButton = voteArea.Buttons.transform.GetChild(0).gameObject;
+            var newButton = Object.Instantiate(colorButton, voteArea.transform);
             var renderer = newButton.GetComponent<SpriteRenderer>();
 
-            PlayerControl playerControl = PlayerControl.AllPlayerControls.ToArray().FirstOrDefault(p => p.PlayerId == MeetingHud.Instance.playerStates[index].TargetPlayerId);
+            PlayerControl playerControl = PlayerControl.AllPlayerControls.ToArray().FirstOrDefault(p => p.PlayerId == voteArea.TargetPlayerId);
 
-            if (role.LightDarkColors[playerControl.CurrentOutfit.ColorId] == "lighter") {
+            if (role.LightDarkColors[playerControl.GetDefaultOutfit().ColorId] == "lighter") {
                 renderer.sprite = LighterSprite;
             } else {
                 renderer.sprite = DarkerSprite;
@@ -34,7 +48,19 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             newButton.transform.localScale *= 0.8f;
             newButton.layer = 5;
             newButton.transform.parent = colorButton.transform.parent.parent;
+            var newButtonClickEvent = new Button.ButtonClickedEvent();
+            newButtonClickEvent.AddListener(LighterDarkerHandler());
+            newButton.GetComponent<PassiveButton>().OnClick = newButtonClickEvent;
             role.Buttons.Add(newButton);
+        }
+
+        private static Action LighterDarkerHandler()
+        {
+            //Used to avoid the Lighter/Darker Indicators causing any button problems by giving them their own Listener events.
+            void Listener()
+            {
+            }
+            return Listener;
         }
 
         public static void Postfix(MeetingHud __instance)
@@ -48,8 +74,13 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) return;
             if (PlayerControl.LocalPlayer.Data.IsDead) return;
             var medicrole = Role.GetRole<Medic>(PlayerControl.LocalPlayer);
-            for (var i = 0; i < __instance.playerStates.Length; i++)
-                GenButton(medicrole, i);
+            foreach (var voteArea in __instance.playerStates)
+            {
+                try {
+                    GenButton(medicrole, voteArea);
+                } catch {
+                }
+            }
         }
     }
 }

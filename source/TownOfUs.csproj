@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
-		<Version>5.0.4</Version>
+		<Version>6.1.1</Version>
 		<DebugType>embedded</DebugType>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<GameProvider>Static</GameProvider>
 		<GameVersion>D:/Applications/Among Us Dev/Among Us Modded</GameVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,7 +25,11 @@
 		<EmbeddedResource Include="Resources\*" />
 		<EmbeddedResource Include="Resources\Hats\**" />
 	</ItemGroup>
+
   <Target Name="Copy" AfterTargets="Build">
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="D:/Applications/Among Us Dev/Among Us Modded/BepInEx/plugins" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="D:/Applications/Among Us Dev/Among Us Modded - Copy/BepInEx/plugins" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="D:/Applications/Among Us Dev/Among Us Modded - Copy (2)/BepInEx/plugins" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="D:/Applications/Among Us Dev/Among Us Modded - Copy (3)/BepInEx/plugins" />
   </Target>
 </Project>

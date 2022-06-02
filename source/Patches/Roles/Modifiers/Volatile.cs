@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TownOfUs.Roles.Modifiers
 {
     public class Volatile : Modifier
@@ -8,7 +6,7 @@ namespace TownOfUs.Roles.Modifiers
         {
             Name = "Volatile";
             TaskText = () => "You might see/hear things and lash out.";
-            Color = new Color(1f, 0.65f, 0.04f, 1f);
+            Color = Patches.Colors.Volatile;
             ModifierType = ModifierEnum.Volatile;
         }
     }

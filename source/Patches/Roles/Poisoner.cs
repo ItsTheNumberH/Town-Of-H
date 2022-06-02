@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
-using HarmonyLib;
 using Hazel;
 using Assassin = TownOfUs.Modifiers.AssassinMod;
-
 namespace TownOfUs.Roles
 {
     public class Poisoner : Role
@@ -23,6 +21,7 @@ namespace TownOfUs.Roles
             ImpostorText = () => $"Poison a crewmate to kill them in {CustomGameOptions.PoisonDuration} seconds";
             TaskText = () => "Poison the crewmates";
             Color = Palette.ImpostorRed;
+            LastPoisoned = DateTime.UtcNow;
             RoleType = RoleEnum.Poisoner;
             AddToRoleHistory(RoleType);
             Faction = Faction.Impostors;
@@ -65,15 +64,14 @@ namespace TownOfUs.Roles
         }
         public void PoisonKill()
         {
-            if (MeetingHud.Instance) {
-                Assassin.AssassinKill.MurderPlayer(PoisonedPlayer, false);
-            } else {
+            if (!PoisonedPlayer.Data.IsDead)
+            {
                 Utils.RpcMurderPlayer(Player, PoisonedPlayer);
+                SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.5f);
             }
             PoisonedPlayer = null;
             Enabled = false;
             LastPoisoned = DateTime.UtcNow;
-            SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.5f);
         }
         public float PoisonTimer()
         {

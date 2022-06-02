@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace TownOfUs.Roles
 {
@@ -11,6 +10,7 @@ namespace TownOfUs.Roles
             ImpostorText = () => "Shoot the <color=#FF0000FF>Bad</color> roles";
             TaskText = () => "Kill the bad roles but don't kill crewmates.";
             Color = Patches.Colors.Sheriff;
+            LastKilled = DateTime.UtcNow;
             RoleType = RoleEnum.Sheriff;
             AddToRoleHistory(RoleType);
         }

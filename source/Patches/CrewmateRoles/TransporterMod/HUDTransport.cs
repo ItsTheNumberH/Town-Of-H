@@ -32,7 +32,7 @@ namespace TownOfUs.CrewmateRoles.TransporterMod
                     role.UsesText.transform.localPosition.x + 0.26f,
                     role.UsesText.transform.localPosition.y + 0.29f,
                     role.UsesText.transform.localPosition.z);
-                role.UsesText.transform.localScale = role.UsesText.transform.localScale * 0.655f;
+                role.UsesText.transform.localScale = role.UsesText.transform.localScale * 0.65f;
                 role.UsesText.alignment = TMPro.TextAlignmentOptions.Right;
                 role.UsesText.fontStyle = TMPro.FontStyles.Bold;
             }

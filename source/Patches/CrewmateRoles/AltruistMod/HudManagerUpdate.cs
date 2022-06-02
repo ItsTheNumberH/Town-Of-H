@@ -9,10 +9,10 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
     {
         public static void Postfix(HudManager __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)) return;
 
             var role = Role.GetRole<Altruist>(PlayerControl.LocalPlayer);
 

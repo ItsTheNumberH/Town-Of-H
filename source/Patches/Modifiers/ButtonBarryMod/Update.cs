@@ -1,6 +1,7 @@
 using HarmonyLib;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
+using TMPro;
 
 namespace TownOfUs.Modifiers.ButtonBarryMod
 {
@@ -30,7 +31,8 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
 
             if (role.ButtonButton == null)
             {
-                role.ButtonButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                role.ButtonButton = Object.Instantiate(__instance.KillButton, __instance.transform.parent);
+                role.ButtonButton.GetComponentsInChildren<TextMeshPro>()[0].text = "";
                 role.ButtonButton.graphic.enabled = true;
                 role.ButtonButton.graphic.sprite = Button;
             }

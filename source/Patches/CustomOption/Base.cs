@@ -7,15 +7,17 @@ namespace TownOfUs.CustomOption
     {
         public static List<CustomOption> AllOptions = new List<CustomOption>();
         public readonly int ID;
+        public readonly MultiMenu Menu;
 
         public Func<object, string> Format;
         public string Name;
 
 
-        protected internal CustomOption(int id, string name, CustomOptionType type, object defaultValue,
+        protected internal CustomOption(int id, MultiMenu menu, string name, CustomOptionType type, object defaultValue,
             Func<object, string> format = null)
         {
             ID = id;
+            Menu = menu;
             Name = name;
             Type = type;
             DefaultValue = Value = defaultValue;
@@ -48,8 +50,6 @@ namespace TownOfUs.CustomOption
 
         protected internal void Set(object value, bool SendRpc = true)
         {
-            System.Console.WriteLine($"{Name} set to {value}");
-
             Value = value;
 
             if (Setting != null && AmongUsClient.Instance.AmHost && SendRpc) Rpc.SendRpc(this);

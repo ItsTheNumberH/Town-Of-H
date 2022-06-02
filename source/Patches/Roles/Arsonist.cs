@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using Hazel;
-using TownOfUs.Extensions;
-using UnityEngine;
 
 namespace TownOfUs.Roles
 {
@@ -24,6 +21,7 @@ namespace TownOfUs.Roles
             ImpostorText = () => "Douse players and ignite the light";
             TaskText = () => "Douse players and ignite to kill everyone\nFake Tasks:";
             Color = Patches.Colors.Arsonist;
+            LastDoused = DateTime.UtcNow;
             RoleType = RoleEnum.Arsonist;
             AddToRoleHistory(RoleType);
             Faction = Faction.Neutral;
@@ -65,7 +63,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
             ArsonistWins = true;
         }
 
@@ -90,11 +87,11 @@ namespace TownOfUs.Roles
             return true;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__21 __instance)
         {
             var arsonistTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             arsonistTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = arsonistTeam;
+            __instance.teamToShow = arsonistTeam;
         }
 
         public float DouseTimer()

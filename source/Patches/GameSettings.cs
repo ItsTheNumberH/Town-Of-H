@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using HarmonyLib;
 using Reactor.Extensions;
 using TownOfUs.CustomOption;
-using TownOfUs.Extensions;
-using UnityEngine;
 
 namespace TownOfUs
 {
@@ -14,57 +11,8 @@ namespace TownOfUs
     public static class GameSettings
     {
         public static bool AllOptions;
-        public static bool LastTab;
 
-        /*public static string StringBuild()
-        {
-            var builder = new StringBuilder("Roles:\n");
-            foreach (var option in TownOfUs.Roles)
-            {
-                builder.AppendLine($"     {option.Name}: {option}");
-            }
-
-            builder.AppendLine("Modifiers:");
-            foreach (var option in TownOfUs.Modifiers)
-            {
-                builder.AppendLine($"     {option.Name}: {option}");
-            }
-            
-            
-            foreach (var option in TownOfUs.AllOptions)
-            {
-                builder.AppendLine($"{option.Name}: {option}");
-            }
-            
-
-            return builder.ToString();
-        }
-
-        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.FixedUpdate))]
-        public static class LobbyFix
-        {
-
-            public static bool Prefix()
-            {
-                
-                DestroyableSingleton<HudManager>.Instance.GameSettings.text = StringBuild();
-                DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(true);
-                return false;
-            }
-        }
-
-
-        [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-        [HarmonyAfter("com.comando.essentials")]
-        public static class FixScale
-        {
-            public static void Prefix(HudManager __instance)
-            {
-//                __instance.GameSettings.scale = 0.3f;
-            }
-        }*/
-
-        [HarmonyPatch] //ToHudString
+        [HarmonyPatch]
         private static class GameOptionsDataPatch
         {
             public static IEnumerable<MethodBase> TargetMethods()
@@ -78,9 +26,9 @@ namespace TownOfUs
 
                 foreach (var option in CustomOption.CustomOption.AllOptions)
                 {
-                    if (option.Name == "Crewmate Roles") {
-                        builder.Append("<color=#00FF00FF>Version " + TownOfUs.VersionString + "</color> (Scroll for all settings)");
-                    } else if (option.Name == "Custom Game Settings") {
+                    if (option.Name == "Crewmate Investigative Roles")
+                    {
+                        builder.Append("[Scroll for all settings]");
                         builder.AppendLine("");
                         builder.Append(new StringBuilder(__result));
                     }

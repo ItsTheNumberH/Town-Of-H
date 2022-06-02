@@ -14,10 +14,10 @@ namespace TownOfUs.CrewmateRoles.VeteranMod
 
         public static void UpdateAlertButton(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Veteran)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Veteran)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var alertButton = DestroyableSingleton<HudManager>.Instance.KillButton;

@@ -1,10 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using System.Reflection;
-using System.Collections.Generic;
-using Hazel;
 using System;
-using UnhollowerBaseLib;
 
 namespace TownOfUs.Patches
 {
@@ -101,8 +97,8 @@ namespace TownOfUs.Patches
         [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
         class GameStartPatch
         {
-            // Deactivate custom lobby items on game start
             public static void Prefix(ShipStatus __instance) {
+                //Reset states for custom lobby
                 try {
                     if (!DestroyableSingleton<TutorialManager>.InstanceExists) {
                         GameObject allulbackground = GameObject.Find("allul_customLobby(Clone)");

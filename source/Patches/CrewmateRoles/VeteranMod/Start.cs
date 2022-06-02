@@ -4,10 +4,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.VeteranMod
 {
-    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__19), nameof(IntroCutscene._CoBegin_d__19.MoveNext))]
     public static class Start
     {
-        public static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
+        public static void Postfix(IntroCutscene._CoBegin_d__19 __instance)
         {
             foreach (var role in Role.GetRoles(RoleEnum.Veteran))
             {

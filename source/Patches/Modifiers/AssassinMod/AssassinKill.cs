@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using Hazel;
-using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CrewmateRoles.SwapperMod;
 using TownOfUs.CrewmateRoles.VigilanteMod;
+using TownOfUs.ImpostorRoles.BlackmailerMod;
 using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.Modifiers.AssassinMod
@@ -50,6 +51,7 @@ namespace TownOfUs.Modifiers.AssassinMod
             var amOwner = player.AmOwner;
             if (amOwner)
             {
+                Utils.ShowDeadBodies = true;
                 hudManager.ShadowQuad.gameObject.SetActive(false);
                 player.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
                 player.RpcSetScanner(false);
@@ -81,6 +83,11 @@ namespace TownOfUs.Modifiers.AssassinMod
 
                 if (player.Is(RoleEnum.Swapper))
                 {
+                    var swapper = Role.GetRole<Swapper>(PlayerControl.LocalPlayer);
+                    swapper.ListOfActives.Clear();
+                    swapper.Buttons.Clear();
+                    SwapVotes.Swap1 = null;
+                    SwapVotes.Swap2 = null;
                     var buttons = Role.GetRole<Swapper>(player).Buttons;
                     foreach (var button in buttons)
                     {
@@ -119,6 +126,50 @@ namespace TownOfUs.Modifiers.AssassinMod
             voteArea.Overlay.color = Color.white;
             voteArea.XMark.gameObject.SetActive(true);
             voteArea.XMark.transform.localScale = Vector3.one;
+
+            var blackmailers = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Blackmailer && x.Player != null).Cast<Blackmailer>();
+            foreach (var role in blackmailers)
+            {
+                if (role.Blackmailed != null && voteArea.TargetPlayerId == role.Blackmailed.PlayerId)
+                {
+                    if (BlackmailMeetingUpdate.PrevXMark != null && BlackmailMeetingUpdate.PrevOverlay != null)
+                    {
+                        voteArea.XMark.sprite = BlackmailMeetingUpdate.PrevXMark;
+                        voteArea.Overlay.sprite = BlackmailMeetingUpdate.PrevOverlay;
+                        voteArea.XMark.transform.localPosition = new Vector3(
+                            voteArea.XMark.transform.localPosition.x - BlackmailMeetingUpdate.LetterXOffset,
+                            voteArea.XMark.transform.localPosition.y - BlackmailMeetingUpdate.LetterYOffset,
+                            voteArea.XMark.transform.localPosition.z);
+                    }
+                }
+            }
+
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper) && !player.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead)
+            {
+                
+                SwapVotes.Swap1 = voteArea == SwapVotes.Swap1 ? null : SwapVotes.Swap1;
+                SwapVotes.Swap2 = voteArea == SwapVotes.Swap2 ? null : SwapVotes.Swap2;
+                if (SwapVotes.Swap1 == null || SwapVotes.Swap2 == null)
+                {
+                    var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.SetSwaps, SendOption.Reliable, -1);
+                    writer2.Write(sbyte.MaxValue);
+                    writer2.Write(sbyte.MaxValue);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer2);
+
+                }
+                var swapperrole = Role.GetRole<Swapper>(PlayerControl.LocalPlayer);
+
+                int index;
+                for (index = 0; index < MeetingHud.Instance.playerStates.Length; index++) if (MeetingHud.Instance.playerStates[index].TargetPlayerId == voteArea.TargetPlayerId) break;
+
+                swapperrole.Buttons[index].GetComponent<SpriteRenderer>().sprite = CrewmateRoles.SwapperMod.AddButton.DisabledSprite;
+                swapperrole.ListOfActives[index] = false;
+                swapperrole.Buttons[index].SetActive(false);
+                swapperrole.Buttons[index].GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+
+            }
+
             foreach (var playerVoteArea in meetingHud.playerStates)
             {
                 if (playerVoteArea.VotedFor != player.PlayerId) continue;

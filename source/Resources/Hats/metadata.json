@@ -342,7 +342,7 @@
     },
     {
       "id": "hats0068",
-      "name": "firegod",
+      "name": "firegod hat",
       "artist": "PhasmoFireGod"
     },
     {
@@ -422,102 +422,102 @@
     },
     {
       "id": "hats0084",
-      "name": "A Knoife!",
+      "name": "A Knoife! hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0085",
-      "name": "Blush-stache",
+      "name": "Blush-stache hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0086",
-      "name": "BTW Hat",
+      "name": "BTW hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0087",
-      "name": "Flower Fedora",
+      "name": "Flower Fedora hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0088",
-      "name": "Gigawolf",
+      "name": "Gigawolf hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0089",
-      "name": "Good Aura",
+      "name": "Good Aura hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0090",
-      "name": "Guardian Angel",
+      "name": "Guardian Angel hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0091",
-      "name": "Horned Angel",
+      "name": "Horned Angel hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0092",
-      "name": "Kartodk Evil",
+      "name": "Kartodk Evil hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0093",
-      "name": "Kartodk Sus",
+      "name": "Kartodk Sus hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0094",
-      "name": "Lavish",
+      "name": "Lavish hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0095",
-      "name": "Lie-canthrope",
+      "name": "Lie-canthrope hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0096",
-      "name": "Overgrown",
+      "name": "Overgrown hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0097",
-      "name": "Press X",
+      "name": "Press X hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0098",
-      "name": "Rico's Navy",
+      "name": "Rico's Navy hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0099",
-      "name": "Sav Beanie",
+      "name": "Sav Beanie hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0100",
-      "name": "Sparkles!",
+      "name": "Sparkles! hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0101",
-      "name": "Specs n' Antlers",
+      "name": "Specs n' Antlers hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0102",
-      "name": "Stylish Witch",
+      "name": "Stylish Witch hat",
       "artist": "Sugawara"
     },
     {
       "id": "hats0103",
-      "name": "Tropic Beach Hat",
+      "name": "Tropic Beach hat",
       "artist": "Sugawara"
     },
     {
@@ -722,7 +722,7 @@
     },
     {
       "id": "hats0144",
-      "name": "Trans Wolf hat",
+      "name": "LayZFox hat",
       "artist": "LayZ"
     },
     {
@@ -732,13 +732,318 @@
     },
     {
       "id": "hats0146",
-      "name": "Bone hat",
+      "name": "X-Ray hat",
       "artist": "LayZ"
     },
     {
       "id": "hats0147",
-      "name": "Pride Wolf hat",
+      "name": "Pap hat",
       "artist": "LayZ"
+    },
+    {
+      "id": "hats0148",
+      "name": "Cocoa hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0149",
+      "name": "Doused hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0150",
+      "name": "Fluffy Boi hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0151",
+      "name": "Hot Saucy hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0152",
+      "name": "ImPAWstor hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0153",
+      "name": "MMMM hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0154",
+      "name": "Bad Aura hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0155",
+      "name": "Dunce hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0156",
+      "name": "Gay-ny Day hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0157",
+      "name": "Marionette hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0158",
+      "name": "Random Ronnie hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0159",
+      "name": "Disconnected hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0160",
+      "name": "Lunch hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0161",
+      "name": "Peace Never! hat",
+      "artist": "Sugawara"
+    },
+    {
+      "id": "hats0162",
+      "name": "Amcam hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0163",
+      "name": "Book Of Sus hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0164",
+      "name": "Caramilk hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0165",
+      "name": "DJSmiles hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0166",
+      "name": "DrunkyPoo hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0167",
+      "name": "HoliGhost hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0168",
+      "name": "ImpTongue hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0169",
+      "name": "Jessie hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0170",
+      "name": "L hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0171",
+      "name": "Paws hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0172",
+      "name": "Potterhead hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0173",
+      "name": "Lil Swift hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0174",
+      "name": "Sabeleye hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0175",
+      "name": "Sheriff hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0176",
+      "name": "Steampunk hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0177",
+      "name": "Steampunk Look hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0178",
+      "name": "Sushub hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0179",
+      "name": "Susotion hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0180",
+      "name": "Bee hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0181",
+      "name": "T-Rex hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0182",
+      "name": "Maid hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0183",
+      "name": "Koji hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0184",
+      "name": "Ellum hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0185",
+      "name": "Koji Maid hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0186",
+      "name": "jeremy hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0187",
+      "name": "kDoolz hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0188",
+      "name": "tenma hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0189",
+      "name": "jukebox hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0190",
+      "name": "PK Fire hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0191",
+      "name": "Termy Boi hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0192",
+      "name": "Tippy hat",
+      "artist": "LayZ"
+    },
+    {
+      "id": "hats0193",
+      "name": "Akatsuki hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0194",
+      "name": "Bearded Grizzly hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0195",
+      "name": "Dumbdog hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0196",
+      "name": "Eyeball hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0197",
+      "name": "Friday Night Funkin hat 1",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0198",
+      "name": "Friday Night Funkin hat 2",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0199",
+      "name": "Jerm hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0200",
+      "name": "Milky Joe hat",
+      "artist": "Ophidian"
+    },
+    {
+      "id": "hats0201",
+      "name": "Monkeh hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0202",
+      "name": "Pink hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0203",
+      "name": "Sugarcat hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0204",
+      "name": "Zombie hat",
+      "artist": "Pigoletto"
+    },
+    {
+      "id": "hats0205",
+      "name": "Iron Man hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0206",
+      "name": "Thanos hat",
+      "artist": "TheLastShaymin"
+    },
+    {
+      "id": "hats0207",
+      "name": "Side Arms hat",
+      "artist": "Ghost_ejims"
+    },
+    {
+      "id": "hats0208",
+      "name": "Kara hat 2",
+      "artist": "TheLastShaymin"
     },
     {
       "id": "misc0000",
@@ -747,7 +1052,7 @@
     },
     {
       "id": "misc0001",
-      "name": "Zemo_hat hat",
+      "name": "Zemo hat",
       "artist": ""
     },
     {
@@ -887,7 +1192,7 @@
     },
     {
       "id": "misc0029",
-      "name": "",
+      "name": "Redhead",
       "artist": ""
     },
     {
@@ -897,7 +1202,7 @@
     },
     {
       "id": "myhats0001",
-      "name": "boxhat hat",
+      "name": "box hat",
       "artist": "acron"
     },
     {
@@ -1017,12 +1322,12 @@
     },
     {
       "id": "standard0008",
-      "name": "penguinface_front",
+      "name": "penguinface_front hat",
       "artist": ""
     },
     {
       "id": "standard0009",
-      "name": "pancakes",
+      "name": "pancakes hat",
       "artist": ""
     },
     {
@@ -1037,7 +1342,7 @@
     },
     {
       "id": "standard0012",
-      "name": "kris hat hat",
+      "name": "kris hat",
       "artist": "tori#1277"
     },
     {
@@ -1097,12 +1402,12 @@
     },
     {
       "id": "standard0024",
-      "name": "charizard",
+      "name": "charizard hat",
       "artist": "TheLastShaymin"
     },
     {
       "id": "standard0025",
-      "name": "buffyhelmet",
+      "name": "buffyhelmet hat",
       "artist": ""
     },
     {
@@ -1147,12 +1452,12 @@
     },
     {
       "id": "standard0034",
-      "name": "basetrade_3",
+      "name": "basetrade_3 hat",
       "artist": "Ressnie"
     },
     {
       "id": "standard0035",
-      "name": "basetrade_2",
+      "name": "basetrade_2 hat",
       "artist": "Ressnie"
     },
     {
@@ -1162,7 +1467,7 @@
     },
     {
       "id": "standard0037",
-      "name": "ash hat hat",
+      "name": "ash hat",
       "artist": ""
     },
     {
@@ -1171,474 +1476,474 @@
       "artist": "TheLastShaymin"
     },
     {
-      "id": "Aika",
-      "name": "Aika",
-      "artist": "-H"
-    },
-    {
-      "id": "Angel",
-      "name": "Angel",
-      "artist": "-H"
-    },
-    {
-      "id": "Angry",
-      "name": "Angry",
-      "artist": "-H"
-    },
-    {
-      "id": "Antennae",
-      "name": "Antennae",
-      "artist": "-H"
-    },
-    {
-      "id": "Arrow",
-      "name": "Arrow",
-      "artist": "-H"
-    },
-    {
-      "id": "Banger",
-      "name": "Banger",
-      "artist": "-H"
-    },
-    {
-      "id": "Bear skin",
-      "name": "Bear skin",
-      "artist": "-H"
-    },
-    {
-      "id": "Beard hat",
-      "name": "Beard hat",
-      "artist": "-H"
-    },
-    {
-      "id": "Beard manbun",
-      "name": "Beard manbun",
-      "artist": "-H"
-    },
-    {
-      "id": "Bee",
-      "name": "Bee",
-      "artist": "-H"
-    },
-    {
-      "id": "Berry",
-      "name": "Berry",
-      "artist": "-H"
-    },
-    {
-      "id": "Big brain",
-      "name": "Big brain",
-      "artist": "-H"
-    },
-    {
-      "id": "Bowler hat",
-      "name": "Bowler hat",
-      "artist": "-H"
-    },
-    {
-      "id": "Bulb head",
-      "name": "Bulb head",
-      "artist": "-H"
-    },
-    {
-      "id": "Butterfly",
-      "name": "Butterfly",
-      "artist": "-H"
-    },
-    {
-      "id": "Cake",
-      "name": "Cake",
-      "artist": "-H"
-    },
-    {
-      "id": "Cat Beard",
-      "name": "Cat Beard",
-      "artist": "-H"
-    },
-    {
-      "id": "Cat Hair",
-      "name": "Cat Hair",
-      "artist": "-H"
-    },
-    {
-      "id": "Clean",
-      "name": "Clean",
-      "artist": "-H"
-    },
-    {
-      "id": "Cone",
-      "name": "Cone",
-      "artist": "-H"
-    },
-    {
-      "id": "Crewmates",
-      "name": "Crewmates",
-      "artist": "-H"
-    },
-    {
-      "id": "Cursed",
-      "name": "Cursed",
-      "artist": "-H"
-    },
-    {
-      "id": "Dandy",
-      "name": "Dandy",
-      "artist": "-H"
-    },
-    {
-      "id": "Devil",
-      "name": "Devil",
-      "artist": "-H"
-    },
-    {
-      "id": "Dino",
-      "name": "Dino",
-      "artist": "-H"
-    },
-    {
-      "id": "Disco Ball",
-      "name": "Disco Ball",
-      "artist": "-H"
-    },
-    {
-      "id": "Dizzy",
-      "name": "Dizzy",
-      "artist": "-H"
-    },
-    {
-      "id": "DJ",
-      "name": "DJ",
-      "artist": "-H"
-    },
-    {
-      "id": "Dota",
-      "name": "Dota",
-      "artist": "-H"
-    },
-    {
-      "id": "Drachma",
-      "name": "Drachma",
-      "artist": "-H"
-    },
-    {
-      "id": "Elephant",
-      "name": "Elephant",
-      "artist": "-H"
-    },
-    {
-      "id": "Elf",
-      "name": "Elf",
-      "artist": "-H"
-    },
-    {
-      "id": "Emo",
-      "name": "Emo",
-      "artist": "-H"
-    },
-    {
-      "id": "Eyepatch",
-      "name": "Eyepatch",
-      "artist": "-H"
-    },
-    {
-      "id": "Ezlo",
-      "name": "Ezlo",
-      "artist": "-H"
-    },
-    {
-      "id": "Face Mask",
-      "name": "Face Mask",
-      "artist": "-H"
-    },
-    {
-      "id": "Factorio",
-      "name": "Factorio",
-      "artist": "-H"
-    },
-    {
-      "id": "Fishbowl",
-      "name": "Fishbowl",
-      "artist": "-H"
-    },
-    {
-      "id": "Flame Hair",
-      "name": "Flame Hair",
-      "artist": "-H"
-    },
-    {
-      "id": "Flame",
-      "name": "Flame",
-      "artist": "-H"
-    },
-    {
-      "id": "Flower Crown",
-      "name": "Flower Crown",
-      "artist": "-H"
-    },
-    {
       "id": "Gir",
       "name": "Gir",
-      "artist": "-H"
-    },
-    {
-      "id": "GooGoo eyes",
-      "name": "GooGoo eyes",
-      "artist": "-H"
-    },
-    {
-      "id": "Gun",
-      "name": "Gun",
-      "artist": "-H"
-    },
-    {
-      "id": "Harley",
-      "name": "Harley",
-      "artist": "-H"
-    },
-    {
-      "id": "Homer",
-      "name": "Homer",
-      "artist": "-H"
-    },
-    {
-      "id": "Hoodie",
-      "name": "Hoodie",
-      "artist": "-H"
-    },
-    {
-      "id": "Hotdog",
-      "name": "Hotdog",
-      "artist": "-H"
-    },
-    {
-      "id": "Icecream",
-      "name": "Icecream",
-      "artist": "-H"
-    },
-    {
-      "id": "Idea",
-      "name": "Idea",
-      "artist": "-H"
-    },
-    {
-      "id": "Jester",
-      "name": "Jester",
-      "artist": "-H"
-    },
-    {
-      "id": "Killjoy",
-      "name": "Killjoy",
-      "artist": "-H"
-    },
-    {
-      "id": "Lampshade",
-      "name": "Lampshade",
-      "artist": "-H"
-    },
-    {
-      "id": "Luigi",
-      "name": "Luigi",
-      "artist": "-H"
-    },
-    {
-      "id": "Mario",
-      "name": "Mario",
-      "artist": "-H"
-    },
-    {
-      "id": "Mech",
-      "name": "Mech",
-      "artist": "-H"
-    },
-    {
-      "id": "Medusa",
-      "name": "Medusa",
-      "artist": "-H"
-    },
-    {
-      "id": "Moustache",
-      "name": "Moustache",
-      "artist": "-H"
-    },
-    {
-      "id": "Ninja Turtle",
-      "name": "Ninja Turtle",
-      "artist": "-H"
-    },
-    {
-      "id": "Old Man",
-      "name": "Old Man",
-      "artist": "-H"
-    },
-    {
-      "id": "Owl",
-      "name": "Owl",
-      "artist": "-H"
-    },
-    {
-      "id": "Penguin",
-      "name": "Penguin",
-      "artist": "-H"
-    },
-    {
-      "id": "Pepe",
-      "name": "Pepe",
-      "artist": "-H"
-    },
-    {
-      "id": "Phone",
-      "name": "Phone",
-      "artist": "-H"
-    },
-    {
-      "id": "Pikachu",
-      "name": "Pikachu",
-      "artist": "-H"
-    },
-    {
-      "id": "Pirate",
-      "name": "Pirate",
-      "artist": "-H"
-    },
-    {
-      "id": "Pizza",
-      "name": "Pizza",
-      "artist": "-H"
-    },
-    {
-      "id": "Platypus",
-      "name": "Platypus",
-      "artist": "-H"
+      "artist": "H"
     },
     {
       "id": "Potato",
       "name": "Potato",
-      "artist": "-H"
+      "artist": "H"
     },
     {
-      "id": "Press",
-      "name": "Press",
-      "artist": "-H"
+      "id": "Killjoy",
+      "name": "Killjoy",
+      "artist": "H"
     },
     {
-      "id": "Prom Queen",
-      "name": "Prom Queen",
-      "artist": "-H"
+      "id": "Owl",
+      "name": "Owl",
+      "artist": "H"
     },
     {
-      "id": "Purple Hair",
-      "name": "Purple Hair",
-      "artist": "-H"
-    },
-    {
-      "id": "Rainbow",
-      "name": "Rainbow",
-      "artist": "-H"
-    },
-    {
-      "id": "Shark Head",
-      "name": "Shark Head",
-      "artist": "-H"
-    },
-    {
-      "id": "Sheba",
-      "name": "Sheba",
-      "artist": "-H"
-    },
-    {
-      "id": "Shower",
-      "name": "Shower",
-      "artist": "-H"
-    },
-    {
-      "id": "Smilie",
-      "name": "Smilie",
-      "artist": "-H"
-    },
-    {
-      "id": "Snoopy",
-      "name": "Snoopy",
-      "artist": "-H"
-    },
-    {
-      "id": "Steampunk",
-      "name": "Steampunk",
-      "artist": "-H"
-    },
-    {
-      "id": "Sunglasses",
-      "name": "Sunglasses",
-      "artist": "-H"
-    },
-    {
-      "id": "Sushi",
-      "name": "Sushi",
-      "artist": "-H"
-    },
-    {
-      "id": "Tear",
-      "name": "Tear",
-      "artist": "-H"
-    },
-    {
-      "id": "Tentacles",
-      "name": "Tentacles",
-      "artist": "-H"
-    },
-    {
-      "id": "Tiger King",
-      "name": "Tiger King",
-      "artist": "-H"
-    },
-    {
-      "id": "Tinfoil",
-      "name": "Tinfoil",
-      "artist": "-H"
-    },
-    {
-      "id": "Tiny Top Hat",
-      "name": "Tiny Top Hat",
-      "artist": "-H"
-    },
-    {
-      "id": "Turret",
-      "name": "Turret",
-      "artist": "-H"
-    },
-    {
-      "id": "Twilek",
-      "name": "Twilek",
-      "artist": "-H"
-    },
-    {
-      "id": "Umbrella",
-      "name": "Umbrella",
-      "artist": "-H"
-    },
-    {
-      "id": "Unicorn Clouds",
-      "name": "Unicorn Clouds",
-      "artist": "-H"
-    },
-    {
-      "id": "Upper class",
-      "name": "Upper class",
-      "artist": "-H"
-    },
-    {
-      "id": "Villain",
-      "name": "Villain",
-      "artist": "-H"
+      "id": "Dino",
+      "name": "Dino",
+      "artist": "H"
     },
     {
       "id": "Vyze",
       "name": "Vyze",
-      "artist": "-H"
+      "artist": "H"
+    },
+    {
+      "id": "Aika",
+      "name": "Aika",
+      "artist": "H"
+    },
+    {
+      "id": "Drachma",
+      "name": "Drachma",
+      "artist": "H"
+    },
+    {
+      "id": "Angel",
+      "name": "Angel",
+      "artist": "H"
+    },
+    {
+      "id": "Angry",
+      "name": "Angry",
+      "artist": "H"
+    },
+    {
+      "id": "Antennae",
+      "name": "Antennae",
+      "artist": "H"
+    },
+    {
+      "id": "Arrow",
+      "name": "Arrow",
+      "artist": "H"
+    },
+    {
+      "id": "Banger",
+      "name": "Banger",
+      "artist": "H"
+    },
+    {
+      "id": "Bear skin",
+      "name": "Bear skin",
+      "artist": "H"
+    },
+    {
+      "id": "Beard hat",
+      "name": "Beard hat",
+      "artist": "H"
+    },
+    {
+      "id": "Beard manbun",
+      "name": "Beard manbun",
+      "artist": "H"
+    },
+    {
+      "id": "Bee",
+      "name": "Bee",
+      "artist": "H"
+    },
+    {
+      "id": "Berry",
+      "name": "Berry",
+      "artist": "H"
+    },
+    {
+      "id": "Big brain",
+      "name": "Big brain",
+      "artist": "H"
+    },
+    {
+      "id": "Bowler hat",
+      "name": "Bowler hat",
+      "artist": "H"
+    },
+    {
+      "id": "Bulb head",
+      "name": "Bulb head",
+      "artist": "H"
+    },
+    {
+      "id": "Butterfly",
+      "name": "Butterfly",
+      "artist": "H"
+    },
+    {
+      "id": "Cake",
+      "name": "Cake",
+      "artist": "H"
+    },
+    {
+      "id": "Cat Beard",
+      "name": "Cat Beard",
+      "artist": "H"
+    },
+    {
+      "id": "Cat Hair",
+      "name": "Cat Hair",
+      "artist": "H"
+    },
+    {
+      "id": "Clean",
+      "name": "Clean",
+      "artist": "H"
+    },
+    {
+      "id": "Cone",
+      "name": "Cone",
+      "artist": "H"
+    },
+    {
+      "id": "Crewmates",
+      "name": "Crewmates",
+      "artist": "H"
+    },
+    {
+      "id": "Cursed",
+      "name": "Cursed",
+      "artist": "H"
+    },
+    {
+      "id": "Dandy",
+      "name": "Dandy",
+      "artist": "H"
+    },
+    {
+      "id": "Devil",
+      "name": "Devil",
+      "artist": "H"
+    },
+    {
+      "id": "Disco Ball",
+      "name": "Disco Ball",
+      "artist": "H"
+    },
+    {
+      "id": "Dizzy",
+      "name": "Dizzy",
+      "artist": "H"
+    },
+    {
+      "id": "DJ",
+      "name": "DJ",
+      "artist": "H"
+    },
+    {
+      "id": "Dota",
+      "name": "Dota",
+      "artist": "H"
+    },
+    {
+      "id": "Elephant",
+      "name": "Elephant",
+      "artist": "H"
+    },
+    {
+      "id": "Elf",
+      "name": "Elf",
+      "artist": "H"
+    },
+    {
+      "id": "Emo",
+      "name": "Emo",
+      "artist": "H"
+    },
+    {
+      "id": "Eyepatch",
+      "name": "Eyepatch",
+      "artist": "H"
+    },
+    {
+      "id": "Ezlo",
+      "name": "Ezlo",
+      "artist": "H"
+    },
+    {
+      "id": "Face Mask",
+      "name": "Face Mask",
+      "artist": "H"
+    },
+    {
+      "id": "Factorio",
+      "name": "Factorio",
+      "artist": "H"
+    },
+    {
+      "id": "Fishbowl",
+      "name": "Fishbowl",
+      "artist": "H"
+    },
+    {
+      "id": "Flame Hair",
+      "name": "Flame Hair",
+      "artist": "H"
+    },
+    {
+      "id": "Flame",
+      "name": "Flame",
+      "artist": "H"
+    },
+    {
+      "id": "Flower Crown",
+      "name": "Flower Crown",
+      "artist": "H"
+    },
+    {
+      "id": "GooGoo eyes",
+      "name": "GooGoo eyes",
+      "artist": "H"
+    },
+    {
+      "id": "Gun",
+      "name": "Gun",
+      "artist": "H"
+    },
+    {
+      "id": "Harley",
+      "name": "Harley",
+      "artist": "H"
+    },
+    {
+      "id": "Homer",
+      "name": "Homer",
+      "artist": "H"
+    },
+    {
+      "id": "Hoodie",
+      "name": "Hoodie",
+      "artist": "H"
+    },
+    {
+      "id": "Hotdog",
+      "name": "Hotdog",
+      "artist": "H"
+    },
+    {
+      "id": "Icecream",
+      "name": "Icecream",
+      "artist": "H"
+    },
+    {
+      "id": "Idea",
+      "name": "Idea",
+      "artist": "H"
+    },
+    {
+      "id": "Jester",
+      "name": "Jester",
+      "artist": "H"
+    },
+    {
+      "id": "Lampshade",
+      "name": "Lampshade",
+      "artist": "H"
+    },
+    {
+      "id": "Mario",
+      "name": "Mario",
+      "artist": "H"
+    },
+    {
+      "id": "Luigi",
+      "name": "Luigi",
+      "artist": "H"
+    },
+    {
+      "id": "Mech",
+      "name": "Mech",
+      "artist": "H"
+    },
+    {
+      "id": "Medusa",
+      "name": "Medusa",
+      "artist": "H"
+    },
+    {
+      "id": "Moustache",
+      "name": "Moustache",
+      "artist": "H"
+    },
+    {
+      "id": "Ninja Turtle",
+      "name": "Ninja Turtle",
+      "artist": "H"
+    },
+    {
+      "id": "Old Man",
+      "name": "Old Man",
+      "artist": "H"
+    },
+    {
+      "id": "Penguin",
+      "name": "Penguin",
+      "artist": "H"
+    },
+    {
+      "id": "Pepe",
+      "name": "Pepe",
+      "artist": "H"
+    },
+    {
+      "id": "Phone",
+      "name": "Phone",
+      "artist": "H"
+    },
+    {
+      "id": "Pikachu",
+      "name": "Pikachu",
+      "artist": "H"
+    },
+    {
+      "id": "Pirate",
+      "name": "Pirate",
+      "artist": "H"
+    },
+    {
+      "id": "Pizza",
+      "name": "Pizza",
+      "artist": "H"
+    },
+    {
+      "id": "Platypus",
+      "name": "Platypus",
+      "artist": "H"
+    },
+    {
+      "id": "Press",
+      "name": "Press",
+      "artist": "H"
+    },
+    {
+      "id": "Prom Queen",
+      "name": "Prom Queen",
+      "artist": "H"
+    },
+    {
+      "id": "Purple Hair",
+      "name": "Purple Hair",
+      "artist": "H"
+    },
+    {
+      "id": "Rainbow",
+      "name": "Rainbow",
+      "artist": "H"
+    },
+    {
+      "id": "Shark Head",
+      "name": "Shark Head",
+      "artist": "H"
+    },
+    {
+      "id": "Sheba",
+      "name": "Sheba",
+      "artist": "H"
+    },
+    {
+      "id": "Shower",
+      "name": "Shower",
+      "artist": "H"
+    },
+    {
+      "id": "Smilie",
+      "name": "Smilie",
+      "artist": "H"
+    },
+    {
+      "id": "Snoopy",
+      "name": "Snoopy",
+      "artist": "H"
+    },
+    {
+      "id": "Steampunk",
+      "name": "Steampunk",
+      "artist": "H"
+    },
+    {
+      "id": "Sunglasses",
+      "name": "Sunglasses",
+      "artist": "H"
+    },
+    {
+      "id": "Sushi",
+      "name": "Sushi",
+      "artist": "H"
+    },
+    {
+      "id": "Tear",
+      "name": "Tear",
+      "artist": "H"
+    },
+    {
+      "id": "Tentacles",
+      "name": "Tentacles",
+      "artist": "H"
+    },
+    {
+      "id": "Tiger King",
+      "name": "Tiger King",
+      "artist": "H"
+    },
+    {
+      "id": "Tinfoil",
+      "name": "Tinfoil",
+      "artist": "H"
+    },
+    {
+      "id": "Tiny Top Hat",
+      "name": "Tiny Top Hat",
+      "artist": "H"
+    },
+    {
+      "id": "Turret",
+      "name": "Turret",
+      "artist": "H"
+    },
+    {
+      "id": "Twilek",
+      "name": "Twilek",
+      "artist": "H"
+    },
+    {
+      "id": "Umbrella",
+      "name": "Umbrella",
+      "artist": "H"
+    },
+    {
+      "id": "Unicorn Clouds",
+      "name": "Unicorn Clouds",
+      "artist": "H"
+    },
+    {
+      "id": "Upper class",
+      "name": "Upper class",
+      "artist": "H"
+    },
+    {
+      "id": "Villain",
+      "name": "Villain",
+      "artist": "H"
     },
     {
       "id": "Yoshi egg",
       "name": "Yoshi egg",
-      "artist": "-H"
+      "artist": "H"
     }
   ]
 }

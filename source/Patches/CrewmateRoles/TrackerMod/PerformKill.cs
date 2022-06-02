@@ -4,7 +4,6 @@ using Hazel;
 using TownOfUs.Roles;
 using UnityEngine;
 using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.TrackerMod
@@ -39,16 +38,17 @@ namespace TownOfUs.CrewmateRoles.TrackerMod
                     writer2.Write(PlayerControl.LocalPlayer.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer2);
 
-                    System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                     if (CustomGameOptions.ShieldBreaks)
                         role.LastTracked = DateTime.UtcNow;
                     StopKill.BreakShield(PlayerControl.LocalPlayer.GetMedic().Player.PlayerId, PlayerControl.LocalPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                    return false;
                 }
-                else
+                else if (!role.Player.IsProtected())
                 {
                     Utils.RpcMurderPlayer(role.ClosestPlayer, PlayerControl.LocalPlayer);
+                    return false;
                 }
-
+                role.LastTracked = DateTime.UtcNow;
                 return false;
             }
 
@@ -70,7 +70,7 @@ namespace TownOfUs.CrewmateRoles.TrackerMod
             }
             else
             {
-                renderer.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+                renderer.color = Color.gray;
             }
             arrow.image = renderer;
             gameObj.layer = 5;
@@ -80,6 +80,11 @@ namespace TownOfUs.CrewmateRoles.TrackerMod
             role.UsesLeft--;
             role.LastTracked = DateTime.UtcNow;
 
+            try {
+                AudioClip TrackSFX = TownOfUs.loadAudioClipFromResources("TownOfUs.Resources.Track.raw");
+                SoundManager.Instance.PlaySound(TrackSFX, false, 0.4f);
+            } catch {
+            }
             return false;
         }
     }
